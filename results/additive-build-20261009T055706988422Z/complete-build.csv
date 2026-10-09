@@ -1,0 +1,13 @@
+run_id,goal_id,pattern,method,workload,repetition,states,components,preprocess_ms,reference_prepare_ms,build_ms,export_ms,expanded,peak_frontier_entries,validated_ranks,status,distance_file
+2026-10-09T05-57-08.446220800Z,0,1-2-3,BFS,complete-additive-quotient-table,1,3024,744,17.939800,267.870200,2.465400,1.972600,744,188,3024,SOLVED,goal-0-BFS-1-distances.txt
+2026-10-09T05-57-08.446220800Z,0,1-2-3,BiBFS,complete-additive-quotient-table,1,3024,744,17.939800,267.870200,17.251400,1.731500,38501,269,3024,SOLVED,goal-0-BiBFS-1-distances.txt
+2026-10-09T05-57-08.446220800Z,0,1-2-3,BiBFS,complete-additive-quotient-table,2,3024,744,17.939800,267.870200,8.202700,1.320400,38501,269,3024,SOLVED,goal-0-BiBFS-2-distances.txt
+2026-10-09T05-57-08.446220800Z,0,1-2-3,BFS,complete-additive-quotient-table,2,3024,744,17.939800,267.870200,0.347900,1.114600,744,188,3024,SOLVED,goal-0-BFS-2-distances.txt
+2026-10-09T05-57-08.446220800Z,0,1-2-3,BFS,complete-additive-quotient-table,3,3024,744,17.939800,267.870200,0.277100,2.200000,744,188,3024,SOLVED,goal-0-BFS-3-distances.txt
+2026-10-09T05-57-08.446220800Z,0,1-2-3,BiBFS,complete-additive-quotient-table,3,3024,744,17.939800,267.870200,13.621200,1.577900,38501,269,3024,SOLVED,goal-0-BiBFS-3-distances.txt
+2026-10-09T05-57-08.446220800Z,1,1-2-3,BFS,complete-additive-quotient-table,1,3024,744,2.712700,4.402600,0.247900,0.927800,744,177,3024,SOLVED,goal-1-BFS-1-distances.txt
+2026-10-09T05-57-08.446220800Z,1,1-2-3,BiBFS,complete-additive-quotient-table,1,3024,744,2.712700,4.402600,8.067900,1.741400,42975,274,3024,SOLVED,goal-1-BiBFS-1-distances.txt
+2026-10-09T05-57-08.446220800Z,1,1-2-3,BiBFS,complete-additive-quotient-table,2,3024,744,2.712700,4.402600,8.269200,1.182700,42975,274,3024,SOLVED,goal-1-BiBFS-2-distances.txt
+2026-10-09T05-57-08.446220800Z,1,1-2-3,BFS,complete-additive-quotient-table,2,3024,744,2.712700,4.402600,0.211500,0.995000,744,177,3024,SOLVED,goal-1-BFS-2-distances.txt
+2026-10-09T05-57-08.446220800Z,1,1-2-3,BFS,complete-additive-quotient-table,3,3024,744,2.712700,4.402600,0.231800,1.051700,744,177,3024,SOLVED,goal-1-BFS-3-distances.txt
+2026-10-09T05-57-08.446220800Z,1,1-2-3,BiBFS,complete-additive-quotient-table,3,3024,744,2.712700,4.402600,7.676500,1.135700,42975,274,3024,SOLVED,goal-1-BiBFS-3-distances.txt

@@ -1,0 +1,4 @@
+end_to_end_ms=389.2541
+timeout_s=15
+command=[C:\Program Files\Java\jdk-19\bin\java, -Xmx1024m, -Dwattai.fast=true, -Dwattai.snapshot=results\ordinary-optimized-20261008\2026-10-08T14-16-55.581686500Z.properties, -cp, build-final-20261008, stud.g01.runner.Stage3Benchmark, --worker, 2026-10-08T14-16-55.581686500Z, resources/problems3.txt, 3, IDA, DISJOINT_PATTERN, 555]
+status=SOLVED

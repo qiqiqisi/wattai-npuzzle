@@ -1,0 +1,14 @@
+build-*/
+build-test/
+out/
+generated/
+*.class
+*.pdb
+*.jfr
+*.iml
+.idea/
+.vscode/
+__pycache__/
+*.tmp
+.publication-audit/
+.publication-stage*/

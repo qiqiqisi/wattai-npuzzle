@@ -1,0 +1,5 @@
+run_id,problem,algorithm,heuristic,pattern,solution_length,path_cost,elapsed_ms,generated,expanded,iterations,pdb_build_ms,pdb_load_ms,pdb_lookup_count,pdb_entries,pdb_file_bytes,max_depth,peak_table_size,status,solution_file
+2026-10-08T14-54-37.523382700Z,problems_3,ASTAR,MISPLACED,4443,31,31,277.286,385076,143848,,0,0,,,,,,SOLVED,results/solutions/2026-10-08T14-54-37.523382700Z-problems_3-ASTAR-MISPLACED.tsv
+2026-10-08T14-54-38.179808400Z,problems_3,ASTAR,MANHATTAN,4443,31,31,67.140,55925,21197,,0,0,,,,,,SOLVED,results/solutions/2026-10-08T14-54-38.179808400Z-problems_3-ASTAR-MANHATTAN.tsv
+2026-10-08T14-54-38.681208500Z,problems_2,ASTAR,MISPLACED,4443,31,31,258.351,385076,143848,,0,0,,,,,,SOLVED,results/solutions/2026-10-08T14-54-38.681208500Z-problems_2-ASTAR-MISPLACED.tsv
+2026-10-08T14-54-39.331395400Z,problems_2,ASTAR,MANHATTAN,4443,31,31,63.241,55925,21197,,0,0,,,,,,SOLVED,results/solutions/2026-10-08T14-54-39.331395400Z-problems_2-ASTAR-MANHATTAN.tsv

@@ -1,0 +1,5 @@
+run_id,problem,algorithm,heuristic,pattern,solution_length,path_cost,elapsed_ms,generated,expanded,iterations,pdb_build_ms,pdb_load_ms,pdb_lookup_count,pdb_entries,pdb_file_bytes,max_depth,peak_table_size,status,solution_file
+2026-10-08T14-42-38.024874400Z,problems3_10,IDA,DISJOINT_PATTERN,555,,,,,,,,,,,,,,TIMEOUT,
+2026-10-08T14-43-08.296489700Z,problems3_10,IDA,DISJOINT_PATTERN,555,,,,,,,,,,,,,,TIMEOUT,
+2026-10-08T14-43-38.597780200Z,problems3_10,IDA,DISJOINT_PATTERN,555,,,,,,,,,,,,,,TIMEOUT,
+2026-10-08T14-46-19.547709500Z,problems3_10,IDA,DISJOINT_PATTERN,555,,,,,,,,,,,,,,TIMEOUT,

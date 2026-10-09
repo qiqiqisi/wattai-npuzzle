@@ -1,0 +1,3 @@
+run_id,pattern,prepare_ms,build_ms,load_ms,entries,bytes_per_entry,estimated_table_bytes,file_bytes,average_heuristic_100_walks,solution_length,search_ms,generated,expanded,status
+2026-10-02T06-45-47.152893400Z,4443,26.061,0,10,1616160,1,1616160,1616408,35.000,52,336.293,406791,134773,SOLVED
+2026-10-02T06-51-32.484236200Z,555,75.189,0,40,17297280,1,17297280,17297496,38.160,52,140.405,166753,54760,SOLVED

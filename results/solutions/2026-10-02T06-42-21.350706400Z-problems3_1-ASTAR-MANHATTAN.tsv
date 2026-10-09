@@ -1,0 +1,32 @@
+format	NPUZZLE_SOLUTION_V1
+algorithm	ASTAR
+heuristic	MANHATTAN
+size	3
+elapsed_ms	13.667
+generated	2489
+expanded	931
+solution_length	21
+goal	1 2 3 4 5 6 7 8 0
+step	move	state
+0	START	5 0 8 4 2 1 7 3 6
+1	DOWN	5 2 8 4 0 1 7 3 6
+2	RIGHT	5 2 8 4 1 0 7 3 6
+3	UP	5 2 0 4 1 8 7 3 6
+4	LEFT	5 0 2 4 1 8 7 3 6
+5	DOWN	5 1 2 4 0 8 7 3 6
+6	DOWN	5 1 2 4 3 8 7 0 6
+7	RIGHT	5 1 2 4 3 8 7 6 0
+8	UP	5 1 2 4 3 0 7 6 8
+9	LEFT	5 1 2 4 0 3 7 6 8
+10	DOWN	5 1 2 4 6 3 7 0 8
+11	LEFT	5 1 2 4 6 3 0 7 8
+12	UP	5 1 2 0 6 3 4 7 8
+13	UP	0 1 2 5 6 3 4 7 8
+14	RIGHT	1 0 2 5 6 3 4 7 8
+15	RIGHT	1 2 0 5 6 3 4 7 8
+16	DOWN	1 2 3 5 6 0 4 7 8
+17	LEFT	1 2 3 5 0 6 4 7 8
+18	LEFT	1 2 3 0 5 6 4 7 8
+19	DOWN	1 2 3 4 5 6 0 7 8
+20	RIGHT	1 2 3 4 5 6 7 0 8
+21	RIGHT	1 2 3 4 5 6 7 8 0

@@ -1,0 +1,7 @@
+problem_id,board_size,algorithm,heuristic,optimization_mode,status,solved,solution_length,path_cost,elapsed_ms,nodes_generated,nodes_expanded,iterations,initial_bound,final_bound,cycle_prunes,transposition_prunes,max_depth,peak_path_states,peak_transposition_entries,runs,threshold_sequence
+15p_4,4,AStar,MANHATTAN,NONE,SOLVED,true,52,52,736.873,1010304,339410,,,,,,,,,3,
+15p_4,4,IDAStar,MANHATTAN,BASIC,SOLVED,true,52,52,395.624,3004776,997736,5,44,52,997705,0,51,53,0,3,[44|46|48|50|52]
+15p_4,4,IDAStar,MANHATTAN,TT,SOLVED,true,52,52,349.477,1131095,379576,5,44,52,379545,19204,51,53,291775,3,[44|46|48|50|52]
+15p_4,4,IDAStar,MANHATTAN,ZOBRIST,SOLVED,true,52,52,346.782,1131095,379576,5,44,52,379545,19204,51,53,291775,3,[44|46|48|50|52]
+15p_4,4,IDAStar,MISPLACED,ZOBRIST,TIMEOUT,false,,,,,,,,,,,,,,0,
+15p_4,4,IDAStar,MANHATTAN_LC,ZOBRIST,SOLVED,true,52,52,438.825,646621,215816,5,44,52,215785,11688,51,53,159852,3,[44|46|48|50|52]

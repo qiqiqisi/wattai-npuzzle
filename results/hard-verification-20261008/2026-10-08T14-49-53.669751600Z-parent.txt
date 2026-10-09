@@ -1,0 +1,4 @@
+end_to_end_ms=32264.7499
+timeout_s=60
+command=[C:\Program Files\Java\jdk-19\bin\java, -Xmx1024m, -Dwattai.mode=BASIC, -Dwattai.limit=0, -Dwattai.fast=true, -Dwattai.cache=generated/pdb-cold-20261008-confirmation, -Dwattai.snapshot=results\hard-verification-20261008\2026-10-08T14-49-53.669751600Z.properties, -cp, build-stronger-20261008, stud.g01.runner.Stage3Benchmark, --worker, 2026-10-08T14-49-53.669751600Z, resources/problems3.txt, 9, IDA, DISJOINT_PATTERN, 555T]
+status=SOLVED

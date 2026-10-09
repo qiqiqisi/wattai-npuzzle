@@ -1,0 +1,4 @@
+end_to_end_ms=203.1073
+timeout_s=60
+command=[C:\Program Files\Java\jdk-19\bin\java, -Xmx1024m, -Dwattai.snapshot=results\diagnostics-20261008\2026-10-08T14-02-09.221511700Z.properties, -XX:StartFlightRecording=settings=profile,duration=57s,filename=results\diagnostics-20261008\2026-10-08T14-02-09.221511700Z.jfr, -cp, build-diagnostic-20261008, stud.g01.runner.Stage3Benchmark, --worker, 2026-10-08T14-02-09.221511700Z, resources/problems3.txt, 9, IDA, DISJOINT_PATTERN, 555]
+status=FAIL

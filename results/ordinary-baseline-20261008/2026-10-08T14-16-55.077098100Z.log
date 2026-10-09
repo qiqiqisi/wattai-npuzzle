@@ -1,0 +1,16 @@
+PROGRESS 2.3613 bound=44 expanded=0
+PROGRESS 70.2566 bound=46 expanded=2
+Exception in thread "main" java.lang.IllegalStateException: Cannot persist diagnostic snapshot
+	at stud.g01.runner.Stage3Benchmark.lambda$worker$1(Stage3Benchmark.java:167)
+	at stud.g01.solver.IdAStar.progress(IdAStar.java:60)
+	at stud.g01.solver.IdAStar.search(IdAStar.java:121)
+	at stud.g01.runner.Stage3Benchmark.worker(Stage3Benchmark.java:170)
+	at stud.g01.runner.Stage3Benchmark.main(Stage3Benchmark.java:36)
+Caused by: java.nio.file.AccessDeniedException: results\ordinary-baseline-20261008\2026-10-08T14-16-55.077098100Z.properties.tmp -> results\ordinary-baseline-20261008\2026-10-08T14-16-55.077098100Z.properties
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:89)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:317)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1430)
+	at stud.g01.runner.Stage3Benchmark.lambda$worker$1(Stage3Benchmark.java:165)
+	... 4 more

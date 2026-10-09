@@ -1,0 +1,3 @@
+[0.130s][error][jfr,startup] Can't create Flight Recorder. C:\Users\ADMINI~1\AppData\Local\Temp
+Error occurred during initialization of VM
+Failure when starting JFR on_create_vm_3
