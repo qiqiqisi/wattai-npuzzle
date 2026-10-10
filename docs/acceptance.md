@@ -15,7 +15,7 @@
 | CSV/TSV 数据、历史失败保留 | PASS | [62 CSV与55路径验证](../results/submission-20261010/data-validation.json)，历史状态汇总是全文件行计数，存在汇总/原始重复，不能视为独立实验数 |
 | A*三启发函数与IDA*可比表 | PASS | 每个teacher3组合独立JVM三次、sample4一次，新PDB冷缓存、10秒上限；[原始表](../results/compare-20261010T061625055Z/comparison.csv) |
 | GUI 解析、状态机、速度和坏文件自动测试 | PASS | PuzzleCloseoutTest、55份真实TSV回放；覆盖3×3/4×4 |
-| 实际Swing按钮/布局/真实截图 | MANUAL_PENDING | `MANUAL_GUI_PENDING`，工具无原生桌面操作能力；没有伪造截图。操作步骤见下 |
+| 实际Swing终态窗口/按钮与速度 | PARTIAL | 用户本机提供 [3×3终态](../report/images/teacher_stage1_3x3_final.png) 和 [4×4终态](../report/images/hard_15puzzle_4x4_final.png) 原始PNG；两种尺寸终态棋盘与目标一致，未见明显截断。按钮逐项交互及速度仍 `MANUAL_GUI_PENDING`，不能据截图宣称完成 |
 | 完整可编辑DOCX及同内容PDF | PASS | [15页逐页排版与元数据审查](../results/submission-20261010/report-qa.json)、[报告](../report/README.md)；真实封面、更新目录、完整正文/表格，无模拟GUI图 |
 | 封面姓名、学号、学期 | MANUAL_PENDING | 均为待填写 |
 | 教师材料忽略且未跟踪 | PASS | `git ls-files teacher_reference`为空、check-ignore命中；源/题目字节保留规则已加入 |

@@ -43,6 +43,14 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/compare.ps1
 
 父端从创建工作 JVM 前开始，含工作 JVM 启动、准备、搜索、回放与导出；父 JVM 自身首次启动未单独量测。父端与搜索的差值不是纯启动耗时。2026-10-09的34.097秒为已核验历史证据，不是本轮成绩。
 
+## 本机 GUI 终态截图（2026-10-10）
+
+| 教师指定 3×3（16 / 16 步） | 最难 4×4（70 / 70 步） |
+|:---:|:---:|
+| ![教师指定 3×3 终态：当前与目标一致](report/images/teacher_stage1_3x3_final.png) | ![最难 4×4 终态：当前与目标一致](report/images/hard_15puzzle_4x4_final.png) |
+
+两图来自用户本机真实 Swing 窗口，保留原始 PNG 字节。它们证明窗口在终态能够显示正确棋盘；**不单凭终态截图证明 Play、Pause、Previous、Next、Restart 和速度切换已经验收**。详细状态见 [验收表](docs/acceptance.md)。
+
 ## 路径播放与目录
 
 ```powershell

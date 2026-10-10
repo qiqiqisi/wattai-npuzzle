@@ -14,3 +14,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/render_report.ps1 -Inp
 ```
 
 填写封面后，应重新导出 PDF 并核对目录与页码。构建脚本不会运行搜索或更改历史 CSV。
+
+## 本机 GUI 运行截图
+
+- [教师指定 3×3 终态，16/16 步](images/teacher_stage1_3x3_final.png)
+- [最难 4×4 终态，70/70 步](images/hard_15puzzle_4x4_final.png)
+
+图片由用户在本机运行 Swing 窗口时提供，上传的是原始PNG而非合成界面。此处保存为**报告插图候选素材**，目前尚未插入已经生成的 DOCX/PDF。终态截图不等于按钮/速度人工验收，若补做操作验收与封面后更新报告，应重新生成DOCX和PDF，并保持两者一致。
