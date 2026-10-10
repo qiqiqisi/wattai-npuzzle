@@ -20,7 +20,7 @@
 | 封面姓名、学号、学期 | MANUAL_PENDING | 均为待填写 |
 | 教师材料忽略且未跟踪 | PASS | `git ls-files teacher_reference`为空、check-ignore命中；源/题目字节保留规则已加入 |
 | Git diff、暂存blob/隐私/导航审查 | PASS | [暂存审查](../results/submission-20261010/git-audit.json)、[纯暂存树构建](../results/submission-20261010/clean-checkout.json)：源码与实测清单一致，31教师blob一致，64个导航链接有效，无原件/cache/凭据/私密路径 |
-| existing private分支提交/普通push/远端SHA | NOT_RUN | 只允许submission工作分支，不合并main、不强推、不改可见性 |
+| existing private分支提交/普通push/远端SHA | PASS | [远端提交/完整tree回执](../results/submission-20261010/branch-receipt.json)：submission/teacher-compliance-20261010 普通push，main保持原SHA、仓库private；随后仅追加验收记录提交 |
 | 教师材料公开授权 | NOT_RUN | 未请求公开，private保持；[第三方边界](../THIRD_PARTY_NOTICES.md) |
 
 ## 最短人工收尾
