@@ -2,9 +2,10 @@ package stud.g01.problem.npuzzle;
 
 import core.problem.Action;
 import core.problem.State;
+import stud.g01.heuristic.PuzzleHeuristic;
 import core.solver.algorithm.heuristic.HeuristicType;
 import core.solver.algorithm.heuristic.Predictor;
-import core.solver.algorithm.heuristic.IncrementalPredictor;
+import stud.g01.heuristic.IncrementalPredictor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,17 +75,17 @@ public final class PuzzleBoard extends State implements ZobristKey {
         return positions()[tile];
     }
 
-    private static final EnumMap<HeuristicType, Predictor> predictors =
-            new EnumMap<>(HeuristicType.class);
+    private static final EnumMap<PuzzleHeuristic, Predictor> predictors =
+            new EnumMap<>(PuzzleHeuristic.class);
 
     static {
-        predictors.put(HeuristicType.MISPLACED, new PuzzlePredictor(HeuristicType.MISPLACED));
-        predictors.put(HeuristicType.MANHATTAN, new PuzzlePredictor(HeuristicType.MANHATTAN));
-        predictors.put(HeuristicType.MANHATTAN_LC, new PuzzlePredictor(HeuristicType.MANHATTAN_LC));
-        predictors.put(HeuristicType.DISJOINT_PATTERN, new DisjointPatternDatabase.LazyPredictor());
+        predictors.put(PuzzleHeuristic.MISPLACED, new PuzzlePredictor(PuzzleHeuristic.MISPLACED));
+        predictors.put(PuzzleHeuristic.MANHATTAN, new PuzzlePredictor(PuzzleHeuristic.MANHATTAN));
+        predictors.put(PuzzleHeuristic.MANHATTAN_LC, new PuzzlePredictor(PuzzleHeuristic.MANHATTAN_LC));
+        predictors.put(PuzzleHeuristic.DISJOINT_PATTERN, new DisjointPatternDatabase.LazyPredictor());
     }
 
-    private record PuzzlePredictor(HeuristicType type) implements IncrementalPredictor {
+    private record PuzzlePredictor(PuzzleHeuristic type) implements IncrementalPredictor {
         @Override
         public int heuristics(State state, State goal) {
             PuzzleBoard board = (PuzzleBoard) state;
@@ -103,11 +104,11 @@ public final class PuzzleBoard extends State implements ZobristKey {
             PuzzleBoard after = (PuzzleBoard) child;
             PuzzleBoard target = (PuzzleBoard) goal;
             before.requireSameSize(target);
-            if (type == HeuristicType.MANHATTAN_LC) return after.manhattan(target) + after.linearConflict(target);
+            if (type == PuzzleHeuristic.MANHATTAN_LC) return after.manhattan(target) + after.linearConflict(target);
             int oldPosition = after.blankIndex;
             int newPosition = before.blankIndex;
             int movedTile = before.tiles[oldPosition];
-            if (type == HeuristicType.MISPLACED) {
+            if (type == PuzzleHeuristic.MISPLACED) {
                 int oldContribution = target.tiles[oldPosition] == movedTile ? 0 : 1;
                 int newContribution = target.tiles[newPosition] == movedTile ? 0 : 1;
                 return parentHeuristic - oldContribution + newContribution;
@@ -122,6 +123,10 @@ public final class PuzzleBoard extends State implements ZobristKey {
     }
 
     public static Predictor predictor(HeuristicType type) {
+        return predictor(PuzzleHeuristic.valueOf(type.name()));
+    }
+
+    public static Predictor predictor(PuzzleHeuristic type) {
         Predictor predictor = predictors.get(type);
         if (predictor == null) {
             throw new IllegalArgumentException("Unsupported N-Puzzle heuristic: " + type);

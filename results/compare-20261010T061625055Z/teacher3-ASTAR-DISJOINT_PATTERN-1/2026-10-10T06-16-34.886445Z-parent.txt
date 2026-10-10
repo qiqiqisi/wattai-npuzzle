@@ -1,0 +1,4 @@
+end_to_end_ms=470.5729
+timeout_s=5
+command=[C:\Program Files\Java\jdk-19\bin\java, -Xmx1024m, -Dwattai.mode=BASIC, -Dwattai.limit=0, -Dwattai.fast=true, -Dwattai.cache=generated/compare-20261010T061625055Z-teacher3-ASTAR-DISJOINT_PATTERN-1, -Dwattai.snapshot=results\compare-20261010T061625055Z\teacher3-ASTAR-DISJOINT_PATTERN-1\2026-10-10T06-16-34.886445Z.properties, -cp, build-test, stud.g01.runner.Stage3Benchmark, --worker, 2026-10-10T06-16-34.886445Z, resources/problems_teacher_stage1.txt, 0, ASTAR, DISJOINT_PATTERN, 4443]
+status=SOLVED

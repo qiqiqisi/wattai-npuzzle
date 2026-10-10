@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "base_main": "5eb6e5f4b84894e97b5f3fd544bf0dcb6b88d068",
+  "branch": "submission/teacher-compliance-20261010",
+  "source_manifest_matches_measured_cold": true,
+  "protected_staged_blobs_identical": 31,
+  "tracked_teacher_reference_files": 0,
+  "changed_files": 243,
+  "local_links_checked": 64,
+  "whitespace_exemptions": [
+    "protected teacher files preserve original bytes",
+    "StudentSearchTester copied legacy teacher-derived whitespace",
+    "raw results preserve actual output bytes"
+  ],
+  "unstaged_user_change_preserved": "results/diagnostics-20261008/2026-10-08T14-02-34.730016900Z.log",
+  "errors": []
+}

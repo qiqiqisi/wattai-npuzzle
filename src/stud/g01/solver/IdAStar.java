@@ -3,7 +3,7 @@ package stud.g01.solver;
 import core.problem.Problem;
 import core.problem.State;
 import core.solver.algorithm.heuristic.Predictor;
-import core.solver.algorithm.heuristic.IncrementalPredictor;
+import stud.g01.heuristic.IncrementalPredictor;
 import stud.g01.problem.npuzzle.NPuzzleProblem;
 import stud.g01.problem.npuzzle.PuzzleBoard;
 import stud.g01.problem.npuzzle.PuzzleMove;

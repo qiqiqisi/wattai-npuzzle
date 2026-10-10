@@ -1,6 +1,6 @@
 import stud.g01.pdb.*;
 import stud.g01.problem.npuzzle.*;
-import core.solver.algorithm.heuristic.HeuristicType;
+import stud.g01.heuristic.PuzzleHeuristic;
 import java.nio.file.*;
 import java.util.*;
 
@@ -10,8 +10,8 @@ public class PdbLookupProbe {
         PuzzleBoard goal=new PuzzleBoard(new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0},4);
         int[] data=Arrays.stream(Files.readAllLines(Path.of("resources/problems3.txt")).get(9).split(" ")).mapToInt(Integer::parseInt).toArray();
         PuzzleBoard hard=new PuzzleBoard(Arrays.copyOfRange(data,1,17),4);
-        System.out.println("Manhattan="+PuzzleBoard.predictor(HeuristicType.MANHATTAN).heuristics(hard,goal)
-            +" LC="+PuzzleBoard.predictor(HeuristicType.MANHATTAN_LC).heuristics(hard,goal));
+        System.out.println("Manhattan="+PuzzleBoard.predictor(PuzzleHeuristic.MANHATTAN).heuristics(hard,goal)
+            +" LC="+PuzzleBoard.predictor(PuzzleHeuristic.MANHATTAN_LC).heuristics(hard,goal));
         PuzzleBoard[] states=new PuzzleBoard[10000]; Random random=new Random(20261008); PuzzleBoard state=goal;
         for(int i=0;i<states.length;i++) {
             List<PuzzleMove> moves=new ArrayList<>(); state.actions().forEach(moves::add);

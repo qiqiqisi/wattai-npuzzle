@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * ç”¨äºBFSçš„é˜Ÿåˆ—
+ * ÓÃÓÚBFSµÄ¶ÓÁĞ
  */
 public class QueueFrontier extends ArrayDeque<Node> implements Queue<Node>, Frontier{
     @Override

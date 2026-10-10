@@ -1,7 +1,7 @@
 package stud.g01.runner;
 
 import core.problem.Problem;
-import core.solver.algorithm.heuristic.HeuristicType;
+import stud.g01.heuristic.PuzzleHeuristic;
 import core.solver.algorithm.searcher.AbstractSearcher;
 import core.solver.queue.Node;
 import stud.g01.problem.npuzzle.PuzzleBoard;
@@ -181,7 +181,7 @@ public final class Stage2Benchmark {
         List<Problem> problems = feeder.getProblems(new ArrayList<>(Files.readAllLines(input, StandardCharsets.UTF_8)));
         Problem problem = problems.get(index);
         int size = ((PuzzleBoard) problem.root().getState()).getSize();
-        HeuristicType type = HeuristicType.valueOf(heuristic);
+        PuzzleHeuristic type = PuzzleHeuristic.valueOf(heuristic);
         AbstractSearcher searcher = algorithm.equals("ASTAR") ? feeder.getAStar(type)
                 : new IdAStar(new StackFrontier(), feeder.getPredictor(type),
                 IdAStar.Mode.valueOf(algorithm.substring(4)));

@@ -1,0 +1,2 @@
+run_id,problem,algorithm,heuristic,pattern,solution_length,path_cost,elapsed_ms,generated,expanded,iterations,pdb_build_ms,pdb_load_ms,pdb_lookup_count,pdb_entries,pdb_file_bytes,max_depth,peak_table_size,status,solution_file
+2026-10-10T06-16-40.990340800Z,problems_teacher_stage1_1,IDA,MANHATTAN,4443,16,16,127.523,731,423,6,0,0,,,,15,0,SOLVED,results/solutions/2026-10-10T06-16-40.990340800Z-problems_teacher_stage1_1-IDA-MANHATTAN.tsv

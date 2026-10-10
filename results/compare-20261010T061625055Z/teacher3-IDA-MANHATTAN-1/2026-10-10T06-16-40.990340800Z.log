@@ -1,0 +1,10 @@
+PHASE PREPARE
+PHASE SEARCH prepare_ms=43.4585
+PROGRESS 12.2403 bound=6 expanded=0
+PROGRESS 105.0993 bound=8 expanded=1
+PROGRESS 109.0136 bound=10 expanded=12
+PROGRESS 111.8868 bound=12 expanded=39
+PROGRESS 115.8485 bound=14 expanded=103
+PROGRESS 119.7881 bound=16 expanded=270
+PROGRESS 125.0549 bound=16 expanded=423
+RESULT:2026-10-10T06-16-40.990340800Z,problems_teacher_stage1_1,IDA,MANHATTAN,4443,16,16,127.523,731,423,6,0,0,,,,15,0,SOLVED,results/solutions/2026-10-10T06-16-40.990340800Z-problems_teacher_stage1_1-IDA-MANHATTAN.tsv

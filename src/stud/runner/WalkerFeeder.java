@@ -15,52 +15,52 @@ import stud.queue.ListFrontier;
 import java.util.ArrayList;
 
 /**
- * å¯»è·¯é—®é¢˜çš„EngineFeederï¼Œèµ·åä¸ºWalkerFeeder
- * åŒå­¦ä»¬å¯ä»¥å‚è€ƒç¼–å†™è‡ªå·±çš„PuzzleFeeder
+ * Ñ°Â·ÎÊÌâµÄEngineFeeder£¬ÆğÃûÎªWalkerFeeder
+ * Í¬Ñ§ÃÇ¿ÉÒÔ²Î¿¼±àĞ´×Ô¼ºµÄPuzzleFeeder
  */
 public class WalkerFeeder extends EngineFeeder {
     @Override
     public ArrayList<Problem> getProblems(ArrayList<String> problemLines) {
-        //é—®é¢˜è§„æ¨¡, è¾“å…¥çš„ç¬¬ä¸€è¡Œ
+        //ÎÊÌâ¹æÄ£, ÊäÈëµÄµÚÒ»ĞĞ
         int size = Integer.parseInt(problemLines.get(0));
-        //è¯»å…¥åœ°å›¾ï¼Œsize * sizeçš„Gridï¼Œä»ç¬¬2è¡Œå¼€å§‹çš„sizeè¡Œæ•°æ®ï¼Œæ¯è¡Œæœ‰sizeä¸ªæ•°å­—
+        //¶ÁÈëµØÍ¼£¬size * sizeµÄGrid£¬´ÓµÚ2ĞĞ¿ªÊ¼µÄsizeĞĞÊı¾İ£¬Ã¿ĞĞÓĞsize¸öÊı×Ö
         GridType[][] map = getMap(problemLines, size);
 
-        /* è¯»å…¥å„ä¸ªé—®é¢˜ */
+        /* ¶ÁÈë¸÷¸öÎÊÌâ */
         ArrayList<Problem> problems = new ArrayList<>();
         int lineNo = size + 1;
         while (lineNo < problemLines.size()){
-            //è¯»å…¥é—®é¢˜å®ä¾‹
+            //¶ÁÈëÎÊÌâÊµÀı
             PathFinding problem = getPathFinding(problemLines.get(lineNo), size);
-            //ä¸ºæ¯ä¸ªé—®é¢˜å®ä¾‹è®¾ç½®åœ°å›¾
+            //ÎªÃ¿¸öÎÊÌâÊµÀıÉèÖÃµØÍ¼
             problem.setGrids(map);
-            //æ·»åŠ åˆ°é—®é¢˜åˆ—è¡¨
+            //Ìí¼Óµ½ÎÊÌâÁĞ±í
             problems.add(problem);
             lineNo++;
-        } //è¯»å…¥é—®é¢˜ç»“æŸ
+        } //¶ÁÈëÎÊÌâ½áÊø
 
         return problems;
     }
 
     /**
-     * ç”Ÿæˆå¯»è·¯é—®é¢˜çš„ä¸€ä¸ªå®ä¾‹
+     * Éú³ÉÑ°Â·ÎÊÌâµÄÒ»¸öÊµÀı
      * @param problemLine
      * @param size
      * @return
      */
     private PathFinding getPathFinding(String problemLine, int size) {
         String[] cells = problemLine.split(" ");
-        //è¯»å…¥åˆå§‹çŠ¶æ€
+        //¶ÁÈë³õÊ¼×´Ì¬
         int row = Integer.parseInt(cells[0]);
         int col = Integer.parseInt(cells[1]);
         Position initialState = new Position(row, col);
-        //è¯»å…¥ç›®æ ‡çŠ¶æ€
-        //è¯»å…¥åˆå§‹çŠ¶æ€
+        //¶ÁÈëÄ¿±ê×´Ì¬
+        //¶ÁÈë³õÊ¼×´Ì¬
         row = Integer.parseInt(cells[2]);
         col = Integer.parseInt(cells[3]);
         Position goal = new Position(row, col);
 
-        //ç”Ÿæˆå¯»è·¯é—®é¢˜çš„å®ä¾‹
+        //Éú³ÉÑ°Â·ÎÊÌâµÄÊµÀı
         return new PathFinding(initialState, goal, size);
     }
 
@@ -90,10 +90,10 @@ public class WalkerFeeder extends EngineFeeder {
     }
 
     /**
-     * è·å¾—å¯¹çŠ¶æ€è¿›è¡Œä¼°å€¼çš„Predictor
+     * »ñµÃ¶Ô×´Ì¬½øĞĞ¹ÀÖµµÄPredictor
      *
-     * @param type ä¼°å€¼å‡½æ•°çš„ç±»å‹
-     * @return  ä¼°å€¼å‡½æ•°
+     * @param type ¹ÀÖµº¯ÊıµÄÀàĞÍ
+     * @return  ¹ÀÖµº¯Êı
      */
     @Override
     public Predictor getPredictor(HeuristicType type) {

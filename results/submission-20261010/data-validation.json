@@ -1,0 +1,13 @@
+{
+  "csv_files": 62,
+  "validated_solution_paths": 55,
+  "statuses": {
+    "SOLVED": 1492,
+    "TIMEOUT": 44,
+    "OOM": 6,
+    "FAIL": 6
+  },
+  "errors": [],
+  "protected_files": 31,
+  "all_protected_identical": true
+}

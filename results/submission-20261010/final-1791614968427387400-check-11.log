@@ -1,0 +1,150 @@
+Initial state:
+8 6 7
+2 5 4
+3 # 1
+Step 1: blank UP
+8 6 7
+2 # 4
+3 5 1
+Step 2: blank LEFT
+8 6 7
+# 2 4
+3 5 1
+Step 3: blank DOWN
+8 6 7
+3 2 4
+# 5 1
+Step 4: blank RIGHT
+8 6 7
+3 2 4
+5 # 1
+Step 5: blank UP
+8 6 7
+3 # 4
+5 2 1
+Step 6: blank RIGHT
+8 6 7
+3 4 #
+5 2 1
+Step 7: blank DOWN
+8 6 7
+3 4 1
+5 2 #
+Step 8: blank LEFT
+8 6 7
+3 4 1
+5 # 2
+Step 9: blank LEFT
+8 6 7
+3 4 1
+# 5 2
+Step 10: blank UP
+8 6 7
+# 4 1
+3 5 2
+Step 11: blank UP
+# 6 7
+8 4 1
+3 5 2
+Step 12: blank RIGHT
+6 # 7
+8 4 1
+3 5 2
+Step 13: blank DOWN
+6 4 7
+8 # 1
+3 5 2
+Step 14: blank DOWN
+6 4 7
+8 5 1
+3 # 2
+Step 15: blank RIGHT
+6 4 7
+8 5 1
+3 2 #
+Step 16: blank UP
+6 4 7
+8 5 #
+3 2 1
+Goal state:
+6 4 7
+8 5 #
+3 2 1
+Total steps: 16
+����������MISPLACED����·�����ȣ�16��ִ����0.0s����������3202����㣬��չ��1813�����
+
+Initial state:
+8 6 7
+2 5 4
+3 # 1
+Step 1: blank UP
+8 6 7
+2 # 4
+3 5 1
+Step 2: blank LEFT
+8 6 7
+# 2 4
+3 5 1
+Step 3: blank DOWN
+8 6 7
+3 2 4
+# 5 1
+Step 4: blank RIGHT
+8 6 7
+3 2 4
+5 # 1
+Step 5: blank UP
+8 6 7
+3 # 4
+5 2 1
+Step 6: blank RIGHT
+8 6 7
+3 4 #
+5 2 1
+Step 7: blank DOWN
+8 6 7
+3 4 1
+5 2 #
+Step 8: blank LEFT
+8 6 7
+3 4 1
+5 # 2
+Step 9: blank LEFT
+8 6 7
+3 4 1
+# 5 2
+Step 10: blank UP
+8 6 7
+# 4 1
+3 5 2
+Step 11: blank UP
+# 6 7
+8 4 1
+3 5 2
+Step 12: blank RIGHT
+6 # 7
+8 4 1
+3 5 2
+Step 13: blank DOWN
+6 4 7
+8 # 1
+3 5 2
+Step 14: blank DOWN
+6 4 7
+8 5 1
+3 # 2
+Step 15: blank RIGHT
+6 4 7
+8 5 1
+3 2 #
+Step 16: blank UP
+6 4 7
+8 5 #
+3 2 1
+Goal state:
+6 4 7
+8 5 #
+3 2 1
+Total steps: 16
+����������MANHATTAN����·�����ȣ�16��ִ����0.0s����������702����㣬��չ��407�����
+

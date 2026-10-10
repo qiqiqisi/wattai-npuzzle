@@ -1,24 +1,24 @@
 package core.problem;
 
 /**
- * é—®é¢˜æ¨¡å‹çš„çŠ¶æ€
+ * ÎÊÌâÄ£ĞÍµÄ×´Ì¬
  */
 public abstract class State {
 
-	public abstract void draw(); // åœ¨Consoleä¸Šï¼Œè¾“å‡ºè¯¥çŠ¶æ€
+	public abstract void draw(); // ÔÚConsoleÉÏ£¬Êä³ö¸Ã×´Ì¬
 
 	/**
-	 * å½“å‰çŠ¶æ€ä¸‹ï¼Œé‡‡ç”¨æŸä¸ªactionè€Œè¿›å…¥çš„ä¸‹ä¸€ä¸ªçŠ¶æ€
+	 * µ±Ç°×´Ì¬ÏÂ£¬²ÉÓÃÄ³¸öaction¶ø½øÈëµÄÏÂÒ»¸ö×´Ì¬
 	 * 
-	 * @param action å½“å‰çŠ¶æ€ä¸‹ï¼ŒæŸä¸ªå¯è¡Œçš„action
-	 * @return åç»§çŠ¶æ€
+	 * @param action µ±Ç°×´Ì¬ÏÂ£¬Ä³¸ö¿ÉĞĞµÄaction
+	 * @return ºó¼Ì×´Ì¬
 	 */
 	public abstract State next(Action action);
 
 	/**
-	 * å½“å‰çŠ¶æ€ä¸‹æ‰€æœ‰å¯èƒ½çš„Actionï¼Œä½†ä¸ä¸€å®šéƒ½å¯è¡Œ
+	 * µ±Ç°×´Ì¬ÏÂËùÓĞ¿ÉÄÜµÄAction£¬µ«²»Ò»¶¨¶¼¿ÉĞĞ
 	 * 
-	 * @return æ‰€æœ‰å¯èƒ½çš„Actionçš„List
+	 * @return ËùÓĞ¿ÉÄÜµÄActionµÄList
 	 */
 	public abstract Iterable<? extends Action> actions();
 }

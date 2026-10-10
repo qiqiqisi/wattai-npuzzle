@@ -1,0 +1,6 @@
+# Preserve the teacher's original bytes and the source hashes used by experiments.
+src/** -text
+resources/** -text
+results/** -text
+*.docx binary
+*.pdf binary

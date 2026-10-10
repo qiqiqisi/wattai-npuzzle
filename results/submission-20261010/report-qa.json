@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "pages": 15,
+  "renderer": "Microsoft Word PDF export; pypdfium2 page PNGs",
+  "visually_reviewed_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "checks": [
+    "cover identities pending",
+    "TOC and page numbers match",
+    "all tables fit with caption/header/data together",
+    "no clipped body or empty pages",
+    "author metadata removed without changing PDF pixels"
+  ],
+  "docx_sha256": "fd9227271881d94fb239479494f14a677f02c585c18e75a151862c5f87b2cb90",
+  "pdf_sha256": "2ece5dbbfd535c69a1b006ed6b956ac60ae61a73e621cbdc6f3ce4f1cfaf9d0d"
+}

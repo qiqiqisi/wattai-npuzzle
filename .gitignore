@@ -1,14 +1,28 @@
-build-*/
-build-test/
+# Compiled Java and IDE artifacts
+teacher_reference/
+.local_archive/
+.vscode/
 out/
-generated/
-*.class
 *.pdb
-*.jfr
+*.zip
+/*.docx
+/*.pdf
+AGENT.md
+tools/submission_session.*
+results/submission-20261010/reproduce.log
+build-test/
+build-*/
+*.class
 *.iml
 .idea/
-.vscode/
-__pycache__/
+
+# Rebuildable PDB caches and temporary validation files
+generated/
 *.tmp
+*.jfr
 .publication-audit/
 .publication-stage*/
+results/audit-20261008/snapshot-WattAi/
+results/audit-20261008/jfr-baseline.json
+
+# Keep teacher-provided out/ and archived experimental results visible.

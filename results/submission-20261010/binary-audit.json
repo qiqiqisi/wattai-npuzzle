@@ -1,0 +1,53 @@
+[
+  {
+    "path": "out/algs4/util/StdRandom.class",
+    "magic": "cafebabe",
+    "major": 63,
+    "relationship_to_current_source": "historical_unverified"
+  },
+  {
+    "path": "out/algs4/util/Stopwatch.class",
+    "magic": "cafebabe",
+    "major": 63,
+    "relationship_to_current_source": "historical_unverified"
+  },
+  {
+    "path": "out/algs4/util/StopwatchCPU.class",
+    "magic": "cafebabe",
+    "major": 63,
+    "relationship_to_current_source": "historical_unverified"
+  },
+  {
+    "path": "out/core/problem/Action.class",
+    "magic": "cafebabe",
+    "major": 63,
+    "relationship_to_current_source": "historical_unverified"
+  },
+  {
+    "path": "generated/pdb-cold-20261010T061439277Z/v1-4-5e97e9d23bb23fa1-1-5-9-13-2.pdb",
+    "magic": "PDB1",
+    "version": 1,
+    "cost_partition": 1,
+    "states": 5765760,
+    "bytes": 5765832,
+    "crc_valid": true
+  },
+  {
+    "path": "generated/pdb-cold-20261010T061439277Z/v1-4-5e97e9d23bb23fa1-11-15-4-8-12.pdb",
+    "magic": "PDB1",
+    "version": 1,
+    "cost_partition": 1,
+    "states": 5765760,
+    "bytes": 5765832,
+    "crc_valid": true
+  },
+  {
+    "path": "generated/pdb-cold-20261010T061439277Z/v1-4-5e97e9d23bb23fa1-6-10-14-3-7.pdb",
+    "magic": "PDB1",
+    "version": 1,
+    "cost_partition": 1,
+    "states": 5765760,
+    "bytes": 5765832,
+    "crc_valid": true
+  }
+]

@@ -9,16 +9,16 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * è™½ç„¶æ€§èƒ½ä¸é«˜ï¼Œä½†å¯ä»¥ç”¨äºæ±‚è§£æ‰€æœ‰é—®é¢˜ã€‚
- * è¯·åŒå­¦ä»¬å‚ç…§ç¼–å†™è‡ªå·±çš„Frontierç±»ã€‚
+ * ËäÈ»ĞÔÄÜ²»¸ß£¬µ«¿ÉÒÔÓÃÓÚÇó½âËùÓĞÎÊÌâ¡£
+ * ÇëÍ¬Ñ§ÃÇ²ÎÕÕ±àĞ´×Ô¼ºµÄFrontierÀà¡£
  *
  */
 public class ListFrontier extends ArrayList<Node> implements Frontier {
-    // èŠ‚ç‚¹ä¼˜å…ˆçº§æ¯”è¾ƒå™¨ï¼Œåœ¨Nodeç±»ä¸­å®šä¹‰äº†ä¸‰ä¸ªä¸åŒçš„æ¯”è¾ƒå™¨ï¼ˆ
+    // ½ÚµãÓÅÏÈ¼¶±È½ÏÆ÷£¬ÔÚNodeÀàÖĞ¶¨ÒåÁËÈı¸ö²»Í¬µÄ±È½ÏÆ÷£¨
     //      Dijkstra,
     //      Greedy Best-First,
     //      Best-First
-    // evaluatorå†³å®šäº†ä¼˜å…ˆå–å‡ºFrontierä¸­çš„å“ªä¸ªå…ƒç´ ã€‚
+    // evaluator¾ö¶¨ÁËÓÅÏÈÈ¡³öFrontierÖĞµÄÄÄ¸öÔªËØ¡£
     private final Comparator<Node> evaluator;
 
     public ListFrontier(Comparator<Node> evaluator) {
@@ -40,41 +40,41 @@ public class ListFrontier extends ArrayList<Node> implements Frontier {
         return getNode(node.getState()) != null;
     }
     /**
-     * å°†ç»“ç‚¹nodeæ’å…¥åˆ°ä¼˜å…ˆé˜Ÿåˆ—ä¸­ï¼Œ
-     * å¦‚æœFrontierä¸­å·²ç»å­˜åœ¨ä¸nodeçŠ¶æ€ç›¸åŒçš„ç»“ç‚¹ï¼Œåˆ™èˆå¼ƒæ‰äºŒè€…ä¸­ä¼°å€¼æ›´å¤§çš„ç»“ç‚¹
-     * @param node è¦æ’å…¥ä¼˜å…ˆé˜Ÿåˆ—çš„ç»“ç‚¹
+     * ½«½áµãnode²åÈëµ½ÓÅÏÈ¶ÓÁĞÖĞ£¬
+     * Èç¹ûFrontierÖĞÒÑ¾­´æÔÚÓënode×´Ì¬ÏàÍ¬µÄ½áµã£¬ÔòÉáÆúµô¶şÕßÖĞ¹ÀÖµ¸ü´óµÄ½áµã
+     * @param node Òª²åÈëÓÅÏÈ¶ÓÁĞµÄ½áµã
      * @return
      */
     @Override
     public boolean offer(Node node) {
         Node oldNode = getNode(node.getState());
-        if (oldNode == null) { //frontierä¸­æœªæ‰¾åˆ°ä¸nodeçŠ¶æ€ç›¸åŒçš„èŠ‚ç‚¹
-            //æŒ‰ç…§få€¼æ’åºæ—¶ï¼Œnodeåº”è¯¥åœ¨çš„ä½ç½®
+        if (oldNode == null) { //frontierÖĞÎ´ÕÒµ½Óënode×´Ì¬ÏàÍ¬µÄ½Úµã
+            //°´ÕÕfÖµÅÅĞòÊ±£¬nodeÓ¦¸ÃÔÚµÄÎ»ÖÃ
             super.add(getIndex(node), node);
             return true;
-        } else { //nodeæ˜¯é‡å¤è®¿é—®çš„èŠ‚ç‚¹
+        } else { //nodeÊÇÖØ¸´·ÃÎÊµÄ½Úµã
             return discardOrReplace(oldNode, node);
         }
     }
 
     /**
      *
-     * å¦‚æœFrontierä¸­å·²ç»å­˜åœ¨ä¸nodeçŠ¶æ€ç›¸åŒçš„ç»“ç‚¹ï¼Œ åˆ™èˆå¼ƒæ‰äºŒè€…ä¹‹é—´ä¸å¥½çš„é‚£ä¸€ä¸ªã€‚
+     * Èç¹ûFrontierÖĞÒÑ¾­´æÔÚÓënode×´Ì¬ÏàÍ¬µÄ½áµã£¬ ÔòÉáÆúµô¶şÕßÖ®¼ä²»ºÃµÄÄÇÒ»¸ö¡£
      *
      *
      * @param oldNode
-     * @param node ç»“ç‚¹ï¼Œå…¶çŠ¶æ€è¦ä¹ˆå·²ç»å‡ºç°åœ¨Exploredä¸­ï¼Œè¦ä¹ˆå·²ç»å‡ºç°åœ¨Frontierä¸­
+     * @param node ½áµã£¬Æä×´Ì¬ÒªÃ´ÒÑ¾­³öÏÖÔÚExploredÖĞ£¬ÒªÃ´ÒÑ¾­³öÏÖÔÚFrontierÖĞ
      * @return true: replaced; false: discarded
      *
      */
     private boolean discardOrReplace(Node oldNode, Node node) {
-        // å¦‚æœæ—§ç»“ç‚¹çš„ä¼°å€¼æ¯”æ–°çš„å¤§ï¼Œå³æ–°ç”Ÿæˆçš„ç»“ç‚¹æ›´å¥½
+        // Èç¹û¾É½áµãµÄ¹ÀÖµ±ÈĞÂµÄ´ó£¬¼´ĞÂÉú³ÉµÄ½áµã¸üºÃ
         if (evaluator.compare(oldNode, node) > 0) {
-            // ç”¨æ–°èŠ‚ç‚¹æ›¿æ¢æ—§èŠ‚ç‚¹
+            // ÓÃĞÂ½ÚµãÌæ»»¾É½Úµã
             replace(oldNode, node);
             return true;
         }
-        return false;   //discardï¼Œæ‰”æ‰æ–°ç»“ç‚¹
+        return false;   //discard£¬ÈÓµôĞÂ½áµã
     }
 
     private Node getNode(State state) {
@@ -94,10 +94,10 @@ public class ListFrontier extends ArrayList<Node> implements Frontier {
 
 
     /**
-     * ç”¨èŠ‚ç‚¹ e æ›¿æ¢æ‰å…·æœ‰ç›¸åŒçŠ¶æ€çš„æ—§èŠ‚ç‚¹ oldNode åŒå­¦ä»¬å¯èƒ½éœ€è¦æ”¹å†™è¿™ä¸ªå‡½æ•°ï¼
+     * ÓÃ½Úµã e Ìæ»»µô¾ßÓĞÏàÍ¬×´Ì¬µÄ¾É½Úµã oldNode Í¬Ñ§ÃÇ¿ÉÄÜĞèÒª¸ÄĞ´Õâ¸öº¯Êı£¡
      *
-     * @param oldNode è¢«æ›¿æ¢çš„ç»“ç‚¹
-     * @param newNode æ–°ç»“ç‚¹
+     * @param oldNode ±»Ìæ»»µÄ½áµã
+     * @param newNode ĞÂ½áµã
      */
     private void replace(Node oldNode, Node newNode) {
         super.remove(oldNode);

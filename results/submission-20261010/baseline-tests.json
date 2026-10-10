@@ -1,0 +1,32 @@
+[
+  {
+    "test": "PuzzleAlternativePdbTest",
+    "exit": 0,
+    "output": "ALTERNATIVE_PREPARE_MS=150.6194 BUILD_MS=0 LOAD_MS=44\nPASS: 4776 alternative additive partition/max/ranking checks\n"
+  },
+  {
+    "test": "PuzzleCloseoutTest",
+    "exit": 0,
+    "output": "PASS: 5992 closeout BFS/search/progress/playback/parser checks\n"
+  },
+  {
+    "test": "PuzzleFoundationTest",
+    "exit": 0,
+    "output": "PASS: 43 N-Puzzle foundation checks\n"
+  },
+  {
+    "test": "PuzzleStage1Test",
+    "exit": 0,
+    "output": "PASS: 1209 N-Puzzle stage 1 checks\n"
+  },
+  {
+    "test": "PuzzleStage2Test",
+    "exit": 0,
+    "output": "PASS: 182950 N-Puzzle stage 2 checks\n"
+  },
+  {
+    "test": "PuzzleStage3Test",
+    "exit": 0,
+    "output": "PASS: 32280 N-Puzzle stage 3 checks\n"
+  }
+]

@@ -1,0 +1,16 @@
+PHASE PREPARE
+PHASE SEARCH prepare_ms=45.5091
+PROGRESS 13.6058 bound=4 expanded=0
+PROGRESS 101.8521 bound=6 expanded=1
+PROGRESS 105.7294 bound=7 expanded=5
+PROGRESS 108.211 bound=8 expanded=18
+PROGRESS 110.5746 bound=9 expanded=34
+PROGRESS 113.1867 bound=10 expanded=62
+PROGRESS 115.8683 bound=11 expanded=117
+PROGRESS 118.443399 bound=12 expanded=202
+PROGRESS 121.516 bound=13 expanded=349
+PROGRESS 124.3646 bound=14 expanded=594
+PROGRESS 126.9008 bound=15 expanded=1006
+PROGRESS 129.7476 bound=16 expanded=1675
+PROGRESS 132.2819 bound=16 expanded=2053
+RESULT:2026-10-10T06-16-38.999669900Z,problems_teacher_stage1_1,IDA,MISPLACED,4443,16,16,134.892,3635,2053,12,0,0,,,,15,0,SOLVED,results/solutions/2026-10-10T06-16-38.999669900Z-problems_teacher_stage1_1-IDA-MISPLACED.tsv

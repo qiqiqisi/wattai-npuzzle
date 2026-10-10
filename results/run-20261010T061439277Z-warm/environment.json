@@ -1,0 +1,12 @@
+﻿{
+    "run_id":  "20261010T061439277Z",
+    "cache_state":  "warm",
+    "timeout_s":  60,
+    "heap":  "-Xmx1024m",
+    "java":  "java version \"19\" 2022-09-20\r\nJava(TM) SE Runtime Environment (build 19+36-2238)\r\nJava HotSpot(TM) 64-Bit Server VM (build 19+36-2238, mixed mode, sharing)\r\n",
+    "os":  "Microsoft Windows NT 10.0.26200.0",
+    "cpu":  "Intel(R) Core(TM) i5-14500HX",
+    "input_sha256":  "2CE87A7A6FD2C65713EB7B3355889A0DC6F828A1A9C86B91221E8721DE13C2DF",
+    "base_commit":  "5eb6e5f4b84894e97b5f3fd544bf0dcb6b88d068",
+    "source_tree_sha256":  "41FAF6FBDEBB24FD69BAA05FF46F1A28063ECA068688F2F5A60BFD5A08FA7F67"
+}

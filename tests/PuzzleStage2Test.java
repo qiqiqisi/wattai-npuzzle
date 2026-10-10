@@ -1,8 +1,8 @@
 import core.problem.Action;
 import core.problem.Problem;
 import core.problem.State;
-import core.runner.SearchTester;
-import core.solver.algorithm.heuristic.HeuristicType;
+import stud.g01.runner.StudentSearchTester;
+import stud.g01.heuristic.PuzzleHeuristic;
 import core.solver.queue.Node;
 import stud.g01.problem.npuzzle.NPuzzleProblem;
 import stud.g01.problem.npuzzle.PuzzleBoard;
@@ -45,14 +45,14 @@ public final class PuzzleStage2Test {
     }
 
     private static void specialCases() {
-        IdAStar solver = ida(HeuristicType.MANHATTAN, IdAStar.Mode.ZOBRIST);
+        IdAStar solver = ida(PuzzleHeuristic.MANHATTAN, IdAStar.Mode.ZOBRIST);
         Deque<Node> empty = solver.search(new NPuzzleProblem(GOAL4, GOAL4));
         check("goal empty path", empty != null && empty.isEmpty() && solver.iterations() == 1);
         PuzzleBoard impossible = board(4, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 14, 0);
         check("unsolvable", solver.search(new NPuzzleProblem(impossible, GOAL4)) == null
                 && solver.nodesGenerated() == 0 && solver.iterations() == 0);
         PuzzleBoard one = GOAL4.next(new PuzzleMove(PuzzleMove.Direction.LEFT));
-        for (HeuristicType heuristic : List.of(HeuristicType.MANHATTAN, HeuristicType.MISPLACED)) {
+        for (PuzzleHeuristic heuristic : List.of(PuzzleHeuristic.MANHATTAN, PuzzleHeuristic.MISPLACED)) {
             for (IdAStar.Mode mode : IdAStar.Mode.values()) {
                 solver = ida(heuristic, mode);
                 Deque<Node> path = solver.search(new NPuzzleProblem(one, GOAL4));
@@ -74,9 +74,9 @@ public final class PuzzleStage2Test {
         check("minimum exceeded f", path != null && path.size() == 3
                 && zero.thresholdSequence().equals(List.of(0L, 1L, 2L, 3L)));
         check("cycle prunes", zero.cyclePrunes() > 0 && zero.peakPathStates() > 1);
-        IdAStar manhattan = ida(HeuristicType.MANHATTAN, IdAStar.Mode.BASIC);
+        IdAStar manhattan = ida(PuzzleHeuristic.MANHATTAN, IdAStar.Mode.BASIC);
         manhattan.search(new NPuzzleProblem(start, GOAL4));
-        check("initial h", manhattan.initialBound() == FEEDER.getPredictor(HeuristicType.MANHATTAN)
+        check("initial h", manhattan.initialBound() == FEEDER.getPredictor(PuzzleHeuristic.MANHATTAN)
                 .heuristics(start, GOAL4));
     }
 
@@ -123,9 +123,9 @@ public final class PuzzleStage2Test {
 
     private static void compareWithAStar(PuzzleBoard start, PuzzleBoard goal) {
         NPuzzleProblem problem = new NPuzzleProblem(start, goal);
-        Deque<Node> oracle = FEEDER.getAStar(HeuristicType.MANHATTAN).search(problem);
+        Deque<Node> oracle = FEEDER.getAStar(PuzzleHeuristic.MANHATTAN).search(problem);
         for (IdAStar.Mode mode : IdAStar.Mode.values()) {
-            Deque<Node> path = ida(HeuristicType.MANHATTAN, mode).search(problem);
+            Deque<Node> path = ida(PuzzleHeuristic.MANHATTAN, mode).search(problem);
             check("A* optimal agreement " + mode, oracle != null && path != null
                     && path.size() == oracle.size() && validPath(start, goal, path));
         }
@@ -145,7 +145,7 @@ public final class PuzzleStage2Test {
             check("incremental hash " + i, state.equals(rebuilt)
                     && state.zobristHash() == rebuilt.zobristHash()
                     && state.hashCode() == rebuilt.hashCode());
-            for (HeuristicType type : List.of(HeuristicType.MANHATTAN, HeuristicType.MISPLACED)) {
+            for (PuzzleHeuristic type : List.of(PuzzleHeuristic.MANHATTAN, PuzzleHeuristic.MISPLACED)) {
                 NPuzzleProblem problem = new NPuzzleProblem(state, GOAL4);
                 var predictor = FEEDER.getPredictor(type);
                 Node parent = problem.root(predictor);
@@ -158,8 +158,8 @@ public final class PuzzleStage2Test {
     }
 
     private static void linearConflict() {
-        var manhattan = FEEDER.getPredictor(HeuristicType.MANHATTAN);
-        var stronger = FEEDER.getPredictor(HeuristicType.MANHATTAN_LC);
+        var manhattan = FEEDER.getPredictor(PuzzleHeuristic.MANHATTAN);
+        var stronger = FEEDER.getPredictor(PuzzleHeuristic.MANHATTAN_LC);
         check("LC goal zero", stronger.heuristics(GOAL3, GOAL3) == 0);
         HashMap<PuzzleBoard, Integer> distance = new HashMap<>();
         ArrayDeque<PuzzleBoard> queue = new ArrayDeque<>();
@@ -181,11 +181,11 @@ public final class PuzzleStage2Test {
         }
         check("complete 8-puzzle reachability class", distance.size() == 181440);
         PuzzleBoard start = board(3, 5, 0, 8, 4, 2, 1, 7, 3, 6);
-        check("LC IDA optimal 8-puzzle", ida(HeuristicType.MANHATTAN_LC, IdAStar.Mode.ZOBRIST)
+        check("LC IDA optimal 8-puzzle", ida(PuzzleHeuristic.MANHATTAN_LC, IdAStar.Mode.ZOBRIST)
                 .search(new NPuzzleProblem(start, GOAL3)).size() == 21);
         PuzzleBoard shallow = GOAL4.next(new PuzzleMove(PuzzleMove.Direction.LEFT))
                 .next(new PuzzleMove(PuzzleMove.Direction.UP));
-        check("LC arbitrary 15 goal", ida(HeuristicType.MANHATTAN_LC, IdAStar.Mode.ZOBRIST)
+        check("LC arbitrary 15 goal", ida(PuzzleHeuristic.MANHATTAN_LC, IdAStar.Mode.ZOBRIST)
                 .search(new NPuzzleProblem(GOAL4, shallow)).size() == 2);
     }
 
@@ -197,7 +197,7 @@ public final class PuzzleStage2Test {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
             System.setOut(new PrintStream(buffer, true, StandardCharsets.UTF_8));
-            SearchTester.main(new String[]{input.toString(), "NPUZZLE", "2",
+            StudentSearchTester.main(new String[]{input.toString(), "NPUZZLE", "2",
                     "stud.g01.runner.PuzzleFeeder"});
         } finally {
             System.setOut(previous);
@@ -218,7 +218,7 @@ public final class PuzzleStage2Test {
         return state.equals(goal);
     }
 
-    private static IdAStar ida(HeuristicType heuristic, IdAStar.Mode mode) {
+    private static IdAStar ida(PuzzleHeuristic heuristic, IdAStar.Mode mode) {
         return new IdAStar(new StackFrontier(), FEEDER.getPredictor(heuristic), mode);
     }
 

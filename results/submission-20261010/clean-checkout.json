@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "no_teacher_reference_or_untracked_dependencies": true,
+  "checks": [
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "tools/compile.ps1"
+      ],
+      "exit_code": 0,
+      "output": "COMPILE_PASS: --release 19, 62 sources, build-test\n"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dfile.encoding=UTF-8",
+        "-cp",
+        "build-test",
+        "TeacherStage1Test"
+      ],
+      "exit_code": 0,
+      "output": "PASS: TeacherStage1Test independent BFS=16; A* Misplaced/Manhattan replay=16\n"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dfile.encoding=UTF-8",
+        "-cp",
+        "build-test",
+        "BenchmarkAcceptanceTest"
+      ],
+      "exit_code": 0,
+      "output": "PASS: BenchmarkAcceptance rejects TIMEOUT/OOM/FAIL/UNSOLVABLE independently of parent exit\n"
+    }
+  ],
+  "verified_utc": "2026-10-10T06:58:14.434081+00:00"
+}

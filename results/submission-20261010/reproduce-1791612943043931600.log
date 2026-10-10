@@ -1,0 +1,15 @@
+COMPILE_PASS: --release 19, 62 sources, build-test
+PASS: 43 N-Puzzle foundation checks
+PASS: 1209 N-Puzzle stage 1 checks
+PASS: 182950 N-Puzzle stage 2 checks
+PASS: 32280 N-Puzzle stage 3 checks
+PASS: 5992 closeout BFS/search/progress/playback/parser checks
+ALTERNATIVE_PREPARE_MS=112.4409 BUILD_MS=0 LOAD_MS=33
+PASS: 4776 alternative additive partition/max/ranking checks
+PASS: TeacherStage1Test independent BFS=16; A* Misplaced/Manhattan replay=16
+PASS: BenchmarkAcceptance rejects TIMEOUT/OOM/FAIL/UNSOLVABLE independently of parent exit
+2026-10-10T06-14-39.493084100Z,problems3_10,IDA,DISJOINT_PATTERN,555T,70,70,26074.878,95279434,48759798,8,6192,0,95278467,17297280,17297496,69,0,SOLVED,results/solutions/2026-10-10T06-14-39.493084100Z-problems3_10-IDA-DISJOINT_PATTERN.tsv
+ACCEPTED: SOLVED, 70 legal steps, input/goal match, parent_ms=32593.8569
+HARD_ACCEPTED: results/run-20261010T061439277Z/stage3.csv
+2026-10-10T06-15-14.430704500Z,problems3_10,IDA,DISJOINT_PATTERN,555T,70,70,27863.430,95279434,48759798,8,0,40,95278467,17297280,17297496,69,0,SOLVED,results/solutions/2026-10-10T06-15-14.430704500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv
+ACCEPTED: SOLVED, 70 legal steps, input/goal match, parent_ms=28186.2268

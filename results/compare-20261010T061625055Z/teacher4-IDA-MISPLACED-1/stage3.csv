@@ -1,0 +1,2 @@
+run_id,problem,algorithm,heuristic,pattern,solution_length,path_cost,elapsed_ms,generated,expanded,iterations,pdb_build_ms,pdb_load_ms,pdb_lookup_count,pdb_entries,pdb_file_bytes,max_depth,peak_table_size,status,solution_file
+2026-10-10T06-17-01.794522600Z,problems3_4,IDA,MISPLACED,4443,,,,,,,,,,,,,,TIMEOUT,

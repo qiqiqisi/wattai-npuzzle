@@ -1,0 +1,4 @@
+end_to_end_ms=421.825499
+timeout_s=5
+command=[C:\Program Files\Java\jdk-19\bin\java, -Xmx1024m, -Dwattai.mode=BASIC, -Dwattai.limit=0, -Dwattai.fast=true, -Dwattai.cache=generated/compare-20261010T061625055Z-teacher3-IDA-MISPLACED-3, -Dwattai.snapshot=results\compare-20261010T061625055Z\teacher3-IDA-MISPLACED-3\2026-10-10T06-16-39.945215100Z.properties, -cp, build-test, stud.g01.runner.Stage3Benchmark, --worker, 2026-10-10T06-16-39.945215100Z, resources/problems_teacher_stage1.txt, 0, IDA, MISPLACED, 4443]
+status=SOLVED

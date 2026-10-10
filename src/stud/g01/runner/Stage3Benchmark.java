@@ -1,7 +1,7 @@
 package stud.g01.runner;
 
 import core.problem.Problem;
-import core.solver.algorithm.heuristic.HeuristicType;
+import stud.g01.heuristic.PuzzleHeuristic;
 import core.solver.algorithm.heuristic.Predictor;
 import core.solver.algorithm.searcher.AbstractSearcher;
 import core.solver.algorithm.searcher.BestFirstSearcher;
@@ -97,8 +97,8 @@ public final class Stage3Benchmark {
         int index = Integer.parseInt(args[3]);
         String algorithm = args[4];
         String heuristicName = args[5];
-        HeuristicType type = heuristicName.equals("PDB_MAX_LC") || heuristicName.equals("PDB_MAX_555")
-                ? null : HeuristicType.valueOf(heuristicName);
+        PuzzleHeuristic type = heuristicName.equals("PDB_MAX_LC") || heuristicName.equals("PDB_MAX_555")
+                ? null : PuzzleHeuristic.valueOf(heuristicName);
         String pattern = args[6];
         List<Problem> problems = new PuzzleFeeder().getProblems(new ArrayList<>(Files.readAllLines(input)));
         Problem problem = problems.get(index);
@@ -114,7 +114,7 @@ public final class Stage3Benchmark {
         List<DisjointPatternDatabase> databases = new ArrayList<>();
         Predictor predictor;
         System.out.println("PHASE PREPARE");
-        if (type == HeuristicType.DISJOINT_PATTERN || heuristicName.equals("PDB_MAX_LC") || heuristicName.equals("PDB_MAX_555")) {
+        if (type == PuzzleHeuristic.DISJOINT_PATTERN || heuristicName.equals("PDB_MAX_LC") || heuristicName.equals("PDB_MAX_555")) {
             int[][] grouping = initial.getSize() == 3 ? DisjointPatternDatabase.EIGHT_PUZZLE
                     : pattern.equals("555") ? DisjointPatternDatabase.FIVE_FIVE_FIVE
                     : pattern.equals("555T") ? DisjointPatternDatabase.FIVE_FIVE_FIVE_TRANSPOSED
@@ -130,7 +130,7 @@ public final class Stage3Benchmark {
                 predictor = (state,target) -> Math.max(first.heuristics(state,target),second.heuristics(state,target));
             } else if (heuristicName.equals("PDB_MAX_LC")) {
                 DisjointPatternDatabase database = pdb;
-                Predictor lc = PuzzleBoard.predictor(HeuristicType.MANHATTAN_LC);
+                Predictor lc = PuzzleBoard.predictor(PuzzleHeuristic.MANHATTAN_LC);
                 predictor = (state, target) -> Math.max(database.heuristics(state, target),
                         lc.heuristics(state, target));
             } else predictor = pdb;

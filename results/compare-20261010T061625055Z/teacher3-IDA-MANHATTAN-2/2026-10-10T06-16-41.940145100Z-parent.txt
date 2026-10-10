@@ -1,0 +1,4 @@
+end_to_end_ms=478.861701
+timeout_s=5
+command=[C:\Program Files\Java\jdk-19\bin\java, -Xmx1024m, -Dwattai.mode=BASIC, -Dwattai.limit=0, -Dwattai.fast=true, -Dwattai.cache=generated/compare-20261010T061625055Z-teacher3-IDA-MANHATTAN-2, -Dwattai.snapshot=results\compare-20261010T061625055Z\teacher3-IDA-MANHATTAN-2\2026-10-10T06-16-41.940145100Z.properties, -cp, build-test, stud.g01.runner.Stage3Benchmark, --worker, 2026-10-10T06-16-41.940145100Z, resources/problems_teacher_stage1.txt, 0, IDA, MANHATTAN, 4443]
+status=SOLVED

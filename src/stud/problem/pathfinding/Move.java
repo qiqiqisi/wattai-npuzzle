@@ -4,7 +4,7 @@ import core.problem.Action;
 
 /**
  *
- * å¯»è·¯çš„ç§»åŠ¨åŠ¨ä½œï¼Œæ ¹æ®æƒ…å†µï¼Œå¯ä»¥NSEWå››ä¸ªæ–¹å‘ï¼Œæˆ–è€…8ä¸ªæ–¹å‘ã€‚
+ * Ñ°Â·µÄÒÆ¶¯¶¯×÷£¬¸ù¾İÇé¿ö£¬¿ÉÒÔNSEWËÄ¸ö·½Ïò£¬»òÕß8¸ö·½Ïò¡£
  */
 public class Move extends Action {
 
@@ -39,7 +39,7 @@ public class Move extends Action {
 
         if (obj instanceof Move) {
             Move another = (Move) obj;
-            //ä¸¤ä¸ªNodeå¯¹è±¡çš„çŠ¶æ€ç›¸åŒï¼Œåˆ™è®¤ä¸ºæ˜¯ç›¸åŒçš„
+            //Á½¸öNode¶ÔÏóµÄ×´Ì¬ÏàÍ¬£¬ÔòÈÏÎªÊÇÏàÍ¬µÄ
             return this.direction.equals(another.direction);
         }
         return false;

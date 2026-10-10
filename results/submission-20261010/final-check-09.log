@@ -1,0 +1,6 @@
+tools\PdbLookupProbe.java:14: ����: �Ҳ�������
+            +" LC="+PuzzleBoard.predictor(HeuristicType.MANHATTAN_LC).heuristics(hard,goal));
+                                                       ^
+  ����:   ���� MANHATTAN_LC
+  λ��: �� HeuristicType
+1 ������

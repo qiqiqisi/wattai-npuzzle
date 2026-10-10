@@ -1,0 +1,1 @@
+PASS: BenchmarkAcceptance rejects TIMEOUT/OOM/FAIL/UNSOLVABLE independently of parent exit

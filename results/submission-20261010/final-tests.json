@@ -1,0 +1,179 @@
+{
+  "build": "build-final-1791614968427387400",
+  "java_release": 19,
+  "checks": [
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "tools/compile.ps1",
+        "-OutputDirectory",
+        "build-final-1791614968427387400"
+      ],
+      "exit_code": 0,
+      "wall_ms": 4581.627999898046,
+      "log": "final-1791614968427387400-check-00.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "PuzzleFoundationTest"
+      ],
+      "exit_code": 0,
+      "wall_ms": 282.82770002260804,
+      "log": "final-1791614968427387400-check-01.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "PuzzleStage1Test"
+      ],
+      "exit_code": 0,
+      "wall_ms": 781.7249000072479,
+      "log": "final-1791614968427387400-check-02.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "PuzzleStage2Test"
+      ],
+      "exit_code": 0,
+      "wall_ms": 806.1283002607524,
+      "log": "final-1791614968427387400-check-03.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "PuzzleStage3Test"
+      ],
+      "exit_code": 0,
+      "wall_ms": 502.50109983608127,
+      "log": "final-1791614968427387400-check-04.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "PuzzleCloseoutTest"
+      ],
+      "exit_code": 0,
+      "wall_ms": 428.7940002977848,
+      "log": "final-1791614968427387400-check-05.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "PuzzleAlternativePdbTest"
+      ],
+      "exit_code": 0,
+      "wall_ms": 453.80409993231297,
+      "log": "final-1791614968427387400-check-06.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "TeacherStage1Test"
+      ],
+      "exit_code": 0,
+      "wall_ms": 288.18839974701405,
+      "log": "final-1791614968427387400-check-07.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "BenchmarkAcceptanceTest"
+      ],
+      "exit_code": 0,
+      "wall_ms": 244.94520016014576,
+      "log": "final-1791614968427387400-check-08.log"
+    },
+    {
+      "command": [
+        "javac",
+        "-encoding",
+        "UTF-8",
+        "--release",
+        "19",
+        "-cp",
+        "build-final-1791614968427387400",
+        "-d",
+        "build-final-1791614968427387400",
+        "tools/AdditivePdbBuildComparison.java",
+        "tools/JfrSummary.java",
+        "tools/PdbLookupProbe.java"
+      ],
+      "exit_code": 0,
+      "wall_ms": 1589.3672001548111,
+      "log": "final-1791614968427387400-check-09.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "core.runner.SearchTester",
+        "resources/problems_teacher_stage1.txt",
+        "NPUZZLE",
+        "1",
+        "stud.g01.runner.PuzzleFeeder"
+      ],
+      "exit_code": 0,
+      "wall_ms": 270.5839998088777,
+      "log": "final-1791614968427387400-check-10.log"
+    },
+    {
+      "command": [
+        "java",
+        "-Xmx1024m",
+        "-Dwattai.fast=true",
+        "-cp",
+        "build-final-1791614968427387400",
+        "stud.g01.runner.StudentSearchTester",
+        "resources/problems_teacher_stage1.txt",
+        "NPUZZLE",
+        "2",
+        "stud.g01.runner.PuzzleFeeder"
+      ],
+      "exit_code": 0,
+      "wall_ms": 218.1072998791933,
+      "log": "final-1791614968427387400-check-11.log"
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,18 @@
+COMPILE_PASS: --release 19, 61 sources, build-test
+PASS: 43 N-Puzzle foundation checks
+PASS: 1209 N-Puzzle stage 1 checks
+PASS: 182950 N-Puzzle stage 2 checks
+PASS: 32280 N-Puzzle stage 3 checks
+PASS: 5992 closeout BFS/search/progress/playback/parser checks
+ALTERNATIVE_PREPARE_MS=134.3121 BUILD_MS=0 LOAD_MS=41
+PASS: 4776 alternative additive partition/max/ranking checks
+PASS: TeacherStage1Test independent BFS=16; A* Misplaced/Manhattan replay=16
+2026-10-10T06-12-49.858701300Z,problems3_10,IDA,DISJOINT_PATTERN,555T,70,70,26624.376,95279434,48759798,8,6131,0,95278467,17297280,17297496,69,0,SOLVED,results/solutions/2026-10-10T06-12-49.858701300Z-problems3_10-IDA-DISJOINT_PATTERN.tsv
+ACCEPTED: SOLVED, 70 legal steps, input/goal match, parent_ms=33053.8807
+java.exe : java version "19" 2022-09-20
+At [WORKSPACE]\tools\reproduce.ps1:23 char:18
++         java = ((& java -version 2>&1 | ForEach-Object ToString) -joi ...
++                  ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (java version "19" 2022-09-20:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

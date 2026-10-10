@@ -53,4 +53,13 @@ public class PuzzleFeeder extends EngineFeeder {
     public Predictor getPredictor(HeuristicType type) {
         return PuzzleBoard.predictor(type);
     }
+    public Predictor getPredictor(stud.g01.heuristic.PuzzleHeuristic type) {
+        return PuzzleBoard.predictor(type);
+    }
+
+    public core.solver.algorithm.searcher.AbstractSearcher getAStar(stud.g01.heuristic.PuzzleHeuristic type) {
+        return new core.solver.algorithm.searcher.BestFirstSearcher(
+                getFrontier(EvaluationType.FULL), getPredictor(type));
+    }
+
 }

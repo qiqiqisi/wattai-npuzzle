@@ -1,6 +1,6 @@
 package stud.g01.runner;
 
-import core.runner.SearchTester;
+
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -17,7 +17,7 @@ public final class LoggedSearchTester {
         PrintStream console = System.out;
         try (PrintStream file = new PrintStream(Files.newOutputStream(log), true, StandardCharsets.UTF_8)) {
             System.setOut(file);
-            SearchTester.main(Arrays.copyOfRange(args, 1, args.length));
+            StudentSearchTester.main(Arrays.copyOfRange(args, 1, args.length));
         } finally {
             System.setOut(console);
         }
