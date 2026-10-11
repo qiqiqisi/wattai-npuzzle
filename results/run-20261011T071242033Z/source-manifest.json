@@ -1,0 +1,218 @@
+﻿[
+    {
+        "path":  "src/algs4/util/StdRandom.java",
+        "sha256":  "F1A6FF3820097C483AD4F76D3FEAD16C83E234021B118E21D6B13606B6ED813B"
+    },
+    {
+        "path":  "src/algs4/util/Stopwatch.java",
+        "sha256":  "35E7CD78EBE999124844E76347C83B9EDFF4E7C4140C9776670776747BD76044"
+    },
+    {
+        "path":  "src/algs4/util/StopwatchCPU.java",
+        "sha256":  "156AF06F4293CE083C7A539DCA0923F9FB1B933D7B11D1532F35090B304EA2B8"
+    },
+    {
+        "path":  "src/core/problem/Action.java",
+        "sha256":  "259FA64270BC6B9EF910BDA724A5B80FD56EB336B1624DE321E80BCD1580A6A4"
+    },
+    {
+        "path":  "src/core/problem/Problem.java",
+        "sha256":  "3D8FA3F9960EB241F45CD30A7850EAA6B44270F32033FDC0895505EB2861CC8C"
+    },
+    {
+        "path":  "src/core/problem/ProblemType.java",
+        "sha256":  "C557F29754FFD12AFF1FBE42DFF1CBAD1FCB2010E6B0EEBE36422D0BDFE33082"
+    },
+    {
+        "path":  "src/core/problem/State.java",
+        "sha256":  "62399E13F25AC348A7710B96083D391245937C873A0218AFAD53D2E0B629DDA2"
+    },
+    {
+        "path":  "src/core/runner/EngineFeeder.java",
+        "sha256":  "6EFC9D1346D03C9D4DC667A757A2476A21B2F7D5BCEFC8E7780DB9F785A52C26"
+    },
+    {
+        "path":  "src/core/runner/SearchTester.java",
+        "sha256":  "1B1C02EFAF45A5FB45B2AD178F0CD989965D64DC535ED5A808A6F745DF6585F7"
+    },
+    {
+        "path":  "src/core/solver/algorithm/heuristic/HeuristicType.java",
+        "sha256":  "8EDCCB736B27117DF269389B9B0360A971F609CA923A054DC2378DADAF75F6E3"
+    },
+    {
+        "path":  "src/core/solver/algorithm/heuristic/Predictor.java",
+        "sha256":  "263B2D6E91E0BFF56090A0317A6F3257D1023ACBFFC98BED264D979A6EF84093"
+    },
+    {
+        "path":  "src/core/solver/algorithm/searcher/AbstractSearcher.java",
+        "sha256":  "257A8AEF5BB85743623438ABFB44F40EBFF5BE72C2CF5139D3862B18539A7462"
+    },
+    {
+        "path":  "src/core/solver/algorithm/searcher/BestFirstSearcher.java",
+        "sha256":  "424E7A809CC4D51D6FFE156223635EB963779D9DEE359A1C47EC49B7E184C440"
+    },
+    {
+        "path":  "src/core/solver/queue/EvaluationType.java",
+        "sha256":  "C48CCDE7B74D97143059708679867996D8DBB7EE96D975FDFA1EA0DA78894C65"
+    },
+    {
+        "path":  "src/core/solver/queue/Frontier.java",
+        "sha256":  "36206004576A373951A846A374B043C33F7FFF47809165E66495A75C881F5D9B"
+    },
+    {
+        "path":  "src/core/solver/queue/Node.java",
+        "sha256":  "BF5F62C6C3FD9F536CA140781D3D0904C58F6895B27963D3209374B2346169E2"
+    },
+    {
+        "path":  "src/stud/g01/heuristic/IncrementalPredictor.java",
+        "sha256":  "EF5A461E32D94287EA03512817A4DB0CC6DB28A230104F798AAB9FCA97453853"
+    },
+    {
+        "path":  "src/stud/g01/heuristic/PuzzleHeuristic.java",
+        "sha256":  "2B6815060DE063C4D4E7292F95E60CA36B0CB91AD35E9C72D415B8824CF2C0AA"
+    },
+    {
+        "path":  "src/stud/g01/pdb/BlankDistance.java",
+        "sha256":  "C689EC058DB4DF9D6BE024BB9A5995E671DBD9ABCE5CE78006990AD99A19D6B1"
+    },
+    {
+        "path":  "src/stud/g01/pdb/DisjointPatternDatabase.java",
+        "sha256":  "658735F80FA6F28675492E29952DBB2660E661F162636C3611151F01E8F6193C"
+    },
+    {
+        "path":  "src/stud/g01/pdb/PatternTable.java",
+        "sha256":  "A997985F858B2E8A364E085EFD5E1999E8BD43AB59A1C1BDE3D28220E158E7DC"
+    },
+    {
+        "path":  "src/stud/g01/problem/npuzzle/NPuzzleProblem.java",
+        "sha256":  "311575B9B2A086E0F10C42BC853A146BBDF7BC1BD28B4E002658789A65C89807"
+    },
+    {
+        "path":  "src/stud/g01/problem/npuzzle/PuzzleBoard.java",
+        "sha256":  "BD3ABC92E87D0AA48035F7F41AD09D5B305F463E50ACCF2A59AE3C8062AD5F3E"
+    },
+    {
+        "path":  "src/stud/g01/problem/npuzzle/PuzzleMove.java",
+        "sha256":  "ED319016C4DC513B617091F3492F4179D16FDA5CC86B91E5BEB80C13BD58FC89"
+    },
+    {
+        "path":  "src/stud/g01/queue/PqFrontier.java",
+        "sha256":  "FEC7D2195908E86CC008F984CC9CB1F0340439F4C166D947BFAD8F17AB09890A"
+    },
+    {
+        "path":  "src/stud/g01/runner/BenchmarkAcceptance.java",
+        "sha256":  "869F685C03DA552DAAABE87B99ABF29354CA7634BED3DDB1E9B12434C8485A40"
+    },
+    {
+        "path":  "src/stud/g01/runner/LoggedSearchTester.java",
+        "sha256":  "5FF874711E6C1D77947D0ED0403D4D8059041184767080143BAE53BBB354977F"
+    },
+    {
+        "path":  "src/stud/g01/runner/PatternGroupingBenchmark.java",
+        "sha256":  "412C0A680707833BED0B1636A22833D112C6ED6DE16499EA09B79FD7354F64FD"
+    },
+    {
+        "path":  "src/stud/g01/runner/PdbBfsBibfsBenchmark.java",
+        "sha256":  "D24092A41BDF8643F4FE24EBFB2F80CB87B458938C8112C267A75E9DA97F674B"
+    },
+    {
+        "path":  "src/stud/g01/runner/PdbTableManifest.java",
+        "sha256":  "EDFA1965E06035A863238001CA350EF880CCDD420F23FBB1AD669EFDA19E4385"
+    },
+    {
+        "path":  "src/stud/g01/runner/PuzzleFeeder.java",
+        "sha256":  "98D38001AD13CCA710324259E9068736FD068D007353551921123CF928A71179"
+    },
+    {
+        "path":  "src/stud/g01/runner/RandomGoalBenchmark.java",
+        "sha256":  "0B92881B42BFB1D9D819661889514D5B34626EF4ACE19BC9EEAD6C6A5CF943AB"
+    },
+    {
+        "path":  "src/stud/g01/runner/Stage1Benchmark.java",
+        "sha256":  "CC35C32DE3748A5D01B0F53C4C42C7BE5EBCB4B88D5503D7DFFDA40BB43E25A3"
+    },
+    {
+        "path":  "src/stud/g01/runner/Stage1ExtendedBenchmark.java",
+        "sha256":  "B9410A016DD8AD86233A208D3492B5ABFDFA8C44004FF645AEE01EB040A59261"
+    },
+    {
+        "path":  "src/stud/g01/runner/Stage1Summary.java",
+        "sha256":  "C200BBB7F7CB17178B7FA2960B04577222AA70E9BEE1BA33A25606443A3270C6"
+    },
+    {
+        "path":  "src/stud/g01/runner/Stage2Benchmark.java",
+        "sha256":  "93862617F6C420A22019D8ECFE958482C736F1EEF565782C41E4154F367D1BDE"
+    },
+    {
+        "path":  "src/stud/g01/runner/Stage3Benchmark.java",
+        "sha256":  "DDA12A5E9259E87E1C5D4CCA25E68F569DA2D3505EC4CFF9C43E349D6214004D"
+    },
+    {
+        "path":  "src/stud/g01/runner/StudentSearchTester.java",
+        "sha256":  "929DBCCD21F469D8E6A24A919174907BBC7EA502BFDFDFE11909722A4D2C2A0E"
+    },
+    {
+        "path":  "src/stud/g01/solver/IdAStar.java",
+        "sha256":  "6CB8D34D44645735EF1739DFF592BD18A724D861CF577FDF9C4BB5C79F9428B2"
+    },
+    {
+        "path":  "src/stud/g01/solver/ZobristKey.java",
+        "sha256":  "11092DA56B777EBE7783AEF7B150081679C4C96C2A22C6BC120621DF278AA6C5"
+    },
+    {
+        "path":  "src/stud/g01/visual/PlaybackModel.java",
+        "sha256":  "4C0DEE69BE43E23E137E91D290BE94CDF3990E39C0A67058DC717B5EE00D85C7"
+    },
+    {
+        "path":  "src/stud/g01/visual/PuzzleVisualizer.java",
+        "sha256":  "22485DDA5B40B38B7CF1B9136150A2B1FB56C4605E1E0486A5F905CB002CB4E2"
+    },
+    {
+        "path":  "src/stud/g01/visual/SolutionTrace.java",
+        "sha256":  "C7AC7DCE735CC869E0D0D70305972B05DACD31D3C4899B38D9E15BB6F7251E1A"
+    },
+    {
+        "path":  "src/stud/problem/pathfinding/Direction.java",
+        "sha256":  "4CE50163ACCF7F6F1E4204F58D13DB9145857C2462126A198E7438AA4EBAF8DD"
+    },
+    {
+        "path":  "src/stud/problem/pathfinding/GridType.java",
+        "sha256":  "F21489D733DA2E0909F2CC8F00AAFE8CFD1FF9B99F674DECEAA76F594E07F7A1"
+    },
+    {
+        "path":  "src/stud/problem/pathfinding/Move.java",
+        "sha256":  "99877831356A46BD58B9C58B02AB9ED06D3D9CC3741CD9D6B4B327E7C825879D"
+    },
+    {
+        "path":  "src/stud/problem/pathfinding/PathFinding.java",
+        "sha256":  "E4CDEC3CB37C0AC728A88A11567B9A426BC55E902D8B0D949496BE9A4292D4F3"
+    },
+    {
+        "path":  "src/stud/problem/pathfinding/Position.java",
+        "sha256":  "0E517EDE0CDA4511AF9341D421505BC4D93505B6A7CE247A5AECBC5EAFB2A300"
+    },
+    {
+        "path":  "src/stud/queue/ListFrontier.java",
+        "sha256":  "26014C6EA29B36FA8D2D297FFD77727273C11E10201A3BEFFE48EF66B7B490E4"
+    },
+    {
+        "path":  "src/stud/queue/PqFrontier.java",
+        "sha256":  "EE47B8EC7F2CA2B388A1B085B4DAD9096D766469CA30DB8813089BF31C49CAC4"
+    },
+    {
+        "path":  "src/stud/queue/QueueFrontier.java",
+        "sha256":  "057DE9692BEDB2ED2C3D9CBDF107B5787D63F4F21150B774933DE015AB60F465"
+    },
+    {
+        "path":  "src/stud/queue/StackFrontier.java",
+        "sha256":  "94C8B827B17CA194875BB531B696F7B06D4A7EB98ECE859F5805F2DC92F6F6D4"
+    },
+    {
+        "path":  "src/stud/runner/WalkerFeeder.java",
+        "sha256":  "79BBBDE2D52DABF6D7207B31C26752F5231CD8A550BC24BB09A989E34C1237C2"
+    },
+    {
+        "path":  "src/stud/solver/IdAStar.java",
+        "sha256":  "93A9BDAA7DA705119A8D775126E666C87625498EA54087C759B84D6DF2239CE3"
+    }
+]

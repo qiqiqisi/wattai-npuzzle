@@ -4,16 +4,16 @@
 
 [研究报告 DOCX](report/NPuzzle研究报告.docx) · [PDF](report/NPuzzle研究报告.pdf) · [逐项验收](docs/acceptance.md) · [原始结果索引](results/INDEX.md) · [教师合规](docs/teacher_compliance.md) · [变更与回退](docs/changes.md)
 
-## 四阶段结果（2026-10-10 本机实测）
+## 四阶段结果（2026-10-11 最终复核）
 
 | 阶段 | 实现与结果 | 限制 |
 | --- | --- | --- |
 | 1：A* | PriorityQueue + 状态索引；教师 3×3 任意目标，独立 BFS 与 A* 均为最短 16 步；Misplaced/Manhattan 各三次搜索最大 28.752ms | 工作 JVM 内搜索与父端总时长分开计；不能外推所有题 |
 | 2：IDA* | f 阈值、路径去环、TT/Zobrist 碰撞回归；原题索引3同题对照成功配置52步 | Misplaced 的 A*/IDA* 都在10秒限制下 TIMEOUT；教师第二阶段实例表述的歧义见合规文档 |
-| 3：加性 PDB | hard 原题索引9，BASIC / 555T / fast=true，独立冷缓存70步，父端32.594秒 | 建库计入总时长；1024m堆上限不是实际峰值；保留历史 TIMEOUT/OOM/FAIL |
-| 4：可视化 | 文件驱动 Swing，3×3/4×4路径、播放状态、边界与速度自动测试通过 | **MANUAL_GUI_PENDING**；尚无实际按钮验收或截图 |
+| 3：加性 PDB | hard 原题索引9，BASIC / 555T / fast=true，新冷缓存70步，父端22.729秒 | 建库计入总时长；1024m是堆上限；保留历史32.594秒及失败依据 |
+| 4：可视化 | 文件驱动 Swing，解析、回放、状态与速度自动测试通过；两张真实终态图 | 按钮及速度的实际鼠标操作仍 **MANUAL_GUI_PENDING** |
 
-六套原有测试合计 227,250 个检查再次 PASS，两个新增回归通过。62份 CSV 的结构/路径引用与55条实际解路径已核验。完整报告15页，封面身份与学期为 `待填写`。
+不含本地教师资料、旧构建和缓存的干净快照完成 Java19 编译；六套测试共 227,250 项检查、两个新增回归、诊断工具和教师/学生双入口均通过。原始数据、哈希和全部保留路径的审查见 [最终证据](results/final-20261011/verification.json)。完整报告17页，封面身份与学期为 `待填写`。
 
 ## 构建与复现
 
@@ -26,9 +26,24 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/reproduce.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/reproduce.ps1 -RunHard -RunWarm
 # 有界同题对照：3×3每组3次，普通4×4每组1次
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/compare.ps1
+# 验证报告数据哈希、31项教师字节、CSV/路径及本地导航
+python tools/verify_project.py --classes build-test
 ```
 
 输出采用新运行目录。未 SOLVED、错题、非法路径或实际父端超限会使 hard 复现入口失败；工作进程退出0本身不构成验收。教师原版 `core.runner.SearchTester` 保留，第二阶段入口为学生 `stud.g01.runner.StudentSearchTester`。
+
+## 代表性比较
+
+下表为2026-10-10同题数据；3×3取三次搜索中位数，4×4为单次。完整三启发函数与IDA*对照见[报告](report/NPuzzle研究报告.pdf)，失败行保留，不参与成功中位数。
+
+| 实例/算法 | Misplaced ms | Manhattan ms | 加性 PDB ms | 最短步数 |
+| --- | --- | --- | --- | --- |
+| 教师3×3 A* | 23.750 | 24.350 | 21.692 | 16 |
+| 教师3×3 IDA* | 134.892 | 121.195 | 107.974 | 16 |
+| 原题索引3 4×4 A* | TIMEOUT（10s） | 1031.040 | 406.016 | 52 |
+| 原题索引3 4×4 IDA* | TIMEOUT（10s） | 435.977 | 370.395 | 52 |
+
+PDB准备时间另计，节点少不等于端到端最快；该有限样本不能证明全部15-Puzzle的性能排序。
 
 ## hard 真实性能
 
@@ -36,12 +51,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/compare.ps1
 
 | 缓存 | 状态/步数 | 建库 ms | 加载 ms | 搜索 ms | 父端总 ms |
 | --- | --- | --- | --- | --- | --- |
-| 独立冷缓存 | SOLVED / 70 | 6192 | 0 | 26074.878 | 32593.8569 |
-| 热缓存 | SOLVED / 70 | 0 | 40 | 27863.430 | 28186.2268 |
+| 2026-10-11独立冷缓存 | SOLVED / 70 | 4819 | 0 | 17708.691 | 22729.4068 |
+| 同源热缓存 | SOLVED / 70 | 0 | 29 | 20069.836 | 20301.7694 |
 
-[冷原始记录与环境](results/run-20261010T061439277Z/) · [热原始记录](results/run-20261010T061439277Z-warm/) · [同题启发函数比较](results/compare-20261010T061625055Z/comparison.csv)
+[最新冷记录与环境](results/run-20261011T071242033Z/) · [同源热记录](results/run-20261011T071242033Z-warm/) · [同题比较](results/compare-20261010T061625055Z/comparison.csv)
 
-父端从创建工作 JVM 前开始，含工作 JVM 启动、准备、搜索、回放与导出；父 JVM 自身首次启动未单独量测。父端与搜索的差值不是纯启动耗时。2026-10-09的34.097秒为已核验历史证据，不是本轮成绩。
+父端包含工作 JVM 启动、准备、搜索、回放与导出；父 JVM 自身首次启动未单独量测，差值不是纯启动耗时。历史冷缓存32.594秒和34.097秒仍可访问；本次搜索源码与节点数相同，耗时差异不能归因于文件整理。
 
 ## 本机 GUI 终态截图（2026-10-10）
 
@@ -69,4 +84,4 @@ java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-1
 | results、docs、report | 原始证据、集中审查与完整可编辑报告 |
 | teacher_reference、generated、build-* | 本地只读参考、再生缓存与构建产物，均不上传 |
 
-仓库保持 private，工作分支独立审查，不自动合并 main。教师原 DOCX/PDF/ZIP 与 IDE/cache 不提交；报告封面按本地模板制作。教师公开授权未取得，不能以私有归档推断公开许可。第三方 `algs4` 的许可见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。
+最终成果统一到 main，仓库继续保持 private。教师参考目录、原 DOCX/PDF/ZIP、IDE/cache 与本地会话归档不上传；报告封面采用本地教师模板。私有归档不代表教师公开授权。原 `algs4` 版权及许可见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。

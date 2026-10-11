@@ -84,6 +84,13 @@ def build():
         markdown.append('\n'+'#'*level+' '+text+'\n')
     def para(text):
         p=doc.add_paragraph(text);markdown.append(text+'\n');return p
+    def figure(source, caption):
+        p=para(caption);p.paragraph_format.keep_with_next=True
+        p.paragraph_format.first_line_indent=0;p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+        p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.first_line_indent=0
+        p.add_run().add_picture(str(ROOT/sources[source]),width=Cm(14.5))
+        markdown.append(f'![{caption}]({Path(sources[source]).relative_to("report").as_posix()})\n')
     def table(headers,data,caption):
         para(caption).paragraph_format.keep_with_next=True
         t=doc.add_table(rows=1,cols=len(headers));t.autofit=False
@@ -106,7 +113,7 @@ def build():
                     for r in p.runs:r.font.size=Pt(9);r.font.bold=ri==0
         markdown.append('| '+' | '.join(headers)+' |\n| '+' | '.join(['---']*len(headers))+' |\n'+'\n'.join('| '+' | '.join(map(str,r))+' |' for r in data)+'\n')
     h('1 启发式算法综述')
-    para(f'本实验在课程提供的 Java 框架上实现 N-Puzzle 求解与解路径播放。教师指定的 3×3 状态对由 A* 得到最短 16 步解；最难 15-Puzzle 在独立冷缓存下得到 70 步解，父端总时长为 {float(cp["end_to_end_ms"])/1000:.3f} 秒。本文说明状态建模、可采纳启发函数、搜索数据结构以及四个阶段的验证结果。可视化的自动解析与播放状态测试已通过，实际桌面按钮操作仍待人工验收。')
+    para(f'本实验在课程提供的 Java 框架上实现 N-Puzzle 求解与解路径播放。教师指定的 3×3 状态对由 A* 得到最短 16 步解；2026-10-10 最难 15-Puzzle 冷缓存得到 70 步解，父端总时长为 {float(cp["end_to_end_ms"])/1000:.3f} 秒。2026-10-11 独立复核见表 4。本文说明算法、数据结构及四阶段证据。可视化解析与播放状态测试通过，桌面按钮操作仍待人工验收。')
     h('1.1 算法描述',2)
     para('搜索树结点记录状态、父结点、动作、已付代价 g 和剩余代价估计 h。A* 按 f=g+h 的升序取出候选结点，遇到目标时沿父链恢复路径。优先队列负责快速取得最小估值结点，Open 与 Closed 则共同处理重复状态。评估规则必须与启发函数的性质一起分析，不能把任意最佳优先策略都称为最优 A*。')
     h('1.2 算法的可采纳性',2)
@@ -186,10 +193,19 @@ def build():
     table(['缓存','状态','步数','建表 ms','加载 ms','搜索 ms','父端总 ms'],hardrows,'表 3 hard 原题 BASIC 555T fast=true -Xmx1024m 60 秒限制')
     para(f'题目为 problems3.txt 第 10 行：初态 15 14 13 12 / 11 10 9 8 / 7 6 5 4 / 3 2 1 0，目标采用该行原始标准目标。冷运行初始 h={snap["initial_h"]}，阈值序列为 {snap["thresholds"]}，展开 {int(cold["expanded"]):,}、生成 {int(cold["generated"]):,}，PDB 估值调用 {int(cold["pdb_lookup_count"]):,}。BASIC 的转置表占用为 0；搜索最大非目标深度记录 69，对应完整解长 70。')
     para(f'冷运行回放 {float(timing["replay_ms"]):.3f} ms，导出 {float(timing["export_ms"]):.3f} ms。父端总时长 {float(cp["end_to_end_ms"])/1000:.3f} 秒小于 60 秒，保守口径达标。热运行未建库，加载 40 ms；热搜索稍慢而父端更短，说明系统/JIT/GC波动和准备成本都需要分开看。本轮不再据这两次结果做无界调参。')
-    para('2026-10-09 的 34.0966172 秒冷运行是历史证据，已独立回放核对，未冒充本轮实验。第一次迁移后冷运行也成功（父端 33.0538807 秒），但复现脚本在读取 java -version 的 stderr 时失败；这条失败入口记录保留。修复后完整入口返回 0，最终推荐使用表 3 的冷运行。更早的 4443、旧 555、TT 矩阵 TIMEOUT 与 OOM 均保留在原目录，并明确不同版本/限时不能直接比较。')
+    para('表 3 是 2026-10-10 的实测结果。2026-10-09 的 34.0966172 秒冷运行是历史证据，已独立回放核对。第一次迁移后冷运行也成功（父端 33.0538807 秒），但复现脚本在读取 java -version 的 stderr 时失败；这条失败入口记录保留。更早的 4443、旧 555、TT 矩阵 TIMEOUT 与 OOM 保留原始依据，不同版本与限时不能直接比较。')
+    if 'final_cold' in sources:
+        finalrows=[]
+        for label,key in [('冷缓存','final_cold'),('热缓存','final_warm')]:
+            r=rows(sources[key])[0]
+            p=properties((ROOT/sources[key]).with_name(r['run_id']+'-parent.txt'))
+            assert r['status']=='SOLVED' and r['solution_length']=='70'
+            finalrows.append([label,r['status'],r['solution_length'],r['pdb_build_ms'],r['pdb_load_ms'],r['elapsed_ms'],f'{float(p["end_to_end_ms"]):.4f}'])
+        table(['缓存','状态','步数','建表 ms','加载 ms','搜索 ms','父端总 ms'],finalrows,'表 4 2026-10-11 干净构建的独立 hard 复现')
+        para('最终整理后，从不含教师参考目录、未跟踪工具、构建产物和既有缓存的源码快照重新编译。JDK 19、-Xmx1024m、BASIC、555T、fast=true 和 60 秒条件保持不变；冷缓存目录事先不存在。两条完整路径均通过题目身份、合法动作、目标及父端时限门禁。此次搜索源码与表 3 相同，展开数和阈值序列也相同；耗时下降可能来自系统、JIT、GC和运行负载波动，不能归因于目录精简或宣称算法改进。原始 CSV、环境、源码哈希、计时和完整路径保留于 data_sources.json 与 results/INDEX.md。')
     h('4.5 补充实验与证据限制',2)
     para('历史 pdb_bfs_bibfs_benchmark.csv 对比 unit-cost 抽象图的单点查询：BiBFS 从两端减少查询展开，并非一次生成完整加性模式数据库。另有 additive-build-20261009T055706988422Z/complete-build.csv，对 3×3 相同 0/1 成本输出逐状态距离做全量比较；这里的 BiBFS 是逐点拼出整张表，不能据单点更快推断完整建库更快。本轮没有为增加数据量重新跑这些补充实验。')
-    para('frontier/random 历史数据保留固定 seed 与原始 CSV，但来源版本和计时口径不完全相同，放在补充索引中，不与本轮硬性实例中位数混合。visited/peak frontier/TT entries 是离散条目指标；快照 heap_used_bytes 是某一时刻的堆使用，都不等于 JVM 峰值。hard 运行的阈值、GC/JIT/当前堆记录用于说明真实执行过程，不能替代全生命周期内存测量。')
+    para('frontier/random 历史 CSV 保留固定 seed，版本与计时口径不同，作为补充，不与正文对照混算。visited、frontier、TT 条目、当前 heap_used_bytes 及 PDB 文件大小都不是 JVM 峰值内存；GC/JIT 快照仅描述运行过程。')
     h('5 解路径可视化')
     h('5.1 文件格式与加载验证',2)
     para('求解器导出 NPUZZLE_SOLUTION_V1 TSV，前九行描述算法、启发、规模、搜索时间、生成/展开数、解长和目标；随后逐步给出动作与状态，首步为 START。SolutionTrace 校验元数据、排列、序号、每步动作合法性、状态连续性和最终目标。支持 3×3/4×4，损坏或不完整路径报错后退出，不展示伪造棋盘。')
@@ -197,17 +213,23 @@ def build():
     para('Swing 窗口左右显示当前棋盘与目标，顶部显示指标，底部显示步号及 Play、Pause、Previous、Next、Restart 与速度选择。PlaybackModel 将步号、播放状态与 1400/700/350 ms 三档延时从窗口中分离；javax.swing.Timer 在事件线程推进，末步自动暂停，Previous/Next/Restart 同时停止计时器，避免越界。')
     para('加载路径发生在显示窗口之前，事件线程只做轻量绘制。每次刷新重建棋盘标签并 revalidate/repaint。0 显示为空格，4×4 使用较小字号与格子。速度切换只改变后续 tick 的延迟，状态本身不依赖墙钟，因此可以自动测零步、末步和暂停时 tick 等边界。')
     h('5.3 自动验证与人工验收',2)
-    para(f'本轮自动验证了 {validation["validated_solution_paths"]} 份真实 TSV，覆盖教师 16 步、普通 52 步和 hard 70 步。Closeout 测试覆盖播放边界、速度、暂停及损坏输入；这说明解析与状态逻辑正确，但不证明屏幕布局、鼠标点击和视觉体验。本次没有可操作的原生桌面控制工具，状态为 MANUAL_GUI_PENDING，未提供模拟截图。人工检查顺序见 docs/acceptance.md，确认后可补真实截图。')
+    para(f'2026-10-10 自动验证了 {validation["validated_solution_paths"]} 份真实 TSV，覆盖教师 16 步、普通 52 步和 hard 70 步。最终整理移除部分无独立引用的重复成功路径，保留 CSV 所需路径，并重新回放全部保留路径。Closeout 测试覆盖播放边界、速度、暂停及损坏输入；它说明解析与状态逻辑正确，不能代替鼠标操作和视觉体验的验收。已有两张用户本机真实 Swing 终态截图；按钮及速度逐项人工验收仍为 MANUAL_GUI_PENDING，步骤见 docs/acceptance.md。')
+    if 'gui_teacher3' in sources:
+        h('5.4 本机真实终态截图',2)
+        doc.paragraphs[-1].paragraph_format.page_break_before=True
+        para('两图保持用户提供的原始 PNG 字节。当前棋盘与目标一致，分别处于 16/16 和 70/70 步；终态图只能支持显示及终态一致性，不能据此宣称 Play、Pause、Previous、Next、Restart 与速度切换已经人工验收。')
+        figure('gui_teacher3','图 1 教师指定 3×3 的本机 Swing 终态')
+        figure('gui_hard4','图 2 最难 4×4 的本机 Swing 终态')
     h('6 总结及展望')
     para('四阶段的自动工作已形成可重复的构建、搜索、路径和实验链：A* 满足指定 3×3 的时限，IDA* 提供适合更大棋盘的内存取舍，555T 加性 PDB 保持 hard 的 70 步与冷启动达标，Swing 具备严格文件驱动播放。恢复教师文件后，成功方案没有出现实测性能退化。')
     para('仍需填写封面、人工操作 GUI，并按课程流程提交。当前结果只覆盖规定实例与有限对照，不能推广为全部 15-Puzzle 都在一分钟内求解。若以后确有性能需求，可先测 PriorityQueue 重复替换、状态数组分配与 PDB 查询的真实成本，再作单因素实验；本轮已达标，不继续盲目扩大表或替换算法。')
     h('参考文献')
     for text in [
         '[1] Hart P E, Nilsson N J, Raphael B. A Formal Basis for the Heuristic Determination of Minimum Cost Paths. IEEE Transactions on Systems Science and Cybernetics, 1968, 4(2):100-107. DOI:10.1109/TSSC.1968.300136. 原文：https://www.cs.auckland.ac.nz/courses/compsci709s2c/resources/Mike.d/astarNilsson.pdf',
-        '[2] Korf R E. Depth-first iterative-deepening: An optimal admissible tree search. Artificial Intelligence, 1985, 27(1):97-109. DOI:10.1016/0004-3702(85)90084-0.',
-        '[3] Felner A, Korf R E, Hanan S. Additive Pattern Database Heuristics. Journal of Artificial Intelligence Research, 2004, 22:279-318. DOI:10.1613/jair.1480. 原文：https://www.ise.bgu.ac.il/faculty/felner/research/jairpdb.pdf',
+        '[2] Korf R E. Depth-first iterative-deepening: An optimal admissible tree search. Artificial Intelligence, 1985, 27(1):97-109. DOI:10.1016/0004-3702(85)90084-0. 出版社：https://www.sciencedirect.com/science/article/abs/pii/0004370285900840',
+        '[3] Felner A, Korf R E, Hanan S. Additive Pattern Database Heuristics. Journal of Artificial Intelligence Research, 2004, 22:279-318. DOI:10.1613/jair.1480. 原文：https://s.aaai.org/Papers/JAIR/Vol22/JAIR-2209.pdf',
         '[4] 课程材料：《NPuzzle求解的要求》《NPuzzle求解研究报告》《分工建议》《项目一讲解》。本地 teacher_reference/ 只读保留，未随仓库发布。',
-        '[5] 本项目原始实验：report/data_sources.json 列出的 CSV、parent.txt、timings.properties、TSV 及源码哈希清单，2026-10-10。'
+        '[5] 本项目原始实验：report/data_sources.json 列出的 CSV、parent.txt、timings.properties、TSV 及源码哈希清单，2026-10-10 与 2026-10-11。'
     ]:para(text)
     h('附录 复现与证据入口')
     para('在 Windows PowerShell 中执行 powershell -NoProfile -ExecutionPolicy Bypass -File tools/reproduce.ps1 -RunHard -RunWarm。编译与六套原有测试、教师回归、失败状态拒绝测试全部完成后，脚本以独立冷缓存验收 hard；未 SOLVED、路径错误或实际父端超时均非零结束。tools/compare.ps1 复现同题对照，会使用新的输出目录，保留所有失败。')

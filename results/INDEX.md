@@ -4,6 +4,8 @@
 
 | 用途 | 推荐入口 | 数据解释 |
 | --- | --- | --- |
+| 最终独立hard复核（2026-10-11） | [冷CSV](run-20261011T071242033Z/stage3.csv)、[环境](run-20261011T071242033Z/environment.json)、[70步路径](solutions/2026-10-11T07-12-42.170991500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv)、[同源热CSV](run-20261011T071242033Z-warm/stage3.csv) | JDK19/1024m/60s/BASIC/555T/fast；冷建库4.819s，搜索17.709s，父端22.729s；热父端20.302s |
+| 最终自动验收、整理映射和报告核查 | [统一证据](final-20261011/verification.json) | 干净快照测试、31项本地教师对照、保留数据原字节、全部保留路径回放及链接/报告一致性；历史清单是历史快照，不充当当前附件 |
 | 本轮hard最终推荐 | [冷CSV](run-20261010T061439277Z/stage3.csv)、[环境/源码哈希](run-20261010T061439277Z/environment.json)、[完整路径](solutions/2026-10-10T06-14-39.493084100Z-problems3_10-IDA-DISJOINT_PATTERN.tsv) | 原题索引9，70步，建库6.192s，搜索26.075s，父端32.594s |
 | 本轮hard热缓存 | [热CSV](run-20261010T061439277Z-warm/stage3.csv) | 70步，加载40ms，搜索27.863s，父端28.186s；不能冒充冷运行 |
 | 本轮教师3×3与普通4×4对照 | [24行原始表](compare-20261010T061625055Z/comparison.csv) | teacher3：6组各3次、16步；teacher4标签=原resources索引3、6组各1次，4个52步SOLVED/2个TIMEOUT |
@@ -18,4 +20,4 @@
 
 elapsed_ms为工作JVM内搜索；parent.txt从创建工作JVM前计时，含其启动/准备/搜索/回放/导出；父JVM自身首次启动未单独量测。PDB距离数组/文件大小、TT条目、当前堆快照均不是JVM峰值内存。
 
-原始CSV/日志/路径保持原位置，未清洗失败记录。旧 results 文档及本地交接可作为历史材料，不能覆盖当前 docs/acceptance.md 的状态。
+保留的原始CSV/日志/路径保持原位置及原字节，独立失败证据未清洗。重复成功组、旧测试副本和无引用路径的删除映射见最终统一证据，取舍见 docs/changes.md。旧库存与验收JSON是相应日期的历史快照，不能当作当前附件清单或独立实验次数；当前状态以 docs/acceptance.md 为准。

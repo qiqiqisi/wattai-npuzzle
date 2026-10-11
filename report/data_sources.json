@@ -5,5 +5,9 @@
   "warm": "results/run-20261010T061439277Z-warm/stage3.csv",
   "first_attempt": "results/run-20261010T061249636Z/stage3.csv",
   "historical_cold": "results/run-20261009T070251741Z/stage3.csv",
-  "validation": "results/submission-20261010/data-validation.json"
+  "validation": "results/submission-20261010/data-validation.json",
+  "final_cold": "results/run-20261011T071242033Z/stage3.csv",
+  "final_warm": "results/run-20261011T071242033Z-warm/stage3.csv",
+  "gui_teacher3": "report/images/teacher_stage1_3x3_final.png",
+  "gui_hard4": "report/images/hard_15puzzle_4x4_final.png"
 }

@@ -20,4 +20,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/render_report.ps1 -Inp
 - [教师指定 3×3 终态，16/16 步](images/teacher_stage1_3x3_final.png)
 - [最难 4×4 终态，70/70 步](images/hard_15puzzle_4x4_final.png)
 
-图片由用户在本机运行 Swing 窗口时提供，上传的是原始PNG而非合成界面。此处保存为**报告插图候选素材**，目前尚未插入已经生成的 DOCX/PDF。终态截图不等于按钮/速度人工验收，若补做操作验收与封面后更新报告，应重新生成DOCX和PDF，并保持两者一致。
+图片由用户在本机运行 Swing 窗口时提供，原始 PNG 已加入正文第5.4节、DOCX与PDF，字节哈希纳入 data_hashes.json。17页正式报告保留教师封面、算法原理、历史同题比较和2026-10-11独立冷/热复核。终态图不代替按钮/速度人工验收。填写封面后重新导出PDF，并检查目录与页码。

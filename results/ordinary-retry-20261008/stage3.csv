@@ -1,2 +1,0 @@
-run_id,problem,algorithm,heuristic,pattern,solution_length,path_cost,elapsed_ms,generated,expanded,iterations,pdb_build_ms,pdb_load_ms,pdb_lookup_count,pdb_entries,pdb_file_bytes,max_depth,peak_table_size,status,solution_file
-2026-10-08T14-18-02.348785600Z,problems3_4,IDA,DISJOINT_PATTERN,555,52,52,181.640,166753,54760,5,0,29,166819,17297280,17297496,51,41329,SOLVED,results/solutions/2026-10-08T14-18-02.348785600Z-problems3_4-IDA-DISJOINT_PATTERN.tsv

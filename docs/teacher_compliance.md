@@ -22,3 +22,5 @@ PDF 的第3页示例建议修改 EngineFeeder 第55行，且 SearchTester 注释
 教师参照/本地归档/IDE/PDB/JFR/cache均被忽略，`git ls-files teacher_reference` 为空； `.gitattributes` 保留源码和题目原始字节。提交前对暂存blob再次检查，避免 core.autocrlf 改掉已恢复的字节。
 
 框架字节恢复、Java19兼容、六测试、hard自动验收已通过。未解决项目：GUI人工操作和封面真实身份待用户完成；教师公开授权未确认，仓库继续private，不改变第三方许可。以上边界不会因私有push自动变成已验收。
+
+2026-10-11最终复核：再次读取三DOCX、棋盘图、五页讲解与模板；当前文件、只读参照及SHA清单31/31一致。src、tests、resources与e66ca758保持一致。干净构建、八回归、双入口、原寻路与独立冷hard通过，见[统一证据](../results/final-20261011/verification.json)。旧inventory/report-qa/data-validation为2026-10-10历史快照，当前附件以INDEX与新验收为准。

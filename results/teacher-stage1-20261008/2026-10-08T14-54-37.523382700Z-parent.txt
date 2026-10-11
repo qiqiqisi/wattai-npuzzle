@@ -1,4 +1,0 @@
-end_to_end_ms=479.8977
-timeout_s=5
-command=[C:\Program Files\Java\jdk-19\bin\java, -Xmx1024m, -Dwattai.snapshot=results\teacher-stage1-20261008\2026-10-08T14-54-37.523382700Z.properties, -cp, build-accepted-20261008, stud.g01.runner.Stage3Benchmark, --worker, 2026-10-08T14-54-37.523382700Z, resources/problems.txt, 2, ASTAR, MISPLACED, 4443]
-status=SOLVED

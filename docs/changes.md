@@ -1,5 +1,30 @@
 # 重要变更与权衡
 
+## 2026-10-11 最终整理与main收尾
+
+最终对象审计另发现已有93个results文件在提交对象中为LF、本地原始文件为CRLF，只有换行差异，源码和原题无差异。`.gitattributes`虽已设置`results/** -text`，旧索引仍未重新登记，比较表的原始SHA因而不能在干净检出中复核。按现有规则重新登记这93份原始工作文件字节；不编辑CSV内容、不重算或替换原报告数据哈希。优点是远端附件字节与真实来源一致，代价是提交diff包含较多纯换行变化。逐文件旧对象/原始SHA及内容等价核查保存在统一证据；最终从暂存对象构建核验，防止仅验证工作树掩盖此问题。
+
+工作目录内另有265份已被忽略的旧工程快照、class/PDB/JFR与临时文件，其中快照含13份重复CSV。全部按SHA转存到`.local_archive/final-20261011/ignored-results`，不发布、不覆盖独立原始证据。最终当前树与干净暂存树均为58份CSV、46条路径；先前本地扫描71份CSV包含这13份快照，不能作为最终附件数量。已跟踪文件447→404，results352→308。
+
+用户本次明确授权正常快进main，并在远端核实后删除其他工作分支，覆盖此前不自动合并main的阶段性规则；未授权强推、公开仓库或改写历史。
+
+- 原方案：447个已跟踪文件，results352个；包含重复成功组、测试副本、旧路径汇总和未跟踪会话资料。
+- 问题/证据：旧teacher-stage1实际为标准目标31步；ordinary-baseline包含独立FAIL，须保留。README尚有无截图旧句。fetch确认main 5eb6e5f为submission e66ca758祖先；本地一份已跟踪日志被改且有大量未跟踪资料。
+- 修改：保留搜索源码、测试、原题与31个教师文件。移除60个无当前引用的重复产物，逐文件SHA/理由见统一证据。246项未提交资料校验后归档到忽略的.local_archive/final-20261011/user-files，修改日志的用户字节保留，工作树恢复其原跟踪字节。更新README、报告三件与导航，新增verify_project.py。
+- 优点：main可独立构建，当前附件可访问，成功与独立失败均能审查；报告原理、四张数据表、两张真实图和哈希一致。
+- 缺点/代价：被替代的重复成功组退出当前树；可通过明确的e66ca758历史提交与本地removed-tracked备份恢复，不冒充当前报告附件。逐运行引用多，仍保留完整同题对照，不为数量指标删证据。报告再生需本地模板和Word；算法和测试仅需JDK19。
+- 影响：没有修改src、tests、resources。此次冷hard22.729s与历史32.594s源码、阈值与节点数相同，不能把波动归因于整理。GUI原生操作不可用，终态图与按钮人工验收分开记录。
+- 验证/回退：干净快照八回归、诊断工具、双入口、PathFinding及冷/热hard通过；31字节、原数据、路径、导航、正文一致性与17页排版核查。首次收尾工具参数写错记为调用失败，修正后通过；打包renderer缺LibreOffice，隐藏Word导出通过。正常Git历史与SHA备份可回溯，未执行reset/clean/force。
+
+| 分类 | 内容与理由 |
+| --- | --- |
+| A 必须保留 | 教师框架/学生兼容、A*/IDA*/TT/Zobrist/PDB、Swing、八测试；原题与16步夹具；完整2026-10-10同题对照、32.594s冷/热hard、新22.729s冷/热hard及70步路径；报告三件/两图/哈希、31合规、原版权与GPL；独立失败及PDB/BFS/BiBFS依据 |
+| B 可合并精简 | 旧库存/测试不再作为当前真相源；INDEX/acceptance/changes集中说明，最终核查合入一个verification.json。历史CSV不改写、不跨版本混算，汇总重复不算独立实验 |
+| C 当前树移除 | ordinary-optimized、ordinary-retry、teacher-stage1、hard-verification重复成功组及仅被它们引用的路径；final-check-00至08旧成功测试副本（09编译失败保留）；最终测试JSON副本、空diff-check.log及旧validation.json |
+
+ordinary-baseline独立FAIL、diagnostics/TT矩阵/旧4443与555失败、首次stderr入口失败、stronger/accepted演进均保留原始依据。旧inventory/data-validation/report-qa JSON保留原内容，是指定日期的历史快照，不作为当前附件目录。[完整整理映射与最终证据](../results/final-20261011/verification.json)。
+
+
 ## 1 根工程与 Git 工作副本
 
 - 原方案：根 WattAi 无 `.git`，实际发布副本在本地 `.publication-stage-clean-20261009T074151591118Z`。
