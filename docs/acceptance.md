@@ -25,7 +25,7 @@
 | 当前导航、报告附件、工具依赖 | PASS | 当前Markdown链接、报告数据源与原CSV路径均存在；干净快照不依赖未提交内容。历史库存JSON只描述当时树，不冒充当前附件 |
 | 精简及用户资料保护 | PASS | 已跟踪文件447→404，results352→308；删除60个无当前引用的重复产物，补充必要独立冷热实验及一个统一证据；246项未提交资料归档到.local_archive/final-20261011/user-files，另外265份已有忽略快照/缓存/临时文件归档到同级ignored-results，均逐文件SHA核验；独立失败、源码、测试、许可保留，[取舍](changes.md) |
 | 教师参考/缓存/隐私排除 | PASS | teacher_reference未跟踪；归档、IDE、PDB、JFR、class不上传；暂存源码/题目身份核查 |
-| GitHub main统一与分支删除 | NOT_RUN | 正在执行普通push、main快进及远端tree/Private/default-main核实，核实成功后才删其他分支 |
+| GitHub main统一与分支删除 | PASS | submission普通push已核实，main正常快进；GitHub重新读取提交及404个blob路径/SHA全量一致，Private/default-main保持；远程与本地submission已删除，仅main。统一证据记录已验证的发布前驱；回执提交另从远端复核最终SHA |
 | 教师资料公开授权 | NOT_RUN | 未请求公开，保持Private及[原版权边界](../THIRD_PARTY_NOTICES.md) |
 
 ## 本人仍需完成

@@ -3954,7 +3954,23 @@
     }
   ],
   "publication": {
-    "status": "NOT_RUN"
+    "status": "PASS",
+    "verified_release_before_receipt_commit": {
+      "verified_commit": "166935455f39c4957969bf8a3eb0d22e692105a9",
+      "remote_tree_sha": "cd4f920348ad7e4fb1bb8976668ce2a8767994fe",
+      "all_404_blob_paths_and_shas_identical": true,
+      "private": true,
+      "default_branch": "main",
+      "remote_branches": [
+        "main"
+      ]
+    },
+    "submission_push_verified": true,
+    "deleted_remote_and_local_branches": [
+      "submission/teacher-compliance-20261010"
+    ],
+    "method": "ordinary fast-forward main, then receipt-only commit on main; no force/squash/history rewrite",
+    "receipt_note": "This record identifies the verified predecessor; the receipt commit itself is rechecked remotely after push and its final SHA is returned to the user."
   },
   "staged_tree_audit": {
     "status": "PASS",
