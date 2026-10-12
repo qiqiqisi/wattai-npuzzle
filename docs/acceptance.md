@@ -19,8 +19,8 @@
 | CSV/原始哈希/全部保留路径 | PASS | verify_project.py核查最终树58份CSV、46条保留TSV实际Java回放、77个本地导航及报告来源SHA；274份保留原始记录内容未变。93个旧结果对象的LF/CRLF登记差异按现有-text规则修复，原文件和报告数据哈希不改。汇总重复不算独立实验 |
 | GUI解析/回放/状态/速度自动测试 | PASS | Closeout覆盖3×3/4×4、连续性、起末边界、暂停、速度及坏文件 |
 | 已嵌入报告的2026-10-10原始终态图 | PASS | [3×3](../report/images/teacher_stage1_3x3_final.png)、[4×4](../report/images/hard_15puzzle_4x4_final.png)保留原字节与报告哈希；终态与目标一致 |
-| 2026-10-12本机GUI初/终态截图 | PASS（画面证据） | 新增[3×3初态](images/gui_3x3_initial.png)、[3×3终态](images/gui_3x3_final.png)、[4×4初态](images/gui_4x4_initial.png)、[4×4终态](images/gui_4x4_final.png)，均为用户提供的原始PNG。3×3为0→16、4×4为0→70，画面与原题及目标一致；不能由两张静态状态图推定中间逐帧正确或所有控件正常 |
-| 本机不完整路径拒绝截图 | PASS（错误展示） | [终端截图](images/invalid_trace_rejected.png)可见 `java.io.IOException: Incomplete solution file`，与预期拒绝一致；终端截图截取了部分命令行，独立返回码与具体文件字节未从截图中验证，自动坏输入回归另见上文 |
+| 2026-10-12本机GUI初/终态截图 | PASS | 新增[3×3初态](images/gui_3x3_initial.png)、[3×3终态](images/gui_3x3_final.png)、[4×4初态](images/gui_4x4_initial.png)、[4×4终态](images/gui_4x4_final.png)，均为用户提供的原始PNG。3×3为0→16、4×4为0→70，画面与原题及目标一致；不能由两张静态状态图推定中间逐帧正确或所有控件正常 |
+| 本机不完整路径拒绝截图 | PASS | [终端截图](images/invalid_trace_rejected.png)可见 `java.io.IOException: Incomplete solution file`，与预期拒绝一致；终端截图截取了部分命令行，独立返回码与具体文件字节未从截图中验证，自动坏输入回归另见上文 |
 | GUI按钮和速度实际鼠标操作 | MANUAL_PENDING | 当前有本机初态/终态截图，但用户尚未逐项确认 Play / Pause / Previous / Next / Restart、0.5x / 1x / 2x 及边界操作；不能将画面证据当成交互通过 |
 | 正文/DOCX/PDF/模板/排版 | PASS | [17页正式报告](../report/README.md)，教师封面/A4保留、四表两图；逐页渲染、文本一致性、数据源/PNG哈希核查。打包renderer缺LibreOffice，隐藏Word导出及独立页图检查通过 |
 | 封面身份与学期 | MANUAL_PENDING | 姓名、学号、年份/季学期、组员信息仍待本人填写 |
