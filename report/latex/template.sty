@@ -1,0 +1,125 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{template}[2026/10/12 Teacher Word template layout]
+\RequirePackage{fontspec}
+\RequirePackage{xeCJK}
+\RequirePackage[paperwidth=595.3bp,paperheight=841.9bp,
+  left=90bp,right=90bp,top=72bp,bottom=72bp]{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks,bookmarksnumbered=false]{hyperref}
+
+% 原 DOCX 的 Office 主题：中文宋体，正文西文 Calibri。
+% 不用 ctex 默认标题样式；Arial 只用于原封面的 N-Puzzle。
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\newfontfamily\TemplateArial{Arial}[BoldFont={Arial Bold}]
+\newfontfamily\TemplateSongLatin{SimSun}[AutoFakeBold=1.5]
+\newfontfamily\TemplateCalibri{Calibri}
+\definecolor{TemplateBlue}{RGB}{46,117,181}
+\setlength{\parindent}{0bp}
+\setlength{\parskip}{0bp}
+\pagestyle{empty}
+\newif\ifTemplateBody
+\TemplateBodyfalse
+
+% 绝对位置仅用于封面；正文保持可编辑的普通 LaTeX 排版。
+\newcommand{\TemplateAt}[3]{%
+  \node[anchor=base west,inner sep=0bp,outer sep=0bp]
+    at ([xshift=#1bp,yshift=-#2bp]current page.north west) {#3};}
+
+\newcommand{\TemplateCover}{%
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture,overlay]
+    % 原 JPEG 为 650×328、72dpi；每边仅裁 2px。
+    % 裁掉部分不放大补齐，校徽和校名的原位置、比例保持。
+    \node[anchor=north west,inner sep=0bp,outer sep=0bp]
+      at ([xshift=91.276431bp,yshift=-108.676098bp]current page.north west)
+      {\includegraphics[trim=2bp 2bp 2bp 2bp,clip,
+        width=412.287138bp,height=206.727805bp]{assets/cover-original.jpeg}};
+    \TemplateAt{160.68}{407.569}{\TemplateArial\bfseries\fontsize{21.95bp}{26bp}\selectfont N-Puzzle}
+    \TemplateAt{257.88}{407.45}{\xeCJKsetup{CJKglue=\hskip0.1297bp}\bfseries\fontsize{21.95bp}{26bp}\selectfont 问题求解研究报告}
+    \TemplateAt{252}{552.169}{\bfseries\fontsize{12bp}{15.6bp}\selectfont 年}
+    \TemplateAt{288}{552.169}{\bfseries\fontsize{12bp}{15.6bp}\selectfont 季学期}
+    \draw[line width=0.84bp] ([xshift=210bp,yshift=-553.9bp]current page.north west)
+      -- ([xshift=252bp,yshift=-553.9bp]current page.north west);
+    \draw[line width=0.84bp] ([xshift=264bp,yshift=-553.9bp]current page.north west)
+      -- ([xshift=288bp,yshift=-553.9bp]current page.north west);
+    \TemplateAt{210}{552.169}{\fontsize{12bp}{15.6bp}\selectfont\ReportYear}
+    \TemplateAt{264}{552.169}{\fontsize{12bp}{15.6bp}\selectfont\ReportSeason}
+    \TemplateAt{216}{614.569}{\fontsize{12bp}{15.6bp}\selectfont 姓名：}
+    \TemplateAt{276}{614.569}{\fontsize{12bp}{15.6bp}\selectfont 学号：}
+    \TemplateAt{252}{614.569}{\fontsize{12bp}{15.6bp}\selectfont\ReportNameOne}
+    \TemplateAt{312}{614.569}{\fontsize{12bp}{15.6bp}\selectfont\ReportIdOne}
+    \TemplateAt{216}{645.769}{\fontsize{12bp}{15.6bp}\selectfont 姓名：}
+    \TemplateAt{276}{645.769}{\fontsize{12bp}{15.6bp}\selectfont 学号：}
+    \TemplateAt{252}{645.769}{\fontsize{12bp}{15.6bp}\selectfont\ReportNameTwo}
+    \TemplateAt{312}{645.769}{\fontsize{12bp}{15.6bp}\selectfont\ReportIdTwo}
+  \end{tikzpicture}%
+  \null\clearpage
+}
+
+% 同原模板：三级缩进 0 / 21 / 31.44bp、10.5pt、15.6pt 网格、点引线。
+% 原书签错误经用户确认修复，页码从真实正文条目生成。
+\newcommand{\TemplateContents}{%
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=base,inner sep=0bp,outer sep=0bp,text=TemplateBlue]
+      at ([yshift=-105.407bp]current page.north west -| current page.north)
+      {\fontsize{15.95bp}{20bp}\selectfont 目\hspace{24.12bp}录};
+  \end{tikzpicture}%
+  \vspace*{29.207bp}%
+  \begingroup
+  \fontsize{10.45bp}{15.6bp}\selectfont\bfseries
+  \TemplateSongLatin
+  \@starttoc{toc}%
+  \endgroup
+  \clearpage
+}
+\newcommand{\TemplateTOCRow}[3]{%
+  \par\noindent\hspace*{#1bp}%
+  \hbox to \dimexpr\linewidth-#1bp\relax{#2\nobreak\hspace{1bp}%
+    \leaders\hbox to 2.6bp{\hss{\TemplateCalibri\mdseries .}\hss}\hfill
+    \nobreak\hbox{\TemplateCalibri\mdseries #3}}\par
+}
+\newcommand{\l@templateone}{\TemplateTOCRow{0}}
+\newcommand{\l@templatetwo}{\TemplateTOCRow{21}}
+\newcommand{\l@templatethree}{\TemplateTOCRow{31.44}}
+% 原4.1条目占两行；清除错误文字后仍保留第二行高度。
+\newcommand{\l@templatetwoextra}[2]{\TemplateTOCRow{21}{#1}{#2}\vspace{15.6bp}}
+\setcounter{tocdepth}{3}
+\def\toclevel@templateone{0}
+\def\toclevel@templatetwo{1}
+\def\toclevel@templatethree{2}
+\def\toclevel@templatetwoextra{1}
+\pdfstringdefDisableCommands{\def\quad{ }\def\color#1{}}
+
+\newcommand{\TemplateBeginBody}{%
+  \TemplateBodytrue\setcounter{page}{1}\null%
+  \fontsize{10.5bp}{15.6bp}\selectfont
+}
+\AddToHook{shipout/foreground}{%
+  \ifTemplateBody
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=base,inner sep=0bp,outer sep=0bp]
+        at ([yshift=-790.13bp]current page.north west -| current page.north)
+        {\fontsize{9bp}{11bp}\selectfont\thepage};
+    \end{tikzpicture}%
+  \fi
+}
+
+% 文字取自原目录，不自动重排编号，不修正原有用词。
+% 原正文为空白页：只登记不可见的章节占位，不新增可见标题或页。
+% 在 body.tex 的对应占位后填写正文，目录会指向填写内容所在页。
+\newcommand{\TemplateSection}[1]{%
+  \phantomsection
+  \addcontentsline{toc}{templateone}{#1}%
+}
+\newcommand{\TemplateSubsection}[2][templatetwo]{%
+  \phantomsection
+  \addcontentsline{toc}{#1}{#2}%
+}
+\newcommand{\TemplateSubsubsection}[1]{%
+  \phantomsection
+  \addcontentsline{toc}{templatethree}{#1}%
+}

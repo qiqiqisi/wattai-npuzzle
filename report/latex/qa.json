@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-12",
+  "status": "PASS",
+  "scope": "Original teacher template conversion; existing report and solver unchanged",
+  "source_sha256": "2b9706543d31f6c543a3efcb503e8d338ddbd782f5a510f10c5f79db24fa3c3d",
+  "original_image_sha256": "40319996eaaf5e22f00942a9011d4e926ad4013c29d4d9c9612b0b4363d6cd51",
+  "image_bytes_preserved": true,
+  "crop_pixels_per_side": 2,
+  "content_scale_and_position_preserved": true,
+  "original_pages": 3,
+  "output_pages": 3,
+  "source_directory_entries": 34,
+  "all_directory_titles_preserved": true,
+  "blank_body_text": "1",
+  "real_directory_links": 34,
+  "empty_template_logical_page_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "maximum_cover_native_text_origin_difference_bp": 0.17705,
+  "maximum_cover_image_uncropped_bounds_difference_bp": 0.00908,
+  "maximum_directory_row_start_difference_bp": 0.001,
+  "pagination_check": {
+    "status": "PASS",
+    "compile_exit_codes": [
+      0,
+      0
+    ],
+    "inserted_physical_page": 4,
+    "first_entry_logical_page": 1,
+    "remaining_33_entries_logical_page": 2
+  },
+  "build_command": "powershell -NoProfile -ExecutionPolicy Bypass -File report/latex/build.ps1",
+  "build_exit_codes": [
+    0,
+    0
+  ],
+  "build_output": "generated/latex-template-build/main.pdf",
+  "pdf_sha256": "6343511c692debe1a9566466a4def0bd37cef94217ed595f20c1c060619fda2d",
+  "visual_review": {
+    "status": "PASS",
+    "pages_reviewed": [
+      1,
+      2,
+      3
+    ],
+    "render_command": "pdftoppm -r 110 -png report/latex/NPuzzle-template.pdf generated/latex-template-20261012/deliverable",
+    "findings": "Original three-page structure, cover alignment, narrow border crop, directory colors and preserved blank third page checked; no clipping or overlap."
+  },
+  "limitations": [
+    "Windows original fonts required",
+    "Word and XeLaTeX glyph rasterization differs slightly",
+    "Empty body uses invisible source placeholders; no visible new headings"
+  ]
+}

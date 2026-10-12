@@ -2,6 +2,8 @@
 
 [可编辑 DOCX](NPuzzle研究报告.docx) · [PDF](NPuzzle研究报告.pdf) · [正文源稿](正文.md)
 
+[教师原模板的 LaTeX 版](latex/README.md)：保留3页模板版式，封面图片每边轻裁2像素；经用户确认修复目录。独立于下述已完成研究报告。
+
 采用本地教师参考模板的封面与 A4 格式，重建正常目录并补齐正文。姓名、学号、学期均为 `待填写`。数据来自 [data_sources.json](data_sources.json)，逐输入哈希见 [data_hashes.json](data_hashes.json)。CSV、计时和路径证据入口见 [INDEX](../results/INDEX.md)。2026-10-12 用户已完成 [GUI 本机人工操作验收](../docs/acceptance.md)；**当前 DOCX/PDF 仍保留生成时的旧“待人工验收”表述**，最终填写封面并重新生成报告时应同步修订。
 
 本轮用 Python 3 的 `python-docx` 生成，以 Microsoft Word 更新目录、导出 PDF，再逐页检查 PNG。打包 LibreOffice 不可用，使用 Word 的事实记录在本轮渲染日志中。

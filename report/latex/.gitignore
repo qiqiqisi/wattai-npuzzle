@@ -1,0 +1,7 @@
+# Direct manual XeLaTeX builds; the build script uses generated/ instead.
+*.aux
+*.log
+*.out
+*.toc
+*.xdv
+*.synctex.gz
