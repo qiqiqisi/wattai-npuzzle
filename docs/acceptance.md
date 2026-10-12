@@ -1,6 +1,6 @@
 # 最终提交验收
 
-2026-10-11自动复核；2026-10-12补录真实GUI静态截图和错误输入终端截图（不重跑算法）。状态只使用 `PASS / PARTIAL / FAIL / NOT_RUN / MANUAL_PENDING / BLOCKED`。命令、退出码、数据与整理映射见[统一证据](../results/final-20261011/verification.json)，历史证据保留日期和配置。
+2026-10-11 自动复核；2026-10-12 本机 GUI 人工操作由用户实测确认，新增精选交互截图（不重跑搜索算法）。状态只使用 `PASS / PARTIAL / FAIL / NOT_RUN / MANUAL_PENDING / BLOCKED`。命令、退出码、数据与整理映射见[统一证据](../results/final-20261011/verification.json)，历史证据保留日期和配置。
 
 | 验收项目 | 状态 | 证据及边界 |
 | --- | --- | --- |
@@ -21,7 +21,7 @@
 | 已嵌入报告的2026-10-10原始终态图 | PASS | [3×3](../report/images/teacher_stage1_3x3_final.png)、[4×4](../report/images/hard_15puzzle_4x4_final.png)保留原字节与报告哈希；终态与目标一致 |
 | 2026-10-12本机GUI初/终态截图 | PASS | 新增[3×3初态](images/gui_3x3_initial.png)、[3×3终态](images/gui_3x3_final.png)、[4×4初态](images/gui_4x4_initial.png)、[4×4终态](images/gui_4x4_final.png)，均为用户提供的原始PNG。3×3为0→16、4×4为0→70，画面与原题及目标一致；不能由两张静态状态图推定中间逐帧正确或所有控件正常 |
 | 本机不完整路径拒绝截图 | PASS | [终端截图](images/invalid_trace_rejected.png)可见 `java.io.IOException: Incomplete solution file`，与预期拒绝一致；终端截图截取了部分命令行，独立返回码与具体文件字节未从截图中验证，自动坏输入回归另见上文 |
-| GUI按钮和速度实际鼠标操作 | MANUAL_PENDING | 当前有本机初态/终态截图，但用户尚未逐项确认 Play / Pause / Previous / Next / Restart、0.5x / 1x / 2x 及边界操作；不能将画面证据当成交互通过 |
+| GUI按钮和速度实际鼠标操作（2026-10-12） | PASS | 用户本人确认在 Windows 本机完成 3×3 与 4×4 的 Play / Pause / Previous / Next / Restart、0.5x / 1x / 2x、首末步不越界及窗口检查，全部正常；下方精选截图佐证所显示的步号、按钮焦点与速度档位。**这是用户实际操作验收，非工具自动点击，也没有精确测量帧间隔** |
 | 正文/DOCX/PDF/模板/排版 | PASS | [17页正式报告](../report/README.md)，教师封面/A4保留、四表两图；逐页渲染、文本一致性、数据源/PNG哈希核查。打包renderer缺LibreOffice，隐藏Word导出及独立页图检查通过 |
 | 封面身份与学期 | MANUAL_PENDING | 姓名、学号、年份/季学期、组员信息仍待本人填写 |
 | 当前导航、报告附件、工具依赖 | PASS | 当前Markdown链接、报告数据源与原CSV路径均存在；干净快照不依赖未提交内容。历史库存JSON只描述当时树，不冒充当前附件 |
@@ -30,14 +30,26 @@
 | GitHub main统一与分支删除 | PASS | submission普通push已核实，main正常快进；GitHub重新读取提交及404个blob路径/SHA全量一致，Private/default-main保持；远程与本地submission已删除，仅main。统一证据记录已验证的发布前驱；回执提交另从远端复核最终SHA |
 | 教师资料公开授权 | NOT_RUN | 未请求公开，保持Private及[原版权边界](../THIRD_PARTY_NOTICES.md) |
 
+## GUI 人工操作截图精选（2026-10-12）
+
+用户上传共 14 张真实 Swing 操作截图，本次选取 **7 张具有互补用途的原始 PNG**，其余画面与已有初态/终态或以下状态重复，不再入库。屏幕截图体现捕获时的显示状态，连续操作及速度差异由用户本人确认。
+
+| 实例 | 操作或状态 | 本机截图 | 可观察的结果 |
+| --- | --- | --- | --- |
+| 3×3 | Pause | [暂停 Step 13](images/manual/gui_3x3_pause_step13.png) | 窗口处于第 13 / 16 步、Pause 获得焦点；用户确认暂停后停止前进 |
+| 3×3 | Previous | [后退 Step 12](images/manual/gui_3x3_previous_step12.png) | 由第 13 步回到第 12 步，棋盘同步变化 |
+| 3×3 | Next | [前进 Step 13](images/manual/gui_3x3_next_step13.png) | 由第 12 步重新前进到第 13 步，棋盘同步变化 |
+| 3×3 | Restart | [重置 Step 0](images/manual/gui_3x3_restart_step0.png) | Restart 后回到第 0 步与正确初态 |
+| 4×4 | 0.5x | [慢速档 Step 6](images/manual/gui_4x4_speed_half_step6.png) | Speed 显示 0.5x；用户确认慢速生效 |
+| 4×4 | 2x | [快速档 Step 15](images/manual/gui_4x4_speed_double_step15.png) | Speed 显示 2x；用户确认快速生效；1x 也经人工确认 |
+| 4×4 | 终点边界 Next | [终点 Step 70](images/manual/gui_4x4_next_at_end_step70.png) | 在 70 / 70 步按 Next 后保持终态，不越界 |
+
+此前已归档的[3×3初终态](images/gui_3x3_initial.png)、[4×4初终态](images/gui_4x4_initial.png)及[坏文件拒绝](images/invalid_trace_rejected.png)也有效。所有新截图为原始 PNG，未裁剪或重绘。
+
+**证据边界：** 这七张静态图本身不能独立证明每个按钮被连续点击或确切的 1400/700/350 ms 时间间隔；PASS 是基于用户明确报告亲自逐项测试且无异常，以及可观察的操作状态。旧版算法自动检查和 2026-10-11 hard 记录未在本轮重新运行。
+
 ## 本人仍需完成
 
-最新的3×3/4×4初态与终态截图、以及异常输入拒绝截图已经归档，无需重复截取。尚未获得完整鼠标交互验收声明，以下项目仍待本人操作确认：
-
-1. 在本地编译：`powershell -NoProfile -ExecutionPolicy Bypass -File tools/compile.ps1`（已经编译则可跳过）。
-2. 3×3：`java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-10T06-16-33.017562500Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv`。从 Step 0 检查 Play / Pause / Previous / Next / Restart，确认暂停后不再走动，首末步不越界。
-3. 在3×3或4×4的播放过程中切换0.5x/1x/2x，观察延迟约1400/700/350ms，确保切换不破坏播放。
-4. 4×4：`java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-11T07-12-42.170991500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv`。在 Step 0 与 Step 70 均确认 Previous / Next / Restart 行为；到 Step 70 后不再推进。
-5. 告知实际按钮验收结果（通过/失败与复现步骤），如有问题先修代码再更新报告及验收状态。
-6. 填写真实封面信息，重新导出DOCX/PDF并检查目录页码，按课程要求最终提交。
-
+1. 填写研究报告封面真实姓名、学号、学期及必要的组员信息。
+2. 重新生成/导出一致的 DOCX 与 PDF，检查目录、页码、排版，并将报告第 5.3 节旧“待人工验收”措辞同步为新状态；更新引用源及必要校验。
+3. 按课程规定提交最终文件。**GUI 人工操作无需再重复验收**，除非后续修改播放器代码。

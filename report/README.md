@@ -2,7 +2,7 @@
 
 [可编辑 DOCX](NPuzzle研究报告.docx) · [PDF](NPuzzle研究报告.pdf) · [正文源稿](正文.md)
 
-采用本地教师参考模板的封面与 A4 格式，重建正常目录并补齐正文。姓名、学号、学期均为 `待填写`。数据来自 [data_sources.json](data_sources.json)，逐输入哈希见 [data_hashes.json](data_hashes.json)。CSV、计时和路径证据入口见 [INDEX](../results/INDEX.md)。GUI 人工验收尚未完成。
+采用本地教师参考模板的封面与 A4 格式，重建正常目录并补齐正文。姓名、学号、学期均为 `待填写`。数据来自 [data_sources.json](data_sources.json)，逐输入哈希见 [data_hashes.json](data_hashes.json)。CSV、计时和路径证据入口见 [INDEX](../results/INDEX.md)。2026-10-12 用户已完成 [GUI 本机人工操作验收](../docs/acceptance.md)；**当前 DOCX/PDF 仍保留生成时的旧“待人工验收”表述**，最终填写封面并重新生成报告时应同步修订。
 
 本轮用 Python 3 的 `python-docx` 生成，以 Microsoft Word 更新目录、导出 PDF，再逐页检查 PNG。打包 LibreOffice 不可用，使用 Word 的事实记录在本轮渲染日志中。
 
@@ -22,4 +22,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/render_report.ps1 -Inp
 
 上述两张 2026-10-10 原始 PNG 已嵌入正文第5.4节、DOCX与PDF，字节哈希纳入 data_hashes.json，保持不变。2026-10-12 用户另提供[3×3初态](../docs/images/gui_3x3_initial.png)、[3×3终态](../docs/images/gui_3x3_final.png)、[4×4初态](../docs/images/gui_4x4_initial.png)、[4×4终态](../docs/images/gui_4x4_final.png)以及[错误路径拒绝截图](../docs/images/invalid_trace_rejected.png)，作为 GitHub GUI 验收补充材料；目前未替换报告中的旧图，也未重建DOCX/PDF，避免原报告的数据来源与哈希失配。
 
-17页正式报告保留教师封面、算法原理、历史同题比较和2026-10-11独立冷/热复核。初终态截图不代替按钮/速度人工验收。填写封面后重新导出PDF，并检查目录与页码。
+17页正式报告保留教师封面、算法原理、历史同题比较和2026-10-11独立冷/热复核。2026-10-12 新增[7张精选交互截图](../docs/acceptance.md)并由用户本人确认全部控件与速度操作正常；该后续验收未写入现有正文/DOCX/PDF，须在最终填写封面时同步更新报告文本，再导出PDF并检查目录与页码。原报告两张截图及 data_hashes.json 保持不变。
