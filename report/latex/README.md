@@ -20,4 +20,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File report/latex/build.ps1
 
 填写封面只改`main.tex`中的六个信息宏；留空时保持原栏。原姓名栏较窄，长姓名可能超出原有空位，填写后需再次检查。正文写在`body.tex`对应占位之后；此模板不自动打印新增章节标题。
 
-本轮验证记录见[qa.json](qa.json)。Word和XeLaTeX的字形栅格化有细小差异，保留版式不代表像素完全相同。原教师素材及许可边界继续见[第三方声明](../../THIRD_PARTY_NOTICES.md)。经用户授权，模板、必要图片、PDF和验证记录发布到现有私有仓库的工作分支；原教师DOCX、参考目录及编译缓存不上传。
+本轮验证记录见[qa.json](qa.json)。Word和XeLaTeX的字形栅格化有细小差异，保留版式不代表像素完全相同。原教师素材及许可边界继续见[第三方声明](../../THIRD_PARTY_NOTICES.md)。经用户授权，模板、必要图片、PDF和验证记录统一发布到现有私有仓库的main分支；原教师DOCX、参考目录及编译缓存不上传。
