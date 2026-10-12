@@ -20,4 +20,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/render_report.ps1 -Inp
 - [教师指定 3×3 终态，16/16 步](images/teacher_stage1_3x3_final.png)
 - [最难 4×4 终态，70/70 步](images/hard_15puzzle_4x4_final.png)
 
-图片由用户在本机运行 Swing 窗口时提供，原始 PNG 已加入正文第5.4节、DOCX与PDF，字节哈希纳入 data_hashes.json。17页正式报告保留教师封面、算法原理、历史同题比较和2026-10-11独立冷/热复核。终态图不代替按钮/速度人工验收。填写封面后重新导出PDF，并检查目录与页码。
+上述两张 2026-10-10 原始 PNG 已嵌入正文第5.4节、DOCX与PDF，字节哈希纳入 data_hashes.json，保持不变。2026-10-12 用户另提供[3×3初态](../docs/images/gui_3x3_initial.png)、[3×3终态](../docs/images/gui_3x3_final.png)、[4×4初态](../docs/images/gui_4x4_initial.png)、[4×4终态](../docs/images/gui_4x4_final.png)以及[错误路径拒绝截图](../docs/images/invalid_trace_rejected.png)，作为 GitHub GUI 验收补充材料；目前未替换报告中的旧图，也未重建DOCX/PDF，避免原报告的数据来源与哈希失配。
+
+17页正式报告保留教师封面、算法原理、历史同题比较和2026-10-11独立冷/热复核。初终态截图不代替按钮/速度人工验收。填写封面后重新导出PDF，并检查目录与页码。

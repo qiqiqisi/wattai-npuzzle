@@ -11,7 +11,7 @@
 | 1：A* | PriorityQueue + 状态索引；教师 3×3 任意目标，独立 BFS 与 A* 均为最短 16 步；Misplaced/Manhattan 各三次搜索最大 28.752ms | 工作 JVM 内搜索与父端总时长分开计；不能外推所有题 |
 | 2：IDA* | f 阈值、路径去环、TT/Zobrist 碰撞回归；原题索引3同题对照成功配置52步 | Misplaced 的 A*/IDA* 都在10秒限制下 TIMEOUT；教师第二阶段实例表述的歧义见合规文档 |
 | 3：加性 PDB | hard 原题索引9，BASIC / 555T / fast=true，新冷缓存70步，父端22.729秒 | 建库计入总时长；1024m是堆上限；保留历史32.594秒及失败依据 |
-| 4：可视化 | 文件驱动 Swing，解析、回放、状态与速度自动测试通过；两张真实终态图 | 按钮及速度的实际鼠标操作仍 **MANUAL_GUI_PENDING** |
+| 4：可视化 | 文件驱动 Swing，解析、回放、状态与速度自动测试通过；新增 3×3/4×4 真实初态、终态与异常输入截图 | 鼠标按钮逐项操作和三档速度仍 **MANUAL_GUI_PENDING** |
 
 不含本地教师资料、旧构建和缓存的干净快照完成 Java19 编译；六套测试共 227,250 项检查、两个新增回归、诊断工具和教师/学生双入口均通过。原始数据、哈希和全部保留路径的审查见 [最终证据](results/final-20261011/verification.json)。完整报告17页，封面身份与学期为 `待填写`。
 
@@ -58,19 +58,24 @@ PDB准备时间另计，节点少不等于端到端最快；该有限样本不�
 
 父端包含工作 JVM 启动、准备、搜索、回放与导出；父 JVM 自身首次启动未单独量测，差值不是纯启动耗时。历史冷缓存32.594秒和34.097秒仍可访问；本次搜索源码与节点数相同，耗时差异不能归因于文件整理。
 
-## 本机 GUI 终态截图（2026-10-10）
+## 本机 GUI 运行截图（2026-10-12）
 
-| 教师指定 3×3（16 / 16 步） | 最难 4×4（70 / 70 步） |
-|:---:|:---:|
-| ![教师指定 3×3 终态：当前与目标一致](report/images/teacher_stage1_3x3_final.png) | ![最难 4×4 终态：当前与目标一致](report/images/hard_15puzzle_4x4_final.png) |
+以下为本机 Swing 窗口的**原始截图**，同一实例只展示一次初态与终态。点击图片可查看大图。
 
-两图来自用户本机真实 Swing 窗口，保留原始 PNG 字节。它们证明窗口在终态能够显示正确棋盘；**不单凭终态截图证明 Play、Pause、Previous、Next、Restart 和速度切换已经验收**。详细状态见 [验收表](docs/acceptance.md)。
+| 状态 | 教师指定 3×3：A* / Manhattan，16 步 | 最难 4×4：IDA* / Disjoint PDB，70 步 |
+|:---:|:---:|:---:|
+| **初始 Step 0** | [![3×3 初始状态](docs/images/gui_3x3_initial.png)](docs/images/gui_3x3_initial.png) | [![4×4 逆序初始状态](docs/images/gui_4x4_initial.png)](docs/images/gui_4x4_initial.png) |
+| **到达目标** | [![3×3 最终 Step 16/16](docs/images/gui_3x3_final.png)](docs/images/gui_3x3_final.png) | [![4×4 最终 Step 70/70](docs/images/gui_4x4_final.png)](docs/images/gui_4x4_final.png) |
+
+两组图片的初态与目标均与原题一致，终态与目标相同。另有[不完整路径文件被拒绝的真实终端截图](docs/images/invalid_trace_rejected.png)，报错 `java.io.IOException: Incomplete solution file` 属于预期的负面测试。截图**不能证明** Play / Pause / Previous / Next / Restart 和 0.5x / 1x / 2x 已逐项人工验证，该项仍待确认，详见 [验收记录](docs/acceptance.md)。
+
+**报告一致性说明**：研究报告 DOCX/PDF 已嵌入 2026-10-10 的两张旧终态截图，其原文件及哈希保持不变；这里改用 2026-10-12 的四张完整窗口截图作为 README 唯一的 GUI 画面展示，避免重复展示旧图。正式报告目前没有重新生成。
 
 ## 路径播放与目录
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/compile.ps1
-java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-10T06-14-39.493084100Z-problems3_10-IDA-DISJOINT_PATTERN.tsv
+java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-11T07-12-42.170991500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv
 ```
 
 按 [人工检查清单](docs/acceptance.md) 验收按钮与速度，填写报告封面。命令行 `--validate 路径.tsv` 可只做解析/合法性检查，不代表人工界面验收。

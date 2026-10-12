@@ -1,6 +1,6 @@
 # 最终提交验收
 
-2026-10-11自动复核。状态只使用 `PASS / PARTIAL / FAIL / NOT_RUN / MANUAL_PENDING / BLOCKED`。命令、退出码、数据与整理映射见[统一证据](../results/final-20261011/verification.json)，历史证据保留日期和配置。
+2026-10-11自动复核；2026-10-12补录真实GUI静态截图和错误输入终端截图（不重跑算法）。状态只使用 `PASS / PARTIAL / FAIL / NOT_RUN / MANUAL_PENDING / BLOCKED`。命令、退出码、数据与整理映射见[统一证据](../results/final-20261011/verification.json)，历史证据保留日期和配置。
 
 | 验收项目 | 状态 | 证据及边界 |
 | --- | --- | --- |
@@ -18,8 +18,10 @@
 | 第二阶段4×4同题比较 | PARTIAL | 原题索引3成功配置52步，两项Misplaced 10s TIMEOUT保留；教师阶段2“相同实例”表述缺少独立明确4×4图，解释见合规文档 |
 | CSV/原始哈希/全部保留路径 | PASS | verify_project.py核查最终树58份CSV、46条保留TSV实际Java回放、77个本地导航及报告来源SHA；274份保留原始记录内容未变。93个旧结果对象的LF/CRLF登记差异按现有-text规则修复，原文件和报告数据哈希不改。汇总重复不算独立实验 |
 | GUI解析/回放/状态/速度自动测试 | PASS | Closeout覆盖3×3/4×4、连续性、起末边界、暂停、速度及坏文件 |
-| 两张真实Swing终态图 | PASS | [3×3](../report/images/teacher_stage1_3x3_final.png)、[4×4](../report/images/hard_15puzzle_4x4_final.png)原始PNG已嵌入正式报告，终态与目标一致 |
-| GUI按钮和速度实际鼠标操作 | MANUAL_PENDING | 当前工具无法控制原生Swing；终态截图不能证明Play/Pause/Previous/Next/Restart/Speed逐项验收 |
+| 已嵌入报告的2026-10-10原始终态图 | PASS | [3×3](../report/images/teacher_stage1_3x3_final.png)、[4×4](../report/images/hard_15puzzle_4x4_final.png)保留原字节与报告哈希；终态与目标一致 |
+| 2026-10-12本机GUI初/终态截图 | PASS（画面证据） | 新增[3×3初态](images/gui_3x3_initial.png)、[3×3终态](images/gui_3x3_final.png)、[4×4初态](images/gui_4x4_initial.png)、[4×4终态](images/gui_4x4_final.png)，均为用户提供的原始PNG。3×3为0→16、4×4为0→70，画面与原题及目标一致；不能由两张静态状态图推定中间逐帧正确或所有控件正常 |
+| 本机不完整路径拒绝截图 | PASS（错误展示） | [终端截图](images/invalid_trace_rejected.png)可见 `java.io.IOException: Incomplete solution file`，与预期拒绝一致；终端截图截取了部分命令行，独立返回码与具体文件字节未从截图中验证，自动坏输入回归另见上文 |
+| GUI按钮和速度实际鼠标操作 | MANUAL_PENDING | 当前有本机初态/终态截图，但用户尚未逐项确认 Play / Pause / Previous / Next / Restart、0.5x / 1x / 2x 及边界操作；不能将画面证据当成交互通过 |
 | 正文/DOCX/PDF/模板/排版 | PASS | [17页正式报告](../report/README.md)，教师封面/A4保留、四表两图；逐页渲染、文本一致性、数据源/PNG哈希核查。打包renderer缺LibreOffice，隐藏Word导出及独立页图检查通过 |
 | 封面身份与学期 | MANUAL_PENDING | 姓名、学号、年份/季学期、组员信息仍待本人填写 |
 | 当前导航、报告附件、工具依赖 | PASS | 当前Markdown链接、报告数据源与原CSV路径均存在；干净快照不依赖未提交内容。历史库存JSON只描述当时树，不冒充当前附件 |
@@ -30,11 +32,12 @@
 
 ## 本人仍需完成
 
-1. 执行 `powershell -NoProfile -ExecutionPolicy Bypass -File tools/compile.ps1`。
-2. 打开3×3：`java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-10T06-16-33.017562500Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv`，检查初态/目标/16步与窗口文字。
-3. Play后Pause，确认棋盘和步号停止推进。
-4. Previous/Next/Restart，确认0步、末步不越界，重置停止播放。
-5. 播放中切换0.5x/1x/2x，确认延时约1400/700/350ms，状态连续。
-6. 打开4×4：`java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-11T07-12-42.170991500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv`，到70步自动停止。
-7. 用测试生成的 `generated/closeout-test/invalid-4.tsv` 确认坏文件报错，保存真实操作结果后更新人工状态。
-8. 填写封面，按report/README重新导出PDF并检查目录页码，按课程要求提交。
+最新的3×3/4×4初态与终态截图、以及异常输入拒绝截图已经归档，无需重复截取。尚未获得完整鼠标交互验收声明，以下项目仍待本人操作确认：
+
+1. 在本地编译：`powershell -NoProfile -ExecutionPolicy Bypass -File tools/compile.ps1`（已经编译则可跳过）。
+2. 3×3：`java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-10T06-16-33.017562500Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv`。从 Step 0 检查 Play / Pause / Previous / Next / Restart，确认暂停后不再走动，首末步不越界。
+3. 在3×3或4×4的播放过程中切换0.5x/1x/2x，观察延迟约1400/700/350ms，确保切换不破坏播放。
+4. 4×4：`java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-11T07-12-42.170991500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv`。在 Step 0 与 Step 70 均确认 Previous / Next / Restart 行为；到 Step 70 后不再推进。
+5. 告知实际按钮验收结果（通过/失败与复现步骤），如有问题先修代码再更新报告及验收状态。
+6. 填写真实封面信息，重新导出DOCX/PDF并检查目录页码，按课程要求最终提交。
+
