@@ -19,31 +19,44 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.nio.file.Path;
 
-/** Swing playback of a replay-validated 3x3 or 4x4 solution. */
+/**
+ * UI
+ * 负责窗口，事件。</p>
+ */
 public final class PuzzleVisualizer {
+    /** 已解析并校验过的解路径 */
     private final SolutionTrace trace;
     private final JFrame frame = new JFrame("N-Puzzle 解路径可视化");
+    /** 当前状态棋盘 */
     private final JPanel currentGrid = new JPanel();
+    /** 步数进度等 */
     private final JLabel progress = new JLabel();
     private final Timer timer;
+    /** 逻辑处理 */
     private final PlaybackModel playback;
 
+    /**
+     * 显示窗口
+     */
     private PuzzleVisualizer(SolutionTrace trace) {
         this.trace = trace;
         playback = new PlaybackModel(trace.states().size()-1);
         timer = new Timer(700, event -> advance());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(12, 12));
+        // 左：当前棋盘。右：目标棋盘
         JPanel boards = new JPanel(new GridLayout(1, 2, 16, 0));
         boards.add(panel("当前状态", currentGrid));
         JPanel goalGrid = new JPanel();
         draw(goalGrid, trace.goal());
         boards.add(panel("目标状态", goalGrid));
         frame.add(boards, BorderLayout.CENTER);
+        // 使用的算法、启发函数、步数、耗时与结点数
         JLabel metrics = new JLabel(String.format("%s · %s · %d 步 · %.3f ms · generated %d · expanded %d",
                 trace.algorithm(), trace.heuristic(), trace.states().size()-1, trace.elapsedMs(),
                 trace.generated(), trace.expanded()), SwingConstants.CENTER);
         frame.add(metrics, BorderLayout.NORTH);
+
         JPanel controls = new JPanel();
         JButton play = button("Play", () -> { playback.play(); if(playback.playing()) timer.start(); });
         JButton pause = button("Pause", () -> { playback.pause(); timer.stop(); });
@@ -52,6 +65,7 @@ public final class PuzzleVisualizer {
         JButton restart = button("Restart", () -> { timer.stop(); playback.restart(); refresh(); });
         JComboBox<String> speed = new JComboBox<>(new String[]{"0.5x", "1x", "2x"});
         speed.setSelectedIndex(1);
+        // 速度
         speed.addActionListener(event -> { playback.speed(speed.getSelectedIndex()); timer.setDelay(playback.delay()); });
         controls.add(play); controls.add(pause); controls.add(previous); controls.add(next);
         controls.add(restart); controls.add(new JLabel("Speed")); controls.add(speed);
@@ -66,11 +80,13 @@ public final class PuzzleVisualizer {
         frame.setVisible(true);
     }
 
+
     private JButton button(String title, Runnable action) {
         JButton button = new JButton(title);
         button.addActionListener(event -> action.run());
         return button;
     }
+
 
     private JPanel panel(String title, JPanel grid) {
         JPanel panel = new JPanel(new BorderLayout(0, 8));
@@ -93,6 +109,7 @@ public final class PuzzleVisualizer {
                 + " · blank " + trace.moves().get(step));
     }
 
+
     private void draw(JPanel grid, PuzzleBoard board) {
         grid.removeAll();
         int size = board.getSize();
@@ -100,6 +117,7 @@ public final class PuzzleVisualizer {
         grid.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
         for (int row = 0; row < size; row++) for (int col = 0; col < size; col++) {
             int tile = board.tileAt(row, col);
+            // 空格（0）不显示数字，靠底色区分
             JLabel cell = new JLabel(tile == 0 ? "" : Integer.toString(tile), SwingConstants.CENTER);
             cell.setOpaque(true);
             cell.setFont(new Font(Font.SANS_SERIF, Font.BOLD, size == 3 ? 32 : 25));
@@ -112,17 +130,22 @@ public final class PuzzleVisualizer {
         grid.repaint();
     }
 
+    /**
+     * 程序入口，先校验解路径，再绘制窗口
+     */
     public static void main(String[] args) throws Exception {
         if (args.length == 1 && args[0].equals("--environment")) {
             System.out.println("HEADLESS=" + GraphicsEnvironment.isHeadless());
             return;
         }
+
         if (args.length == 2 && args[0].equals("--validate")) {
             SolutionTrace trace = SolutionTrace.read(Path.of(args[1]));
             System.out.println("TRACE_VALID=" + (trace.states().size() - 1));
             return;
         }
         if (args.length != 1) throw new IllegalArgumentException("Usage: PuzzleVisualizer solution.tsv");
+        // 校验通过后创建窗口
         SolutionTrace trace = SolutionTrace.read(Path.of(args[0]));
         if (GraphicsEnvironment.isHeadless()) throw new IllegalStateException("HEADLESS_UNVERIFIED: no GUI display");
         SwingUtilities.invokeLater(() -> new PuzzleVisualizer(trace));

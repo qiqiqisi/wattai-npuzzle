@@ -1,5 +1,7 @@
 % 原模板的空白正文页。以下命令只登记目录锚点，不打印标题。
 % 可在相应命令后填写正文，目录页码自动更新；默认仍为空白页。
+% 正文中的图、表与参考文献引用均可点击跳转（目录页在此前已排版完成，样式不受影响）
+\hypersetup{colorlinks=true, linkcolor=TemplateBlue, citecolor=TemplateBlue, urlcolor=TemplateBlue}
 \TemplateSection{1.\quad 启发式算法综述}
 \TemplateSubsection{1.1 算法描述}
 % 在此填写。
@@ -38,7 +40,456 @@
 
 \TemplateSection{5.解路径的可视化}
 
+% 可见标题：\TemplateSection 只登记目录条目、不打印标题，故在此自行排版。
+{\bfseries\fontsize{12bp}{15.6bp}\selectfont 5.\quad 解路径的可视化}\par\vspace{6bp}
+\begingroup
+\setlength{\parskip}{5bp}
+\setlength{\tabcolsep}{4bp}
+% 图表编号沿用模板的 5-x 形式，便于交叉引用
+\renewcommand{\thefigure}{5-\arabic{figure}}
+\renewcommand{\thetable}{5-\arabic{table}}
+
+可视化要求为：“解路径的可视化——不限平台和框架工具”，“不要求与搜索程序联动，只需要根据搜索程序给出的多个问题的解路径文本文件进行可视化即可”。
+因此，该可视化代码只需求记录求解过程的文件，而不需要与搜索程序联动。
+
+\TemplateSubsection{5.1 工具选择}
+{\bfseries 5.1\quad 工具选择}\par\vspace{2bp}
+
+本组采用 \textbf{Java Swing}（JDK 自带图形库）实现求解过程的可视化。
+Swing 是 Java 标准库中的轻量级 GUI 工具包，其组件全部由 Java 自身绘制而不依赖操作系统原生控件，可跨平台。
+因本项目采用Java语言，所以采用Swing，将不会引入第三方依赖。Swing 的基本用法可参考\cite{swing-bilibili}。
+
+\begin{center}
+{\fontsize{9bp}{12bp}\selectfont
+\begin{tabular}{|p{58bp}|p{92bp}|p{68bp}|p{96bp}|}
+\hline
+\textbf{候选方案} & \textbf{依赖与构建} & \textbf{开发成本} & \textbf{与现有代码的关系} \\
+\hline
+\textbf{Java Swing}（选用） & JDK 标准库，零第三方依赖 & 低 & 复用 \texttt{PuzzleBoard} 的状态与取格接口 \\
+\hline
+SFML & 需另装 C++ 图形库 & 高，需重写棋盘与解析 & 复用文本文件 \\
+\hline
+Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
+\hline
+\end{tabular}}
+\end{center}
+\refstepcounter{table}\label{tab:tools}
+{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 解路径可视化候选方案对比}\par\vspace{5bp}
+
+\TemplateSubsection{5.2 可视化界面设计与关键逻辑}
+{\bfseries 5.2\quad 可视化界面设计与关键逻辑}\par\vspace{2bp}
+
+\TemplateSubsubsection{5.2.1 可视化界面设计}
+{\bfseries 5.2.1\quad 可视化界面设计}\par\vspace{2bp}
+
+窗口自上而下分三个区域：顶部是结果指标栏，中部左右并排显示当前棋盘与目标棋盘，
+底部是进度提示与操作控件。
+界面播放过程中，可以随时把当前棋盘与目标对照，
+同时把算法、步数与耗时放在同一视野内。各组件及其功能见表~\ref{tab:ui}。
+
+\begin{center}
+{\fontsize{9bp}{12bp}\selectfont
+\begin{tabular}{|p{52bp}|p{160bp}|p{154bp}|}
+\hline
+\textbf{区域} & \textbf{组件及其显示内容} & \textbf{功能与设计考虑} \\
+\hline
+顶部指标栏 & \texttt{JLabel}：算法名、启发函数名、总步数、搜索耗时（毫秒）、生成结点数、扩展结点数 & 把结果与耗时同时呈现，便于对比不同算法 \\
+\hline
+中部左 & \texttt{JPanel} + \texttt{GridLayout}：当前状态棋盘，随播放逐帧重绘 & 动态，反映每一步变化之后的棋盘 \\
+\hline
+中部右 & 目标状态棋盘，仅在开窗时绘制一次 & 用于参照，避免额外记忆 \\
+\hline
+底部进度栏 & \texttt{JLabel}：\texttt{Step 当前步 / 总步数} 与当前步空格移动方向 & 播到第几步、空格刚向哪边移动 \\
+\hline
+底部按钮栏 & \texttt{JButton}：Play、Pause、Previous、Next、Restart & 可手动操作或自动播放，缩放时布局不错位 \\
+\hline
+底部速度栏 & \texttt{JLabel}“Speed” + \texttt{JComboBox}：0.5x、1x、2x & 调节播放快慢，默认 1x \\
+\hline
+\end{tabular}}
+\end{center}
+\refstepcounter{table}\label{tab:ui}
+{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 播放器各区域组件及功能}\par\vspace{5bp}
+
+数字方格为蓝白风格，空格则为空白，因此位置清晰。
+界面按棋盘规模自适应：3$\times$3 使用 32 号粗体字与 74$\times$74 的格子，4$\times$4 使用 25 号字与 62$\times$62 的格子，
+两种规模在窗口中的整体尺寸接近。窗口最小尺寸 650$\times$470，启动时居中显示。运行画面见图~\ref{fig:3x3-io}。
+
+\begin{center}
+\includegraphics[width=0.46\linewidth]{visualFigures/3x3-initial.png}\hspace{8bp}%
+\includegraphics[width=0.46\linewidth]{visualFigures/3x3-final.png}
+\end{center}
+\refstepcounter{figure}\label{fig:3x3-io}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 3$\times$3 实例的界面：初始 Step 0/16 与终态 Step 16/16（A* + Manhattan）}\par\vspace{5bp}
+
+\TemplateSubsubsection{5.2.2 关键逻辑}
+{\bfseries 5.2.2\quad 关键逻辑}\par\vspace{2bp}
+
+播放的整体流程见图~\ref{fig:flow}，读取文件并完成校验之后才创建窗口。
+
+\begin{center}
+\includegraphics[width=0.8\linewidth]{visualFigures/流程图.png}
+\end{center}
+\refstepcounter{figure}\label{fig:flow}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 解路径播放的逻辑流程（校验先于建窗，事件循环反复刷新）}\par\vspace{5bp}
+
+核心思路为：先校验、后建窗口，逻辑和页面显示分离。
+
+
+\TemplateSubsection{5.3 核心代码}
+{\bfseries 5.3\quad 核心代码}\par\vspace{2bp}
+
+\TemplateSubsubsection{5.3.1 代码结构}
+{\bfseries 5.3.1\quad 代码结构}\par\vspace{2bp}
+
+可视化的代码在 \texttt{src/stud/g01/visual/} 下，按数据、逻辑、界面组织，共三个类。
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+src/stud/g01/visual/
+  +-- SolutionTrace.java      (数据)
+  +-- PlaybackModel.java      (逻辑)
+  +-- PuzzleVisualizer.java   (界面)
+\end{verbatim}}
+
+三个类功能互不重叠，见表~\ref{tab:classes}。
+
+\begin{center}
+{\fontsize{9bp}{12bp}\selectfont
+\begin{tabular}{|p{150bp}|p{230bp}|}
+\hline
+\textbf{类} &  \textbf{功能} \\
+\hline
+\texttt{SolutionTrace} & 解析并校验解路径文件 \\
+\hline
+\texttt{PlaybackModel}  & 包含当前步号、是否正在播放等 \\
+\hline
+\texttt{PuzzleVisualizer}  & Swing 窗口、棋盘绘制、控件、事件等 \\
+\hline
+\end{tabular}}
+\end{center}
+\refstepcounter{table}\label{tab:classes}
+{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 解路径可视化代码（下记为播放器）的三层结构}\par\vspace{5bp}
+
+\TemplateSubsubsection{5.3.2 数据格式}
+{\bfseries 5.3.2\quad 数据格式}\par\vspace{2bp}
+
+保存的求解过程文件为TSV文本，分三段，第 1\textasciitilde 9 行是键值对形式的元数据，第 10 行是固定表头，
+第 11 行起给出步号、动作、棋盘三元组；第 0 步的动作固定为 \texttt{START}，即初始状态。字段含义见表~\ref{tab:format}。
+
+\begin{center}
+{\fontsize{9bp}{12bp}\selectfont
+\begin{tabular}{|p{96bp}|p{290bp}|}
+\hline
+\textbf{字段} & \textbf{含义} \\
+\hline
+\texttt{format} & 固定为 \texttt{NPUZZLE\_SOLUTION\_V1}，用于版本识别 \\
+\hline
+\texttt{algorithm} / \texttt{heuristic} & 产生该解的算法与启发函数，如 \texttt{IDA}、\texttt{DISJOINT\_PATTERN} \\
+\hline
+\texttt{size} & 棋盘边长，当前仅支持 3 与 4 \\
+\hline
+\texttt{elapsed\_ms} & 该次搜索在求解进程内的耗时（毫秒） \\
+\hline
+\texttt{generated} / \texttt{expanded} & 生成结点数与扩展结点数 \\
+\hline
+\texttt{solution\_length} & 解路径步数 \\
+\hline
+\texttt{goal} & 目标棋盘，空格记为 0 \\
+\hline
+步记录 & 三列：步号、空格移动方向（\texttt{UP}/\texttt{DOWN}/\texttt{LEFT}/\texttt{RIGHT}）、该步之后的完整棋盘 \\
+\hline
+\end{tabular}}
+\end{center}
+\refstepcounter{table}\label{tab:format}
+{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 解路径文件字段说明}\par\vspace{5bp}
+
+动作记录的是\textbf{空格的移动方向}，一种示例如下：
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+format             NPUZZLE_SOLUTION_V1
+algorithm          IDA
+heuristic          DISJOINT_PATTERN
+size               4
+elapsed_ms         11389.999
+generated          95279434
+expanded           48759798
+solution_length    70
+goal               1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 0
+step  move   state
+0     START  15 14 13 12 11 10 9 8 7 6 5 4 3 1 2 0
+1     LEFT   15 14 13 12 11 10 9 8 7 6 5 4 3 1 0 2
+2     UP     15 14 13 12 11 10 9 8 7 6 0 4 3 1 5 2
+...   ...    ...
+70    RIGHT  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 0
+\end{verbatim}}
+
+\TemplateSubsubsection{5.3.3 SolutionTrace：加载与校验}
+{\bfseries 5.3.3\quad SolutionTrace：加载与校验}\par\vspace{2bp}
+
+\texttt{SolutionTrace} 一次性读取整个文件，并\textbf{校验}。
+九项检查都通过后才返回对象，任何一项失败都抛出 \texttt{IOException}，进程以非零码结束，窗口不会被创建。
+九项校验见表~\ref{tab:validation}。
+
+\begin{center}
+{\fontsize{9bp}{12bp}\selectfont
+\begin{tabular}{|p{26bp}|p{210bp}|p{140bp}|}
+\hline
+\textbf{序} & \textbf{校验内容} & \textbf{不通过时的结果} \\
+\hline
+1 & 文件行数不少于 11 行 & 报 Incomplete solution file \\
+\hline
+2 & 前九行形如“键、值”，且键不重复 & 报 Invalid solution metadata \\
+\hline
+3 & 版本标识与第 10 行表头符合约定 & 报 Unknown solution format \\
+\hline
+4 & 棋盘规模为 3 或 4 & 拒绝该文件 \\
+\hline
+5 & 耗时与结点数非负且有限 & 报 Invalid metrics \\
+\hline
+6 & 步号自 0 起连续递增 & 报 Invalid step sequence \\
+\hline
+7 & 步记录条数等于解长加一，且第 0 步为 START & 报 Solution length mismatch \\
+\hline
+8 & 每步动作在上一帧合法，且重放结果与记录棋盘逐格相同 & 报 Illegal move at step N \\
+\hline
+9 & 最后一帧等于目标棋盘 & 报 Last state is not goal \\
+\hline
+\end{tabular}}
+\end{center}
+\refstepcounter{table}\label{tab:validation}
+{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 解路径校验链}\par\vspace{5bp}
+
+校验的核心是第 8 项，\textbf{把上一步记录的棋盘取出、执行该动作，再与文件里记录的下一步棋盘比对}。
+代码如下（来自 \texttt{SolutionTrace.read}）：
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+if (states.size() != declared + 1
+        || !moves.get(0).equals("START"))
+    throw new IOException("Solution length mismatch");
+for (int i = 1; i < states.size(); i++) {
+    PuzzleMove move = new PuzzleMove(
+            PuzzleMove.Direction.valueOf(moves.get(i)));
+    boolean legal = false;
+    for (PuzzleMove cand : states.get(i - 1).actions())
+        if (cand.equals(move)) legal = true;
+    if (!legal || !states.get(i - 1).next(move)
+            .equals(states.get(i)))
+        throw new IOException("Illegal move at step " + i);
+}
+if (!states.get(states.size() - 1).equals(goal))
+    throw new IOException("Last state is not goal");
+\end{verbatim}}
+
+这一段复用了求解代码的 \texttt{PuzzleBoard.actions()} 与 \texttt{next()}。
+
+\TemplateSubsubsection{5.3.4 PlaybackModel 与 PuzzleVisualizer}
+{\bfseries 5.3.4\quad PlaybackModel 与 PuzzleVisualizer}\par\vspace{2bp}
+
+\texttt{PlaybackModel} 不含任何 Swing 类型，是仅含逻辑代码的状态机。
+字段与公开方法如下：
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+public final class PlaybackModel {
+    private final int last;      // final step index
+    private int step;
+    private boolean playing;
+    private int delay = 700;     // milliseconds per frame
+    public void play()    { playing = step < last; }
+    public void pause()   { playing = false; }
+    public void previous(){ pause(); step = Math.max(0, step - 1); }
+    public void next()    { pause(); advance(); }
+    public void restart() { pause(); step = 0; }
+    public void tick()    { if (playing) advance(); }
+    private void advance() {
+        step = Math.min(last, step + 1);
+        if (step == last) pause();
+    }
+    public void speed(int index) {
+        // 0 -> 1400 ms, 1 -> 700 ms, 2 -> 350 ms
+        delay = switch (index) {
+            case 0 -> 1400; case 1 -> 700; case 2 -> 350;
+            default -> throw new IllegalArgumentException("bad");
+        };
+    }
+}
+\end{verbatim}}
+
+界面侧的 \texttt{PuzzleVisualizer} 负责将状态机的结果以UI的形式呈现。
+通过refresh从已解析好的状态列表里按下标取帧，重建棋盘方格，更新文字，同时按棋盘规模选择字号和格子尺寸。
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+private void refresh() {
+    int step = playback.step();
+    draw(currentGrid, trace.states().get(step));  // O(1) lookup
+    progress.setText("Step " + step + " / "
+            + (trace.states().size() - 1)
+            + " · blank " + trace.moves().get(step));
+}
+private void draw(JPanel grid, PuzzleBoard board) {
+    grid.removeAll();
+    int size = board.getSize();
+    grid.setLayout(new GridLayout(size, size, 5, 5));
+    for (int row = 0; row < size; row++)
+        for (int col = 0; col < size; col++) {
+            int tile = board.tileAt(row, col);
+            JLabel cell = new JLabel(
+                    tile == 0 ? "" : Integer.toString(tile),
+                    SwingConstants.CENTER);
+            cell.setOpaque(true);
+            cell.setFont(new Font(Font.SANS_SERIF, Font.BOLD,
+                    size == 3 ? 32 : 25));
+            cell.setBackground(tile == 0
+                    ? new Color(230, 235, 240)
+                    : new Color(50, 100, 165));
+            grid.add(cell);
+        }
+    grid.revalidate();
+    grid.repaint();
+}
+\end{verbatim}}
+
+事件绑定遵循 5.2.2 第（4）条，所有手动按钮在改变步号之前先停止定时器，
+Play 只有在状态机确实进入播放态时才启动定时器。
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+JButton play = button("Play", () -> {
+    playback.play();
+    if (playback.playing()) timer.start();
+});
+JButton pause = button("Pause", () -> {
+    playback.pause(); timer.stop();
+});
+JButton previous = button("Previous", () -> {
+    timer.stop(); playback.previous(); refresh();
+});
+JButton next = button("Next", () -> {
+    timer.stop(); playback.next(); refresh();
+});
+JButton restart = button("Restart", () -> {
+    timer.stop(); playback.restart(); refresh();
+});
+speed.addActionListener(event -> {
+    playback.speed(speed.getSelectedIndex());
+    timer.setDelay(playback.delay());
+});
+\end{verbatim}}
+
+\TemplateSubsection{5.4 求解过程的可视化展示}
+{\bfseries 5.4\quad 求解过程的可视化展示}\par\vspace{2bp}
+
+\textbf{（1）如何开启。}假设构建产物位于build/classes下，解路径文件在results/solutions下，
+以下为示例：
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
+\end{verbatim}}
+
+\textbf{（2）3×3 与 4×4 。}图~\ref{fig:3x3-io} 已给出 3$\times$3 实例的初始与终态；
+图~\ref{fig:4x4-io} 给出 4$\times$4 实例的初始与终态，该解由 IDA* 配合加性模式数据库（disjoint pattern 和 Pattern DataBase）得到，共 70 步。
+
+\begin{center}
+\includegraphics[width=0.46\linewidth]{visualFigures/4x4-initial.png}\hspace{8bp}%
+\includegraphics[width=0.46\linewidth]{visualFigures/4x4-final.png}
+\end{center}
+\refstepcounter{figure}\label{fig:4x4-io}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 4$\times$4 实例：初始 Step 0/70 与终态 Step 70/70（IDA* + 加性 PDB）}\par\vspace{5bp}
+
+\textbf{（3）交互操作。}图~\ref{fig:ops} 是在 3$\times$3 实例上依次执行暂停、后退、前进与重置四个操作的画面。暂停停在第 13 步，后退回到第 12 步，前进又回到第 13 步，重置回到第 0 步，且每次操作后棋盘与步号同步变化。
+
+\begin{center}
+\includegraphics[width=0.42\linewidth]{visualFigures/3x3-pause.png}\hspace{6bp}%
+\includegraphics[width=0.42\linewidth]{visualFigures/3x3-previous.png}\\[8bp]
+\includegraphics[width=0.42\linewidth]{visualFigures/3x3-next.png}\hspace{6bp}%
+\includegraphics[width=0.42\linewidth]{visualFigures/3x3-restart.png}
+\end{center}
+\refstepcounter{figure}\label{fig:ops}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 交互操作：暂停（Step 13）、后退（Step 12）、前进（Step 13）、重置（Step 0）}\par\vspace{5bp}
+
+\textbf{（4）速度切换与终态。}图~\ref{fig:speed} 给出 4$\times$4 实例上的两张速度截图与一张终态截图。左侧与中间的图分别显示速度档位为 0.5x 与 2x，界面在两种档位下均正常推进；右侧的图是在第 70/70 步继续按 Next 的画面，界面保持终态不再前进。
+
+\begin{center}
+\includegraphics[width=0.31\linewidth]{visualFigures/4x4-speed-half.png}\hspace{4bp}%
+\includegraphics[width=0.31\linewidth]{visualFigures/4x4-speed-double.png}\hspace{4bp}%
+\includegraphics[width=0.31\linewidth]{visualFigures/4x4-end-next.png}
+\end{center}
+\refstepcounter{figure}\label{fig:speed}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 速度切换（0.5x、2x）与终态（第 70/70 步再按 Next 保持终态）}\par\vspace{5bp}
+
+\textbf{（5）损坏文件被拒绝。}图~\ref{fig:invalid} 是把解路径文件截断后重新运行的终端输出，可见程序抛出 \texttt{java.io.IOException: Solution length mismatch} 并以失败状态结束，没有打开任何窗口，也没有显示伪造的棋盘。
+
+\begin{center}
+\includegraphics[width=0.72\linewidth]{visualFigures/invalid-trace-rejected.png}
+\end{center}
+\refstepcounter{figure}\label{fig:invalid}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 不完整解路径文件被拒绝（终端输出）}\par\vspace{5bp}
+
+
+
+\textbf{（6）第一阶段：A* + 优先队列。}第一阶段要求用 A* \cite{hart1968}配合优先队列在 1 秒内解出指定问题实例。用 A* 配合曼哈顿距离求得 16 步的解，左图是播放到第 8 步（$8/16$）时的中段画面，右图是第 16 步（$16/16$）的终态。
+
+\begin{center}
+\includegraphics[width=0.46\linewidth]{visualFigures/stage1-astar-3x3-step8.png}\hspace{8bp}%
+\includegraphics[width=0.46\linewidth]{visualFigures/stage1-astar-3x3-step16.png}
+\end{center}
+\refstepcounter{figure}\label{fig:stage1}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 第一阶段（A* + 优先队列）3$\times$3 实例的解路径播放：中段 Step 8/16 与终态 Step 16/16}\par\vspace{5bp}
+
+\textbf{（7）第二阶段：IDA* 与 Zobrist 哈希。}第二阶段要求对 4 阶（15-Puzzle）使用 IDA* 求解，并使用 Zobrist 哈希\cite{zobrist-wiki,zobrist-cn}。用 IDA* 配合曼哈顿距离求得 52 步的解，图~\ref{fig:stage2} 给出播放到第 26 步（$26/52$）与第 52 步（$52/52$）的画面。
+
+\begin{center}
+\includegraphics[width=0.46\linewidth]{visualFigures/stage2-ida-4x4-step26.png}\hspace{8bp}%
+\includegraphics[width=0.46\linewidth]{visualFigures/stage2-ida-4x4-step52.png}
+\end{center}
+\refstepcounter{figure}\label{fig:stage2}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 第二阶段（IDA* + 曼哈顿距离）4$\times$4 实例的解路径播放：中段 Step 26/52 与终态 Step 52/52}\par\vspace{5bp}
+
+\textbf{（8）第三阶段：disjoint pattern 与模式数据库。}第三阶段要求用不相交模式（disjoint pattern）与模式数据库\cite{culberson1996,pdb-intro}在 1 分钟内解出指定实例。求得 70 步的解，满足 1 分钟的要求。图~\ref{fig:stage3} 给出播放到第 35 步（$35/70$）与第 70 步（$70/70$）的画面。
+
+\begin{center}
+\includegraphics[width=0.46\linewidth]{visualFigures/stage3-pdb-4x4-step35.png}\hspace{8bp}%
+\includegraphics[width=0.46\linewidth]{visualFigures/stage3-pdb-4x4-step70.png}
+\end{center}
+\refstepcounter{figure}\label{fig:stage3}
+{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 第三阶段（IDA* + 加性模式数据库）4$\times$4 实例的解路径播放：中段 Step 35/70 与终态 Step 70/70}\par\vspace{5bp}
+
+\endgroup
+\vspace{6bp}
+
 % 原目录的“总结及展望”前只有一个点，照原样保留，不擅自补编号。
 \TemplateSection{.总结及展望}
+{\bfseries\fontsize{12bp}{15.6bp}\selectfont 总结及展望}\par\vspace{6bp}
+\begingroup
+\setlength{\parskip}{5bp}
 
+本组在已有的 SearchFramework 框架上完成了 N-Puzzle 求解的四个阶段，且框架已有代码未修改。
+
+第一阶段用 A* 配合优先队列，使用指定的 3$\times$3 棋盘在毫秒级内解出 16 步；第二阶段用 IDA* 处理 4 阶棋盘，内存开销只与当前搜索路径的深度有关；第三阶段用不相交模式数据库，求解时间压缩到 1 分钟以内；第四阶段用 Java Swing 将解路径文件记录的求解步骤可视化。问题的状态、动作、可解性判定和启发函数在 \texttt{src/stud/g01/}下，解路径的导出与可视化解耦。
+
+此外，代码还记录了代价。第二阶段得到 52 步解，搜索耗时 435.977 毫秒，生成 2\,007\,071 个结点、扩展 997\,736 个结点。第三阶段得到 70 步解，其中模式数据库建表 4\,819 毫秒、搜索 17\,709 毫秒，总耗时 22.729 秒，共生成 95\,279\,434 个结点、扩展 48\,759\,798 个结点。可以看出，启发函数越精确，需要扩展的结点越少；模式数据库实际上是把一部分代价从搜索阶段前移到了建表阶段。
+
+三个阶段的性能均满足要求。经过测试，求解与可视化等代码均正确。
+
+改进与展望：
+算法方面，模式数据库的分组可以进一步细化（如 6-6-3 分组），以继续压缩搜索量。Open 表在替换重复结点时目前要线性查找，可以改为惰性删除，以减少开销。可视化方面，可以同时演示不同算法的效果，同一始态在不同算法下的对比，更加直观。此外，也可测试不同初态对性能的影响。
+
+此外，若可通过配置文件，管理棋盘规模、算法类型、启发式分组、可视化选项等等，并以插件的形式扩展该实验内容，最终能实现一个灵活、直观的 N-Puzzle 求解与演示项目，也能为其他状态空间搜索问题提供参考。
+
+\endgroup
+\vspace{6bp}
+
+\renewcommand{\refname}{参考文献}
+\begin{thebibliography}{9}
 \TemplateSection{参考文献}
+\bibitem{hart1968} Hart P E, Nilsson N J, Raphael B. A Formal Basis for the Heuristic Determination of Minimum Cost Paths[J]. IEEE Transactions on Systems Science and Cybernetics, 1968, 4(2): 100--107.
+\bibitem{culberson1996} Culberson J C, Schaeffer J. Searching with Pattern Databases[C]//Advances in Artificial Intelligence, Lecture Notes in Computer Science. Springer, 1996: 402--416.
+\bibitem{pdb-intro} 不相交模式数据库（Disjoint pattern database heuristics）[EB/OL]. CSDN 博客. \url{https://blog.csdn.net/wood_du/article/details/89666736}
+\bibitem{zobrist-wiki} Zobrist Hashing[EB/OL]. Chessprogramming wiki. \url{https://chessprogramming.org/Zobrist_Hashing}
+\bibitem{zobrist-cn} 蝈蝈俊. Zobrist 哈希[EB/OL]. 博客园. \url{https://www.cnblogs.com/ghj1976/p/zobrist-ha-xi.html}
+\bibitem{swing-bilibili} 【拯救者】Swing 界面速成（基础+实战）javaGUI[EB/OL]. 哔哩哔哩. \url{https://www.bilibili.com/video/BV1pp4y1B7fX}
+\end{thebibliography}

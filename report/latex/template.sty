@@ -28,6 +28,32 @@
   \node[anchor=base west,inner sep=0bp,outer sep=0bp]
     at ([xshift=#1bp,yshift=-#2bp]current page.north west) {#3};}
 
+% ---- 封面 姓名/学号 栏：支持任意人数 ----
+% 原模板固定为两行；此处按 \ReportNameOne..Five 自动输出，
+% 某一对的姓名与学号都为空时该行自动跳过，因此只填两人时版面与原模板完全一致。
+% 姓名栏最小宽度 24bp（与原模板空位一致，恰好容纳两个汉字）；
+% 姓名更长时该栏自动加宽，其后的 学号： 标签整体右移，不会压住标签。
+\newsavebox{\TemplateNameSlotBox}
+\newcommand{\TemplateNameSlot}[1]{%
+  \sbox{\TemplateNameSlotBox}{#1}%
+  \ifdim\wd\TemplateNameSlotBox<24bp \wd\TemplateNameSlotBox=24bp\fi
+  \usebox{\TemplateNameSlotBox}}
+% 第 #1 行的纵坐标（bp）：原模板前两行为 614.569 与 645.769，行距 31.2bp
+\newcommand{\TemplatePersonY}[1]{%
+  \ifcase#1 614.569\or 645.769\or 676.969\or 708.169\or 739.369\fi}
+% 一整行的内容：姓名栏 + 学号栏（整体自左向右排版，姓名变长时后面自动右移）
+\newcommand{\TemplatePersonText}[2]{%
+  \fontsize{12bp}{15.6bp}\selectfont 姓名：\TemplateNameSlot{#1}\hspace{12bp}学号：#2}
+% 姓名与学号都为空则整行不输出
+\newcommand{\TemplatePersonRow}[3]{%
+  \edef\TemplateTmpName{#1}\edef\TemplateTmpId{#2}%
+  \ifx\TemplateTmpName\empty
+    \ifx\TemplateTmpId\empty\else
+      \TemplateAt{216}{\TemplatePersonY{#3}}{\TemplatePersonText{#1}{#2}}%
+    \fi
+  \else
+    \TemplateAt{216}{\TemplatePersonY{#3}}{\TemplatePersonText{#1}{#2}}%
+  \fi}
 \newcommand{\TemplateCover}{%
   \thispagestyle{empty}%
   \begin{tikzpicture}[remember picture,overlay]
@@ -47,14 +73,11 @@
       -- ([xshift=288bp,yshift=-553.9bp]current page.north west);
     \TemplateAt{210}{552.169}{\fontsize{12bp}{15.6bp}\selectfont\ReportYear}
     \TemplateAt{264}{552.169}{\fontsize{12bp}{15.6bp}\selectfont\ReportSeason}
-    \TemplateAt{216}{614.569}{\fontsize{12bp}{15.6bp}\selectfont 姓名：}
-    \TemplateAt{276}{614.569}{\fontsize{12bp}{15.6bp}\selectfont 学号：}
-    \TemplateAt{252}{614.569}{\fontsize{12bp}{15.6bp}\selectfont\ReportNameOne}
-    \TemplateAt{312}{614.569}{\fontsize{12bp}{15.6bp}\selectfont\ReportIdOne}
-    \TemplateAt{216}{645.769}{\fontsize{12bp}{15.6bp}\selectfont 姓名：}
-    \TemplateAt{276}{645.769}{\fontsize{12bp}{15.6bp}\selectfont 学号：}
-    \TemplateAt{252}{645.769}{\fontsize{12bp}{15.6bp}\selectfont\ReportNameTwo}
-    \TemplateAt{312}{645.769}{\fontsize{12bp}{15.6bp}\selectfont\ReportIdTwo}
+    \TemplatePersonRow{\ReportNameOne}{\ReportIdOne}{0}%
+    \TemplatePersonRow{\ReportNameTwo}{\ReportIdTwo}{1}%
+    \TemplatePersonRow{\ReportNameThree}{\ReportIdThree}{2}%
+    \TemplatePersonRow{\ReportNameFour}{\ReportIdFour}{3}%
+    \TemplatePersonRow{\ReportNameFive}{\ReportIdFive}{4}%
   \end{tikzpicture}%
   \null\clearpage
 }

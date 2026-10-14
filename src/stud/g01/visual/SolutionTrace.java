@@ -12,9 +12,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-/** Strict parser for the small tab-separated solution format used by Stage3Benchmark. */
+/**
+ * 解路径文件的解析，和校验
+ * 解路径文件的格式详见报告
+ *
+ * @param algorithm 产生该解的算法
+ * @param heuristic 产生该解的启发函数
+ * @param elapsedMs 耗时（毫秒）
+ * @param generated 生成的结点数
+ * @param expanded  扩展的结点数
+ * @param goal      目标棋盘
+ * @param states    每一帧的棋盘状态
+ * @param moves     动作名
+ */
 public record SolutionTrace(String algorithm, String heuristic, double elapsedMs, long generated,
                             long expanded, PuzzleBoard goal, List<PuzzleBoard> states, List<String> moves) {
+    /**
+     * 读取并校验一个解路径文件
+     */
     public static SolutionTrace read(Path file) throws IOException {
         List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
         if (lines.size() < 11) throw new IOException("Incomplete solution file");
@@ -63,6 +78,14 @@ public record SolutionTrace(String algorithm, String heuristic, double elapsedMs
         }
     }
 
+    /**
+     * 将数字解析为棋盘状态。
+     *
+     * @param text 一行数据（数字）
+     * @param size 棋盘边长
+     * @return 对应的棋盘对象
+     * @throws IOException 数字个数与边长不符时抛出
+     */
     private static PuzzleBoard board(String text, int size) throws IOException {
         String[] fields = text.trim().split("\\s+");
         if (fields.length != size * size) throw new IOException("Wrong board length");
