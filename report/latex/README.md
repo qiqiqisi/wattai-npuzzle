@@ -31,3 +31,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File report/latex/build.ps1
 - [ ] 报告里可以考虑补充分工安排，不过不添加也可以，主要看老师后续是否有安排
 
 出版，视后续情况再修改
+
+## 第二部分正文（2026-10-15）
+
+最新完整 PDF：[NPuzzle-report-v2.pdf](NPuzzle-report-v2.pdf)，与构建入口预览 `NPuzzle-template.pdf` 内容相同；包含封面、目录、第二部分正文及第五部分原有图片。内置编辑器可独立预览 `body.tex` 的文字，图片显示明确标注的占位框；正式 PDF 使用 `main.tex` 和真实图片构建。
+
+已在 `body.tex` 补齐 2.1—2.4.3，保留原目录名称及第五部分正文。内容包括游戏与状态图建模、教师 3×3 状态对、任意目标的奇偶可解性判据，以及 Manhattan、Misplaced、加性 Disjoint Pattern 的可采纳性和一致性证明；明确空位不计入前两种启发值、PDB 的 0/1 成本划分及重叠分组不能直接求和。
+
+依据为现有模板、`report/正文.md` 及当前 `NPuzzleProblem`、`PuzzleBoard`、`DisjointPatternDatabase`、`PatternTable` 源码。本机没有 `teacher_reference/`，本轮未重新核对教师原件。示例逆序数由独立脚本复算为 24、22；正文未加入新的性能成绩。使用上述构建脚本两遍编译并检查第二部分页面，当前预览为 `NPuzzle-template.pdf`；上文“默认三页、空白正文”描述的是初始模板，当前第二、第五部分已有正文，其他部分仍待填写。`qa.json` 是原模板转换记录，不代表本次正文的检查。
