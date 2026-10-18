@@ -1,0 +1,62 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{10.5bp}{14bp}\selectfont,text=Ink},
+  edge/.style={->,draw=Ink,line width=.65pt},
+  box/.style={rectangle,draw=Ink,line width=.65pt,align=center,
+              text width=6.4cm,minimum height=1.0cm,inner sep=5pt},
+  decision/.style={diamond,aspect=3,draw=Ink,line width=.65pt,
+                   align=center,text width=2.7cm,inner sep=1.5pt},
+  state/.style={circle,draw=Ink,line width=.65pt,minimum size=10mm,inner sep=1pt},
+  active/.style={state,fill=PaleBlue,draw=Blue},
+  small/.style={font=\fontsize{9.5bp}{12.5bp}\selectfont},
+  cut/.style={circle,draw=Muted,dashed,line width=.65pt,
+              minimum size=7mm,inner sep=1pt,text=Muted},
+  unseen/.style={circle,draw=black!25,line width=.5pt,minimum size=7mm,
+                 inner sep=1pt,text=black!35},
+  visited/.style={circle,draw=Blue,fill=PaleBlue,line width=.65pt,
+                  minimum size=7mm,inner sep=1pt},
+  found/.style={visited,double,double distance=1.1pt},
+  latent/.style={->,draw=black!23,line width=.5pt},
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \node[state] (s) at (-3,0) {$S$};
+  \node[state] (a) at (-5,-1.5) {$A$};
+  \node[state] (b) at (-1,-1.5) {$B$};
+  \node[state] (c) at (-1,-3.0) {$C$};
+  \node[active] (x) at (-3,-4.5) {$x$};
+  \draw[edge,draw=Blue] (s) -- node[above left,small]{1} (a);
+  \draw[edge,draw=Blue] (a) -- node[below left,small]{1} (x);
+  \draw[edge,dashed] (s) -- node[above right,small]{1} (b);
+  \draw[edge,dashed] (b) -- node[right,small]{1} (c);
+  \draw[edge,dashed] (c) -- node[below right,small]{1} (x);
+  \node[small] at (-3,-5.35) {同一问题状态 $x$};
+  \node[align=left,text width=5.0cm,anchor=west] at (1,-.8)
+    {原路径：$S\to B\to C\to x$\\$g_{\mathrm{old}}(x)=3$};
+  \node[align=left,text width=5.0cm,anchor=west] at (1,-2.3)
+    {新路径：$S\to A\to x$\\$g_{\mathrm{new}}(x)=2$};
+  \node[align=left,text width=5.0cm,anchor=west] at (1,-4.1)
+    {若 $x$ 仍在 Open：\\保留新结点并更新父链\\
+     \smallskip
+     若 $x$ 已在 Closed：\\是否需要重开取决于启发函数性质};
+  \node[small] at (0,-6.1)
+    {状态用于查重；父结点与路径代价 $g$ 属于搜索结点};
+\end{tikzpicture}
+
+\end{document}

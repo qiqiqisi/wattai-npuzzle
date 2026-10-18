@@ -1,0 +1,60 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{10.5bp}{14bp}\selectfont,text=Ink},
+  edge/.style={->,draw=Ink,line width=.65pt},
+  box/.style={rectangle,draw=Ink,line width=.65pt,align=center,
+              text width=6.4cm,minimum height=1.0cm,inner sep=5pt},
+  decision/.style={diamond,aspect=3,draw=Ink,line width=.65pt,
+                   align=center,text width=2.7cm,inner sep=1.5pt},
+  state/.style={circle,draw=Ink,line width=.65pt,minimum size=10mm,inner sep=1pt},
+  active/.style={state,fill=PaleBlue,draw=Blue},
+  small/.style={font=\fontsize{9.5bp}{12.5bp}\selectfont},
+  cut/.style={circle,draw=Muted,dashed,line width=.65pt,
+              minimum size=7mm,inner sep=1pt,text=Muted},
+  unseen/.style={circle,draw=black!25,line width=.5pt,minimum size=7mm,
+                 inner sep=1pt,text=black!35},
+  visited/.style={circle,draw=Blue,fill=PaleBlue,line width=.65pt,
+                  minimum size=7mm,inner sep=1pt},
+  found/.style={visited,double,double distance=1.1pt},
+  latent/.style={->,draw=black!23,line width=.5pt},
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \node at (4,1.2) {(a) 一致启发函数：沿路径 $f$ 不下降};
+  \node[state] (s1) at (0,0) {$S$};
+  \node[state] (n1) at (4,0) {$n$};
+  \node[state] (g1) at (8,0) {$G$};
+  \draw[edge] (s1) -- node[above,small]{$c=1$} (n1);
+  \draw[edge] (n1) -- node[above,small]{$c=1$} (g1);
+  \node[align=center] at (0,-1.1) {$g=0,\ h=2$\\$f=2$};
+  \node[align=center] at (4,-1.1) {$g=1,\ h=1$\\$f=2$};
+  \node[align=center] at (8,-1.1) {$g=2,\ h=0$\\$f=2$};
+  \node at (4,-2.65) {(b) 可采纳但不一致：第一步的 $f$ 从 2 降到 1};
+  \node[state] (s2) at (0,-3.9) {$S$};
+  \node[active] (n2) at (4,-3.9) {$n$};
+  \node[state] (g2) at (8,-3.9) {$G$};
+  \draw[edge] (s2) -- node[above,small]{$c=1$} (n2);
+  \draw[edge] (n2) -- node[above,small]{$c=1$} (g2);
+  \node[align=center] at (0,-5.0) {$g=0,\ h=2$\\$f=2$};
+  \node[align=center] at (4,-5.0) {$g=1,\ h=0$\\$f=1$};
+  \node[align=center] at (8,-5.0) {$g=2,\ h=0$\\$f=2$};
+  \node at (4,-6.3) {下图首条边：$h(S)=2>1+h(n)=1$，不满足一致性};
+\end{tikzpicture}
+
+\end{document}

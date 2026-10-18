@@ -1,17 +1,7 @@
-% 原模板的空白正文页。以下命令只登记目录锚点，不打印标题。
-% 可在相应命令后填写正文，目录页码自动更新；默认仍为空白页。
+% 第一、五部分已有正文；第二至四部分仍只登记目录锚点。
 % 正文中的图、表与参考文献引用均可点击跳转（目录页在此前已排版完成，样式不受影响）
 \hypersetup{colorlinks=true, linkcolor=TemplateBlue, citecolor=TemplateBlue, urlcolor=TemplateBlue}
-\TemplateSection{1.\quad 启发式算法综述}
-\TemplateSubsection{1.1 算法描述}
-% 在此填写。
-\TemplateSubsection{1.2 算法的可采纳性}
-\TemplateSubsubsection{1.2.1 A*算法}
-\TemplateSubsubsection{1.2.2 A*算法可采纳性证明}
-\TemplateSubsection{1.3 重复扩展结点的问题}
-\TemplateSubsubsection{1.3.1 重复扩展结点问题}
-\TemplateSubsubsection{1.3.2 启发函数的单调性}
-\TemplateSubsection{1.4 IDA*算法基本原理及其可采纳性}
+\input{section-one.tex}
 
 \TemplateSection{2.N-Puzzle游戏}
 \TemplateSubsection{2.1 N-Puzzle游戏描述}
@@ -48,6 +38,10 @@
 % 图表编号沿用模板的 5-x 形式，便于交叉引用
 \renewcommand{\thefigure}{5-\arabic{figure}}
 \renewcommand{\thetable}{5-\arabic{table}}
+\renewcommand{\theHfigure}{section5.\arabic{figure}}
+\renewcommand{\theHtable}{section5.\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
 
 可视化要求为：“解路径的可视化——不限平台和框架工具”，“不要求与搜索程序联动，只需要根据搜索程序给出的多个问题的解路径文本文件进行可视化即可”。
 因此，该可视化代码只需求记录求解过程的文件，而不需要与搜索程序联动。
@@ -74,7 +68,7 @@ Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
 \end{tabular}}
 \end{center}
 \refstepcounter{table}\label{tab:tools}
-{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 解路径可视化候选方案对比}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径可视化候选方案对比}\par\vspace{5bp}
 
 \TemplateSubsection{5.2 可视化界面设计与关键逻辑}
 {\bfseries 5.2\quad 可视化界面设计与关键逻辑}\par\vspace{2bp}
@@ -108,7 +102,7 @@ Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
 \end{tabular}}
 \end{center}
 \refstepcounter{table}\label{tab:ui}
-{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 播放器各区域组件及功能}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 播放器各区域组件及功能}\par\vspace{5bp}
 
 数字方格为蓝白风格，空格则为空白，因此位置清晰。
 界面按棋盘规模自适应：3$\times$3 使用 32 号粗体字与 74$\times$74 的格子，4$\times$4 使用 25 号字与 62$\times$62 的格子，
@@ -119,7 +113,7 @@ Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
 \includegraphics[width=0.46\linewidth]{visualFigures/3x3-final.png}
 \end{center}
 \refstepcounter{figure}\label{fig:3x3-io}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 3$\times$3 实例的界面：初始 Step 0/16 与终态 Step 16/16（A* + Manhattan）}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 3$\times$3 实例的界面：初始 Step 0/16 与终态 Step 16/16（A* + Manhattan）}\par\vspace{5bp}
 
 \TemplateSubsubsection{5.2.2 关键逻辑}
 {\bfseries 5.2.2\quad 关键逻辑}\par\vspace{2bp}
@@ -130,7 +124,7 @@ Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
 \includegraphics[width=0.8\linewidth]{visualFigures/流程图.png}
 \end{center}
 \refstepcounter{figure}\label{fig:flow}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 解路径播放的逻辑流程（校验先于建窗，事件循环反复刷新）}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 解路径播放的逻辑流程（校验先于建窗，事件循环反复刷新）}\par\vspace{5bp}
 
 核心思路为：先校验、后建窗口，逻辑和页面显示分离。
 
@@ -168,7 +162,7 @@ src/stud/g01/visual/
 \end{tabular}}
 \end{center}
 \refstepcounter{table}\label{tab:classes}
-{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 解路径可视化代码（下记为播放器）的三层结构}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径可视化代码（下记为播放器）的三层结构}\par\vspace{5bp}
 
 \TemplateSubsubsection{5.3.2 数据格式}
 {\bfseries 5.3.2\quad 数据格式}\par\vspace{2bp}
@@ -201,7 +195,7 @@ src/stud/g01/visual/
 \end{tabular}}
 \end{center}
 \refstepcounter{table}\label{tab:format}
-{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 解路径文件字段说明}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径文件字段说明}\par\vspace{5bp}
 
 动作记录的是\textbf{空格的移动方向}，一种示例如下：
 
@@ -258,7 +252,7 @@ step  move   state
 \end{tabular}}
 \end{center}
 \refstepcounter{table}\label{tab:validation}
-{\fontsize{9bp}{12bp}\selectfont 表 5-\thetable\quad 解路径校验链}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径校验链}\par\vspace{5bp}
 
 校验的核心是第 8 项，\textbf{把上一步记录的棋盘取出、执行该动作，再与文件里记录的下一步棋盘比对}。
 代码如下（来自 \texttt{SolutionTrace.read}）：
@@ -398,7 +392,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.46\linewidth]{visualFigures/4x4-final.png}
 \end{center}
 \refstepcounter{figure}\label{fig:4x4-io}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 4$\times$4 实例：初始 Step 0/70 与终态 Step 70/70（IDA* + 加性 PDB）}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 4$\times$4 实例：初始 Step 0/70 与终态 Step 70/70（IDA* + 加性 PDB）}\par\vspace{5bp}
 
 \textbf{（3）交互操作。}图~\ref{fig:ops} 是在 3$\times$3 实例上依次执行暂停、后退、前进与重置四个操作的画面。暂停停在第 13 步，后退回到第 12 步，前进又回到第 13 步，重置回到第 0 步，且每次操作后棋盘与步号同步变化。
 
@@ -409,7 +403,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.42\linewidth]{visualFigures/3x3-restart.png}
 \end{center}
 \refstepcounter{figure}\label{fig:ops}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 交互操作：暂停（Step 13）、后退（Step 12）、前进（Step 13）、重置（Step 0）}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 交互操作：暂停（Step 13）、后退（Step 12）、前进（Step 13）、重置（Step 0）}\par\vspace{5bp}
 
 \textbf{（4）速度切换与终态。}图~\ref{fig:speed} 给出 4$\times$4 实例上的两张速度截图与一张终态截图。左侧与中间的图分别显示速度档位为 0.5x 与 2x，界面在两种档位下均正常推进；右侧的图是在第 70/70 步继续按 Next 的画面，界面保持终态不再前进。
 
@@ -419,7 +413,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.31\linewidth]{visualFigures/4x4-end-next.png}
 \end{center}
 \refstepcounter{figure}\label{fig:speed}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 速度切换（0.5x、2x）与终态（第 70/70 步再按 Next 保持终态）}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 速度切换（0.5x、2x）与终态（第 70/70 步再按 Next 保持终态）}\par\vspace{5bp}
 
 \textbf{（5）损坏文件被拒绝。}图~\ref{fig:invalid} 是把解路径文件截断后重新运行的终端输出，可见程序抛出 \texttt{java.io.IOException: Solution length mismatch} 并以失败状态结束，没有打开任何窗口，也没有显示伪造的棋盘。
 
@@ -427,27 +421,29 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.72\linewidth]{visualFigures/invalid-trace-rejected.png}
 \end{center}
 \refstepcounter{figure}\label{fig:invalid}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 不完整解路径文件被拒绝（终端输出）}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 不完整解路径文件被拒绝（终端输出）}\par\vspace{5bp}
 
 
 
 \textbf{（6）第一阶段：A* + 优先队列。}第一阶段要求用 A* \cite{hart1968}配合优先队列在 1 秒内解出指定问题实例。用 A* 配合曼哈顿距离求得 16 步的解，左图是播放到第 8 步（$8/16$）时的中段画面，右图是第 16 步（$16/16$）的终态。
 
+\noindent\begin{minipage}{\linewidth}
 \begin{center}
 \includegraphics[width=0.46\linewidth]{visualFigures/stage1-astar-3x3-step8.png}\hspace{8bp}%
 \includegraphics[width=0.46\linewidth]{visualFigures/stage1-astar-3x3-step16.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage1}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 第一阶段（A* + 优先队列）3$\times$3 实例的解路径播放：中段 Step 8/16 与终态 Step 16/16}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第一阶段（A* + 优先队列）3$\times$3 实例的解路径播放：中段 Step 8/16 与终态 Step 16/16}\par\vspace{5bp}
+\end{minipage}\par
 
-\textbf{（7）第二阶段：IDA* 与 Zobrist 哈希。}第二阶段要求对 4 阶（15-Puzzle）使用 IDA* 求解，并使用 Zobrist 哈希\cite{zobrist-wiki,zobrist-cn}。用 IDA* 配合曼哈顿距离求得 52 步的解，图~\ref{fig:stage2} 给出播放到第 26 步（$26/52$）与第 52 步（$52/52$）的画面。
+\textbf{（7）第二阶段：IDA* 与 Zobrist 哈希。}第二阶段要求对 4 阶（15-Puzzle）使用 IDA* 求解，Zobrist 哈希是建议采用的优化方法\cite{zobrist-wiki,zobrist-cn}。用 IDA* 配合曼哈顿距离求得 52 步的解，图~\ref{fig:stage2} 给出播放到第 26 步（$26/52$）与第 52 步（$52/52$）的画面。
 
 \begin{center}
 \includegraphics[width=0.46\linewidth]{visualFigures/stage2-ida-4x4-step26.png}\hspace{8bp}%
 \includegraphics[width=0.46\linewidth]{visualFigures/stage2-ida-4x4-step52.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage2}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 第二阶段（IDA* + 曼哈顿距离）4$\times$4 实例的解路径播放：中段 Step 26/52 与终态 Step 52/52}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第二阶段（IDA* + 曼哈顿距离）4$\times$4 实例的解路径播放：中段 Step 26/52 与终态 Step 52/52}\par\vspace{5bp}
 
 \textbf{（8）第三阶段：disjoint pattern 与模式数据库。}第三阶段要求用不相交模式（disjoint pattern）与模式数据库\cite{culberson1996,pdb-intro}在 1 分钟内解出指定实例。求得 70 步的解，满足 1 分钟的要求。图~\ref{fig:stage3} 给出播放到第 35 步（$35/70$）与第 70 步（$70/70$）的画面。
 
@@ -456,7 +452,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.46\linewidth]{visualFigures/stage3-pdb-4x4-step70.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage3}
-{\fontsize{9bp}{12bp}\selectfont 图 5-\thefigure\quad 第三阶段（IDA* + 加性模式数据库）4$\times$4 实例的解路径播放：中段 Step 35/70 与终态 Step 70/70}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第三阶段（IDA* + 加性模式数据库）4$\times$4 实例的解路径播放：中段 Step 35/70 与终态 Step 70/70}\par\vspace{5bp}
 
 \endgroup
 \vspace{6bp}
@@ -469,7 +465,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 
 本组在已有的 SearchFramework 框架上完成了 N-Puzzle 求解的四个阶段，且框架已有代码未修改。
 
-第一阶段用 A* 配合优先队列，使用指定的 3$\times$3 棋盘在毫秒级内解出 16 步；第二阶段用 IDA* 处理 4 阶棋盘，内存开销只与当前搜索路径的深度有关；第三阶段用不相交模式数据库，求解时间压缩到 1 分钟以内；第四阶段用 Java Swing 将解路径文件记录的求解步骤可视化。问题的状态、动作、可解性判定和启发函数在 \texttt{src/stud/g01/}下，解路径的导出与可视化解耦。
+第一阶段用 A* 配合优先队列，使用指定的 3$\times$3 棋盘在毫秒级内解出 16 步；第二阶段用 IDA* 处理 4 阶棋盘，BASIC 模式的路径相关搜索存储随搜索深度线性增长，阈值记录、TT/Zobrist 置换表与模式数据库另占空间；第三阶段用不相交模式数据库，求解时间压缩到 1 分钟以内；第四阶段用 Java Swing 将解路径文件记录的求解步骤可视化。问题的状态、动作、可解性判定和启发函数在 \texttt{src/stud/g01/}下，解路径的导出与可视化解耦。
 
 此外，代码还记录了代价。第二阶段得到 52 步解，搜索耗时 435.977 毫秒，生成 2\,007\,071 个结点、扩展 997\,736 个结点。第三阶段得到 70 步解，其中模式数据库建表 4\,819 毫秒、搜索 17\,709 毫秒，总耗时 22.729 秒，共生成 95\,279\,434 个结点、扩展 48\,759\,798 个结点。可以看出，启发函数越精确，需要扩展的结点越少；模式数据库实际上是把一部分代价从搜索阶段前移到了建表阶段。
 
