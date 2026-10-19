@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-19",
+  "status": "PASS",
+  "scope": "PR #1 integration after chapter-one PR #2 merged",
+  "source_chapter_two_commit": "5f1751c28c27e458e8025e800cfa11e29096200b",
+  "first_chapter_merge": "fb54ea9",
+  "output": "report/latex/main.pdf",
+  "pages": 22,
+  "pdf_sha256": "953a8b8b10e469ecd6381404232beff73336ed15357760324229cd2eccc5a13e",
+  "compile_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "chapter_one_source_unchanged": true,
+  "chapter_two_prose_preserved_from_original_pr": true,
+  "chapter_five_source_unchanged": true,
+  "original_blank_template_preserved": true,
+  "original_pr_preview_preserved": true,
+  "directory_entries": 44,
+  "figure_labels": "1-1 through 1-5; 5-1 through 5-9",
+  "unresolved_references": 0,
+  "missing_characters": 0,
+  "overfull_boxes": 0,
+  "chapter_two_example_check": {
+    "inversions": [
+      24,
+      22
+    ],
+    "manhattan": 6,
+    "misplaced": 4
+  },
+  "visual_review": {
+    "status": "PASS",
+    "pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "dpi": 100,
+    "findings": "All pages rendered and inspected; no clipping or overlap. Chapter-one diagrams, chapter-two formulas and table, and existing visualizations preserved."
+  },
+  "limitations": [
+    "Chapters 3 and 4 remain placeholders",
+    "Existing nonfatal underfull-box/font-option warnings remain",
+    "Historical qa-section-one-20261019.json describes the prior chapter-one-only PDF",
+    "No Java tests rerun for report-only integration"
+  ]
+}
