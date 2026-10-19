@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-19",
+  "status": "PASS",
+  "scope": "Chapter 1 prose and five approved diagrams integrated into the current LaTeX report",
+  "base_commit": "457a97c9b4e03cca65361b3cee399d47b19bb756",
+  "branch": "codex/report-section-one",
+  "output": "report/latex/main.pdf",
+  "pages": 19,
+  "pdf_sha256": "2e395d0125b9dbf2a7dfabafc63348b28aaeaa386843972ea65699893791344f",
+  "chapter_one_chinese_characters_including_headings_and_captions": 4279,
+  "chapter_one_figures": [
+    "1-1",
+    "1-2",
+    "1-3",
+    "1-4",
+    "1-5"
+  ],
+  "chapter_five_figures": "5-1 through 5-9",
+  "directory_entries": 44,
+  "compile_pass_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "figure_source_rebuilds": 5,
+  "unresolved_references": 0,
+  "missing_characters": 0,
+  "overfull_boxes": 0,
+  "original_template_and_old_reports_preserved": true,
+  "java_tests_resources_results_unchanged": true,
+  "git_diff_check": "PASS",
+  "build_command": "powershell -NoProfile -ExecutionPolicy Bypass -File report/latex/build.ps1 -RebuildFigures",
+  "visual_review": {
+    "status": "PASS",
+    "pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "render_dpi": 100,
+    "findings": "All pages reviewed; five vector diagrams legible, chapter numbering and captions correct, no clipping or overlap. Stage-one visualization and its caption kept together. Original two-page contents layout and chapter-end whitespace retained."
+  },
+  "limitations": [
+    "Chapters 2-4 remain directory placeholders",
+    "Existing table/bibliography underfull-box, late colorlinks-option, and math font size substitution warnings remain; rendered output checked",
+    "No Java benchmark rerun for this document-only change"
+  ]
+}

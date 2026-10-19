@@ -1,0 +1,65 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{10.5bp}{14bp}\selectfont,text=Ink},
+  edge/.style={->,draw=Ink,line width=.65pt},
+  box/.style={rectangle,draw=Ink,line width=.65pt,align=center,
+              text width=6.4cm,minimum height=1.0cm,inner sep=5pt},
+  decision/.style={diamond,aspect=3,draw=Ink,line width=.65pt,
+                   align=center,text width=2.7cm,inner sep=1.5pt},
+  state/.style={circle,draw=Ink,line width=.65pt,minimum size=10mm,inner sep=1pt},
+  active/.style={state,fill=PaleBlue,draw=Blue},
+  small/.style={font=\fontsize{9.5bp}{12.5bp}\selectfont},
+  cut/.style={circle,draw=Muted,dashed,line width=.65pt,
+              minimum size=7mm,inner sep=1pt,text=Muted},
+  unseen/.style={circle,draw=black!25,line width=.5pt,minimum size=7mm,
+                 inner sep=1pt,text=black!35},
+  visited/.style={circle,draw=Blue,fill=PaleBlue,line width=.65pt,
+                  minimum size=7mm,inner sep=1pt},
+  found/.style={visited,double,double distance=1.1pt},
+  latent/.style={->,draw=black!23,line width=.5pt},
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \node[box] (init) at (0,0)
+    {初始化：$g(S)=0,\ f(S)=h(S)$\\Open 加入 $S$，Closed 置空};
+  \node[decision] (empty) at (0,-1.65) {Open 为空？};
+  \node[box,text width=2.0cm] (fail) at (4.8,-1.65) {返回无解};
+  \node[box] (pop) at (0,-3.20) {从 Open 取出 $f=g+h$ 最小的结点 $n$};
+  \node[decision] (goal) at (0,-4.85) {$n$ 是目标？};
+  \node[box,text width=2.0cm] (done) at (4.8,-4.85)
+    {沿父链回溯\\返回解路径};
+  \node[box] (expand) at (0,-6.50)
+    {将 $n$ 的状态加入 Closed\\生成合法后继};
+  \node[box] (filter) at (0,-8.05)
+    {后继状态在 Closed：跳过\\否则计算 $g'$、$h'$ 与 $f'$};
+  \node[box] (update) at (0,-9.60)
+    {Open 中无该状态：加入\\已有该状态：仅保留 $g$ 更小的结点};
+  \draw[edge] (init) -- (empty);
+  \draw[edge] (empty) -- node[above,small]{是} (fail);
+  \draw[edge] (empty) -- node[right,small]{否} (pop);
+  \draw[edge] (pop) -- (goal);
+  \draw[edge] (goal) -- node[above,small]{是} (done);
+  \draw[edge] (goal) -- node[right,small]{否} (expand);
+  \draw[edge] (expand) -- (filter);
+  \draw[edge] (filter) -- (update);
+  \draw[edge] (update.west) -- (-4.8,-9.60)
+    -- node[left,small]{下一轮} (-4.8,-1.65) -- (empty.west);
+\end{tikzpicture}
+
+\end{document}

@@ -1,10 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{template}[2026/10/12 Teacher Word template layout]
+\RequirePackage{fix-cm}
 \RequirePackage{fontspec}
 \RequirePackage{xeCJK}
 \RequirePackage[paperwidth=595.3bp,paperheight=841.9bp,
   left=90bp,right=90bp,top=72bp,bottom=72bp]{geometry}
 \RequirePackage{graphicx}
+\RequirePackage{amsmath}
+\RequirePackage{caption}
+\RequirePackage{needspace}
+\RequirePackage{placeins}
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
 \RequirePackage[hidelinks,bookmarksnumbered=false]{hyperref}
@@ -13,6 +18,7 @@
 % 不用 ctex 默认标题样式；Arial 只用于原封面的 N-Puzzle。
 \setmainfont{Calibri}
 \setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\setCJKmonofont{SimSun}[AutoFakeBold=1.5]
 \newfontfamily\TemplateArial{Arial}[BoldFont={Arial Bold}]
 \newfontfamily\TemplateSongLatin{SimSun}[AutoFakeBold=1.5]
 \newfontfamily\TemplateCalibri{Calibri}

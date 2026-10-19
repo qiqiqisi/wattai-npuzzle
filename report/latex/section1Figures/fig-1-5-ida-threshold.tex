@@ -1,0 +1,97 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{10.5bp}{14bp}\selectfont,text=Ink},
+  edge/.style={->,draw=Ink,line width=.65pt},
+  box/.style={rectangle,draw=Ink,line width=.65pt,align=center,
+              text width=6.4cm,minimum height=1.0cm,inner sep=5pt},
+  decision/.style={diamond,aspect=3,draw=Ink,line width=.65pt,
+                   align=center,text width=2.7cm,inner sep=1.5pt},
+  state/.style={circle,draw=Ink,line width=.65pt,minimum size=10mm,inner sep=1pt},
+  active/.style={state,fill=PaleBlue,draw=Blue},
+  small/.style={font=\fontsize{9.5bp}{12.5bp}\selectfont},
+  cut/.style={circle,draw=Muted,dashed,line width=.65pt,
+              minimum size=7mm,inner sep=1pt,text=Muted},
+  unseen/.style={circle,draw=black!25,line width=.5pt,minimum size=7mm,
+                 inner sep=1pt,text=black!35},
+  visited/.style={circle,draw=Blue,fill=PaleBlue,line width=.65pt,
+                  minimum size=7mm,inner sep=1pt},
+  found/.style={visited,double,double distance=1.1pt},
+  latent/.style={->,draw=black!23,line width=.5pt},
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \foreach \round/\shift/\bound in {1/0/2,2/4.2/4,3/8.4/6} {
+    \begin{scope}[xshift=\shift cm]
+      \node at (0,.95) {第 \round\ 轮：$B=\bound$};
+      \ifnum\round=1
+        \def\sStyle{visited}\def\aStyle{visited}\def\bStyle{cut}
+        \def\cStyle{cut}\def\dStyle{cut}\def\eStyle{unseen}\def\gStyle{unseen}
+      \fi
+      \ifnum\round=2
+        \def\sStyle{visited}\def\aStyle{visited}\def\bStyle{visited}
+        \def\cStyle{visited}\def\dStyle{cut}\def\eStyle{cut}\def\gStyle{unseen}
+      \fi
+      \ifnum\round=3
+        \def\sStyle{visited}\def\aStyle{visited}\def\bStyle{unseen}
+        \def\cStyle{visited}\def\dStyle{unseen}\def\eStyle{visited}\def\gStyle{found}
+      \fi
+      \node[\sStyle] (s\round) at (0,0) {2};
+      \node[\aStyle] (a\round) at (-.75,-1.25) {2};
+      \node[\bStyle] (b\round) at (.8,-1.25) {4};
+      \node[\cStyle] (c\round) at (-1.2,-2.5) {4};
+      \node[\dStyle] (d\round) at (-.1,-2.5) {6};
+      \node[\eStyle] (e\round) at (-1.2,-3.75) {6};
+      \node[\gStyle] (g\round) at (-1.2,-5.0) {6};
+      \draw[edge] (s\round)--(a\round);
+      \ifnum\round=3
+        \draw[latent] (s\round)--(b\round);
+        \draw[latent] (a\round)--(d\round);
+      \else
+        \draw[edge] (s\round)--(b\round);
+        \draw[edge] (a\round)--(d\round);
+      \fi
+      \draw[edge] (a\round)--(c\round);
+      \ifnum\round=1
+        \draw[latent] (c\round)--(e\round);
+        \draw[latent] (e\round)--node[left,small,text=black!35]{再 3 步}(g\round);
+      \else
+        \draw[edge] (c\round)--(e\round);
+        \ifnum\round=2
+          \draw[latent] (e\round)--node[left,small,text=black!35]{再 3 步}(g\round);
+        \else
+          \draw[edge] (e\round)--node[left,small]{再 3 步}(g\round);
+        \fi
+      \fi
+      \ifnum\round=1
+        \node[small] at (-.1,-5.95) {最小超界 $f=4$};
+      \fi
+      \ifnum\round=2
+        \node[small] at (-.1,-5.95) {最小超界 $f=6$};
+      \fi
+      \ifnum\round=3
+        \node[small] at (-.1,-5.95) {找到代价为 6 的目标};
+      \fi
+    \end{scope}
+  }
+  \node[small,align=center] at (4.1,-7.0)
+    {结点内为 $f$ 值；蓝色：已搜索；虚线圈：超界剪枝；浅灰：尚未访问\\
+     双圈为目标；“再 3 步”将三个连续动作合并表示};
+\end{tikzpicture}
+
+\end{document}
