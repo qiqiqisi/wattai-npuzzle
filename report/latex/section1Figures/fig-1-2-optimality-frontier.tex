@@ -1,0 +1,58 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{10.5bp}{14bp}\selectfont,text=Ink},
+  edge/.style={->,draw=Ink,line width=.65pt},
+  box/.style={rectangle,draw=Ink,line width=.65pt,align=center,
+              text width=6.4cm,minimum height=1.0cm,inner sep=5pt},
+  decision/.style={diamond,aspect=3,draw=Ink,line width=.65pt,
+                   align=center,text width=2.7cm,inner sep=1.5pt},
+  state/.style={circle,draw=Ink,line width=.65pt,minimum size=10mm,inner sep=1pt},
+  active/.style={state,fill=PaleBlue,draw=Blue},
+  small/.style={font=\fontsize{9.5bp}{12.5bp}\selectfont},
+  cut/.style={circle,draw=Muted,dashed,line width=.65pt,
+              minimum size=7mm,inner sep=1pt,text=Muted},
+  unseen/.style={circle,draw=black!25,line width=.5pt,minimum size=7mm,
+                 inner sep=1pt,text=black!35},
+  visited/.style={circle,draw=Blue,fill=PaleBlue,line width=.65pt,
+                  minimum size=7mm,inner sep=1pt},
+  found/.style={visited,double,double distance=1.1pt},
+  latent/.style={->,draw=black!23,line width=.5pt},
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \node[state] (s) at (0,0) {$S$};
+  \node[active] (n) at (4.5,0) {$n$};
+  \node[state] (best) at (9,0) {$G^*$};
+  \node[state] (u) at (4.5,-2.3) {$u$};
+  \node[active] (candidate) at (9,-2.3) {$G'$};
+  \draw[edge] (s) -- node[above,small]{$g(n)=2$} (n);
+  \draw[edge] (n) -- node[above,small]{$h^*(n)=4$} (best);
+  \draw[edge,dashed] (s) -- node[below,sloped,small]{路径代价 3} (u);
+  \draw[edge,dashed] (u) -- node[above,small]{路径代价 5} (candidate);
+  \node[small,align=center] at (4.5,-.95)
+    {最优路径上尚在 Open 的结点\\$h(n)=3,\quad f(n)=5$};
+  \node[small] at (9,-.85) {$C^*=6$};
+  \node[small,align=center] at (9,-3.25)
+    {Open 中的候选目标\\$g(G')=8,\ h(G')=0$};
+  \node[align=center] at (4.5,-4.20)
+    {$f(n)=5\ \leq\ C^*=6\ <\ f(G')=8$\\
+     只要边界结点 $n$ 仍在 Open，代价 8 的目标就不会先被取出};
+\end{tikzpicture}
+
+\end{document}
