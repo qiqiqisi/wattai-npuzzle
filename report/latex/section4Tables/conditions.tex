@@ -1,0 +1,11 @@
+% Generated from retained CSV records by build_tables.py.
+\begin{tabular}{p{49bp}p{112bp}p{88bp}p{124bp}}
+\hline
+\textbf{实验组} & \textbf{题目} & \textbf{重复与准备} & \textbf{配置与上限} \\
+\hline
+Open对照 & 6道浅$3\times3$题 & 同一JVM；各组预热1次，再测3次 & 两种Open、两种启发；只改变Open实现 \\
+教师三阶 & 教师给出的初态与目标 & 每配置3次独立新JVM；无同JVM预热 & PDB冷构建4-4；保护上限5秒 \\
+普通四阶 & 题目文件第4题 & 每配置1次独立新JVM & PDB冷构建4-4-4-3；上限10秒 \\
+困难四阶 & 教师困难题，题目文件第10题 & 冷、热缓存各1次 & IDA*、555T；父端上限60秒 \\
+\hline
+\end{tabular}

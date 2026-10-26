@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "scope": "Remove repeated run dates and provenance prose from Chapter 4, including table/chart date labels.",
+  "pdf": "report/latex/main.pdf",
+  "pdf_sha256": "56A713783C88AFF07E2A9FE3EC1676ACB2D34711FDF156AD02C7C58CFD8A01F9",
+  "pdf_pages": 33,
+  "chapter_pdf_pages": [
+    14,
+    25
+  ],
+  "numeric_tables_unchanged": true,
+  "raw_data_unchanged": true,
+  "formulas_unchanged": true,
+  "other_chapters_and_template_unchanged": true,
+  "six_tables_and_nine_figures_preserved": true,
+  "caption_links_checked": 15,
+  "compile_passes": 3,
+  "new_overfull_boxes": 0,
+  "missing_characters": 0,
+  "unresolved_references": 0,
+  "rendered_and_visually_reviewed_pages": [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "render_dpi": 110,
+  "image03_minor_layout": "PREVIOUSLY_ACCEPTED_BY_USER_UNCHANGED",
+  "figures": [
+    {
+      "source": "04-six-config-times-v1.png",
+      "source_sha256": "9A162207099C732A0D69F7875FA6799E6893DD75D25BB925173F3842E11200DC",
+      "output": "04-six-config-times-report.png",
+      "crop_box_ltrb": [
+        25,
+        54,
+        3134,
+        1827
+      ],
+      "size": [
+        3109,
+        1773
+      ],
+      "output_sha256": "91CEB9EFBFE19172B90C8A7D9B691E794DC1B9304338A4CA8F4016E14441FDFA",
+      "pixels_exact": true
+    },
+    {
+      "source": "05-expanded-nodes-v1.png",
+      "source_sha256": "9C7574B0166B69718DD3760741507A329DEBE2AC89F56B4ECCA8FE212F63E3FE",
+      "output": "05-expanded-nodes-report.png",
+      "crop_box_ltrb": [
+        30,
+        69,
+        2871,
+        1406
+      ],
+      "size": [
+        2841,
+        1337
+      ],
+      "output_sha256": "D34F3FE7644CBB3204E5CE2C7FD8A2D7FB394E3B3DCE53084041C3B95021D724",
+      "pixels_exact": true
+    },
+    {
+      "source": "06-hard-cold-warm-v1.png",
+      "source_sha256": "28CF0B5E04928DC117BD1BDB943905B896C38C6DA2F7C3D8F6B228D4B34A763B",
+      "output": "06-hard-cold-warm-report.png",
+      "crop_box_ltrb": [
+        219,
+        222,
+        2863,
+        1431
+      ],
+      "size": [
+        2644,
+        1209
+      ],
+      "output_sha256": "1CCB82E9A438BF1FBD82C6AAAD414AA6CA0047ACCBFCBC8EE143749A291E2F6D",
+      "pixels_exact": true
+    }
+  ],
+  "source_evidence_retained_in": "qa-section-four-20261026.json",
+  "prior_path_replay_evidence": "24 retained solutions checked in previous authoring; not repeated for wording changes.",
+  "new_search": "NOT_RUN",
+  "publication": "NOT_RUN"
+}
