@@ -1,0 +1,12 @@
+% Generated from retained CSV records by build_tables.py.
+\begin{tabular}{p{64bp}p{86bp}p{105bp}p{118bp}}
+\hline
+\textbf{操作} & \textbf{有序列表} & \textbf{优先队列＋状态索引} & \textbf{主要代价} \\
+\hline
+查找同一状态 & $O(N)$ & 平均$O(1)$ & 列表需逐个比对；索引另占空间 \\
+插入新状态 & $O(N)$ & $O(\log N)$ & 列表即使二分定位，仍需搬移元素 \\
+取出最优结点 & $O(N)$ & $O(\log N)$ & 列表删除首项；队列调整堆结构 \\
+替换更优重复结点 & $O(N)$ & $O(N)$ & 当前队列仍需查找并删除旧堆项 \\
+Closed查找与加入 & 平均$O(1)$ & 平均$O(1)$ & 两方案均为HashSet，未单独改变 \\
+\hline
+\end{tabular}
