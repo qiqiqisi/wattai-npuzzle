@@ -1,0 +1,81 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,shapes.geometric}
+
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{9bp}{12bp}\selectfont,text=Ink},
+  edge/.style={->,draw=Ink,line width=.6pt},
+  link/.style={->,draw=Blue,dashed,line width=.65pt},
+  box/.style={rectangle,draw=Ink,line width=.6pt,align=center,
+              text width=4.0cm,minimum height=0.95cm,inner sep=3pt},
+  % aspect 越小菱形越窄；2.2 可在保证文字放下的同时压缩整体宽度
+  decision/.style={diamond,aspect=2.2,draw=Ink,line width=.6pt,align=center,
+                   text width=3.2cm,inner sep=1pt},
+  exit/.style={rectangle,draw=Muted,dashed,line width=.65pt,align=center,
+               fill=PaleGray,text width=2.2cm,minimum height=0.9cm,inner sep=3pt,
+               font=\fontsize{8.5bp}{11bp}\selectfont},
+  head/.style={rectangle,draw=none,fill=PaleGray,align=center,
+               text width=4.0cm,minimum height=0.7cm,inner sep=3pt,
+               font=\fontsize{9bp}{12bp}\selectfont\bfseries},
+  small/.style={font=\fontsize{8.5bp}{11bp}\selectfont},
+}
+
+\begin{document}
+\begin{tikzpicture}
+  \node[head] at (-3.10,1.10) {外层：阈值迭代};
+  \node[head] at (3.10,1.10) {内层：深度优先};
+
+  \node[box] (round) at (-3.10,0)
+    {第 $k$ 轮：\texttt{bound} 取当前阈值\\清空转置表\\\texttt{pathStates}$\leftarrow\{S\}$};
+  \node[box] (call) at (-3.10,-2.55)
+    {\texttt{depthFirstSearch}\\（根结点，当前阈值，深度 0）};
+  \node[box] (out) at (-3.10,-5.10)
+    {\texttt{FOUND}：回溯父链返回解路径\\$\infty$：判定无解\\有限值 $t$：\texttt{bound}$\leftarrow t$};
+  \node[box,fill=PaleBlue,draw=Blue] (clear) at (-3.10,-7.65)
+    {转置表每轮清空\\$g$ 只在产生它的\\那一轮阈值下成立};
+
+  \node[decision] (cut)  at (3.10,0) {$f=g+h>\texttt{bound}$？};
+  \node[decision] (goal) at (3.10,-2.55) {是目标状态？};
+  \node[decision] (dom)  at (3.10,-5.10) {\texttt{dominated(n)}？};
+  \node[box] (expand) at (3.10,-7.65)
+    {逐个后继：跳过当前路径\\上的状态，递归后\\取最小超界值};
+  \node[box] (ret) at (3.10,-10.20)
+    {返回本轮最小超界 $f$\\无后继被截断时返回 $\infty$};
+
+  \node[exit] (e1) at (6.60,0)     {截断\\返回该 $f$};
+  \node[exit] (e2) at (6.60,-2.55) {置 \texttt{solution}\\返回 \texttt{FOUND}};
+  \node[exit] (e3) at (6.60,-5.10) {转置表剪枝\\返回 $\infty$};
+
+  \draw[edge] (round) -- (call);
+  \draw[edge] (call) -- (out);
+  % 回边竖线尽量靠内，标签改放在竖线右侧，避免整体宽度被标签撑开
+  \draw[edge] (out.west) -- (-5.55,-5.10)
+    -- node[right,small,pos=.80]{下一轮} (-5.55,0) -- (round.west);
+
+  \draw[edge] (cut)  -- node[right,small]{否} (goal);
+  \draw[edge] (goal) -- node[right,small]{否} (dom);
+  \draw[edge] (dom)  -- node[right,small]{否} (expand);
+  \draw[edge] (expand) -- (ret);
+  \draw[edge] (cut.east)  -- node[above,small]{是} (e1.west);
+  \draw[edge] (goal.east) -- node[above,small]{是} (e2.west);
+  \draw[edge] (dom.east)  -- node[above,small]{是} (e3.west);
+
+  \draw[link] (call.east) -- (0.45,-2.55) -- (0.45,0) -- (cut.west);
+
+  % 显式声明边界，确保 standalone 不会把最右侧出口框裁掉
+  \path[use as bounding box] (-6.10,1.55) rectangle (7.90,-10.75);
+\end{tikzpicture}
+\end{document}

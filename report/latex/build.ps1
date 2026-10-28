@@ -7,23 +7,26 @@ $taskTex = (Get-Command xelatex -ErrorAction Stop).Source
 New-Item -ItemType Directory -Path $taskBuild -Force | Out-Null
 
 if ($RebuildFigures) {
-    $taskFigureSource = Join-Path $taskSource 'section1Figures'
     $taskFigureBuild = Join-Path $taskBuild 'figures'
     New-Item -ItemType Directory -Path $taskFigureBuild -Force | Out-Null
-    Push-Location -LiteralPath $taskFigureSource
-    try {
-        foreach ($taskFigure in Get-ChildItem -LiteralPath $taskFigureSource -Filter '*.tex' -File | Sort-Object Name) {
-            $taskFigureLog = Join-Path $taskFigureBuild ($taskFigure.BaseName + '-compile.txt')
-            & $taskTex '-no-shell-escape' '-interaction=nonstopmode' '-halt-on-error' '-file-line-error' "-output-directory=$taskFigureBuild" $taskFigure.Name > $taskFigureLog
-            if ($LASTEXITCODE -ne 0) {
-                Get-Content -LiteralPath $taskFigureLog -Tail 25
-                throw "Figure compilation failed: $($taskFigure.Name)"
+    foreach ($taskFigureDirectoryName in @('section1Figures', 'section3Figures')) {
+        $taskFigureSource = Join-Path $taskSource $taskFigureDirectoryName
+        if (-not (Test-Path -LiteralPath $taskFigureSource)) { continue }
+        Push-Location -LiteralPath $taskFigureSource
+        try {
+            foreach ($taskFigure in Get-ChildItem -LiteralPath $taskFigureSource -Filter '*.tex' -File | Sort-Object Name) {
+                $taskFigureLog = Join-Path $taskFigureBuild ($taskFigure.BaseName + '-compile.txt')
+                & $taskTex '-no-shell-escape' '-interaction=nonstopmode' '-halt-on-error' '-file-line-error' "-output-directory=$taskFigureBuild" $taskFigure.Name > $taskFigureLog
+                if ($LASTEXITCODE -ne 0) {
+                    Get-Content -LiteralPath $taskFigureLog -Tail 25
+                    throw "Figure compilation failed: $($taskFigure.Name)"
+                }
+                Copy-Item -LiteralPath (Join-Path $taskFigureBuild ($taskFigure.BaseName + '.pdf')) -Destination $taskFigureSource
+                Write-Output "FIGURE_PASS: $($taskFigure.BaseName)"
             }
-            Copy-Item -LiteralPath (Join-Path $taskFigureBuild ($taskFigure.BaseName + '.pdf')) -Destination $taskFigureSource
-            Write-Output "FIGURE_PASS: $($taskFigure.BaseName)"
+        } finally {
+            Pop-Location
         }
-    } finally {
-        Pop-Location
     }
 }
 

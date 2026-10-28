@@ -1,0 +1,63 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,shapes.geometric}
+
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{9bp}{12bp}\selectfont,text=Ink},
+  edge/.style={->,draw=Ink,line width=.6pt},
+  box/.style={rectangle,draw=Ink,line width=.6pt,align=center,
+              text width=6.0cm,minimum height=0.95cm,inner sep=3pt},
+  decision/.style={diamond,aspect=3.0,draw=Ink,line width=.6pt,align=center,
+                   text width=3.6cm,inner sep=1pt},
+  side/.style={rectangle,draw=Muted,dashed,line width=.65pt,align=center,
+               fill=PaleGray,text width=3.4cm,inner sep=4pt,
+               font=\fontsize{8.5bp}{11bp}\selectfont},
+  small/.style={font=\fontsize{8.5bp}{11bp}\selectfont},
+}
+
+\begin{document}
+\begin{tikzpicture}
+  \node[box] (start)  at (0,0)     {起点：抽象目标状态，距离置 0 入队};
+  \node[box] (pop)    at (0,-2.05) {从\textbf{队首}取出 $c$，还原位置};
+  \node[box] (cost)   at (0,-4.10) {考察空位四邻：换入本组成员\\则 $w=1$，否则 $w=0$};
+  \node[decision] (better) at (0,-7.20) {候选 $c+w$\\小于现值？};
+  \node[box] (write)  at (0,-10.30) {写入该值，决定从队头或队尾进};
+  \node[box] (queue)  at (0,-12.35) {$w=0$：\texttt{addFirst}（队头）\\$w=1$：\texttt{addLast}（队尾）};
+
+  \node[box,text width=2.4cm] (skip) at (5.40,-7.20) {不做改动};
+
+  % 哨兵注解移到右上角，避开左侧回边竖线
+  \node[side] (sentinel) at (5.40,-3.10)
+    {\textbf{哨兵约定}\\\texttt{0xFF} 即 255 未访问\\合法距离 $0$--$254$\\候选 $\ge255$ 即报错};
+
+  \node[side] (cache) at (5.40,-1.00)
+    {\textbf{磁盘缓存}\\\texttt{generated/pdb/}\\魔数、版本、规模、组员、\\目标指纹、CRC32 全符\\则载入，否则建表写回};
+
+  \draw[edge] (start.south)  -- (pop.north);
+  \draw[edge] (pop.south)    -- (cost.north);
+  \draw[edge] (cost.south)   -- (better.north);
+  \draw[edge] (better.south) -- node[right,small]{是} (write.north);
+  \draw[edge] (write.south)  -- (queue.north);
+  \draw[edge] (better.east)  -- node[above,small]{否} (skip.west);
+
+  \draw[edge] (queue.west) -- (-4.30,-12.35)
+    -- node[left,small,pos=.55]{队列非空} (-4.30,-2.05)
+    -- (pop.west);
+
+  % 显式声明边界，确保左右两侧注解框不被裁掉
+  \path[use as bounding box] (-6.60,0.75) rectangle (7.45,-13.20);
+\end{tikzpicture}
+\end{document}

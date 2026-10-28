@@ -1,4 +1,4 @@
-% 第一、二、四、五部分已有正文；第三部分仍只登记目录锚点。
+% 第一、二、三、四、五部分均已有正文。
 % 正文中的图、表与参考文献引用均可点击跳转（目录页在此前已排版完成，样式不受影响）
 \hypersetup{colorlinks=true, linkcolor=TemplateBlue, citecolor=TemplateBlue, urlcolor=TemplateBlue}
 \input{section-one.tex}
@@ -205,13 +205,591 @@ Manhattan & 每枚非空将牌到目标的行列距离 & 每步只改变一枚�
 \endgroup
 
 \TemplateSection{3. N-Puzzle求解算法实现}
+{\bfseries\fontsize{12bp}{15.6bp}\selectfont 3.\quad N-Puzzle求解算法实现}\par\vspace{6bp}
+\begingroup
+\setlength{\parskip}{5bp}
+% 图表编号沿用模板的 3-x 形式，便于交叉引用
+\renewcommand{\thefigure}{3-\arabic{figure}}
+\renewcommand{\thetable}{3-\arabic{table}}
+\renewcommand{\theHfigure}{section3.\arabic{figure}}
+\renewcommand{\theHtable}{section3.\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand{\figurename}{图}
+\captionsetup{font=small,labelsep=quad,skip=5bp}
+\newcommand{\SolverFigure}[4][0.95]{%
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=#1\linewidth]{section3Figures/#2.pdf}
+    \caption{#3}\label{#4}
+  \end{figure}}
+
+本章给出求解器的具体实现。代码分为两层：\texttt{core} 包提供与具体问题无关的
+搜索框架（搜索结点、Open 表、Closed 表与最佳优先搜索器），\texttt{stud.g01} 包实现
+N-Puzzle 的状态、动作、三个启发函数与模式数据库。图~\ref{fig:3-1} 给出两层的对应关系：
+框架只定义接口与算法骨架，凡是随问题变化的部分都落到实现层，
+因此后文的说明可以直接对着右侧的类名与小节号定位。
+
+下文按数据结构（3.1、3.2）、启发函数（3.3）、后继结点生成（3.4）
+以及 IDA* 搜索（3.5）的顺序说明。引用的代码节选自 \texttt{src/} 下的对应类，
+类名标注在每段代码之前，注释为方便阅读所加。
+
+\SolverFigure[0.87]{fig-3-1-module-map}{框架层 \texttt{core} 与实现层 \texttt{stud.g01} 的对应关系（示意）}{fig:3-1}
+
 \TemplateSubsection{3.1 状态及结点的数据结构}
+{\bfseries 3.1\quad 状态及结点的数据结构}\par\vspace{2bp}
+
+状态类 \texttt{PuzzleBoard} 按第 2.2 节的建模，用行优先的一维数组 \texttt{tiles}
+保存棋盘，0 表示空位；构造时即缓存空位下标 \texttt{blankIndex}。整个对象不可变，
+对外可见的状态（\texttt{size}、\texttt{tiles}）在构造后不再改变。
+唯一的例外是 \texttt{tilePositions}：它不是 \texttt{final} 字段，
+而是首次调用 \texttt{positions()} 时惰性填入的缓存，
+写入的是幂等结果，不改变状态的对外语义，
+因此可以视为“逻辑上不可变”。由此带来三点便利：哈希值可以一次算好、反复使用；
+\texttt{equals} 只比较规模与将牌数组，状态对象可直接作 \texttt{HashSet}、
+\texttt{HashMap} 的键，供 Closed 表与重复状态检测使用；多线程或多次搜索可共享同一状态对象。
+
+{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\texttt{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（字段声明与公开构造）}\par\vspace{2bp}
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+/** A row-major, immutable N x N board; 0 is the blank. */
+public final class PuzzleBoard extends State implements ZobristKey {
+    private final int size;               // 边长 n
+    private final int[] tiles;            // 行优先排列，0 为空位
+    private final int blankIndex;         // 空位下标，构造时求出
+    private final long zobristHash;       // Zobrist 哈希，构造时算好
+    private final int cachedHashCode;     // 缓存的 hashCode
+    private volatile int[] tilePositions; // 将牌->格下标，惰性建立
+
+    public PuzzleBoard(int[] tiles, int size) {
+        this.size = size;
+        this.tiles = tiles.clone();
+        boolean[] seen = new boolean[tiles.length];  // 校验 0..n*n-1 各一次
+        int blank = -1;
+        for (int i = 0; i < this.tiles.length; i++) {
+            int tile = this.tiles[i];
+            if (tile < 0 || tile >= seen.length || seen[tile])
+                throw new IllegalArgumentException("Tiles must be a permutation");
+            seen[tile] = true;
+            if (tile == 0) blank = i;                // 同时记下空位下标
+        }
+        this.blankIndex = blank;
+        this.zobristHash = computeZobrist(this.tiles, size);
+        this.cachedHashCode = 31 * size + Arrays.hashCode(this.tiles);
+    }
+}
+\end{verbatim}}
+
+除上述公开构造外，\texttt{PuzzleBoard} 另有一个私有构造，
+直接接收已经算好的空位下标与两项哈希值，
+供 3.4 节的后继构造复用这三项缓存、跳过校验与重算。
+
+字段 \texttt{tilePositions} 保存“将牌编号 $\to$ 所在格下标”的逆映射，
+曼哈顿距离查目标格、PDB 查表都要用它。由于状态不可变，该数组按需算一次后缓存；
+生成后继时若父状态已经建立，则克隆并只改两项（见 3.4 节）。
+\texttt{zobristHash} 由按规模生成的 Zobrist 随机数表异或而成，
+在同一规模的全部状态间近似一一对应，供 IDA* 等算法快速识别重复状态。
+
+搜索树结点由框架类 \texttt{Node} 表示。按第 1 章的说明，结点除状态外
+还保存父结点、到达动作与路径代价 $g$；本项目另外缓存启发值 $h$，
+估值 $f=g+h$ 由 \texttt{evaluation()} 返回。排序方式对应第 1 章的三种算法配置：
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+evaluators.put(FULL, (o1, o2) -> {           // A*: 按 f 排序
+    if (o1.evaluation() == o2.evaluation())
+        return o1.getPathCost() - o2.getPathCost(); // 平局取浅层结点
+    return o1.evaluation() - o2.evaluation();
+});
+evaluators.put(PATH_COST,                    // 一致代价搜索: 按 g
+        Comparator.comparingInt(Node::getPathCost));
+evaluators.put(HEURISTIC,                    // 贪心最佳优先: 按 h
+        Comparator.comparingInt(Node::getHeuristic));
+\end{verbatim}}
+
 \TemplateSubsection{3.2 Open表及Closed表的数据结构}
+{\bfseries 3.2\quad Open表及Closed表的数据结构}\par\vspace{2bp}
+
+Open 表抽象为接口 \texttt{Frontier}（\texttt{offer}、\texttt{poll}、
+\texttt{contains}、\texttt{size} 等），实现类 \texttt{PqFrontier} 用两个容器配合：
+优先队列负责“按估值最小出队”，哈希表负责成员查询与重复结点替换。
+
+{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\texttt{src/stud/g01/queue/PqFrontier.java}（入队与出队）}\par\vspace{2bp}
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+public final class PqFrontier implements Frontier {
+    private final PriorityQueue<Node> queue;   // 按评估器排序
+    private final Map<State, Node> byState = new HashMap<>();
+
+    public boolean offer(Node node) {  // 每个状态只保留最优结点
+        Node oldNode = byState.get(node.getState());
+        if (oldNode != null) {
+            if (evaluator.compare(oldNode, node) <= 0) return false;
+            queue.remove(oldNode);     // 新路径更短才替换
+        }
+        queue.offer(node);
+        byState.put(node.getState(), node);
+        return true;
+    }
+    public Node poll() {
+        Node node = queue.poll();
+        if (node != null) byState.remove(node.getState());
+        return node;
+    }
+}
+\end{verbatim}}
+
+\texttt{contains} 与 \texttt{size} 只读哈希表，均摊 $O(1)$，
+不必扫描队列；重复状态替换时 \texttt{queue.remove(oldNode)} 需线性扫描（$O(n)$），
+这是当前实现的已知弱点，其对性能的影响在第四部分讨论。
+Closed 表由框架类 \texttt{AbstractSearcher} 维护，就是一个 \texttt{HashSet<State>}：
+\texttt{BestFirstSearcher} 每次取出结点后\textbf{先判定是否为目标}，
+非目标才把其状态放入 \texttt{explored}，随后生成后继并丢弃已在 Closed 中的子结点。
+这与第 1.2.1 节列出的步骤一致。第 2.4 节已证明三个启发函数都满足一致性，
+$f$ 沿路径不降、首次出队即最优，因此重访状态可以安全丢弃，无需重开。
+无解的判定在循环开始前交给 \texttt{problem.solvable()}（两端不变量比较），
+避免对无解题目白白展开整个连通类。
+
+图~\ref{fig:3-2} 把上述一轮循环与两张表的读写位置画在一起：Closed 表只在
+“出队且判定为非目标后登记”与“扩展时过滤”两处被访问，
+\texttt{byState} 只在入队处新增或替换、在出队处删除，
+\texttt{contains} 与 \texttt{size} 只读它，
+优先队列本身不参与查重。三种容器操作的复杂度见表~\ref{tab:frontier}。
+
+\SolverFigure[0.99]{fig-3-2-frontier-cycle}{A* 一轮扩展中 Open 表与 Closed 表的读写（示意）}{fig:3-2}
+
+\par\noindent\begin{minipage}{\linewidth}
+\begin{center}
+{\fontsize{9bp}{12bp}\selectfont
+\setlength{\tabcolsep}{4bp}
+\begin{tabular}{|p{64bp}|p{86bp}|p{94bp}|p{90bp}|}
+\hline
+\textbf{操作} & \textbf{数据结构} & \textbf{平均复杂度} & \textbf{说明} \\
+\hline
+offer 入队/替换 & 优先队列 + HashMap & $O(\log n)$，替换另需 $O(n)$ & 每个状态仅保留估值最优的结点 \\
+\hline
+poll 出队 & 优先队列 + HashMap & $O(\log n)$ & 出队同时删除哈希表记录 \\
+\hline
+contains 查重 & HashMap & $O(1)$ & 只查 \texttt{byState}，不扫描队列 \\
+\hline
+explored 登记/查询 & HashSet & $O(1)$ & 一致性成立，出队后不再重开 \\
+\hline
+\end{tabular}}
+\end{center}
+\refstepcounter{table}\label{tab:frontier}
+{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad Open 表与 Closed 表各操作的复杂度}\par\vspace{5bp}
+\end{minipage}\par
+
 \TemplateSubsection{3.3 三个启发函数的具体实现}
+{\bfseries 3.3\quad 三个启发函数的具体实现}\par\vspace{2bp}
+
+三种启发函数都实现 \texttt{Predictor} 接口接入搜索框架；
+针对“一步只动一枚将牌”的特点，再加一层 \texttt{IncrementalPredictor} 接口，
+允许从父结点的 $h$ 值增量推出子结点的 $h$ 值，而不必每次全量重算：
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+public interface Predictor {
+    int heuristics(State state, State goal);   // 全量估值
+}
+public interface IncrementalPredictor extends Predictor {
+    // 由父状态估值增量计算子状态估值
+    int successorHeuristics(State parent, State child,
+                            State goal, int parentHeuristic);
+}
+\end{verbatim}}
+
+需要说明增量版本的\textbf{作用域}，否则容易高估它的作用：框架方法
+\texttt{childNodes(parent, predictor)} 对每个子结点调用的是全量
+\texttt{heuristics()}，并不识别 \texttt{IncrementalPredictor}，
+因此 A* 的常规扩展仍是 $O(n^2)$ 的全量扫描，增量并没有在这里生效。
+\texttt{successorHeuristics()} 在工程中只有一个调用点，
+即 3.5 节 IDA* 的 fast 分支，而该分支默认关闭。
+换言之，增量估值是\textbf{可选的优化路径}，不是当前 A* 扩展的估值方式；
+本章 3.3.1 与 3.3.2 给出增量式子，是为说明估值可以常数时间更新，
+并为第四部分评估该优化的效果提供依据。
+
+曼哈顿与不在位将牌由 \texttt{PuzzleBoard} 内部的 \texttt{PuzzlePredictor}
+按枚举注册；Disjoint Pattern 数据库由 \texttt{LazyPredictor} 惰性提供（见 3.3.3）。
+枚举中还注册了 \texttt{MANHATTAN\_LC}，即在曼哈顿距离上再叠加线性冲突修正；
+它比曼哈顿距离更紧但不再是 $O(n^2)$ 单次扫描，
+不属于选题要求比较的三个启发函数，本文不再展开，仅作为扩展保留在代码中。
+
 \TemplateSubsubsection{3.3.1 曼哈顿距离}
+{\bfseries 3.3.1\quad 曼哈顿距离}\par\vspace{2bp}
+
+按第 2.4.1 节的定义 $h_{\mathrm{M}}(s)$，对每枚非空将牌累加到其目标格的行列距离。
+目标格坐标来自目标状态缓存的 \texttt{tilePositions}，单次查表 $O(1)$，
+全量估值一遍扫描 $O(n^2)$：
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+private int manhattan(PuzzleBoard goal) {
+    int distance = 0;
+    for (int i = 0; i < tiles.length; i++) {
+        int tile = tiles[i];
+        if (tile == 0) continue;             // 空位不计入
+        int target = goal.positions()[tile]; // 该将牌的目标格
+        distance += Math.abs(i / size - target / size)  // 行距
+                  + Math.abs(i % size - target % size); // 列距
+    }
+    return distance;
+}
+\end{verbatim}}
+
+增量计算利用第 2.4.1 节的单调性分析：一次移动只改变被移动将牌的距离贡献。
+设被移动将牌原在格 $p$、移动后到格 $q$（$q$ 即父状态的空位），则
+\[
+h_{\mathrm{M}}(s')=h_{\mathrm{M}}(s)-d(p,t)+d(q,t),
+\]
+其中 $d(\cdot,t)$ 是该将牌到目标格的曼哈顿距离。单次估值只需常数时间：
+
+{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\texttt{src/stud/g01/problem/npuzzle/PuzzleBoard.java}
+（\texttt{PuzzlePredictor.successorHeuristics} 的曼哈顿分支）}\par\vspace{2bp}
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+int oldPosition  = after.blankIndex;   // 被移动将牌原先所在格 p
+int newPosition  = before.blankIndex;  // 移动后占据的格 q（父状态空位）
+int movedTile    = before.tiles[oldPosition];  // 被移动的将牌编号
+int goalPosition = target.positions()[movedTile];
+int oldDistance = Math.abs(oldPosition / size - goalPosition / size)
+        + Math.abs(oldPosition % size - goalPosition % size);
+int newDistance = Math.abs(newPosition / size - goalPosition / size)
+        + Math.abs(newPosition % size - goalPosition % size);
+return parentHeuristic - oldDistance + newDistance;
+\end{verbatim}}
+
+图~\ref{fig:3-3} 用一次具体移动验证这个式子：空位左移一格时，
+只有 8 号将牌换了格，其余 14 枚的贡献完全不变，因此总估值的变化量就是
+这一枚将牌前后距离之差。
+
+\SolverFigure[0.68]{fig-3-3-manhattan-delta}{一次移动只改变一枚将牌的距离贡献（示意）}{fig:3-3}
+
 \TemplateSubsubsection{3.3.2 不在位将牌}
+{\bfseries 3.3.2\quad 不在位将牌}\par\vspace{2bp}
+
+全量实现同样一遍扫描，逐下标比较当前与目标数组（空位除外）：
+
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+private int misplaced(PuzzleBoard goal) {
+    int count = 0;
+    for (int i = 0; i < tiles.length; i++)
+        if (tiles[i] != 0 && tiles[i] != goal.tiles[i]) count++;
+    return count;
+}
+\end{verbatim}}
+
+增量版本只需考察移动的那一枚将牌：设其编号为 $t$，原来在格 $p$、移动后到格 $q$，
+则它在两处对 $h_{\mathrm{mis}}$ 的贡献分别为 $\mathbf{1}[s_g(p)\neq t]$ 与
+$\mathbf{1}[s_g(q)\neq t]$，故
+\[
+h_{\mathrm{mis}}(s')=h_{\mathrm{mis}}(s)
+-\mathbf{1}[s_g(p)\neq t]+\mathbf{1}[s_g(q)\neq t],
+\]
+实现见 \texttt{successorHeuristics()} 的 MISPLACED 分支，同样只需常数时间。
+
 \TemplateSubsubsection{3.3.3 Disjoint Pattern和Pattern Database}
+{\bfseries 3.3.3\quad Disjoint Pattern和Pattern Database}\par\vspace{2bp}
+
+\textbf{分组。}$3\times3$ 取 $\{1,2,3,4\}$、$\{5,6,7,8\}$ 两组；
+$4\times4$ 默认取 4-4-4-3，即 $\{1,2,3,4\}$、$\{5,6,7,8\}$、$\{9,10,11,12\}$、
+$\{13,14,15\}$。构造时逐一校验各组互不相交且覆盖全部非空将牌——
+这是第 2.4.3 节加性（成本划分）证明成立的前提。
+
+\textbf{抽象状态编码。}每个抽象状态保存空位与本组 $k$ 枚将牌所在格，
+共 $k+1$ 个互不相同的格下标，用变进制数排名（rank）映射为连续下标：
+自左向右逐个位置取“该格在尚未用过的格中的序号”为一位，位权依次乘 $16-i$。
+$k+1$ 个位置恰有 $16\times15\times\cdots\times(16-k)$ 种排列，与数组下标一一对应；
+单表即一个 \texttt{byte[]} 距离数组，如 $k=4$ 时为
+$16\times15\times14\times13\times12=524\,160$ 项，每项一字节。
+图~\ref{fig:3-4} 给出一个具体的编码过程：序数并非“格下标”本身，
+而是该格在\textbf{尚未使用}的格中的序号，这正是变进制数能保证下标连续、不浪费的原因。
+
+\SolverFigure[0.90]{fig-3-4-pdb-ranking}{抽象状态的变进制编码与 \texttt{byte[]} 下标（示意）}{fig:3-4}
+
+\textbf{建表：0-1 BFS。}按第 2.4.3 节的成本划分，抽象边上移动本组成员花费 1、
+移动其他将牌花费 0。从抽象目标状态出发，用双端队列松弛：权 0 边的邻居
+\texttt{addFirst}，权 1 边的邻居 \texttt{addLast}，保证每个抽象状态
+第一次出队时距离即为最短。距离用 \texttt{byte} 存储：
+\texttt{0xFF}（255）是“未访问”哨兵，合法距离为 0--254，
+候选值达到 255 即抛异常；建表结束后若仍存在 255，
+则说明有抽象状态不可达，同样报错。图~\ref{fig:3-5} 是这一过程的流程。
+
+{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\texttt{src/stud/g01/pdb/PatternTable.java}（\texttt{relax} 的松弛与入队）}\par\vspace{2bp}
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+int candidate = oldDistance + (member >= 0 ? 1 : 0); // 移动组员则计 1
+if (candidate >= 255) throw new IllegalStateException("PDB byte distance overflow");
+if (candidate < Byte.toUnsignedInt(values[next])) {
+    values[next] = (byte) candidate;
+    if (member >= 0) deque.addLast(next);   // 权 1 边从队尾进
+    else             deque.addFirst(next);  // 权 0 边从队头进
+}
+\end{verbatim}}
+
+\SolverFigure[0.98]{fig-3-5-pdb-zerone-bfs}{0-1 BFS 建表、哨兵约定与磁盘缓存分支（示意）}{fig:3-5}
+
+\textbf{查表。}估值时对每张表把空位与组员的位置编码成 rank，
+取无符号字节后相加得 $h_{\mathrm{PDB}}(s)$。相加的正确性即第 2.4.3 节的
+加性结论；PDB 不做增量更新，每次估值对每一张表各做一次变进制编码。
+
+\textbf{磁盘缓存与惰性加载。}建表需要遍历该组的全部抽象状态
+（在 $4\times4$ 默认分组 4-4-4-3 下合计超过 $1.6\times10^6$ 个条目；
+$3\times3$ 默认分组 4-4 下则仅 $30\,240$ 个，两者见表~\ref{tab:pdb-size}），
+是求解前的主要一次性开销，
+故每张表按“版本—规模—目标指纹—组员”命名写入 \texttt{generated/pdb/}：
+文件头记录魔数、版本、规模、组员、目标布局与状态数，数据以 CRC32 校验，
+任何不符即视为缓存失效而重建。目标指纹取目标布局 SHA-256 的前 8 字节，
+目标不同绝不会误用旧表。\texttt{LazyPredictor} 在第一次估值时才构建或载入
+数据库，并以目标状态为键缓存，同一目标多次求解不重复建表，
+\texttt{synchronized} 保证并发下的安全。
+
+不同分组的规模差异见表~\ref{tab:pdb-size}。表长只由“每组的将牌数 $+1$”
+决定，因此 4-4-4-3 与 5-5-5 的内存相差一个数量级；
+5-5-5 与其列方向的转置划分是两种各自完备的划分，
+估值只能取其中较大者，\textbf{不能}把两者的值相加
+（否则违反第 2.4.3 节的成本划分前提）。默认取 4-4-4-3，
+正是为了把建表时间与常驻内存都压在一个量级以内。
+
+\par\noindent\begin{minipage}{\linewidth}
+\begin{center}
+{\fontsize{9bp}{12bp}\selectfont
+\setlength{\tabcolsep}{4bp}
+\begin{tabular}{|p{46bp}|p{74bp}|p{126bp}|p{104bp}|}
+\hline
+\textbf{规模} & \textbf{分组} & \textbf{各表状态数} & \textbf{合计字节} \\
+\hline
+$3\times3$ & 4-4 & $9\cdot8\cdot7\cdot6\cdot5=15\,120$，2 张 & $30\,240$（约 29.5 KiB） \\
+\hline
+$4\times4$（默认） & 4-4-4-3 & $524\,160\times3+43\,680$ & $1\,616\,160$（约 1.54 MiB） \\
+\hline
+$4\times4$（备选） & 5-5-5 & $5\,765\,760\times3$ & $17\,297\,280$（约 16.5 MiB） \\
+\hline
+\end{tabular}}
+\end{center}
+\refstepcounter{table}\label{tab:pdb-size}
+{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 不同分组下模式数据库的规模（按 \texttt{byte[]} 计）}\par\vspace{5bp}
+\end{minipage}\par
+
 \TemplateSubsection{3.4 求解后继结点的函数}
+{\bfseries 3.4\quad 求解后继结点的函数}\par\vspace{2bp}
+
+后继生成分三层协作。\textbf{框架层}：\texttt{Problem.childNodes(parent)}
+对 \texttt{parent.getState().actions()} 中的每个动作调用 \texttt{applicable()}
+过滤，再以 \texttt{next(action)} 得到后继状态，路径代价取 $g+1$，
+包装成子结点后用预测器赋 $h$ 值。\textbf{问题层}：\texttt{NPuzzleProblem}
+的 \texttt{stepCost()} 恒为 1，\texttt{solvable()} 按第 2.3 节比较两端不变量，
+\texttt{goal()} 比较完整排列。\textbf{状态层}：合法动作按空位位置预生成——
+第一次用到某规模时，为全部 $n^2$ 个空位位置各生成一份按越界条件裁剪的
+方向表并缓存，之后 \texttt{actions()} 只是按下标取现成列表：
+
+{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\texttt{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（\texttt{actions}）}\par\vspace{2bp}
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+public Iterable<PuzzleMove> actions() {
+    return ACTIONS.computeIfAbsent(size, PuzzleBoard::legalActions)
+                  .get(blankIndex);
+}
+\end{verbatim}}
+
+后继生成 \texttt{next(action)} 先按空位行列号求目标格，越界即抛异常
+（调用方保证只传合法动作），随后四步构造不可变后继：
+
+{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\texttt{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（\texttt{next} 的构造部分）}\par\vspace{2bp}
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+int movedTile = tiles[target];        // 1. 与空位交换的将牌
+long nextHash = zobristHash ^ table[blankIndex][0]     // 2. Zobrist
+        ^ table[target][movedTile] ^ table[blankIndex][movedTile]
+        ^ table[target][0];           //    只异或四项，增量更新
+int nextHashCode = cachedHashCode     // 3. hashCode：按多项式
+        + movedTile                   //    权重之差一次修正
+        * (weights[blankIndex] - weights[target]);
+int[] nextTiles = tiles.clone();      // 4. 克隆后交换，再封装
+nextTiles[blankIndex] = nextTiles[target];
+nextTiles[target] = 0;
+PuzzleBoard successor = new PuzzleBoard(nextTiles, size, target,
+        nextHash, nextHashCode);
+// 若父状态的 tilePositions 已建立，则克隆并只改空位与被移动将牌两项
+\end{verbatim}}
+
+注意两个名字相近但用途不同的量：\texttt{nextHash} 是 64 位 Zobrist 值，
+只用于 IDA* 转置表的分桶（见 3.5 节）；\texttt{nextHashCode} 才是
+\texttt{hashCode()} 的返回值，必须与 \texttt{equals} 保持一致，
+因此按多项式权重精确修正而不能近似。
+
+将牌数组必须克隆（状态不可变），但三项缓存使后继构造依然廉价：
+Zobrist 哈希只异或常数项，\texttt{hashCode} 按多项式权重的差值修正，
+将牌位置映射在父状态已算过时克隆并只改空位与被移动将牌两项。
+后继构造的廉价，换来的是 3.2 节中 Open 表、Closed 表可以放心地
+以哈希容器完成 $O(1)$ 的重复状态查询，二者共同决定了图搜索的整体开销。
+
+\TemplateSubsection{3.5 IDA*搜索的实现}
+{\bfseries 3.5\quad IDA*搜索的实现}\par\vspace{2bp}
+
+第 1.4 节说明过 A* 的取舍：Open、Closed 两张表换来“每个状态只扩展一次”，
+代价是存储随已扩展结点数线性增长，在 15-Puzzle 上可能先受到存储限制。
+IDA* 走另一条路——不做全局 Open 表，改为在阈值约束下反复做深度优先搜索。
+按第 1.4 节的结论，BASIC 模式的路径相关搜索存储为 $O(bd)$，
+即从“随已扩展结点数增长”变为“随搜索深度增长”；
+需要强调的是，第 1.4 节已限定该结论只覆盖 BASIC 的路径相关搜索存储；
+除转置表外，当前实现还把各轮阈值记入 \texttt{thresholdSequence}，
+这份诊断序列另占 $O(I)$ 空间（$I$ 为迭代轮数），同样不在 $O(bd)$ 之内。
+TT 与 ZOBRIST 模式还要额外付出转置表空间（上限见下文），
+模式数据库等预处理存储则与搜索模式无关，也不计入。
+这里不预先给出 15-Puzzle 上的具体记录数，
+该数值受估值成本、重复状态比例与可用内存影响，留待第四部分实测给出。
+IDA* 的实现类是
+\texttt{src/stud/g01/solver/IdAStar.java} 中的 \texttt{IdAStar}，
+它继承 \texttt{AbstractSearcher}，因此仍持有 \texttt{frontier} 与
+\texttt{explored} 两个字段，并在 \texttt{search()} 开头一并清空，
+但此后不再读写它们：源码注释点明 \texttt{explored}
+“从不是一个跨轮次的 Closed 集”。保留继承只是为了让两类搜索器在框架中互换。
+
+\textbf{阈值的迭代。}与 3.2 节的 A* 一样，无解在循环开始前
+先交给 \texttt{problem.solvable()} 判断，不可解时直接返回 \texttt{null}，
+根本不会进入阈值迭代。进入迭代后，首轮阈值取根结点的启发值 $B_0=h(S)$；
+每轮深度优先返回“被截断结点中最小的 $f$ 值”作为下一轮阈值；
+若某轮不存在任何被截断结点（返回 $\infty$），同样判定无解并结束。
+这正是第 1.4 节式~\eqref{eq:overview-bound} 的推进规则，
+即 $B_{k+1}$ 取第 $k$ 轮全体被截断结点中最小的 $f$，
+阈值严格递增且跳过没有候选结点的数值区间。
+\texttt{thresholdSequence} 把每轮阈值依次记录下来，可直接用于第四部分的收敛分析。
+
+{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\texttt{src/stud/g01/solver/IdAStar.java}（\texttt{search} 的外层循环）}\par\vspace{2bp}
+{\fontsize{9.5bp}{12bp}\selectfont
+\begin{verbatim}
+if (!problem.solvable()) return null;   // 与 A* 相同的前置可解性检查
+Node root = problem.root(predictor);
+long bound = root.getHeuristic();   // 首轮阈值 B0 = h(S)
+initialBound = bound;
+while (true) {
+    iterations++;
+    finalBound = bound;
+    thresholdSequence.add(bound);
+    bestG.clear();          // g 只在产生它的那一轮阈值下有意义
+    zobristTable.clear();
+    transpositionEntries = 0;
+    pathStates.clear();     // 只保存当前路径，不保存全局 Closed
+    pathStates.add(root.getState());
+    long next = depthFirstSearch(problem, root, bound, 0);
+    pathStates.clear();
+    if (next == FOUND) return generatePath(solution);
+    if (next == Long.MAX_VALUE) return null;   // 无可截断结点：无解
+    bound = next;           // 下一轮阈值取本轮最小的超界 f
+}
+\end{verbatim}}
+
+\textbf{深度优先与三条出口。}\texttt{depthFirstSearch()} 每次进入先算 $f=g+h$：
+$f>bound$ 立即返回该 $f$（出口一，截断）；命中目标则记下结点并返回
+\texttt{FOUND}（出口二，成功）；被转置表判定为劣势则返回 $\infty$
+（出口三，剪枝）。三条都不成立才真正扩展，逐个后继递归，
+并把本轮最小的返回值逐层上传。与 3.2 节对照，这里的差别只有一句：
+\textbf{没有全局 Closed 表}，只有 \texttt{pathStates} 保存当前 DFS 路径上的状态，
+用于剪掉搜索树上的回环；退出递归时立刻移除，
+因此其规模就是当前 DFS 路径的长度，随递归深度线性增长。
+需要说明的是，\texttt{peakPathStates} 与 \texttt{maxDepth} 的计数口径并不相同：
+\texttt{maxDepth} 只在真正被扩展的结点上更新，
+而子结点是在递归调用\textbf{之前}就加入 \texttt{pathStates} 的，
+因此那些被 $f>\texttt{bound}$ 截断的结点、以及命中目标的结点
+只进入路径、不会被计入 \texttt{maxDepth}，峰值可比 \texttt{maxDepth} 多出 2。
+在解长为 $L$ 的典型运行中，目标结点在深度 $L$ 加入路径后立刻返回，
+此时路径长度为 $L+1$，而最深的被扩展结点是深度 $L-1$ 的父结点，
+即恰好多出 2。即便如此，它仍只与解深度同阶。这正是 IDA* 省下存储的地方，
+也是它必须重复扩展同一状态的原因。图~\ref{fig:3-6} 是外层迭代与内层递归的全貌。
+
+\SolverFigure[0.95]{fig-3-6-ida-flow}{IDA* 的阈值迭代与深度优先的三条出口（示意）}{fig:3-6}
+
+\textbf{转置表的三档配置。}\texttt{Mode} 枚举把“用不用转置表、用哪种键”
+做成可切换的开关，留待第四部分在 IDA* 内部配置之间做对比，见表~\ref{tab:ida-mode}。
+其中 TT 与 ZOBRIST 两档受 \texttt{transpositionLimit}（默认 $1\,000\,000$ 条）限制，
+达到上限后不再写入新条目；BASIC 档不建表，不受此限制
+（见 \texttt{dominated()} 首行的直接返回）。源码注释指出“表可以半途放弃而不影响完备性与最优性”，
+这里说的是\textbf{放弃写入}这件事本身不引入错误——表只是加速结构。
+至于 \texttt{dominated()} 的剪枝判定，其正确性还受状态记录方式与路径上下文的约束，
+第 1.4 节已说明不能把 BASIC 模式的最优性证明原样套用到任意置换表策略上，
+故本文不把它当作正确性依据。另一个容易忽略的细节是
+每轮迭代开始都清空转置表：\texttt{bestG} 中的 $g$ 只在产生它的那一轮阈值下成立，
+跨轮复用会把本该扩展的结点错误地剪掉。
+
+\par\noindent\begin{minipage}{\linewidth}
+\begin{center}
+{\fontsize{9bp}{12bp}\selectfont
+\setlength{\tabcolsep}{4bp}
+\begin{tabular}{|p{54bp}|p{112bp}|p{112bp}|p{100bp}|}
+\hline
+\textbf{模式} & \textbf{转置表结构} & \textbf{键与判定} & \textbf{取舍} \\
+\hline
+BASIC & 不使用 & 只靠阈值与 \texttt{pathStates} 剪枝 & 内存最小，重复扩展最多 \\
+\hline
+TT & \texttt{HashMap\textless State,Integer\textgreater} & 完整状态作键，记该状态迄今最小的 $g$ & 判定精确，但状态对象整份入表 \\
+\hline
+ZOBRIST（默认） & \texttt{HashMap\textless Long,List\textless Entry\textgreater\textgreater} & 64 位 Zobrist 值分桶，桶内用 \texttt{equals} 确认 & 键固定 8 字节，常驻占用远小于 TT；命中率留待实测 \\
+\hline
+\end{tabular}}
+\end{center}
+\refstepcounter{table}\label{tab:ida-mode}
+{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad IDA* 三种转置表模式的对比}\par\vspace{5bp}
+\end{minipage}\par
+
+\textbf{fast 分支。}系统属性 \texttt{wattai.fast=true} 时，
+\texttt{depthFirstSearch()} 绕过框架的 \texttt{childNodes()}，
+直接取 \texttt{board.actions()}、用 \texttt{board.next(move)} 造后继，
+同时做两件 \texttt{childNodes()} 不做的事：用 \texttt{reverses()}
+跳过与来路相反的走法，用 \texttt{IncrementalPredictor} 增量算 $h$，
+从而减少结点对象与全量估值的开销。它不需要 \texttt{applicable()} 过滤，
+因为 \texttt{actions()} 返回的已经是合法动作。
+但\textbf{统计口径发生了变化}：该分支在 \texttt{continue} 之后才累加
+\texttt{nodesGenerated}，被 \texttt{reverses()} 跳过的反向走法并不计入；
+而常规分支把 \texttt{childNodes()} 造出的全部子结点都计数，
+其中包含反向走法。因此同一道题在两种分支下的
+\texttt{nodesGenerated} 不可直接相比（fast 分支会少计）。
+\texttt{cyclePrunes} 同样受此影响：常规分支只统计回环，
+反向走法剪枝仅在 fast 分支开启时才计入。
+代价是这条路径只认 \texttt{NPuzzleProblem} 与 \texttt{PuzzleBoard}
+的具体类型，因此默认关闭（\texttt{false}），
+只在需要对比“结点对象与估值开销”时单独开启。
+
+\textbf{可采集的指标。}\texttt{iterations}（迭代轮数）、\texttt{maxDepth}
+（最大递归深度）、\texttt{peakPathStates}（路径集合峰值）、
+\texttt{cyclePrunes}（默认只统计回环；fast 分支开启时另含反向走法剪枝）、
+\texttt{transpositionPrunes}（转置表剪枝次数）、
+\texttt{peakTranspositionEntries}（转置表条目峰值）、
+\texttt{initialBound} 与 \texttt{finalBound}（首末阈值）都提供了访问器；
+再加上框架已有的 \texttt{nodesGenerated}、\texttt{nodesExpanded}、
+以及 \texttt{PatternTable.preparationMs()}（建表耗时），
+第四部分可直接取用，不必另设统计代码。但比较时须注意口径，
+其中最根本的一条是\textbf{跨算法}的差异：
+\texttt{nodesGenerated} 与 \texttt{nodesExpanded} 只在 \texttt{search()} 开头
+被清零一次，而每轮迭代重置的只有 \texttt{bestG}、\texttt{zobristTable}、
+\texttt{transpositionEntries} 与 \texttt{pathStates}，
+并不包括这两个计数器。因此 IDA* 的生成与扩展计数是\textbf{跨轮累计}的，
+天然包含同一状态在不同阈值轮次被反复展开的量；
+而 A* 在一致启发函数下每个状态至多扩展一次（不重开 Closed），不含这种重复。
+两者含义不同，跨算法比较生成或扩展结点数时必须注明，
+或另行统计“不同状态的展开次数”作为补充指标。
+此外，\texttt{nodesGenerated} 与 \texttt{cyclePrunes} 在 fast 分支开启与关闭时
+含义也不同（见上文），转置表条目数还受默认上限 $1\,000\,000$ 条的截断，
+\texttt{peakPathStates} 与 \texttt{maxDepth} 亦非同一口径。
+涉及这些量的对比应在表中注明所用算法、分支与模式。
+
+至此可以把本章的因果链收束为一句：状态不可变（3.1）使哈希容器可以
+$O(1)$ 查重（3.2），后继构造只克隆一个数组（3.4）使扩展本身足够廉价，
+两者共同支撑起 A* 的图搜索；三个启发函数（3.3）按各自的代价提供下界，
+其中曼哈顿与不在位将牌另备常数时间的增量版本，
+但框架的常规扩展仍走全量估值。IDA*（3.5）在这套数据结构上
+把“全局 Closed 表”换成“当前路径 + 转置表”，用重复扩展换存储，
+并可通过 fast 分支启用增量估值与反向走法剪枝。
+两者的实际差距，以及三种启发函数与三档转置表带来的变化，留待第四部分用数据说明。
+\endgroup
 
 \input{section-four.tex}
 
