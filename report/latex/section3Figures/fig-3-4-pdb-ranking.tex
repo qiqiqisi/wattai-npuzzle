@@ -1,0 +1,84 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{9.5bp}{12.6bp}\selectfont,text=Ink},
+  cell/.style={draw=Ink,line width=.55pt,minimum size=7.2mm,inner sep=0pt},
+  blank/.style={cell,fill=PaleGray},
+  member/.style={cell,fill=PaleBlue,draw=Blue},
+  tag/.style={font=\fontsize{9bp}{12bp}\selectfont,text=Muted},
+  edge/.style={->,draw=Blue,line width=.7pt},
+}
+
+% 抽象状态：0 为空位，1..4 为组员，其余格画成浅点
+\newcommand{\aboard}[3]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \foreach \row [count=\r from 0] in {#3} {
+      \foreach \v [count=\c from 0] in \row {
+        \ifnum\v<0\relax
+          \node[cell,text=black!25] at (\c*0.78,-\r*0.78) {$\cdot$};%
+        \else
+          \ifnum\v=0\relax
+            \node[blank] at (\c*0.78,-\r*0.78) {};%
+          \else
+            \node[member] at (\c*0.78,-\r*0.78) {\v};%
+          \fi
+        \fi
+      }
+    }
+  \end{scope}}
+
+\begin{document}
+\begin{tikzpicture}
+  % 左侧：抽象状态棋盘
+  \node[tag] at (1.17,0.62) {抽象状态（组员 $1,2,3,4$ 与空位）};
+  \aboard{0}{0}{{1,-1,-1,-1},{-1,0,-1,2},{-1,-1,3,-1},{-1,4,-1,-1}}
+
+  % 棋盘正下方标注位置序列，不与右侧内容争空间
+  \node[tag,align=center] at (1.17,-3.95)
+    {位置序列 $(5,\,0,\,7,\,10,\,13)$\\即（空位$,$ 1$,$ 2$,$ 3$,$ 4）};
+
+  % 右侧：编码推导，纵向排在棋盘右侧的独立列，行距放宽
+  \node[anchor=north west,align=left,text width=5.0cm] at (3.05,0.35)
+  {\textbf{逐位变进制编码}\\[1.5bp]
+   $r_0=5$\\
+   $r_1=5\times15+0=75$\\
+   $r_2=75\times14+5=1055$\\
+   $r_3=1055\times13+7=13\,722$\\
+   $r_4=13\,722\times12+9=164\,673$\\[4bp]
+   序数 $=$ 该格在\textbf{未占用}格中的序号};
+
+  % 数组示意整体放到下方，单独占一行
+  \begin{scope}[shift={(0,-5.30)}]
+    \draw[line width=.6pt] (0,0) rectangle (8.20,-0.85);
+    \foreach \i in {1,...,7} {
+      \draw[line width=.4pt] (\i*1.025,0) -- (\i*1.025,-0.85);
+    }
+    \draw[fill=PaleBlue,draw=Blue,line width=.65pt] (3.60,-0.02) rectangle (4.62,-0.83);
+    \node[font=\fontsize{7.5bp}{9bp}\selectfont] at (4.11,-0.425) {$\mathbf{164\,673}$};
+    \node[tag,anchor=west] at (8.40,-0.425) {\texttt{byte[]}，长 $524\,160$};
+    \node[tag,anchor=east] at (-0.15,-0.425) {下标 0};
+  \end{scope}
+
+  \draw[edge] (4.11,-4.55) -- (4.11,-5.05);
+  \node[tag,anchor=west] at (4.25,-4.80) {$\mathrm{rank}$ 即下标};
+
+  \node[tag,align=center] at (4.10,-6.95)
+    {每格一个字节，无符号读出即该组的距离分项；\\
+     $16\cdot15\cdot14\cdot13\cdot12 = 524\,160$};
+\end{tikzpicture}
+\end{document}

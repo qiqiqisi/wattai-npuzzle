@@ -1,0 +1,68 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,shapes.geometric}
+
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+
+\tikzset{
+  >=Stealth,
+  % 正文可用宽度 415bp，本图自然宽度控制在 ~330bp，插入时不必大幅缩小
+  every node/.style={font=\fontsize{9bp}{12bp}\selectfont,text=Ink},
+  edge/.style={->,draw=Ink,line width=.6pt},
+  link/.style={->,draw=Blue,dashed,line width=.65pt},
+  box/.style={rectangle,draw=Ink,line width=.6pt,align=center,
+              text width=6.8cm,minimum height=0.95cm,inner sep=3pt},
+  decision/.style={diamond,aspect=3.2,draw=Ink,line width=.6pt,align=center,
+                   text width=3.6cm,inner sep=1pt},
+  setbox/.style={rectangle,draw=Muted,dashed,line width=.65pt,align=center,
+                 fill=PaleGray,text width=4.5cm,inner sep=4pt,
+                 font=\fontsize{8.5bp}{11bp}\selectfont},
+  small/.style={font=\fontsize{8.5bp}{11bp}\selectfont},
+}
+
+\begin{document}
+\begin{tikzpicture}
+  % 顺序与第 1.2.1 节及 BestFirstSearcher 源码一致：先判目标，非目标才登记 Closed
+  \node[box]      (poll)  at (0,0)     {\texttt{frontier.poll()}：取出 $f=g+h$ 最小的结点 $n$};
+  \node[decision] (goal)  at (0,-1.85) {$n$ 是目标状态？};
+  \node[box]      (close) at (0,-3.70) {\texttt{explored.add(}$n$ 的状态)：非目标才登记 Closed};
+  \node[box]      (kids)  at (0,-5.35) {\texttt{childNodes(n)}：动作 $\to$ \texttt{next()} $\to$ 赋 $h$};
+  \node[decision] (seen)  at (0,-7.20) {状态已在 \texttt{explored} 中？};
+  \node[box]      (offer) at (0,-9.00) {\texttt{frontier.offer(child)}：已有则比较，\\更优才 \texttt{queue.remove} 后替换};
+
+  \node[box,text width=2.8cm] (done) at (6.60,-1.85) {回溯父链\\返回解路径};
+  \node[box,text width=2.8cm] (drop) at (6.60,-7.20) {丢弃该子结点};
+
+  \node[setbox] (closedset) at (6.60,-3.70)
+    {\textbf{Closed 表}\\\texttt{HashSet\textless State\textgreater}\\只增不删};
+  \node[setbox] (openset) at (6.60,-9.80)
+    {\textbf{Open 表} \texttt{PqFrontier}\\\texttt{PriorityQueue}：出队\\\texttt{HashMap}：入队替换、出队删除};
+
+  \draw[edge] (poll.south)  -- (goal.north);
+  \draw[edge] (goal.south)  -- node[right,small]{否} (close.north);
+  \draw[edge] (close.south) -- (kids.north);
+  \draw[edge] (kids.south)  -- (seen.north);
+  \draw[edge] (seen.south)  -- node[right,small]{否} (offer.north);
+  \draw[edge] (goal.east)   -- node[above,small]{是} (done.west);
+  \draw[edge] (seen.east)   -- node[above,small]{是} (drop.west);
+
+  \draw[edge] (offer.west) -- (-4.90,-9.00)
+    -- node[right,small,pos=.42]{下一轮} (-4.90,0) -- (poll.west);
+
+  \draw[link] (close.east) -- node[above,small]{写入} (closedset.west);
+  \draw[link] (offer.east) -- node[above,small]{读写} (openset.west);
+
+  % 显式声明边界，确保最右侧说明框不被裁掉
+  \path[use as bounding box] (-5.40,0.75) rectangle (8.80,-10.65);
+\end{tikzpicture}
+\end{document}

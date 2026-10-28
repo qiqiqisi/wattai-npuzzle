@@ -1,0 +1,57 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{9.5bp}{12.6bp}\selectfont,text=Ink},
+  link/.style={->,draw=Blue,dashed,line width=.7pt},
+  % 左右两列使用完全相同的宽与高，箭头才会水平
+  box/.style={rectangle,draw=Ink,line width=.65pt,align=center,
+              text width=4.6cm,minimum height=1.35cm,inner sep=3pt},
+  impl/.style={box,draw=Blue,fill=PaleBlue},
+  head/.style={rectangle,draw=none,fill=PaleGray,align=center,
+               text width=4.6cm,minimum height=0.75cm,inner sep=3pt,
+               font=\fontsize{9.5bp}{12.6bp}\selectfont\bfseries},
+  note/.style={font=\fontsize{9bp}{12bp}\selectfont,text=Muted},
+}
+
+\begin{document}
+\begin{tikzpicture}
+  \node[head] at (0,0)   {框架层 \texttt{core}（教师给定）};
+  \node[head] at (7.4,0) {实现层 \texttt{stud.g01}};
+
+  % 行距 1.95cm，框高 1.35cm，行间留 0.6cm
+  \node[box]  (a1) at (0,-2.00) {\texttt{State}\\状态接口};
+  \node[impl] (b1) at (7.4,-2.00) {\texttt{PuzzleBoard}\\不可变棋盘（3.1）};
+
+  \node[box]  (a2) at (0,-3.95) {\texttt{Problem}\\初态、目标、动作、代价};
+  \node[impl] (b2) at (7.4,-3.95) {\texttt{NPuzzleProblem}\\\texttt{PuzzleMove}（步价 1，3.4）};
+
+  \node[box]  (a3) at (0,-5.90) {\texttt{Frontier}\\Open 表接口};
+  \node[impl] (b3) at (7.4,-5.90) {\texttt{PqFrontier}\\优先队列 + 哈希表（3.2）};
+
+  \node[box]  (a4) at (0,-7.85) {\texttt{Predictor}\\启发估值接口};
+  \node[impl] (b4) at (7.4,-7.85) {\texttt{PuzzlePredictor}\\\texttt{LazyPredictor}（3.3）};
+
+  \node[box]  (a5) at (0,-9.80) {\texttt{AbstractSearcher}、\texttt{BestFirstSearcher}\\\texttt{Node}、Closed 表 \texttt{explored}};
+  \node[impl] (b5) at (7.4,-9.80) {\texttt{IdAStar}\\阈值迭代 DFS（3.5）};
+
+  \foreach \i in {1,...,5} { \draw[link] (a\i.east) -- (b\i.west); }
+
+  \node[note] at (3.70,-10.85)
+    {虚线箭头表示实现层对框架接口的落实，括号内为对应说明小节};
+\end{tikzpicture}
+\end{document}

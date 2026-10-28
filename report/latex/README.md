@@ -2,7 +2,9 @@
 
 [当前报告](main.pdf) · [主文件与封面](main.tex) · [第一部分正文](section-one.tex) · [其余正文](body.tex) · [版式参数](template.sty)
 
-当前版本已填写第一部分“启发式算法综述”、第二部分“N-Puzzle游戏”和第五部分“解路径的可视化”，并保留既有总结与参考文献。第三、四部分目前仍是目录锚点，尚未填写可见正文，因此这不是全篇完成的报告。原目录的章节名称、编号、“不在位将牌”和“.总结及展望”等用词保留。
+当前版本已填写第一部分“启发式算法综述”、第二部分“N-Puzzle游戏”、第三部分“N-Puzzle求解算法实现”和第五部分“解路径的可视化”，并保留既有总结与参考文献。第四部分仍只是目录锚点，尚未填写可见正文，因此这不是全篇完成的报告。原目录的章节名称、编号、“不在位将牌”和“.总结及展望”等用词保留。
+
+第三部分包含 3.1 状态与结点、3.2 Open/Closed 表、3.3 三个启发函数、3.4 后继生成、3.5 IDA\* 实现的可见正文，配图 3-1 至 3-6、表 3-1 至 3-3。文中代码均标注了 `src/` 下的出处文件，示意数值不是实验结果；第四部分的对比可直接引用 `IdAStar` 的访问器与 `PatternTable.preparationMs()`。
 
 第一部分包含 A* 流程、可采纳性与一致性条件、针对当前不重开 Closed 实现的最优性证明、重复状态及数据结构代价、IDA* 阈值更新与 BASIC 模式证明。五张配图按论证顺序穿插，图前引出问题、图后说明结论，示意数值不作为实验结果。
 
@@ -16,13 +18,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -File report/latex/build.ps1
 
 脚本连续编译三次以更新目录与交叉引用，辅助文件和日志写入被忽略的 `generated/latex-template-build/`，最终输出 `report/latex/main.pdf`。最后一轮若仍有未解析引用、重复目标标识或缺失字符，则停止交付。脚本不依赖 Word，也不运行 Java 搜索或实验。
 
-修改第一部分图形源文件后，可以同时重建五张矢量图：
+修改第一、三部分图形源文件后，可以同时重建全部矢量图：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File report/latex/build.ps1 -RebuildFigures
 ```
 
-`section1Figures/` 保留每张图的独立 TikZ 源文件与矢量 PDF；普通编译直接插入 PDF，不必重新绘图。对应关系如下：
+`section1Figures/`、`section3Figures/` 保留每张图的独立 TikZ 源文件与矢量 PDF；普通编译直接插入 PDF，不必重新绘图。脚本依次扫描这两个目录，新增插图目录要同步写进 `build.ps1`。第一部分对应关系如下：
 
 | 图号 | 所在小节 | 内容 | 文件名（均有 `.tex` 和 `.pdf`） |
 | --- | --- | --- | --- |
@@ -32,7 +34,18 @@ powershell -NoProfile -ExecutionPolicy Bypass -File report/latex/build.ps1 -Rebu
 | 1-4 | 1.3.2 | 可采纳性与一致性的区别 | `fig-1-4-consistency` |
 | 1-5 | 1.4 | IDA* 的阈值递增 | `fig-1-5-ida-threshold` |
 
-第一部分图号为 1-1 至 1-5；第五部分独立从 5-1 起计数。重置时同步设置不同的超链接标识，避免跳转到其他章节的同序号图片。第五部分已有截图保存在 `visualFigures/`。
+第三部分对应关系如下：
+
+| 图号 | 所在小节 | 内容 | 文件名（均有 `.tex` 和 `.pdf`） |
+| --- | --- | --- | --- |
+| 3-1 | 3 章引言 | 框架层与实现层的对应关系 | `fig-3-1-module-map` |
+| 3-2 | 3.2 | A\* 一轮扩展中 Open / Closed 的读写 | `fig-3-2-frontier-cycle` |
+| 3-3 | 3.3.1 | 一次移动只改变一枚将牌的距离贡献 | `fig-3-3-manhattan-delta` |
+| 3-4 | 3.3.3 | 抽象状态的变进制编码与 `byte[]` 下标 | `fig-3-4-pdb-ranking` |
+| 3-5 | 3.3.3 | 0-1 BFS 建表、哨兵约定与磁盘缓存 | `fig-3-5-pdb-zerone-bfs` |
+| 3-6 | 3.5 | IDA\* 的阈值迭代与深度优先三条出口 | `fig-3-6-ida-flow` |
+
+第一部分图号为 1-1 至 1-5；第三部分为 3-1 至 3-6；第五部分独立从 5-1 起计数。重置时同步设置不同的超链接标识，避免跳转到其他章节的同序号图片。第五部分已有截图保存在 `visualFigures/`。
 
 ## 编辑与格式
 

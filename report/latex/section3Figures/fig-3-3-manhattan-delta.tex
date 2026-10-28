@@ -1,0 +1,66 @@
+\documentclass[border=7bp]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{9.5bp}{12.6bp}\selectfont,text=Ink},
+  cell/.style={draw=Ink,line width=.6pt,minimum size=9.5mm,inner sep=0pt},
+  blank/.style={cell,fill=PaleGray},
+  moved/.style={cell,fill=PaleBlue,draw=Blue},
+  tag/.style={font=\fontsize{9bp}{12bp}\selectfont,text=Muted},
+  edge/.style={->,draw=Blue,line width=.7pt},
+}
+
+\newcommand{\board}[3]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \foreach \row [count=\r from 0] in {#3} {
+      \foreach \v [count=\c from 0] in \row {
+        \ifnum\v=0\relax
+          \node[blank] at (\c*0.98,-\r*0.98) {};%
+        \else
+          \ifnum\v=8\relax
+            \node[moved] at (\c*0.98,-\r*0.98) {\v};%
+          \else
+            \node[cell] at (\c*0.98,-\r*0.98) {\v};%
+          \fi
+        \fi
+      }
+    }
+  \end{scope}}
+
+\begin{document}
+\begin{tikzpicture}
+  \board{0}{0}{{1,2,3,4},{5,6,8,0},{9,10,11,12},{13,14,15,7}}
+  \board{5.60}{0}{{1,2,3,4},{5,6,0,8},{9,10,11,12},{13,14,15,7}}
+
+  % q 为父状态（移动前）的空位，p 为将牌原来的格；移动后空位落到 p
+  \node[tag] at (1.47,0.90)  {移动前 $s$：8 号在 $p$，空位在 $q$};
+  \node[tag] at (7.07,0.90)  {移动后 $s'$：空位在 $p$，8 号在 $q$};
+
+  % 两个棋盘的说明各占一行，行距 0.62cm，避免互相挤占
+  \node[tag] at (1.47,-4.00) {8 号当前在格 $p$};
+  \node[tag] at (7.07,-4.00) {8 号已移到格 $q$};
+  \node[tag] at (1.47,-4.62) {$d(p,8)=1$};
+  \node[tag] at (7.07,-4.62) {$d(q,8)=0$};
+
+  % 箭头与说明文字分处两行：文字在上，箭头在下，互不遮挡
+  \node[tag] at (4.27,-5.30) {空位左移一格，8 号右移一格};
+  \draw[edge] (3.05,-5.62) -- (5.45,-5.62);
+
+  \node at (4.27,-6.45)
+    {$h_{\mathrm{M}}(s')=h_{\mathrm{M}}(s)-d(p,8)+d(q,8)=4-1+0=3$};
+\end{tikzpicture}
+\end{document}
