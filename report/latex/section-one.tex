@@ -1,6 +1,8 @@
 % 第一部分：算法性质与当前实现的边界分别说明。
 \begingroup
-\setlength{\parskip}{5bp}
+\setlength{\parskip}{2bp}
+\setlength{\textfloatsep}{8bp plus 2bp minus 2bp}
+\setlength{\intextsep}{8bp plus 2bp minus 2bp}
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{1-\arabic{figure}}
 \renewcommand{\theHfigure}{section1.\arabic{figure}}
@@ -9,7 +11,7 @@
 \newcommand{\OverviewTitle}[2]{%
   \par\Needspace{4\baselineskip}%
   #1{#2}{\bfseries #2}\par\vspace{2bp}}
-\newcommand{\OverviewFigure}[4][0.95]{%
+\newcommand{\OverviewFigure}[4][0.90]{%
   \begin{figure}[htbp]
     \centering
     \includegraphics[width=#1\linewidth]{section1Figures/#2.pdf}
@@ -76,7 +78,7 @@ Closed 保存已经完成扩展的状态。每一轮从 Open 取出 $f$ 最小�
 （5）对尚未进入 Closed 的后继，若其状态不在 Open 则插入，若已经存在则保留 $g$ 更小的结点，
 随后回到步骤（2）。同一状态的 $h$ 相同，所以比较 $g$ 与比较 $f$ 等价。
 
-\OverviewFigure[0.86]{fig-1-1-astar-flow}
+\OverviewFigure[0.82]{fig-1-1-astar-flow}
   {A* 图搜索流程与重复状态处理}
   {fig:overview-astar}
 
@@ -191,7 +193,7 @@ $O(\log N)$，状态索引的查询平均为 $O(1)$；但替换旧结点时调�
 因此一致启发函数使同一路径上的 $f$ 不下降。
 这与可采纳性对“估计值和真实剩余代价”的比较不同，是对相邻状态估值关系的约束。
 
-\OverviewFigure[0.86]{fig-1-4-consistency}
+\OverviewFigure[0.80]{fig-1-4-consistency}
   {一致性与可采纳性的区别：同一两步路径上的两种估值}
   {fig:overview-consistency}
 
@@ -233,7 +235,7 @@ IDA* 将按估值选择候选的思想与深度优先搜索结合：给定阈值
 阈值按实际超界值推进，而不是固定执行 $B\leftarrow B+1$，
 这样可跳过没有候选结点进入的数值区间。
 
-\OverviewFigure{fig-1-5-ida-threshold}
+\OverviewFigure[0.78]{fig-1-5-ida-threshold}
   {IDA* 按最小超界值推进阈值的三轮搜索示意}
   {fig:overview-ida}
 
@@ -292,6 +294,11 @@ A* 与 IDA* 的取舍因此同时涉及时间和空间：A* 保留搜索前沿�
 启发值更接近真实代价时，两者通常都有机会缩小搜索范围，
 最终效果仍受估值成本、重复状态比例、阈值轮数和可用内存影响。
 后续实验应在同题、同环境和一致计时口径下比较，不能预先认定 IDA* 在所有实例上都更快。
+
+本文第四章的主要对照实验及困难实例求解采用 IDA* 的 BASIC 模式，
+开启快速实现（\texttt{wattai.fast=true}），不启用置换表。
+TT 与 ZOBRIST 属于可选优化模式，其实验结果应结合具体配置分别讨论，
+不能直接归入 BASIC 模式的结果。
 
 \endgroup
 \clearpage
