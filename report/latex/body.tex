@@ -709,7 +709,8 @@ $f>bound$ 立即返回该 $f$（出口一，截断）；命中目标则记下结
 \SolverFigure[0.95]{fig-3-6-ida-flow}{IDA* 的阈值迭代与深度优先的三条出口（示意）}{fig:3-6}
 
 \textbf{转置表的三档配置。}\texttt{Mode} 枚举把“用不用转置表、用哪种键”
-做成可切换的开关，留待第四部分在 IDA* 内部配置之间做对比，见表~\ref{tab:ida-mode}。
+做成可切换的开关，其结构差异见表~\ref{tab:ida-mode}。
+第四部分主对照采用 BASIC 模式，未单独比较 TT 与 ZOBRIST 的性能。
 其中 TT 与 ZOBRIST 两档受 \texttt{transpositionLimit}（默认 $1\,000\,000$ 条）限制，
 达到上限后不再写入新条目；BASIC 档不建表，不受此限制
 （见 \texttt{dominated()} 首行的直接返回）。源码注释指出“表可以半途放弃而不影响完备性与最优性”，
@@ -728,11 +729,11 @@ $f>bound$ 立即返回该 $f$（出口一，截断）；命中目标则记下结
 \hline
 \textbf{模式} & \textbf{转置表结构} & \textbf{键与判定} & \textbf{取舍} \\
 \hline
-BASIC & 不使用 & 只靠阈值与 \texttt{pathStates} 剪枝 & 内存最小，重复扩展最多 \\
+BASIC & 不使用 & 只靠阈值与 \texttt{pathStates} 剪枝 & 无转置表开销，可能重复扩展 \\
 \hline
 TT & \texttt{HashMap\textless State,Integer\textgreater} & 完整状态作键，记该状态迄今最小的 $g$ & 判定精确，但状态对象整份入表 \\
 \hline
-ZOBRIST（默认） & \texttt{HashMap\textless Long,List\textless Entry\textgreater\textgreater} & 64 位 Zobrist 值分桶，桶内用 \texttt{equals} 确认 & 键固定 8 字节，常驻占用远小于 TT；命中率留待实测 \\
+\texttt{ZOBRIST}\newline（默认） & \texttt{HashMap\textless Long,}\newline\texttt{List\textless Entry\textgreater\textgreater} & 64 位 Zobrist 值分桶，桶内用 \texttt{equals} 确认 & 条目仍保存完整状态，另有装箱键与桶列表开销；内存与命中率需同条件实测 \\
 \hline
 \end{tabular}}
 \end{center}
@@ -788,7 +789,8 @@ $O(1)$ 查重（3.2），后继构造只克隆一个数组（3.4）使扩展本�
 但框架的常规扩展仍走全量估值。IDA*（3.5）在这套数据结构上
 把“全局 Closed 表”换成“当前路径 + 转置表”，用重复扩展换存储，
 并可通过 fast 分支启用增量估值与反向走法剪枝。
-两者的实际差距，以及三种启发函数与三档转置表带来的变化，留待第四部分用数据说明。
+第四部分比较 A* 与 BASIC IDA* 的实际表现，以及三种启发函数带来的变化；
+TT 与 ZOBRIST 的实现作为可选方案保留，不据此给出未经实测的性能排名。
 \endgroup
 
 \input{section-four.tex}
@@ -1171,6 +1173,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \refstepcounter{figure}\label{fig:ops}
 {\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 交互操作：暂停（Step 13）、后退（Step 12）、前进（Step 13）、重置（Step 0）}\par\vspace{5bp}
 
+\noindent\begin{minipage}{\linewidth}
 \textbf{（4）速度切换与目标状态。}图~\ref{fig:speed} 给出 4$\times$4 实例上的两张速度截图与一张目标状态截图。左侧与中间的图分别显示速度档位为 0.5x 与 2x，界面在两种档位下均正常推进；右侧的图是在第 70/70 步继续按 Next 的画面，界面保持在目标状态不再前进。
 
 \begin{center}
@@ -1180,6 +1183,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \end{center}
 \refstepcounter{figure}\label{fig:speed}
 {\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 速度切换（0.5x、2x）与目标状态（第 70/70 步再按 Next 保持不再前进）}\par\vspace{5bp}
+\end{minipage}\par
 
 \textbf{（5）损坏文件被拒绝。}图~\ref{fig:invalid} 是把解路径文件截断后重新运行的终端输出，可见程序抛出 \texttt{java.io.IOException: Incomplete solution file} 并以失败状态结束，没有打开任何窗口，也没有显示伪造的棋盘。
 
