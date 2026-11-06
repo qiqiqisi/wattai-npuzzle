@@ -1,0 +1,9 @@
+PHASE PREPARE
+PHASE SEARCH
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at stud.g01.problem.npuzzle.PuzzleBoard.next(PuzzleBoard.java:233)
+	at stud.g01.problem.npuzzle.PuzzleBoard.next(PuzzleBoard.java:20)
+	at core.problem.Problem.childNodes(Problem.java:67)
+	at core.problem.Problem.childNodes(Problem.java:87)
+	at core.solver.algorithm.searcher.BestFirstSearcher.search(BestFirstSearcher.java:64)
+	at stud.g01.runner.OptimizationWorker.main(OptimizationWorker.java:68)

@@ -29,3 +29,8 @@ elapsed_ms为工作JVM内搜索；parent.txt从创建工作JVM前计时，含其
 另有[首次预实验TIMEOUT](optimization-20261106-20261106T114453353805Z/diagnosis.json)，原因及迟到路径保留；该目录计划80项但只实际启动1项，不能按计划数充当已运行数。
 
 本轮[统一核验](optimization-20261106-20261106T115705068678Z/verification.json)、[最终构建与测试](optimization-20261106-20261106T115705068678Z/final-checks/verification.json)、[项目级核验](optimization-20261106-20261106T115705068678Z/project-validation.json)。实际运行80项加15项诊断尝试及首次预试1项，共96次尝试；两次JFR初始化FAIL不算搜索成功。
+
+## 当前报告复测记录
+
+- [运行目录](../results/optimization-report-20261106T170615944601Z)：9 套 Java 测试通过，80 次主运行（74 SOLVED、3 OOM、3 TIMEOUT），12 次独立 fast/快照控制；所有运行截止为 60 秒，JDK 24.0.2、编译目标 19、1024m。三阶无失败；普通四阶错位数 A* 为 OOM、IDA* 为 TIMEOUT；困难题冷缓存 SOLVED、70 步、父端 12.513 秒。
+- [配置与路径核验](../results/optimization-report-20261106T170615944601Z/verification.json) · [当前报告](../report/latex/main.pdf)

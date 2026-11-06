@@ -2,13 +2,13 @@
 
 人工智能实验一：在教师 Java 框架上实现 A*、IDA*、加性 PDB 和 Swing 解路径播放。教师框架、示例和原题的 31 个保护文件已恢复原始字节，扩展与兼容适配放在学生代码中。
 
-[研究报告 DOCX](report/NPuzzle研究报告.docx) · [PDF](report/NPuzzle研究报告.pdf) · [逐项验收](docs/acceptance.md) · [原始结果索引](results/INDEX.md) · [教师合规](docs/teacher_compliance.md) · [变更与回退](docs/changes.md)
+[当前研究报告 PDF](report/latex/main.pdf) · [LaTeX 源码与编译](report/latex/README.md) · [逐项验收](docs/acceptance.md) · [原始结果索引](results/INDEX.md) · [教师合规](docs/teacher_compliance.md) · [变更与回退](docs/changes.md)
 
-## 新一轮优化实验（2026-11-06）
+## 当前报告与复测
 
-正式80次，SOLVED:61, TIMEOUT:19，另保留1次启动器超时预实验和15次诊断尝试。三个完整8-Puzzle目标、4×4精确/随机验证以及8套原有Java测试通过。Hard热缓存推荐 **BASIC / limit=0 / 555T / fast=true**；BASIC独立冷运行状态为 **TIMEOUT**。三次重复仅作描述，不声称普遍优势。
+本机 JDK 24.0.2（编译目标19）、1024m、60秒截止下，九套 Java 测试通过，80次主运行得到74次SOLVED、3次OOM、3次TIMEOUT，另有12次独立fast/快照控制。3×3全部成功；普通4×4错位数的A*为内存不足、IDA*为超时；困难题冷缓存70步，父端12.513秒。当前报告只采用这组计时记录。
 
-[分析与推荐](docs/optimization_analysis.md) · [新原始数据](results/optimization-20261106-20261106T115705068678Z/runs/) · [自动汇总与图表](results/optimization-20261106-20261106T115705068678Z/analysis-final/analysis.md) · [历史保护基线](results/optimization-20261106-20261106T115705068678Z/baseline.json)
+[报告PDF](report/latex/main.pdf) · [原始运行](results/optimization-report-20261106T170615944601Z/runs/) · [路径与配置核验](results/optimization-report-20261106T170615944601Z/verification.json) · [编译与图表重建](report/latex/README.md)
 
 ## 四阶段历史结果（2026-10-11 复核）
 
@@ -19,11 +19,11 @@
 | 3：加性 PDB | hard 原题索引9，BASIC / 555T / fast=true，新冷缓存70步，父端22.729秒 | 建库计入总时长；1024m是堆上限；保留历史32.594秒及失败依据 |
 | 4：可视化 | 文件驱动 Swing，3×3/4×4 初终态、异常输入及代表性交互截图已归档 | **2026-10-12 本机 GUI 人工验收通过**；截图为静态证据，速度差异依用户实际操作确认 |
 
-不含本地教师资料、旧构建和缓存的干净快照完成 Java19 编译；六套测试共 227,250 项检查、两个新增回归、诊断工具和教师/学生双入口均通过。原始数据、哈希和全部保留路径的审查见 [最终证据](results/final-20261011/verification.json)。完整报告17页，封面身份与学期为 `待填写`。
+不含本地教师资料、旧构建和缓存的干净快照完成 Java19 编译；六套测试共 227,250 项检查、两个新增回归、诊断工具和教师/学生双入口均通过。原始数据、哈希和全部保留路径的审查见 [最终证据](results/final-20261011/verification.json)。当前正式报告入口为 `report/latex/main.pdf`，封面信息已填写；独立17页 DOCX/PDF 为归档文件。
 
 ## 构建与复现
 
-Windows PowerShell，JDK19或更高版本；本轮实际使用 Java19。编译以 `--release 19` 固定兼容性，只在忽略的构建目录将教师混合 GBK/UTF8 源码转为 UTF8，不修改原件。
+Windows PowerShell，JDK19或更高版本；当前报告复测使用 JDK24.0.2。编译以 `--release 19` 固定兼容性，只在忽略的构建目录将教师混合 GBK/UTF8 源码转为 UTF8，不修改原件。
 
 ```powershell
 # 编译并执行六套测试和两个新增回归
@@ -75,7 +75,7 @@ PDB准备时间另计，节点少不等于端到端最快；该有限样本不�
 
 两组图片的初态与目标均与原题一致，终态与目标相同。另有[不完整路径文件被拒绝的真实终端截图](docs/images/invalid_trace_rejected.png)，报错 `java.io.IOException: Incomplete solution file` 属于预期的负面测试。2026-10-12 用户在 Windows 本机确认 3×3/4×4 的 Play、Pause、Previous、Next、Restart、首末步边界及 0.5x/1x/2x 操作均正常；[精选 7 张按钮/速度静态证据与完整验收范围](docs/acceptance.md)。静态图片证明所示状态，不提供帧率或延迟的精确测量。
 
-**报告一致性说明**：研究报告 DOCX/PDF 已嵌入 2026-10-10 的两张旧终态截图，其原文件及哈希保持不变；这里改用 2026-10-12 的四张完整窗口截图作为 README 唯一的 GUI 画面展示，避免重复展示旧图。正式报告目前没有重新生成。
+**报告一致性说明**：研究报告 DOCX/PDF 已嵌入 2026-10-10 的两张旧终态截图，其原文件及哈希保持不变；这里改用 2026-10-12 的四张完整窗口截图作为 README 唯一的 GUI 画面展示，避免重复展示旧图。当前正式报告由 LaTeX 编译，采用当前报告复测目录的数据；独立 DOCX/PDF 为归档版本。
 
 ## 路径播放与目录
 

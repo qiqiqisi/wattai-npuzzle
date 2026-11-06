@@ -10,5 +10,6 @@ tools/verify_project.py -text
 tools/*optimization* -text
 tools/DeadlineProbe.java -text
 tools/OptimizationDiagnostics.java -text
+tools/report_experiments.py -text
 *.docx binary
 *.pdf binary

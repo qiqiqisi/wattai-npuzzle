@@ -1,0 +1,18 @@
+[
+  {
+    "path": "tools/report_experiments.py",
+    "sha256": "40f02bda2e5824e1fa1111ffa0bb5d69659cb6ef2449d4dcddc0e0f3b0db6ea2"
+  },
+  {
+    "path": "tools/optimization_suite.py",
+    "sha256": "f3e890f93104ea3175c5dcab2506973ded75f0a2c64fd300c44239b8ff8fdea4"
+  },
+  {
+    "path": "tools/compile.ps1",
+    "sha256": "dab7a873386f77b00a469d68a1ffda55f241632fe12beca9fb3e603d73cc9e8b"
+  },
+  {
+    "path": "tools/OptimizationDiagnostics.java",
+    "sha256": "42c7812fc0716b822fd7ca7100c886672bc6346f80825f2038fd80addb35c436"
+  }
+]

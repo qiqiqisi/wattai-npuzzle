@@ -1,0 +1,22 @@
+{
+  "suite": "results/optimization-report-20261106T170615944601Z",
+  "runs": 80,
+  "statuses": {
+    "OOM": 3,
+    "SOLVED": 74,
+    "TIMEOUT": 3
+  },
+  "tables": [
+    "teacher3",
+    "ordinary4",
+    "modes",
+    "cache",
+    "controls",
+    "counts"
+  ],
+  "figures": [
+    "heuristic-search",
+    "heuristic-parent",
+    "lc-nodes"
+  ]
+}

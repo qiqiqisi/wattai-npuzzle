@@ -1,0 +1,47 @@
+[
+  {
+    "test": "BenchmarkAcceptanceTest",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "test": "PuzzleAlternativePdbTest",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "test": "PuzzleCloseoutTest",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "test": "PuzzleFoundationTest",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "test": "PuzzleOptimizationTest",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "test": "PuzzleStage1Test",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "test": "PuzzleStage2Test",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "test": "PuzzleStage3Test",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "test": "TeacherStage1Test",
+    "exit_code": 0,
+    "status": "PASS"
+  }
+]

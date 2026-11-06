@@ -1,0 +1,6 @@
+BFS goal=87654321 states=181440 complete=true depth_limit=31
+BFS goal=876504321 states=181440 complete=true depth_limit=31
+BFS goal=123456708 states=181440 complete=true depth_limit=31
+BFS goal=fedcba987654321 states=1806 complete=false depth_limit=9
+BFS goal=fb6ea45dc0297831 states=3001 complete=false depth_limit=9
+PASS: checks=7022745 BFS_states=549127 directed_edges=1466528 random_edges=15043
