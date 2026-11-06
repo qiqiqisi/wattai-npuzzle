@@ -21,6 +21,10 @@ def rows(name):
 def properties(path):
     return dict(line.split('=',1) for line in path.read_text(encoding='utf-8').splitlines() if '=' in line and not line.startswith('#'))
 def build():
+    current_markdown=REPORT/'正文.md'
+    if current_markdown.exists() and '<!-- OPTIMIZATION_20261106_SUPPLEMENT_START -->' in current_markdown.read_text(encoding='utf-8'):
+        raise RuntimeError('Archived report builder would overwrite the new optimization supplement. '
+                           'Keep archived DOCX/PDF unchanged; explicitly update the template pipeline before regeneration.')
     sources=json.loads((REPORT/'data_sources.json').read_text(encoding='utf-8'))
     cold=rows(sources['cold'])[0];warm=rows(sources['warm'])[0];compare=rows(sources['comparison'])
     validation=json.loads((ROOT/sources['validation']).read_text(encoding='utf-8'))

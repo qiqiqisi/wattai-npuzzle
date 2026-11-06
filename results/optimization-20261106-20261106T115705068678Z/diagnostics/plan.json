@@ -1,0 +1,113 @@
+{
+  "runs": [
+    {
+      "fast": false,
+      "snapshots": true,
+      "repetition": 1,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": true,
+      "snapshots": false,
+      "repetition": 1,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": true,
+      "snapshots": true,
+      "repetition": 1,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": false,
+      "snapshots": false,
+      "repetition": 1,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": true,
+      "snapshots": false,
+      "repetition": 2,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": true,
+      "snapshots": true,
+      "repetition": 2,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": false,
+      "snapshots": false,
+      "repetition": 2,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": false,
+      "snapshots": true,
+      "repetition": 2,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": true,
+      "snapshots": false,
+      "repetition": 3,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": false,
+      "snapshots": false,
+      "repetition": 3,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": false,
+      "snapshots": true,
+      "repetition": 3,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": true,
+      "snapshots": true,
+      "repetition": 3,
+      "dataset": "ordinary4",
+      "input_index": 3,
+      "profile": false
+    },
+    {
+      "fast": true,
+      "snapshots": false,
+      "repetition": 1,
+      "dataset": "hard",
+      "input_index": 9,
+      "profile": true
+    }
+  ],
+  "source_sha256": "3dbcd9b083fd0b54aad923d955b61aa408ceb015cb6b662b3fb276da1bada190",
+  "probe_source_sha256": "42c7812fc0716b822fd7ca7100c886672bc6346f80825f2038fd80addb35c436",
+  "runner_sha256": "df0753887e12f316f577125299cd3499303dfbddaa1cb1378f3fa6c95c1dca5a",
+  "primary_comparison": false,
+  "limits": "15s ordinary controls; 60s parent JFR hard; recording duration55s; no limit increases"
+}

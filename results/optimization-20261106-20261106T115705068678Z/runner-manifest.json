@@ -1,0 +1,14 @@
+[
+  {
+    "path": "tools/optimization_suite.py",
+    "sha256": "f3e890f93104ea3175c5dcab2506973ded75f0a2c64fd300c44239b8ff8fdea4"
+  },
+  {
+    "path": "tools/DeadlineProbe.java",
+    "sha256": "9615182eeb3cf53be374b523aaf0b455a298b9d0409f887bcdf13210bb6266b0"
+  },
+  {
+    "path": "tools/compile.ps1",
+    "sha256": "dab7a873386f77b00a469d68a1ffda55f241632fe12beca9fb3e603d73cc9e8b"
+  }
+]

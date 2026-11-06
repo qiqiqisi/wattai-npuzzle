@@ -1,0 +1,9 @@
+{
+  "status": "PARTIAL",
+  "actual_search_attempts": 1,
+  "parent_status": "TIMEOUT",
+  "cause": "Oracle javapath launcher was killed; child JDK JVM continued and wrote metrics after deadline",
+  "late_solution": "retained, independently replayable but not accepted as a successful timed run",
+  "matrix_not_started": true,
+  "correction": "call java.home/bin/java.exe directly and verify watchdog; new timestamp suite; first preflight cold budget 30s, remaining preflights 15s; Hard remains 60s"
+}

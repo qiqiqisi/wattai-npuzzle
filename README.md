@@ -4,7 +4,13 @@
 
 [研究报告 DOCX](report/NPuzzle研究报告.docx) · [PDF](report/NPuzzle研究报告.pdf) · [逐项验收](docs/acceptance.md) · [原始结果索引](results/INDEX.md) · [教师合规](docs/teacher_compliance.md) · [变更与回退](docs/changes.md)
 
-## 四阶段结果（2026-10-11 最终复核）
+## 新一轮优化实验（2026-11-06）
+
+正式80次，SOLVED:61, TIMEOUT:19，另保留1次启动器超时预实验和15次诊断尝试。三个完整8-Puzzle目标、4×4精确/随机验证以及8套原有Java测试通过。Hard热缓存推荐 **BASIC / limit=0 / 555T / fast=true**；BASIC独立冷运行状态为 **TIMEOUT**。三次重复仅作描述，不声称普遍优势。
+
+[分析与推荐](docs/optimization_analysis.md) · [新原始数据](results/optimization-20261106-20261106T115705068678Z/runs/) · [自动汇总与图表](results/optimization-20261106-20261106T115705068678Z/analysis-final/analysis.md) · [历史保护基线](results/optimization-20261106-20261106T115705068678Z/baseline.json)
+
+## 四阶段历史结果（2026-10-11 复核）
 
 | 阶段 | 实现与结果 | 限制 |
 | --- | --- | --- |
@@ -45,7 +51,7 @@ python tools/verify_project.py --classes build-test
 
 PDB准备时间另计，节点少不等于端到端最快；该有限样本不能证明全部15-Puzzle的性能排序。
 
-## hard 真实性能
+## hard 历史性能（2026-10-11）
 
 原题 `resources/problems3.txt` 第10行、零起索引9。Java19 / Intel i5-14500HX / Windows 10.0.26200 / `-Xmx1024m` / 60秒工作进程限制。
 
@@ -90,3 +96,5 @@ java -cp build-test stud.g01.visual.PuzzleVisualizer results/solutions/2026-10-1
 | teacher_reference、generated、build-* | 本地只读参考、再生缓存与构建产物，均不上传 |
 
 最终成果统一到 main，仓库继续保持 private。教师参考目录、原 DOCX/PDF/ZIP、IDE/cache 与本地会话归档不上传；报告封面采用本地教师模板。私有归档不代表教师公开授权。原 `algs4` 版权及许可见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。
+
+统一核验：[历史SHA与新路径验收](results/optimization-20261106-20261106T115705068678Z/verification.json)、[最终干净构建与字节码一致性](results/optimization-20261106-20261106T115705068678Z/final-checks/verification.json)。完整隔离复现使用 tools/run_optimization.ps1，Python解释器通过 -Python 指定。

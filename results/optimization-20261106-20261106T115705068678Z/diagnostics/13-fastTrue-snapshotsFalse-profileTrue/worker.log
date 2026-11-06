@@ -1,0 +1,3 @@
+[0.062s][error][jfr,startup] Boolean parsing error in command argument 'dumponexit'. Could not parse: tru.
+Error occurred during initialization of VM
+Failure when starting JFR on_create_vm_3

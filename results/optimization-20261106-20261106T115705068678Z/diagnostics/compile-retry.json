@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "precompiled_class": "C:\\Users\\Administrator\\Desktop\\人工智能\\实验1\\项目一\\WattAi\\.publication-stage-optimization-20261106\\build-diag-check",
+  "class_sha256": "e5be0ea79d00c1df8432055ec6c6181ad5ded86188ff58e99d7272c515284b8c",
+  "source_sha256": "42c7812fc0716b822fd7ca7100c886672bc6346f80825f2038fd80addb35c436",
+  "reason": "Original compile.log retained. Sandbox javac could not enumerate packages; same command compiled outside sandbox. Search diagnostics still run inside the same sandbox as the primary matrix."
+}

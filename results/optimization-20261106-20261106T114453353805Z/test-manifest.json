@@ -1,0 +1,13 @@
+{
+  "tests": [
+    "BenchmarkAcceptanceTest",
+    "PuzzleAlternativePdbTest",
+    "PuzzleCloseoutTest",
+    "PuzzleFoundationTest",
+    "PuzzleOptimizationTest",
+    "PuzzleStage1Test",
+    "PuzzleStage2Test",
+    "PuzzleStage3Test",
+    "TeacherStage1Test"
+  ]
+}

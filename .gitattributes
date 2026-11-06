@@ -2,5 +2,13 @@
 src/** -text
 resources/** -text
 results/** -text
+# Preserve exact test/runner bytes included in the optimization manifests.
+tests/** -text
+tools/compile.ps1 -text
+tools/build_report.py -text
+tools/verify_project.py -text
+tools/*optimization* -text
+tools/DeadlineProbe.java -text
+tools/OptimizationDiagnostics.java -text
 *.docx binary
 *.pdf binary

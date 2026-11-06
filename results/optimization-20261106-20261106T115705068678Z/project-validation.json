@@ -1,0 +1,446 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "protected_files": [
+    {
+      "path": "src/algs4/util/StdRandom.java",
+      "identical": true
+    },
+    {
+      "path": "src/algs4/util/Stopwatch.java",
+      "identical": true
+    },
+    {
+      "path": "src/algs4/util/StopwatchCPU.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/problem/Action.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/problem/Problem.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/problem/ProblemType.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/problem/State.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/runner/EngineFeeder.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/runner/SearchTester.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/solver/algorithm/heuristic/HeuristicType.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/solver/algorithm/heuristic/Predictor.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/solver/algorithm/searcher/AbstractSearcher.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/solver/algorithm/searcher/BestFirstSearcher.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/solver/queue/EvaluationType.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/solver/queue/Frontier.java",
+      "identical": true
+    },
+    {
+      "path": "src/core/solver/queue/Node.java",
+      "identical": true
+    },
+    {
+      "path": "src/META-INF/MANIFEST.MF",
+      "identical": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Direction.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/GridType.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Move.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/PathFinding.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Position.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/queue/ListFrontier.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/queue/PqFrontier.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/queue/QueueFrontier.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/queue/StackFrontier.java",
+      "identical": true
+    },
+    {
+      "path": "src/stud/runner/WalkerFeeder.java",
+      "identical": true
+    },
+    {
+      "path": "resources/pathfinding.txt",
+      "identical": true
+    },
+    {
+      "path": "resources/pathfinding3.txt",
+      "identical": true
+    },
+    {
+      "path": "resources/problems.txt",
+      "identical": true
+    },
+    {
+      "path": "resources/problems3.txt",
+      "identical": true
+    }
+  ],
+  "teacher_local_rechecked": false,
+  "csv_files": 76,
+  "status_row_counts_with_summary_duplicates": {
+    "SOLVED": 1648,
+    "TIMEOUT": 151,
+    "FAIL": 4,
+    "OOM": 6
+  },
+  "validated_solution_paths": [
+    {
+      "path": "results/solutions/2026-10-02T06-42-20.882934700Z-problems3_1-ASTAR-MISPLACED.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=21",
+      "sha256": "096efdf9bd4d46d5b3e1edaf3e900d1fb63954e2984b239981ff195aa1393f3c"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-21.350706400Z-problems3_1-ASTAR-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=21",
+      "sha256": "d3c8f1d48818db7cb7dc98b230f1833e5ca45e012a4da302ecbae467f6685db6"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-21.740862400Z-problems3_1-ASTAR-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=21",
+      "sha256": "ffb155556a9b675e4bcd6ee95f9948ef7007c7eea7f68db1f14dce267ff4f764"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-30.413258100Z-problems3_1-IDA-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=21",
+      "sha256": "53672ce993c229fa2bd5cf7e06c60018311df21f834f0b67ba87184569f837c7"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-30.751468800Z-problems3_1-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=21",
+      "sha256": "19bcbd04c25b7977c8fe3fcafc9c9d440d073e0e554f5f2e9732cbf085146344"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-43-09.330975100Z-problems3_4-ASTAR-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "65dab4067070691f65d11985bcb6b3d4541910810c50412d7608e972c2c6f5f7"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-43-10.348179100Z-problems3_4-ASTAR-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "04bf3c2fde183603ea1a66805697dd2ac457a21cd15eacd84eadb11afbfa5990"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-43-11.184047800Z-problems3_4-IDA-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "c690d8bddb28c9712a7eef493af1a9e6f7e436ccd291015f3d7308ec9ba4299f"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-43-12.002194700Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "e97b020816c83c64edb8914e293d93cb794e1d89b8c6745b3e7a505c9d46a1a4"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-45-54.371439900Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "9b0e558061d0e0a941439a1362e816d89e4b8c7d9f977ca5773d592bb2dc6ca8"
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-51-32.717767Z-problems3_4-IDA-PDB_MAX_LC.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "8e37ec269060b36352f90648d96c0dd7b1e331180ab486d0b22371d81c70fdf2"
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-13-37.738512800Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "7fd77b6a4457112f85b1a2a399e349baf3dd6f399022591d9b18b340a517c73a"
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-16-53.867971800Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "a4efd81fd87045b05b47174032ae48bc819a85a5e98696068f6853c71250e30f"
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-16-56.136975900Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "04b865e38e6229fa1d8650fc880d37717ff80663d93ee1be080510ba95d27a3c"
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-46-49.833351700Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "ee48d955a1102182d547ffc95faf6db92d273492ba2f4a4250b093a31b6ad35a"
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-47-31.540405800Z-problems3_10-IDA-PDB_MAX_555.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "6e8fffb60ffefa78dd0e0fda29b3851d2890f017ba3ca061228cd08ba6965a6f"
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-53-45.092266200Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "f5e924a366db14888069de9000e5bcb740255007a6241e9cdd52981ef4c51827"
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-54-17.829589600Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "98330e7bc4412bfbb9995e661cef218ab42f48f7d15027b1b27b7dfc186c721e"
+    },
+    {
+      "path": "results/solutions/2026-10-09T07-02-51.918489200Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "1438905edd2a5ce708b557739786d809cca911e1019a9374709fe37f0a69d733"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-12-49.858701300Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "5a1e7e7cd0cecb960413db3fda78bb9ad5c8f1e7ffb57c7b320f3af1ae4ced07"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-14-39.493084100Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "b572bf2b1bbfc949469960dfa547b34eb88d0fc59a648108b60d1e4c3b9ba3d3"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-15-14.430704500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "3ac7bd072652b31609193d4d79a2280adae6f0f45aeeca7d4fcbab246c208c49"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-29.367558500Z-problems_teacher_stage1_1-ASTAR-MISPLACED.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "eb981d49d22af73b8b917aa5b8b5d1e6bc87f031135034f2735862e2c6687e06"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-30.355357900Z-problems_teacher_stage1_1-ASTAR-MISPLACED.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "db83968617e99fc82e7725e7ea724b25c6b16b468c493b54794460697f63a6b0"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-31.259600100Z-problems_teacher_stage1_1-ASTAR-MISPLACED.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "9f3840c0740a8dbc03c715afb62c4c6ee4f25697e6413a5e3790dea30b59ca7f"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-32.067615900Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "ed2ed7ad09eac73d695d428ee771c6e35151647bedbcb004682ff24f1b8cd479"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-33.017562500Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "5a73dccac1fa2cf818ee834e87d16848d16913b4d3af4eb40196d9b452bc46ae"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-33.987394700Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "c0431303ae888cf45dedb78fe80564669ea4a875d4d85e1d5d64e592e95b7e0d"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-34.886445Z-problems_teacher_stage1_1-ASTAR-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "3376283645b2eb067c0cbc12626671f0d69b208e6f64cdc8634ee99e367cdcb7"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-35.952053Z-problems_teacher_stage1_1-ASTAR-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "db0ce633b04daa88d08900552e242a33db5802fa11f7d4604672585fbb59e4a6"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-37.023767Z-problems_teacher_stage1_1-ASTAR-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "8470b888c27c154da745abcea0ee5a198ab2f3243920c9412eff3de7f17abf20"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-38.055371400Z-problems_teacher_stage1_1-IDA-MISPLACED.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "e3bf2ad15be7cfdfd612cd2e70e66a8d6d631d02e8bca99e6cb84f70863afd3f"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-38.999669900Z-problems_teacher_stage1_1-IDA-MISPLACED.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "7560ac27569dce882cc6317674ffc05e3e8eed7ed0efd93639ec990bf295d703"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-39.945215100Z-problems_teacher_stage1_1-IDA-MISPLACED.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "fd73bf7afee17e301464db87414178b466428ba4a64eb9372a97fbf7fdaa2901"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-40.990340800Z-problems_teacher_stage1_1-IDA-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "fbe727c6b2ee64c109126ee2d82a352dd0e2a5280a5407d8d94dda1fa599d513"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-41.940145100Z-problems_teacher_stage1_1-IDA-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "64ff3be2ff70d72a8495661823b25f67760f5d200bf5d33cd99a63cd398627e2"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-42.998801Z-problems_teacher_stage1_1-IDA-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "fe83bc5ec5e11c103f5681f4683667f332ddef8c94746d7f8997fc226c0f0b64"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-43.983257900Z-problems_teacher_stage1_1-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "dfed86c031fc328b24730d2e9ba2aead0385e7444bafff4f11fd69f89a114893"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-45.083553700Z-problems_teacher_stage1_1-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "58f2a5049ef22725e592c81f78ade76b538fedc8f81ad30b4585a58e8a8d1327"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-46.280995700Z-problems_teacher_stage1_1-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=16",
+      "sha256": "7ce552d347e32d9f0413db6c7edd0d53e033350a108123d2c1c6ca15c38ea31e"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-57.976969Z-problems3_4-ASTAR-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "44f3273d37d92cff5c020b06bd9b268399d1dcb4c1b7e10e910e7615fe40ee92"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-59.888072300Z-problems3_4-ASTAR-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "3c67f1d944a07e87077140ecbeccdad34be6841d35cde84168337a459155adf3"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-17-12.208935700Z-problems3_4-IDA-MANHATTAN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "7946751744a07c4ef2e94cc0546c1ad57217806848fc26b1e978fa17c17f7d82"
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-17-13.484532300Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=52",
+      "sha256": "07e417eec101be4dbf93e27ba48caa8cc3e3dce52c5e2d9b89f4b0d8501b726c"
+    },
+    {
+      "path": "results/solutions/2026-10-11T07-12-42.170991500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "15579e946bc021aedc468d4b45c5509a927c645c0beb4ad87c62bc734263d048"
+    },
+    {
+      "path": "results/solutions/2026-10-11T07-13-07.526217100Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "exit": 0,
+      "output": "TRACE_VALID=70",
+      "sha256": "f5c5816e3895bf89378b30576b57443bfdcd7b86760c95259f4dcb498ad9380c"
+    }
+  ],
+  "markdown_links": 136,
+  "report_sources_sha256": {
+    "comparison": "66563104082e64483d33fb047d137618ed0a71d314a24e6433c57a91ffab3daa",
+    "cold": "6b358d89ed28653c32847200a1c621e747e416b65abf08fb320e0150a1661ecd",
+    "warm": "ced28879732460eb7490b318e367798fcc64c4a19e9c705a3fd70877e2771d1b",
+    "first_attempt": "f5166fc3012ccc17462dad698b1cbc12525a15186f2e6c54f103c6a49b5b55f3",
+    "historical_cold": "36344fa17564b1820e238d5dab576b50668bfad57b10ab189ca7389775d2c80a",
+    "validation": "f18ae0eaf57485b733220669c8eda9e32e1d91df58850cc4ff84f8262ae0a1d1",
+    "final_cold": "e23c5ac2088434141bbb46bbd5200f5c4a7309b90e7c9509730853b754082bf0",
+    "final_warm": "c66c95e3313fe61b046c98ea7e70f7394433ea7a59d81367405c34137b1091cd",
+    "gui_teacher3": "03a465d7b0e8d208a1eee47feacf2e77e0959f00780501f546b8f586c5401825",
+    "gui_hard4": "ff8effe7a03edc305d145e031a5c13ba9db930d21f1186ef988df6e5e029646e",
+    "optimization_comparison": "f2cc253c0745f22d41058ab2fc629cb84b78438d93c0c9278876f5bc8918bf7c",
+    "optimization_summary": "29f047f10da8687fb2aa68b128b5018538af253bd3728970fedd9aac5ddde045",
+    "optimization_diagnostics": "7c1ea8fd7f4892978f93fe7b8eacac8a1ef51785a82f50e6b77e5e34eb642381"
+  },
+  "source_manifests": [
+    {
+      "path": "results/run-20261010T061439277Z/source-manifest.json",
+      "matches_current_source": false,
+      "historical_manifest_sha256": "41faf6fbdebb24fd69baa05ff46f1a28063eca068688f2f5a60bfd5a08fa7f67",
+      "scope": "historical source identity, not a current-source acceptance gate"
+    },
+    {
+      "path": "results/run-20261011T071242033Z/source-manifest.json",
+      "matches_current_source": false,
+      "historical_manifest_sha256": "41faf6fbdebb24fd69baa05ff46f1a28063eca068688f2f5a60bfd5a08fa7f67",
+      "scope": "historical source identity, not a current-source acceptance gate"
+    }
+  ]
+}

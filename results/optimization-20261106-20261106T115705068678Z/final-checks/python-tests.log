@@ -1,0 +1,8 @@
+test_archived_builder_refuses_new_supplement (__main__.OptimizationToolsTest) ... ok
+test_failures_are_not_success_times (__main__.OptimizationToolsTest) ... ok
+test_wrong_input_and_illegal_move_rejected (__main__.OptimizationToolsTest) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.018s
+
+OK

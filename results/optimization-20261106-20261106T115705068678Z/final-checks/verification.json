@@ -1,0 +1,466 @@
+{
+  "status": "PASS",
+  "classes": "build-final-optimization-20261106T131957348397Z",
+  "java_tests": [
+    {
+      "test": "BenchmarkAcceptanceTest",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleAlternativePdbTest",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleCloseoutTest",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleFoundationTest",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleOptimizationTest",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage1Test",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage2Test",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage3Test",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "TeacherStage1Test",
+      "exit": 0,
+      "status": "PASS"
+    }
+  ],
+  "python_tests": 3,
+  "source_frozen": true,
+  "bytecodes_identical_to_actual_experiments": [
+    {
+      "path": "algs4/util/StdRandom.class",
+      "identical": true,
+      "sha256": "516da427a5485761633e9bfc8667c8ec17478957bde0c9be706b67f98d846931"
+    },
+    {
+      "path": "algs4/util/Stopwatch.class",
+      "identical": true,
+      "sha256": "5955bc0b2fa206418abeb5a1ccad8ebcb72969286858e44d8d410b7f07997fd9"
+    },
+    {
+      "path": "algs4/util/StopwatchCPU.class",
+      "identical": true,
+      "sha256": "a63950571fbec967029406e8a7fc199fdbccdd89cd48d896907faa692d4faf01"
+    },
+    {
+      "path": "BenchmarkAcceptanceTest.class",
+      "identical": true,
+      "sha256": "2ccd3ee2da7acc8abbba7f03c4d6cea844200dd111e9236af2b78dc100af7530"
+    },
+    {
+      "path": "core/problem/Action.class",
+      "identical": true,
+      "sha256": "aaa9fb12023ce605c4c4a3c685badb450704ad4176740008e7fbcca98f5f04b9"
+    },
+    {
+      "path": "core/problem/Problem.class",
+      "identical": true,
+      "sha256": "93a8ca0c0b04e176de61bdb78b0f221bbae0b102eb33d65f01e4ccd252dd02e4"
+    },
+    {
+      "path": "core/problem/ProblemType.class",
+      "identical": true,
+      "sha256": "b727f547134a835ffa71f4b9aec9c37f8261bc0a9a1385db169caaab73f89e4e"
+    },
+    {
+      "path": "core/problem/State.class",
+      "identical": true,
+      "sha256": "e154fd17290f8bf62b65f1ea927543ce4a60f0b01c6ad9e5c78d9f4ca457861e"
+    },
+    {
+      "path": "core/runner/EngineFeeder.class",
+      "identical": true,
+      "sha256": "3e527faebceab36475dbd8d7a1b4a84a00cd337103adb838cf5480c1daa3a933"
+    },
+    {
+      "path": "core/runner/SearchTester.class",
+      "identical": true,
+      "sha256": "8b5a60d58e67e36296c8a8806d3c2290f3cfa0b5d9a310f4eb0e2a39f6fa57ed"
+    },
+    {
+      "path": "core/solver/algorithm/heuristic/HeuristicType.class",
+      "identical": true,
+      "sha256": "e3f04220acc22188417e8da0898cafe059386c9ff9e6678dca41df5cff60ebf4"
+    },
+    {
+      "path": "core/solver/algorithm/heuristic/Predictor.class",
+      "identical": true,
+      "sha256": "36eb665eded3154eb430077fcb9383f3bab0fae5cbe980a805bd9ffb33ecd94a"
+    },
+    {
+      "path": "core/solver/algorithm/searcher/AbstractSearcher.class",
+      "identical": true,
+      "sha256": "b91b8ff57225f3adfdb4b858ac8267b95fcca2bda37b21a4953162dd01578e2b"
+    },
+    {
+      "path": "core/solver/algorithm/searcher/BestFirstSearcher.class",
+      "identical": true,
+      "sha256": "9067e7233d0447ef772073e02d1c4183b89095612a7c037ccadd01d1fb23128a"
+    },
+    {
+      "path": "core/solver/queue/EvaluationType.class",
+      "identical": true,
+      "sha256": "64446fec1da4d6b438c99f4d030306b37374b43f9d6272157406c3167446e5b7"
+    },
+    {
+      "path": "core/solver/queue/Frontier.class",
+      "identical": true,
+      "sha256": "2fe0f22c5448ad9edb3f885c1bbadb10e84cacca56ecd1a134d93a793afc50ff"
+    },
+    {
+      "path": "core/solver/queue/Node.class",
+      "identical": true,
+      "sha256": "f3db9653e614baeeb091a32c41a7dc28297c043b22d00614fc8cc3ef27af757e"
+    },
+    {
+      "path": "PuzzleAlternativePdbTest.class",
+      "identical": true,
+      "sha256": "194085653b03c154f95f308f1ec1dcfd0835b6026716812b345374015d7a7f82"
+    },
+    {
+      "path": "PuzzleCloseoutTest.class",
+      "identical": true,
+      "sha256": "2fefae8affd18160395e19141c911e591fb19d8b749fe69223f4bd6703f69a32"
+    },
+    {
+      "path": "PuzzleFoundationTest$1.class",
+      "identical": true,
+      "sha256": "17ed7aaa499a548a7cac60514a7729c1d77f29632794dd9c72f0f150fc506a6f"
+    },
+    {
+      "path": "PuzzleFoundationTest.class",
+      "identical": true,
+      "sha256": "4141203cf23512ffa94782e8ad9a77414bbf3b926db0f98eb3e6dbe824673b3c"
+    },
+    {
+      "path": "PuzzleOptimizationTest$GMove.class",
+      "identical": true,
+      "sha256": "858f8c4fbc9e9a07e24d7bcb9c62f8445b9cb15eac47012254f44c3c9544c3b2"
+    },
+    {
+      "path": "PuzzleOptimizationTest$GProblem.class",
+      "identical": true,
+      "sha256": "eb09949e5fd0e37acd0f8776567316c03254e187d64b2018e212add6e92c30c3"
+    },
+    {
+      "path": "PuzzleOptimizationTest$GState.class",
+      "identical": true,
+      "sha256": "b6260bbe4cdf20a2e28786c4fb1b2e53e9b4c1a277e5888e1feeb234d4fc66de"
+    },
+    {
+      "path": "PuzzleOptimizationTest.class",
+      "identical": true,
+      "sha256": "647ea9432b12a07aafdb9d3c5f623206333cf6b704576d66e78e5ee568bf5220"
+    },
+    {
+      "path": "PuzzleStage1Test.class",
+      "identical": true,
+      "sha256": "0a6e436dc4aaf08d8ee2e693fb45f93bc13e6ac7c8336f72bd1c8f9bf9a3f000"
+    },
+    {
+      "path": "PuzzleStage2Test$GraphMove.class",
+      "identical": true,
+      "sha256": "d1a117c756390008d1705c13e1d1461c72fa18886b433c16aca312b1fcca9fa4"
+    },
+    {
+      "path": "PuzzleStage2Test$GraphProblem.class",
+      "identical": true,
+      "sha256": "0fc558362e982ee56dba00c9cd169579bee380a6fdfa356db87a386c06b81cc2"
+    },
+    {
+      "path": "PuzzleStage2Test$GraphState.class",
+      "identical": true,
+      "sha256": "f6df70e378186bd1441a55e0667e65d057ceb260c3c7793a4f24e2fcb0c2511c"
+    },
+    {
+      "path": "PuzzleStage2Test.class",
+      "identical": true,
+      "sha256": "0a03db054a518e9dc0bb4f67d79bca3e0c65870c6126568f5f612151d9291c1c"
+    },
+    {
+      "path": "PuzzleStage3Test.class",
+      "identical": true,
+      "sha256": "05131a488b37df4999cea017153df6c41ed07d3d759f008e712681908b1c8bbb"
+    },
+    {
+      "path": "stud/g01/heuristic/IncrementalPredictor.class",
+      "identical": true,
+      "sha256": "ecc2eca46efe8ef9979075803dc05d8dd2e7acfb243af410ae1006b81e2ce58b"
+    },
+    {
+      "path": "stud/g01/heuristic/PuzzleHeuristic.class",
+      "identical": true,
+      "sha256": "cd609e5db57bc9f75804f84c53b1517333dcbea595b9ad2beec118f93a6cb3d4"
+    },
+    {
+      "path": "stud/g01/pdb/BlankDistance.class",
+      "identical": true,
+      "sha256": "281284644c2f65bcf5b06c995ed71146e2ba3a0e89164456d101837a945f11d5"
+    },
+    {
+      "path": "stud/g01/pdb/DisjointPatternDatabase$LazyPredictor.class",
+      "identical": true,
+      "sha256": "77cd189859856885f30c73163388f4c4d2b1e2b5e9dd1993d4cd4a2099999531"
+    },
+    {
+      "path": "stud/g01/pdb/DisjointPatternDatabase.class",
+      "identical": true,
+      "sha256": "4e862fef117a9a29933e3606edfda40302cadae6c0e81cb92b71dddc1319af77"
+    },
+    {
+      "path": "stud/g01/pdb/PatternTable$IntDeque.class",
+      "identical": true,
+      "sha256": "b290812a64c4571c5daaddd11c3ea2a2a37e998872ecdbc8ef5156782f0ab7d8"
+    },
+    {
+      "path": "stud/g01/pdb/PatternTable.class",
+      "identical": true,
+      "sha256": "1854aa30a5e3314fe7c5b785cd1c88f859a4b7b62898215935cac1e17661a76f"
+    },
+    {
+      "path": "stud/g01/problem/npuzzle/NPuzzleProblem.class",
+      "identical": true,
+      "sha256": "2209658e84364004f8e09a770071b63d905e8ef22d4654b8c9c9b649d7097bb4"
+    },
+    {
+      "path": "stud/g01/problem/npuzzle/PuzzleBoard$1.class",
+      "identical": true,
+      "sha256": "5ec7999c13a6626b78150e41e55f3541321342d4de3cdbbaf168889d9cf7f866"
+    },
+    {
+      "path": "stud/g01/problem/npuzzle/PuzzleBoard$PuzzlePredictor.class",
+      "identical": true,
+      "sha256": "05f609429b97fcc2d047c6b98683f655302da6ebf2060f0ca161798ee056a9e2"
+    },
+    {
+      "path": "stud/g01/problem/npuzzle/PuzzleBoard.class",
+      "identical": true,
+      "sha256": "a192577b2bad724674113b216416dd56a9ff6b3df61f16151f2fa91d4ba288da"
+    },
+    {
+      "path": "stud/g01/problem/npuzzle/PuzzleMove$Direction.class",
+      "identical": true,
+      "sha256": "a86ca88fe979c3417597487b5ee62f42e9feaf9d003e10f0561f1704a8a5f50c"
+    },
+    {
+      "path": "stud/g01/problem/npuzzle/PuzzleMove.class",
+      "identical": true,
+      "sha256": "7ddb304717df6ad83b98ab6260912d3437f6cdd1b3cb7b95b8d6241f3b0337a4"
+    },
+    {
+      "path": "stud/g01/queue/PqFrontier.class",
+      "identical": true,
+      "sha256": "1d8acebe33c709f146e024d59e5ee53d5d1ff3199f922aa26db8299d27b093c8"
+    },
+    {
+      "path": "stud/g01/runner/BenchmarkAcceptance.class",
+      "identical": true,
+      "sha256": "efd747a42ccde4b37d4b8f78f0b0131cb65f8b53f63c6e1db85b4a0ce5ccac2c"
+    },
+    {
+      "path": "stud/g01/runner/LoggedSearchTester.class",
+      "identical": true,
+      "sha256": "8d5e6bf029e31a5e5825dfb1a7da6be6bbaa357df535ea887949498ccb26756f"
+    },
+    {
+      "path": "stud/g01/runner/OptimizationWorker.class",
+      "identical": true,
+      "sha256": "2d9fdf32f47d27bed16ffa1c7bb97b1ab6cad8286ff3912a46062ab902d6bec3"
+    },
+    {
+      "path": "stud/g01/runner/PatternGroupingBenchmark.class",
+      "identical": true,
+      "sha256": "a82cd611f1317747506b7f1414811473c8d996c7eb0c706453e0f703716407d0"
+    },
+    {
+      "path": "stud/g01/runner/PdbBfsBibfsBenchmark$Result.class",
+      "identical": true,
+      "sha256": "a39437a075d480cf7ad7c757bda3f053c715566b125b55d690a4048f0610936d"
+    },
+    {
+      "path": "stud/g01/runner/PdbBfsBibfsBenchmark.class",
+      "identical": true,
+      "sha256": "6edbdfd5274e9187c84916f68c5b75beb6bb17202b51d597bec4cc058bb7b0f2"
+    },
+    {
+      "path": "stud/g01/runner/PdbTableManifest.class",
+      "identical": true,
+      "sha256": "7110920f8e1e25d4a12e82e3f3a52199eceaadd5715bb57a24ebb9da64bc4443"
+    },
+    {
+      "path": "stud/g01/runner/PuzzleFeeder.class",
+      "identical": true,
+      "sha256": "c7ef3fea5ac9c1112ce4ad9b364bfdc068f293eb2a75c6673ad22b8a60b03fd3"
+    },
+    {
+      "path": "stud/g01/runner/RandomGoalBenchmark.class",
+      "identical": true,
+      "sha256": "3b59d242617929c9041115fc1dfb6ff4516e3d003d9142cc2d6bfe6849869a1a"
+    },
+    {
+      "path": "stud/g01/runner/Stage1Benchmark$Result.class",
+      "identical": true,
+      "sha256": "8f776717428251c92d947cfa1fa0dfb1b41de23a80f65829d9e58d1b9c968f07"
+    },
+    {
+      "path": "stud/g01/runner/Stage1Benchmark.class",
+      "identical": true,
+      "sha256": "edc3d382a8b17ed2e7a68802314cc35d523f9ef78ea0df289c8ffc3e82e66f9c"
+    },
+    {
+      "path": "stud/g01/runner/Stage1ExtendedBenchmark$Observation.class",
+      "identical": true,
+      "sha256": "b1a22436cf8bf8b649a28fa95356ba8c1dc43a1b9ad546b797d2aaac0563b62c"
+    },
+    {
+      "path": "stud/g01/runner/Stage1ExtendedBenchmark.class",
+      "identical": true,
+      "sha256": "600bef97601fb2f79e761be9749f89b2c633e1b8c3ddd5da7a2aead2333124a7"
+    },
+    {
+      "path": "stud/g01/runner/Stage1Summary.class",
+      "identical": true,
+      "sha256": "9cfd81df0d1af46a030321198cb389c94c06b35cd46de47d028818b595947065"
+    },
+    {
+      "path": "stud/g01/runner/Stage2Benchmark.class",
+      "identical": true,
+      "sha256": "b2459e4b0a0a10f3f87e535a115bb7bbac919dec0418403939c078cda4f65c79"
+    },
+    {
+      "path": "stud/g01/runner/Stage3Benchmark.class",
+      "identical": true,
+      "sha256": "11b961087470b92e3118d7590be20ec492b7095d3e5b0a658cbfcf20d1ab59ac"
+    },
+    {
+      "path": "stud/g01/runner/StudentSearchTester.class",
+      "identical": true,
+      "sha256": "58bed6d4f60d103cd728ea0ded1bc61a33bdc3f7acf97d17d306773bb67c116a"
+    },
+    {
+      "path": "stud/g01/solver/IdAStar$1.class",
+      "identical": true,
+      "sha256": "2faf2f7e12e8ea15299224b868ed16ff68aa332146d06891a18f57ca1a54b2f7"
+    },
+    {
+      "path": "stud/g01/solver/IdAStar$Entry.class",
+      "identical": true,
+      "sha256": "a00d7d2d692b4211c80adce35520de56557ea06245d6db9984e28886a70cd87e"
+    },
+    {
+      "path": "stud/g01/solver/IdAStar$Mode.class",
+      "identical": true,
+      "sha256": "5d109bd7f753cc6fa456db97c630d249d9b56a0ea9e8305299d0f971364ef352"
+    },
+    {
+      "path": "stud/g01/solver/IdAStar.class",
+      "identical": true,
+      "sha256": "2f9fe93f94411c197a852795d8bb792f9a038e3730711cda5455621b550e863d"
+    },
+    {
+      "path": "stud/g01/solver/ZobristKey.class",
+      "identical": true,
+      "sha256": "5d86ce6aee5cad129efe857f9174e78c8ffcd019fed16ac159c2ae3f3262c0ea"
+    },
+    {
+      "path": "stud/g01/visual/PlaybackModel.class",
+      "identical": true,
+      "sha256": "b5b2527362674c59717f18ae992732b907be2776bd4379e522292b5569e3429f"
+    },
+    {
+      "path": "stud/g01/visual/PuzzleVisualizer.class",
+      "identical": true,
+      "sha256": "7e14f845bfb9f59649a0f4dab7511ad741c95b616820a5ba89af1c88df4c523a"
+    },
+    {
+      "path": "stud/g01/visual/SolutionTrace.class",
+      "identical": true,
+      "sha256": "83f30e3e4e5a0f83044d3487101b2007ae95488e448198fcf71b8b2a2ac3f39d"
+    },
+    {
+      "path": "stud/problem/pathfinding/Direction.class",
+      "identical": true,
+      "sha256": "c1822a9ef0faf1d9cd4e2aa64b196ab6bfe1df9ba4eea1b025cb1b2ae4dc98e7"
+    },
+    {
+      "path": "stud/problem/pathfinding/GridType.class",
+      "identical": true,
+      "sha256": "d3e5745d5552e2a58c929958811be9f582f8f7f79d4f2837e97b6d11756ad1d3"
+    },
+    {
+      "path": "stud/problem/pathfinding/Move.class",
+      "identical": true,
+      "sha256": "8194bdb0863a32a58d4dbd9c37f5c27c09d226ef33e6a188a7360fddb00d76ad"
+    },
+    {
+      "path": "stud/problem/pathfinding/PathFinding.class",
+      "identical": true,
+      "sha256": "dc56366632f3e4b6c3ce3400672e688093df8934c201d620a5cb7119f27ce7fb"
+    },
+    {
+      "path": "stud/problem/pathfinding/Position.class",
+      "identical": true,
+      "sha256": "5049468c8c49ad142b0c899cdb32e42cbb1f4aeaf2be09f81b04e9dadb8a9d42"
+    },
+    {
+      "path": "stud/queue/ListFrontier.class",
+      "identical": true,
+      "sha256": "4f0d5f16d8532ce407fe7608b6892d1b305c8231420dc501075c8c5023046be6"
+    },
+    {
+      "path": "stud/queue/PqFrontier.class",
+      "identical": true,
+      "sha256": "a0172a336150a01f79b6bdb8955b124f31efebcbca7661112d6a07ca794b991d"
+    },
+    {
+      "path": "stud/queue/QueueFrontier.class",
+      "identical": true,
+      "sha256": "b4e304385b01e61057f8508e90a1255ba38e5b953ac822c470019cae8a77bd44"
+    },
+    {
+      "path": "stud/queue/StackFrontier.class",
+      "identical": true,
+      "sha256": "941cfb061996781e17c63081dcff67c246dd8db33d2f783e91f91853e8d3ccd2"
+    },
+    {
+      "path": "stud/runner/WalkerFeeder.class",
+      "identical": true,
+      "sha256": "2072a65c9906a27382b9950ab2341618a3b29373d79940c8b2e6a09321c8da9d"
+    },
+    {
+      "path": "stud/solver/IdAStar.class",
+      "identical": true,
+      "sha256": "b42a69dd91c78b57905c41dd7f9257d777d7686cc86c3aa7a1d72ed336d90b95"
+    },
+    {
+      "path": "TeacherStage1Test.class",
+      "identical": true,
+      "sha256": "1e63bb1617c1e535ab7b56bf509ec0b42caaed40ff2c55c8c52c5f817f0a4e02"
+    }
+  ],
+  "archived_report_builder_guard": "tested using extracted build function and temporary sentinel fixture; no report regeneration"
+}

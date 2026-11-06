@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "direct_jvm_pid_matches_monitored_pid": true,
+  "killed_and_reaped": true,
+  "late_marker_absent_after_6_seconds": true
+}

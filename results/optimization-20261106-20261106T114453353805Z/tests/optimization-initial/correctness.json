@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "seed": 20261106,
+  "checks": 7022745,
+  "bfs_states": 549127,
+  "directed_edges": 1466528,
+  "random_permutation_edges": 15043,
+  "full_8puzzle_goals": 3,
+  "states_per_8puzzle_goal": 181440,
+  "random_4x4_exact_astar_pairs": 48,
+  "random_graph_oracles": 300
+}
