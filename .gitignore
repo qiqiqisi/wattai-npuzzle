@@ -1,28 +1,81 @@
-# Compiled Java and IDE artifacts
+# ============================================================
+# 本地/教师专用材料：不得提交、不得外传
+# ============================================================
 teacher_reference/
 .local_archive/
-.vscode/
-out/
-*.pdb
-*.zip
+AGENT.md
 /*.docx
 /*.pdf
-AGENT.md
+*.zip
 tools/submission_session.*
 results/submission-20261010/reproduce.log
-build-test/
+
+# ============================================================
+# Java 构建产物与 IDE 文件
+# ============================================================
+out/
+build/
 build-*/
+build-test/
+target/
+.gradle/
 *.class
 *.iml
 .idea/
+.vscode/
+*.ipr
+*.iws
+*.code-workspace
+.classpath
+.project
+.settings/
 
-# Rebuildable PDB caches and temporary validation files
-generated/
-*.tmp
+# ============================================================
+# JVM 崩溃/诊断产物（运行失败时自动生成，不是实验证据）
+# ============================================================
+hs_err_pid*.log
+replay_pid*.log
+*.hprof
 *.jfr
+
+# ============================================================
+# 可重建的模式数据库缓存与临时校验文件
+# ============================================================
+generated/
+*.pdb
+*.tmp
 .publication-audit/
 .publication-stage*/
 results/audit-20261008/snapshot-WattAi/
 results/audit-20261008/jfr-baseline.json
 
-# Keep teacher-provided out/ and archived experimental results visible.
+# ============================================================
+# Python 工具缓存
+# ============================================================
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ============================================================
+# 操作系统/编辑器临时文件
+# ============================================================
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+*.rej
+
+# ============================================================
+# 本地凭据（如以后使用环境变量/配置文件）
+# ============================================================
+.env
+.env.*
+!.env.example
+
+# 注：教师提供的 out/ 与历史实验结果保持可见；results/ 下的原始日志属于证据，不忽略。
