@@ -1,0 +1,12 @@
+{
+  "java": "java version \"19\" 2022-09-20\r\nJava(TM) SE Runtime Environment (build 19+36-2238)\r\nJava HotSpot(TM) 64-Bit Server VM (build 19+36-2238, mixed mode, sharing)\r\n",
+  "os": "Windows-10-10.0.26200-SP0",
+  "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "heap_argument": "-Xmx1024m",
+  "classes": "build-optimization-20261106T114453353805Z",
+  "base_commit": "0aace9c5a120c9fad03b8d1af6ecce224899f55a",
+  "source_sha256": "3dbcd9b083fd0b54aad923d955b61aa408ceb015cb6b662b3fb276da1bada190",
+  "python": "3.10.20",
+  "timing": "parent perf_counter from before Popen until exit/kill/reap; elapsed_ms search only",
+  "timeout_metrics": "final search fields null/blank; coherent partial snapshots retained separately"
+}

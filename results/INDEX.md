@@ -21,3 +21,11 @@
 elapsed_ms为工作JVM内搜索；parent.txt从创建工作JVM前计时，含其启动/准备/搜索/回放/导出；父JVM自身首次启动未单独量测。PDB距离数组/文件大小、TT条目、当前堆快照均不是JVM峰值内存。
 
 保留的原始CSV/日志/路径保持原位置及原字节，独立失败证据未清洗。重复成功组、旧测试副本和无引用路径的删除映射见最终统一证据，取舍见 docs/changes.md。旧库存与验收JSON是相应日期的历史快照，不能当作当前附件清单或独立实验次数；当前状态以 docs/acceptance.md 为准。
+
+## 2026-11-06 优化矩阵
+
+正式80次：SOLVED:61, TIMEOUT:19；[原始记录](optimization-20261106-20261106T115705068678Z/runs/)、[源码与环境](optimization-20261106-20261106T115705068678Z/environment.json)、[完整比较表与图](optimization-20261106-20261106T115705068678Z/analysis-final/analysis.md)、[诊断](optimization-20261106-20261106T115705068678Z/diagnostics/results.json)。BASIC冷运行 TIMEOUT，不以热缓存代替冷启动验收。历史文件保留并以逐文件SHA-256检查。
+
+另有[首次预实验TIMEOUT](optimization-20261106-20261106T114453353805Z/diagnosis.json)，原因及迟到路径保留；该目录计划80项但只实际启动1项，不能按计划数充当已运行数。
+
+本轮[统一核验](optimization-20261106-20261106T115705068678Z/verification.json)、[最终构建与测试](optimization-20261106-20261106T115705068678Z/final-checks/verification.json)、[项目级核验](optimization-20261106-20261106T115705068678Z/project-validation.json)。实际运行80项加15项诊断尝试及首次预试1项，共96次尝试；两次JFR初始化FAIL不算搜索成功。

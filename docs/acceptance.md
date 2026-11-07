@@ -53,3 +53,22 @@
 1. 填写研究报告封面真实姓名、学号、学期及必要的组员信息。
 2. 重新生成/导出一致的 DOCX 与 PDF，检查目录、页码、排版，并将报告第 5.3 节旧“待人工验收”措辞同步为新状态；更新引用源及必要校验。
 3. 按课程规定提交最终文件。**GUI 人工操作无需再重复验收**，除非后续修改播放器代码。
+
+## 2026-11-06 优化专项验收
+
+| 项目 | 状态 | 证据与边界 |
+| --- | --- | --- |
+| 干净Java19编译、8套原有及新增测试 | PASS | [构建](../results/optimization-20261106-20261106T115705068678Z/clean-build.log)、[9套记录](../results/optimization-20261106-20261106T115705068678Z/tests.json) |
+| LC完整8-Puzzle一致性及4×4核对 | PASS | [7,022,745项检查](../results/optimization-20261106-20261106T115705068678Z/tests/optimization-final/correctness.json)，4×4非全空间证明 |
+| 7种模式普通题预实验 | PASS | 各52步，独立回放 |
+| Hard矩阵及四启发实际执行 | PASS | 正式80次全部执行，SOLVED:61, TIMEOUT:19；执行完成不等于所有配置成功 |
+| 新成功路径 | PASS | 题目/目标/动作/连续性/最优长度逐条独立回放 |
+| 本轮BASIC冷启动60秒条件 | FAIL | 实际 TIMEOUT，父端 60054.415 ms |
+| 置换表性能推荐 | PASS | 按当前证据选择 BASIC / limit=0，不强制启用新增模式 |
+| 历史与教师保护 | PASS | [冻结基线](../results/optimization-20261106-20261106T115705068678Z/baseline.json)，最终统一核验记录放在该目录；只更新INDEX导航 |
+| DOCX/PDF重生成 | NOT_RUN | 历史二进制及原数据哈希不改；Markdown补充见[正文](../report/正文.md) |
+| 显著性与普适最佳容量 | NOT_RUN | 三次固定题重复不足以作这些结论 |
+
+完整方法、失败处理与复现见[优化分析](optimization_analysis.md)。本节不替代既有GUI人工验收记录。
+
+本轮[统一核验记录](../results/optimization-20261106-20261106T115705068678Z/verification.json)、[最终干净构建](../results/optimization-20261106-20261106T115705068678Z/final-checks/verification.json)、[历史报告与路径总核验](../results/optimization-20261106-20261106T115705068678Z/project-validation.json)均为PASS；这是审查流程通过，不改变冷启动Hard的TIMEOUT。

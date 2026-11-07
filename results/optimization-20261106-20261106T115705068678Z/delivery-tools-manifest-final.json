@@ -1,0 +1,50 @@
+[
+  {
+    "path": "tools/analyze_optimization.py",
+    "sha256": "75f2467d78048e7731c83962d219be282cdac1c215e5b9b95b5590f9f6f7a92d"
+  },
+  {
+    "path": "tools/document_optimization.py",
+    "sha256": "c77812b0aa9d9af1f56cd89ff0ce5f10701d9b17973a3c0287e26d630c3f84e2"
+  },
+  {
+    "path": "tools/verify_optimization.py",
+    "sha256": "2130dbe88e08942d865224fca39f2d8d3464746a2448516d5c9b7d443f66d70a"
+  },
+  {
+    "path": "tools/finalize_optimization.py",
+    "sha256": "c35cf6d46378380c25347125ecc47b0531fa069e29f42bc7d2fa7360dd16a74c"
+  },
+  {
+    "path": "tools/optimization_diagnostics.py",
+    "sha256": "a2988b0ccacfe78927da5cbbe1e13d73126583deb3dc57e3e87ab6fe5bb8d28b"
+  },
+  {
+    "path": "tools/OptimizationDiagnostics.java",
+    "sha256": "42c7812fc0716b822fd7ca7100c886672bc6346f80825f2038fd80addb35c436"
+  },
+  {
+    "path": "tools/optimization_profile_retry.py",
+    "sha256": "3360f09b1785ad11344cb6d009d111d246fcc1e125b3166f0148023f380ab23f"
+  },
+  {
+    "path": "tools/optimization_profile_external.py",
+    "sha256": "65063e98dceaad65b1ea4f24a1c26d58eaa964f8138b7e3c910316c94817aea3"
+  },
+  {
+    "path": "tools/run_optimization.ps1",
+    "sha256": "343a9ee2c955fec440f8611189b85c9f74faeefb2ee2392a57f88dff7e70c62b"
+  },
+  {
+    "path": "tools/verify_project.py",
+    "sha256": "d06d562c41348d533cc0a900bb602e75c666c28c9ef8cd2aa21712ef225d5fbc"
+  },
+  {
+    "path": "tools/build_report.py",
+    "sha256": "ed6cdceccc29767ceaa1f81d8c63c90adc994a8dbd33ab7d68c5eba058dc3550"
+  },
+  {
+    "path": "tests/test_optimization_tools.py",
+    "sha256": "1fcb53bebfb5d23a067ed104bde6c0b71a08aa36250869a3e0b1d804205ebb6a"
+  }
+]

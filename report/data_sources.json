@@ -9,5 +9,8 @@
   "final_cold": "results/run-20261011T071242033Z/stage3.csv",
   "final_warm": "results/run-20261011T071242033Z-warm/stage3.csv",
   "gui_teacher3": "report/images/teacher_stage1_3x3_final.png",
-  "gui_hard4": "report/images/hard_15puzzle_4x4_final.png"
+  "gui_hard4": "report/images/hard_15puzzle_4x4_final.png",
+  "optimization_comparison": "results/optimization-20261106-20261106T115705068678Z/analysis-final/comparison.csv",
+  "optimization_summary": "results/optimization-20261106-20261106T115705068678Z/analysis-final/summary.json",
+  "optimization_diagnostics": "results/optimization-20261106-20261106T115705068678Z/diagnostics/all-results-final.json"
 }

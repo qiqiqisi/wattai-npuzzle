@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "canonical_directory": "analysis-final",
+  "reviewed": [
+    "hard-times.png",
+    "heuristic-times.png",
+    "hard-nodes.png"
+  ],
+  "checks": [
+    "legends do not cover measurements",
+    "readable ticks and units",
+    "visible complete markers",
+    "failed searches have no invented time point",
+    "CSV and numerical JSON unchanged across plot revisions"
+  ],
+  "intermediate_plots_retained": [
+    "analysis",
+    "analysis-v2"
+  ]
+}

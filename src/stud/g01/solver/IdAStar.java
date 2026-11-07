@@ -45,6 +45,11 @@ public final class IdAStar extends AbstractSearcher {
     private int maxDepth;
     private int peakPathStates;
     private int peakTranspositionEntries;
+    private long reverseMovePrunes;
+    private long childStatesCreated;
+    private long childNodesCreated;
+    private long fullHeuristicEvaluations;
+    private long incrementalHeuristicEvaluations;
     private Consumer<IdAStar> progressListener;
     private long lastProgress;
     // Opt-in until paired evidence is collected; false restores original child generation.
@@ -97,6 +102,8 @@ public final class IdAStar extends AbstractSearcher {
         nodesGenerated = nodesExpanded = 0;
         iterations = maxDepth = peakPathStates = peakTranspositionEntries = transpositionEntries = 0;
         initialBound = finalBound = cyclePrunes = transpositionPrunes = 0;
+        reverseMovePrunes = childStatesCreated = childNodesCreated = 0;
+        fullHeuristicEvaluations = incrementalHeuristicEvaluations = 0;
         solution = null;
         pathStates.clear();
         bestG.clear();
@@ -104,6 +111,7 @@ public final class IdAStar extends AbstractSearcher {
         thresholdSequence.clear();
         if (!problem.solvable()) return null;
 
+        fullHeuristicEvaluations++;
         Node root = problem.root(predictor);
         long bound = root.getHeuristic();
         initialBound = bound;
@@ -148,15 +156,23 @@ public final class IdAStar extends AbstractSearcher {
             for (PuzzleMove move : board.actions()) {
                 if (parent != null && reverses((PuzzleMove) node.getAction(), move)) {
                     cyclePrunes++;
+                    reverseMovePrunes++;
                     continue;
                 }
                 PuzzleBoard state = board.next(move);
+                childStatesCreated++;
                 nodesGenerated++;
                 if (pathStates.contains(state)) { cyclePrunes++; continue; }
-                int h = predictor instanceof IncrementalPredictor incremental
-                        ? incremental.successorHeuristics(board, state, puzzle.targetBoard(), node.getHeuristic())
-                        : predictor.heuristics(state, puzzle.targetBoard());
+                int h;
+                if (predictor instanceof IncrementalPredictor incremental) {
+                    incrementalHeuristicEvaluations++;
+                    h = incremental.successorHeuristics(board, state, puzzle.targetBoard(), node.getHeuristic());
+                } else {
+                    fullHeuristicEvaluations++;
+                    h = predictor.heuristics(state, puzzle.targetBoard());
+                }
                 Node child = new Node(state, node, move, node.getPathCost()+1, h);
+                childNodesCreated++;
                 pathStates.add(state);
                 peakPathStates = Math.max(peakPathStates, pathStates.size());
                 long result = depthFirstSearch(problem, child, bound, depth+1);
@@ -166,7 +182,12 @@ public final class IdAStar extends AbstractSearcher {
             }
             return nextBound;
         }
-        for (Node child : problem.childNodes(node, predictor)) {
+        // The framework eagerly creates every sibling, even when an earlier one finds the goal.
+        List<Node> children = problem.childNodes(node, predictor);
+        childStatesCreated += children.size();
+        childNodesCreated += children.size();
+        fullHeuristicEvaluations += children.size();
+        for (Node child : children) {
             nodesGenerated++;
             State state = child.getState();
             if (pathStates.contains(state)) {
@@ -228,6 +249,11 @@ public final class IdAStar extends AbstractSearcher {
     }
 
     public Mode mode() { return mode; }
+    public long reverseMovePrunes() { return reverseMovePrunes; }
+    public long childStatesCreated() { return childStatesCreated; }
+    public long childNodesCreated() { return childNodesCreated; }
+    public long fullHeuristicEvaluations() { return fullHeuristicEvaluations; }
+    public long incrementalHeuristicEvaluations() { return incrementalHeuristicEvaluations; }
     public int transpositionLimit() { return transpositionLimit; }
     public int iterations() { return iterations; }
     public long initialBound() { return initialBound; }

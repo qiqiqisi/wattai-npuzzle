@@ -1,0 +1,107 @@
+tools\OptimizationDiagnostics.java:3: 错误: 程序包stud.g01.solver不存在
+import stud.g01.solver.IdAStar;
+                      ^
+tools\OptimizationDiagnostics.java:4: 错误: 程序包stud.queue不存在
+import stud.queue.StackFrontier;
+                 ^
+tools\OptimizationDiagnostics.java:5: 错误: 程序包stud.g01.visual不存在
+import stud.g01.visual.SolutionTrace;
+                      ^
+tools\OptimizationDiagnostics.java:61: 错误: 找不到符号
+    private static String text(PuzzleBoard b){List<String> tiles=new ArrayList<>();for(int i=0;i<16;i++)tiles.add(Integer.toString(b.tileAt(i/4,i%4)));return String.join(" ",tiles);}
+                               ^
+  符号:   类 PuzzleBoard
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:1: 错误: 程序包stud.g01.problem.npuzzle不存在
+import stud.g01.problem.npuzzle.*;
+^
+tools\OptimizationDiagnostics.java:2: 错误: 程序包stud.g01.pdb不存在
+import stud.g01.pdb.*;
+^
+tools\OptimizationDiagnostics.java:17: 错误: 找不到符号
+        PuzzleBoard initial=new PuzzleBoard(Arrays.copyOfRange(values,1,17),4),goal=new PuzzleBoard(Arrays.copyOfRange(values,17,33),4);
+        ^
+  符号:   类 PuzzleBoard
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:17: 错误: 找不到符号
+        PuzzleBoard initial=new PuzzleBoard(Arrays.copyOfRange(values,1,17),4),goal=new PuzzleBoard(Arrays.copyOfRange(values,17,33),4);
+                                ^
+  符号:   类 PuzzleBoard
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:17: 错误: 找不到符号
+        PuzzleBoard initial=new PuzzleBoard(Arrays.copyOfRange(values,1,17),4),goal=new PuzzleBoard(Arrays.copyOfRange(values,17,33),4);
+                                                                                        ^
+  符号:   类 PuzzleBoard
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:19: 错误: 找不到符号
+        DisjointPatternDatabase pdb=new DisjointPatternDatabase(goal,DisjointPatternDatabase.FIVE_FIVE_FIVE_TRANSPOSED,Path.of(args[1]));
+        ^
+  符号:   类 DisjointPatternDatabase
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:19: 错误: 找不到符号
+        DisjointPatternDatabase pdb=new DisjointPatternDatabase(goal,DisjointPatternDatabase.FIVE_FIVE_FIVE_TRANSPOSED,Path.of(args[1]));
+                                        ^
+  符号:   类 DisjointPatternDatabase
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:19: 错误: 找不到符号
+        DisjointPatternDatabase pdb=new DisjointPatternDatabase(goal,DisjointPatternDatabase.FIVE_FIVE_FIVE_TRANSPOSED,Path.of(args[1]));
+                                                                     ^
+  符号:   变量 DisjointPatternDatabase
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:21: 错误: 找不到符号
+        for(PatternTable table:pdb.tables())if(table.loaded())loadMs+=table.preparationMs();else buildMs+=table.preparationMs();
+            ^
+  符号:   类 PatternTable
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:27: 错误: 找不到符号
+        IdAStar ida=new IdAStar(new StackFrontier(),pdb,IdAStar.Mode.BASIC,0);
+        ^
+  符号:   类 IdAStar
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:27: 错误: 找不到符号
+        IdAStar ida=new IdAStar(new StackFrontier(),pdb,IdAStar.Mode.BASIC,0);
+                        ^
+  符号:   类 IdAStar
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:27: 错误: 找不到符号
+        IdAStar ida=new IdAStar(new StackFrontier(),pdb,IdAStar.Mode.BASIC,0);
+                                    ^
+  符号:   类 StackFrontier
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:27: 错误: 程序包IdAStar不存在
+        IdAStar ida=new IdAStar(new StackFrontier(),pdb,IdAStar.Mode.BASIC,0);
+                                                               ^
+tools\OptimizationDiagnostics.java:29: 错误: 找不到符号
+        var serializer=stud.g01.runner.OptimizationWorker.class.getDeclaredMethod("metrics",Properties.class,IdAStar.class,DisjointPatternDatabase.class);
+                                                                                                             ^
+  符号:   类 IdAStar
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:29: 错误: 找不到符号
+        var serializer=stud.g01.runner.OptimizationWorker.class.getDeclaredMethod("metrics",Properties.class,IdAStar.class,DisjointPatternDatabase.class);
+                                                                                                                           ^
+  符号:   类 DisjointPatternDatabase
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:29: 错误: 程序包stud.g01.runner不存在
+        var serializer=stud.g01.runner.OptimizationWorker.class.getDeclaredMethod("metrics",Properties.class,IdAStar.class,DisjointPatternDatabase.class);
+                                      ^
+tools\OptimizationDiagnostics.java:37: 错误: 找不到符号
+            long build=0,load=0;for(PatternTable table:pdb.tables())if(table.loaded())load+=table.preparationMs();else build+=table.preparationMs();
+                                    ^
+  符号:   类 PatternTable
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:42: 错误: 找不到符号
+        var path=ida.search(new NPuzzleProblem(initial,goal));
+                                ^
+  符号:   类 NPuzzleProblem
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:48: 错误: 找不到符号
+        int step=0;for(var node:path)lines.add((++step)+"\t"+node.getAction()+"\t"+text((PuzzleBoard)node.getState()));
+                                                                                         ^
+  符号:   类 PuzzleBoard
+  位置: 类 OptimizationDiagnostics
+tools\OptimizationDiagnostics.java:49: 错误: 找不到符号
+        Files.write(out.resolve("solution.tsv"),lines,StandardOpenOption.CREATE_NEW);SolutionTrace.read(out.resolve("solution.tsv"));
+                                                                                     ^
+  符号:   变量 SolutionTrace
+  位置: 类 OptimizationDiagnostics
+24 个错误

@@ -25,3 +25,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/render_report.ps1 -Inp
 上述两张 2026-10-10 原始 PNG 已嵌入正文第5.4节、DOCX与PDF，字节哈希纳入 data_hashes.json，保持不变。2026-10-12 用户另提供[3×3初态](../docs/images/gui_3x3_initial.png)、[3×3终态](../docs/images/gui_3x3_final.png)、[4×4初态](../docs/images/gui_4x4_initial.png)、[4×4终态](../docs/images/gui_4x4_final.png)以及[错误路径拒绝截图](../docs/images/invalid_trace_rejected.png)，作为 GitHub GUI 验收补充材料；目前未替换报告中的旧图，也未重建DOCX/PDF，避免原报告的数据来源与哈希失配。
 
 17页正式报告保留教师封面、算法原理、历史同题比较和2026-10-11独立冷/热复核。2026-10-12 新增[7张精选交互截图](../docs/acceptance.md)并由用户本人确认全部控件与速度操作正常；该后续验收未写入现有正文/DOCX/PDF，须在最终填写封面时同步更新报告文本，再导出PDF并检查目录与页码。原报告两张截图及 data_hashes.json 保持不变。
+
+## 新实验补充的版本边界
+
+2026-11-06 的优化实验只加入[Markdown正文](正文.md)第4.6节与[独立分析](../docs/optimization_analysis.md)。现有DOCX、PDF及LaTeX正文/PDF均未重新生成；旧图和旧数据哈希保持不变，不能把历史二进制报告当作已包含本轮结果。原 `build_report.py` 使用历史模板硬编码正文，已增加保护门禁，避免覆盖新补充；要生成包含新实验的二进制报告，需要显式升级该模板流程并重新排版核验。本轮新数据源见[data_sources.json](data_sources.json)的optimization键。

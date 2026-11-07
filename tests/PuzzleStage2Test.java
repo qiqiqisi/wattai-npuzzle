@@ -173,6 +173,8 @@ public final class PuzzleStage2Test {
                     && h <= exact);
             for (PuzzleMove action : state.actions()) {
                 PuzzleBoard next = state.next(action);
+                check("LC exhaustive consistency: " + state + " -> " + next,
+                        h <= 1 + stronger.heuristics(next, GOAL3));
                 if (!distance.containsKey(next)) {
                     distance.put(next, exact + 1);
                     queue.add(next);

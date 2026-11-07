@@ -1,0 +1,455 @@
+{
+  "status": "PASS",
+  "staged_file_count": 3831,
+  "forbidden_paths": [],
+  "staged_paths_sha256": "a764c0d03a6089f36dd76f1cc6041aca5b5b0067f5a707564b3e21a4a4aa0b88",
+  "verified_manifest_blobs": [
+    {
+      "path": "src/algs4/util/StdRandom.java",
+      "sha256": "f1a6ff3820097c483ad4f76d3fead16c83e234021b118e21d6b13606b6ed813b",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/algs4/util/Stopwatch.java",
+      "sha256": "35e7cd78ebe999124844e76347c83b9edff4e7c4140c9776670776747bd76044",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/algs4/util/StopwatchCPU.java",
+      "sha256": "156af06f4293ce083c7a539dca0923f9fb1b933d7b11d1532f35090b304ea2b8",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/problem/Action.java",
+      "sha256": "259fa64270bc6b9ef910bda724a5b80fd56eb336b1624de321e80bcd1580a6a4",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/problem/Problem.java",
+      "sha256": "3d8fa3f9960eb241f45cd30a7850eaa6b44270f32033fdc0895505eb2861cc8c",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/problem/ProblemType.java",
+      "sha256": "c557f29754ffd12aff1fbe42dff1cbad1fcb2010e6b0eebe36422d0bdfe33082",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/problem/State.java",
+      "sha256": "62399e13f25ac348a7710b96083d391245937c873a0218afad53d2e0b629dda2",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/runner/EngineFeeder.java",
+      "sha256": "6efc9d1346d03c9d4dc667a757a2476a21b2f7d5bcefc8e7780db9f785a52c26",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/runner/SearchTester.java",
+      "sha256": "1b1c02efaf45a5fb45b2ad178f0cd989965d64dc535ed5a808a6f745df6585f7",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/solver/algorithm/heuristic/HeuristicType.java",
+      "sha256": "8edccb736b27117df269389b9b0360a971f609ca923a054dc2378dadaf75f6e3",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/solver/algorithm/heuristic/Predictor.java",
+      "sha256": "263b2d6e91e0bff56090a0317a6f3257d1023acbffc98bed264d979a6ef84093",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/solver/algorithm/searcher/AbstractSearcher.java",
+      "sha256": "257a8aef5bb85743623438abfb44f40ebff5be72c2cf5139d3862b18539a7462",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/solver/algorithm/searcher/BestFirstSearcher.java",
+      "sha256": "424e7a809cc4d51d6ffe156223635eb963779d9dee359a1c47ec49b7e184c440",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/solver/queue/EvaluationType.java",
+      "sha256": "c48ccde7b74d97143059708679867996d8dbb7ee96d975fdfa1ea0da78894c65",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/solver/queue/Frontier.java",
+      "sha256": "36206004576a373951a846a374b043c33f7fff47809165e66495a75c881f5d9b",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/core/solver/queue/Node.java",
+      "sha256": "bf5f62c6c3fd9f536ca140781d3d0904c58f6895b27963d3209374b2346169e2",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/heuristic/IncrementalPredictor.java",
+      "sha256": "ef5a461e32d94287ea03512817a4db0cc6db28a230104f798aab9fca97453853",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/heuristic/PuzzleHeuristic.java",
+      "sha256": "2b6815060de063c4d4e7292f95e60ca36b0cb91ad35e9c72d415b8824cf2c0aa",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/pdb/BlankDistance.java",
+      "sha256": "c689ec058db4df9d6be024bb9a5995e671dbd9abce5ce78006990ad99a19d6b1",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/pdb/DisjointPatternDatabase.java",
+      "sha256": "658735f80fa6f28675492e29952dbb2660e661f162636c3611151f01e8f6193c",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/pdb/PatternTable.java",
+      "sha256": "a997985f858b2e8a364e085efd5e1999e8bd43ab59a1c1bde3d28220e158e7dc",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/problem/npuzzle/NPuzzleProblem.java",
+      "sha256": "311575b9b2a086e0f10c42bc853a146bbdf7bc1bd28b4e002658789a65c89807",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/problem/npuzzle/PuzzleBoard.java",
+      "sha256": "bd3abc92e87d0aa48035f7f41ad09d5b305f463e50accf2a59ae3c8062ad5f3e",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/problem/npuzzle/PuzzleMove.java",
+      "sha256": "ed319016c4dc513b617091f3492f4179d16fda5cc86b91e5beb80c13bd58fc89",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/queue/PqFrontier.java",
+      "sha256": "fec7d2195908e86cc008f984cc9cb1f0340439f4c166d947bfad8f17ab09890a",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/BenchmarkAcceptance.java",
+      "sha256": "869f685c03da552daaabe87b99abf29354ca7634bed3ddb1e9b12434c8485a40",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/LoggedSearchTester.java",
+      "sha256": "5ff874711e6c1d77947d0ed0403d4d8059041184767080143bae53bbb354977f",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/OptimizationWorker.java",
+      "sha256": "07e9b18df510f5ee7555b72e04822b8e92fbe00ec94e0f8527fd292649d4fb86",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/PatternGroupingBenchmark.java",
+      "sha256": "412c0a680707833bed0b1636a22833d112c6ed6de16499ea09b79fd7354f64fd",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/PdbBfsBibfsBenchmark.java",
+      "sha256": "d24092a41bdf8643f4fe24ebfb2f80cb87b458938c8112c267a75e9da97f674b",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/PdbTableManifest.java",
+      "sha256": "edfa1965e06035a863238001ca350ef880ccdd420f23fbb1ad669efda19e4385",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/PuzzleFeeder.java",
+      "sha256": "98d38001ad13cca710324259e9068736fd068d007353551921123cf928a71179",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/RandomGoalBenchmark.java",
+      "sha256": "0b92881b42bfb1d9d819661889514d5b34626ef4ace19bc9eead6c6a5cf943ab",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/Stage1Benchmark.java",
+      "sha256": "cc35c32de3748a5d01b0f53c4c42c7be5ebcb4b88d5503d7dffda40bb43e25a3",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/Stage1ExtendedBenchmark.java",
+      "sha256": "b9410a016dd8ad86233a208d3492b5abfdfa8c44004ff645aee01eb040a59261",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/Stage1Summary.java",
+      "sha256": "c200bbb7f7cb17178b7fa2960b04577222aa70e9bee1ba33a25606443a3270c6",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/Stage2Benchmark.java",
+      "sha256": "93862617f6c420a22019d8ecfe958482c736f1eef565782c41e4154f367d1bde",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/Stage3Benchmark.java",
+      "sha256": "dda12a5e9259e87e1c5d4cca25e68f569da2d3505ec4cff9c43e349d6214004d",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/runner/StudentSearchTester.java",
+      "sha256": "929dbccd21f469d8e6a24a919174907bbc7ea502bfdfdfe11909722a4d2c2a0e",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/solver/IdAStar.java",
+      "sha256": "202f9f6d30175d933fe189fa99aee86312a07d421d6953c38e5f561c5b7640a7",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/solver/ZobristKey.java",
+      "sha256": "11092da56b777ebe7783aef7b150081679c4c96c2a22c6bc120621df278aa6c5",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/visual/PlaybackModel.java",
+      "sha256": "1df7db61f355f4c855fd2907c3dc2090b51ddbf6cbbc0f5659463059a30933ef",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/visual/PuzzleVisualizer.java",
+      "sha256": "17cffcd36d668f26b736a994101c1985f31795529b1cbf969588f57aed6193c3",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/g01/visual/SolutionTrace.java",
+      "sha256": "d616a30c177832ac5b782c4e866a3d18c0c64931adfc1c4f9f595f66ee079f29",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Direction.java",
+      "sha256": "4ce50163accf7f6f1e4204f58d13db9145857c2462126a198e7438aa4ebaf8dd",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/problem/pathfinding/GridType.java",
+      "sha256": "f21489d733da2e0909f2cc8f00aafe8cfd1ff9b99f674deceaa76f594e07f7a1",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Move.java",
+      "sha256": "99877831356a46bd58b9c58b02ab9ed06d3d9cc3741cd9d6b4b327e7c825879d",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/problem/pathfinding/PathFinding.java",
+      "sha256": "e4cdec3cb37c0ac728a88a11567b9a426bc55e902d8b0d949496be9a4292d4f3",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Position.java",
+      "sha256": "0e517ede0cda4511af9341d421505bc4d93505b6a7ce247a5aecbc5eafb2a300",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/queue/ListFrontier.java",
+      "sha256": "26014c6ea29b36fa8d2d297ffd77727273c11e10201a3beffe48ef66b7b490e4",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/queue/PqFrontier.java",
+      "sha256": "ee47b8ec7f2ca2b388a1b085b4dad9096d766469ca30db8813089bf31c49cac4",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/queue/QueueFrontier.java",
+      "sha256": "057de9692bedb2ed2c3d9cbdf107b5787d63f4f21150b774933de015ab60f465",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/queue/StackFrontier.java",
+      "sha256": "94c8b827b17ca194875bb531b696f7b06d4a7eb98ece859f5805f2dc92f6f6d4",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/runner/WalkerFeeder.java",
+      "sha256": "79bbbde2d52dabf6d7207b31c26752f5231cd8a550bc24bb09a989e34c1237c2",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "src/stud/solver/IdAStar.java",
+      "sha256": "93a9bdaa7da705119a8d775126e666c87625498ea54087c759b84d6df2239ce3",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/BenchmarkAcceptanceTest.java",
+      "sha256": "7457d7ab4d74a9637700813f889b28bab11c9ab952d5601d6f9b775af93527ce",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/PuzzleAlternativePdbTest.java",
+      "sha256": "69debff8fccc731eea24e4a31701b9cd79d8c2e6fa5176e54eb6e1c121798ece",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/PuzzleCloseoutTest.java",
+      "sha256": "387719d1ab9e4379415d9914f28a6a97a361b774562619d8df74857b55dc80a3",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/PuzzleFoundationTest.java",
+      "sha256": "54e512863e40c28879f9e8bdf604069b1c84aab377c80bd1272f63d25ab2eb54",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/PuzzleOptimizationTest.java",
+      "sha256": "eca8096ca351736ccf91c71a9fa90325347988d38f0cb8a07f02d6ecccd72abf",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/PuzzleStage1Test.java",
+      "sha256": "de39de6354a20f2cec872b35142ebfcc23d88a2bc0948c7746a5ae3888f814cf",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/PuzzleStage2Test.java",
+      "sha256": "4500591949ccd4d2bd58fbb6bcdb9686ff8097dc6386eee72fe7c1548400e87a",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/PuzzleStage3Test.java",
+      "sha256": "162b70eacd78977ab32b6c3b2bfd6a5a5e53f51f2f1287b7a484cacf6cd27932",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tests/TeacherStage1Test.java",
+      "sha256": "8df9659032a4e58857dffa9369280e50c4ab3168bbe2c734e64d9ef75caad24a",
+      "manifest": "source-manifest.json"
+    },
+    {
+      "path": "tools/optimization_suite.py",
+      "sha256": "f3e890f93104ea3175c5dcab2506973ded75f0a2c64fd300c44239b8ff8fdea4",
+      "manifest": "runner-manifest.json"
+    },
+    {
+      "path": "tools/DeadlineProbe.java",
+      "sha256": "9615182eeb3cf53be374b523aaf0b455a298b9d0409f887bcdf13210bb6266b0",
+      "manifest": "runner-manifest.json"
+    },
+    {
+      "path": "tools/compile.ps1",
+      "sha256": "dab7a873386f77b00a469d68a1ffda55f241632fe12beca9fb3e603d73cc9e8b",
+      "manifest": "runner-manifest.json"
+    },
+    {
+      "path": "tools/analyze_optimization.py",
+      "sha256": "75f2467d78048e7731c83962d219be282cdac1c215e5b9b95b5590f9f6f7a92d",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/document_optimization.py",
+      "sha256": "c77812b0aa9d9af1f56cd89ff0ce5f10701d9b17973a3c0287e26d630c3f84e2",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/verify_optimization.py",
+      "sha256": "2130dbe88e08942d865224fca39f2d8d3464746a2448516d5c9b7d443f66d70a",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/finalize_optimization.py",
+      "sha256": "c35cf6d46378380c25347125ecc47b0531fa069e29f42bc7d2fa7360dd16a74c",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/optimization_diagnostics.py",
+      "sha256": "a2988b0ccacfe78927da5cbbe1e13d73126583deb3dc57e3e87ab6fe5bb8d28b",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/OptimizationDiagnostics.java",
+      "sha256": "42c7812fc0716b822fd7ca7100c886672bc6346f80825f2038fd80addb35c436",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/optimization_profile_retry.py",
+      "sha256": "3360f09b1785ad11344cb6d009d111d246fcc1e125b3166f0148023f380ab23f",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/optimization_profile_external.py",
+      "sha256": "65063e98dceaad65b1ea4f24a1c26d58eaa964f8138b7e3c910316c94817aea3",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/run_optimization.ps1",
+      "sha256": "343a9ee2c955fec440f8611189b85c9f74faeefb2ee2392a57f88dff7e70c62b",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/verify_project.py",
+      "sha256": "d06d562c41348d533cc0a900bb602e75c666c28c9ef8cd2aa21712ef225d5fbc",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tools/build_report.py",
+      "sha256": "ed6cdceccc29767ceaa1f81d8c63c90adc994a8dbd33ab7d68c5eba058dc3550",
+      "manifest": "delivery-tools-manifest-final.json"
+    },
+    {
+      "path": "tests/test_optimization_tools.py",
+      "sha256": "1fcb53bebfb5d23a067ed104bde6c0b71a08aa36250869a3e0b1d804205ebb6a",
+      "manifest": "delivery-tools-manifest-final.json"
+    }
+  ],
+  "history_sha256_count": 337,
+  "teacher_sha256_count": 31,
+  "line_ending_only_changes_verified": [
+    "tests/BenchmarkAcceptanceTest.java",
+    "tests/PuzzleAlternativePdbTest.java",
+    "tests/PuzzleCloseoutTest.java",
+    "tests/PuzzleFoundationTest.java",
+    "tests/PuzzleStage1Test.java",
+    "tests/PuzzleStage3Test.java",
+    "tests/TeacherStage1Test.java",
+    "tools/compile.ps1"
+  ],
+  "non_result_paths": [
+    ".gitattributes",
+    "README.md",
+    "docs/acceptance.md",
+    "docs/changes.md",
+    "docs/optimization_analysis.md",
+    "report/README.md",
+    "report/data_hashes.json",
+    "report/data_sources.json",
+    "report/正文.md",
+    "src/stud/g01/runner/OptimizationWorker.java",
+    "src/stud/g01/solver/IdAStar.java",
+    "tests/BenchmarkAcceptanceTest.java",
+    "tests/PuzzleAlternativePdbTest.java",
+    "tests/PuzzleCloseoutTest.java",
+    "tests/PuzzleFoundationTest.java",
+    "tests/PuzzleOptimizationTest.java",
+    "tests/PuzzleStage1Test.java",
+    "tests/PuzzleStage2Test.java",
+    "tests/PuzzleStage3Test.java",
+    "tests/TeacherStage1Test.java",
+    "tests/test_optimization_tools.py",
+    "tools/DeadlineProbe.java",
+    "tools/OptimizationDiagnostics.java",
+    "tools/analyze_optimization.py",
+    "tools/audit_optimization_stage.py",
+    "tools/build_report.py",
+    "tools/compile.ps1",
+    "tools/document_optimization.py",
+    "tools/finalize_optimization.py",
+    "tools/optimization_diagnostics.py",
+    "tools/optimization_profile_external.py",
+    "tools/optimization_profile_retry.py",
+    "tools/optimization_suite.py",
+    "tools/run_optimization.ps1",
+    "tools/verify_optimization.py",
+    "tools/verify_project.py"
+  ],
+  "self_sha256": "71844bc08cde2300f885ec4e1880d55ec267e935f6317a0066535ed58669fff5",
+  "scope": "This audit file is added after verification; no history is modified."
+}

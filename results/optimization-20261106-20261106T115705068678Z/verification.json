@@ -1,0 +1,2740 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "planned_runs": 80,
+  "actual_runs": 80,
+  "successful_paths": [
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "48b05c824e9983fd37ae364eee158e71843a1e7158dab942cf953b31cbfa8722",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "462eb58bb7d60d4427c972c89427e42f51620778f3ae814bb6b36a44470c156d",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/002-preflight-preflight-IDA-DISJOINT_PATTERN-TT-100000-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "92c2aa07714f5d7a53f98d0ee65d9fff2467e38380df7459b29bd8e2f59f79db",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/003-preflight-preflight-IDA-DISJOINT_PATTERN-TT-500000-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "eb4fa36aef353dfea3d6c326092c43919a458034dd1f34125c44a82b2c4dfdd6",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/004-preflight-preflight-IDA-DISJOINT_PATTERN-TT-1000000-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "214dbb6ec1763a28b0b96fa95172fdfe337ba5044cb727356dec5468fa257a52",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/005-preflight-preflight-IDA-DISJOINT_PATTERN-ZOBRIST-100000-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "4598c1cc77f7ebe6a8ea9d55b8590d36dfe925b665d2f01e383163c6f16403b5",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/006-preflight-preflight-IDA-DISJOINT_PATTERN-ZOBRIST-500000-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "bafe0a97298d4959ad2ba26360ac60a218d2226ec9441e68acd3d5dd0ec6b62d",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/007-preflight-preflight-IDA-DISJOINT_PATTERN-ZOBRIST-1000000-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "3a81f4ebdba158a9674a8b0e0c81c9687fd2eb1ec0d62d63afb3500563cd82a1",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/009-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-100000-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "01a8455969c7edb2fe195d01c1210861b016a3aca0664d65b647bd39545c0a6a",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/010-hard-hard-IDA-DISJOINT_PATTERN-TT-500000-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "b34332b88880d31e0961e85d005e3a686f0a3df7463b07f02d50d11f66b5fb76",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/015-hard-hard-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "e9eaa9905f1c569ad058667f2445225799c1a7e6dbdaecb41c10c94e4f4eaa0c",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/016-hard-hard-IDA-DISJOINT_PATTERN-TT-100000-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "cb1dff21c454c4d40c0596d58dce1e50ccbfcf2521ee0ae83b360b009220a2d8",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/019-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-100000-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "e1ba1b799592f19aac2979491944ae8f6164fa214b01bd277145b7facccfabef",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/020-hard-hard-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "55acf9383683bcf5b5f98671e35b6e511f0355b70280a2bc34317530581bc595",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/021-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-500000-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "cc68b4cf14459bcc187ec3494e6e65eb20076620452e6cb3302b0d675ee15f11",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/022-hard-hard-IDA-DISJOINT_PATTERN-TT-500000-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "26c379ff35b250ee61c31775bc716339fe76d3eaaeac738f3d819b36c3fabb32",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/023-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-1000000-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "25b2082bcec6eb1b6787a8db2db0f282eb63ec43448992d9abbe2c10fee38a10",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/024-hard-hard-IDA-DISJOINT_PATTERN-BASIC-0-fastfalse-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "941f4be7c07452bd2c84f22722b6ee5b50ade3ebe17867e35cc1b0a268ddeef2",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/025-hard-hard-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "e0b446b7d0601270a97969292fe144bf434713066b221d2ac0d0e3de52a56c77",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/031-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-100000-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "010400b0fcc92f6175b1c855df1fab9cab2d7951c1a86ecba57c7d6af5659d90",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/033-heuristic-teacher3-ASTAR-MANHATTAN_LC-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "3c6aeabd795f9fdb54bc6a06322c67f219a004ae42170f0b2a7c6d0713729651",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/034-heuristic-teacher3-ASTAR-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "b61bf36f279c6a987898a7e2927b0ea1cfc5d7282855d5ad9832152090c7483f",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/035-heuristic-ordinary4-ASTAR-MANHATTAN_LC-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "7d166831a75856ef77ecaddcfec54aa566085e4a6a38f05839d94a57a2e7c0cf",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/036-heuristic-teacher3-IDA-MANHATTAN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "0076a7bc82af806281e44d7e2c8e1868fabe41d734dbcddfe1103b90d8039162",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/037-heuristic-ordinary4-ASTAR-MANHATTAN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "f26929689d10fa36d251d7d32403d388e71ea3570b8b0ae4c219cf60d4121711",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/038-heuristic-teacher3-IDA-MISPLACED-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "54f8b164150788a70e0b9827d64c59a52bb2f0a21e8dafa7a125563c1551b921",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/039-heuristic-teacher3-IDA-MANHATTAN_LC-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "5c2531a90857dd6967f8b0e75773522cef0e686e73b5fe8a515d47404c829e22",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/040-heuristic-ordinary4-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "0088c46cfd26eac5d9a32d208804f2295aa43b211d7ababf577ab0f8e2fa4c98",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/041-heuristic-ordinary4-IDA-MANHATTAN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "cd47c17c01c388ae4b2ac63faf4534ff51e578aa6c3af2c41772e028f0732316",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/042-heuristic-teacher3-ASTAR-MANHATTAN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "90c6061fbddca21f22433d637f3c8ba85ceb91d91efc77f86f7fb7936bd41884",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/043-heuristic-teacher3-ASTAR-MISPLACED-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "0239a548998ae2ee8fbac4d9ad6a6de4910a8c717f5b63c994c350efad923d1f",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/045-heuristic-ordinary4-IDA-MANHATTAN_LC-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "57fa8d8739739ca495bea738cb4071a979bd6f9b00e66819278d50c300c1a7d9",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/047-heuristic-ordinary4-ASTAR-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "de185552ca0e4e354d673327e585276847c5a3323648d90af1ebc5ed52a3bfa1",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/048-heuristic-teacher3-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "b4a1700e62f032212aa03b4036549d70999d6c25b6c6b8951121b4e1745c9e88",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/049-heuristic-ordinary4-ASTAR-MANHATTAN_LC-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "1057b11188f8baffb51d25b426704e8fa673dd179280da1d9ad13ed42488ee31",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/050-heuristic-teacher3-IDA-MANHATTAN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "974b2e243ac1d572fb3e01149a7ed189aef85abc0ed48c3bb63eb0d9485b233a",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/051-heuristic-teacher3-ASTAR-MISPLACED-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "5d4158251d6c840647ea990df92d7be4b17475d0379001c9dd6f2cf21706c684",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/052-heuristic-teacher3-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "bb0507730fe39fa8dde4c3f5931fbe1c2b6853dfb6926003031e35dd0ea80e26",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/053-heuristic-teacher3-ASTAR-DISJOINT_PATTERN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "964a197b4b4005ade0160b2d64d23a46fe260e8090b33c13f19e2c42fcb0083e",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/054-heuristic-ordinary4-IDA-MANHATTAN_LC-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "2342a92c4ba74d11065faa3fc27b7de928b93c56cf81c61a339ddc8a8e6bf7d1",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/055-heuristic-ordinary4-ASTAR-MANHATTAN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "e6c963aca3aaa020d63c6d3c897ef9574e78133d1ef038e0dce4d1f81b548fdb",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/056-heuristic-teacher3-IDA-MISPLACED-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "41b3032d75843d911a286c7d381dfc9d125ba155f345e453b15f33831479b246",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/058-heuristic-ordinary4-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "c6435346519cf7ca32b9de56e81f2d91fa883b4374842283c7e2cb4ad29518cb",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/059-heuristic-teacher3-ASTAR-MANHATTAN_LC-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "e05dfdbe94546c2deac1578f33c7366067b0f8b5a9f3ace1225edf30c45397a4",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/060-heuristic-teacher3-ASTAR-MANHATTAN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "dcee668a39462856da76c9814adaacc2d5127475717ea9c54bcc23b2fe2da02c",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/061-heuristic-ordinary4-ASTAR-DISJOINT_PATTERN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "37ebcfc7cf2fedbb408614297b6675ea640c795bd19c27841a4a375dd8e19e6e",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/062-heuristic-teacher3-IDA-MANHATTAN_LC-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "dc90dc3fdf52c8c7f2b9fd1f9bd421c8e2837edc40f27df9306ecc43a260a060",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/064-heuristic-ordinary4-IDA-MANHATTAN-BASIC-0-fasttrue-r2/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "c66faa8697d5ced608315522f165528286ace083e0a58bb43f500e2f5ba1c9b3",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/065-heuristic-ordinary4-ASTAR-MANHATTAN-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "cf203175f895f22d5dc3616185d8968a835e4fee22c7e75f1c1ecd5ee6fcd12d",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/066-heuristic-teacher3-IDA-MISPLACED-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "d34aaa96d7b8a5c6c33a0e9adc81fa8263fb23b6597b93bb8931dbce5cfbe7bb",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/067-heuristic-ordinary4-ASTAR-DISJOINT_PATTERN-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "b603670e79df85c8c2b20b162b681169f3c4ffa0b909a7cb0de827c87738f261",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/068-heuristic-teacher3-ASTAR-MANHATTAN_LC-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "87709495703c2c0cd68b96d30ba4106c3a9aff97fc79aa1e1fec109a59721a79",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/069-heuristic-teacher3-IDA-MANHATTAN_LC-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "71169cc038a24d310e8bcc8fc54ae52d79c543fbdb5184f60c2b31109d92f613",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/070-heuristic-teacher3-ASTAR-MANHATTAN-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "d736c08973d431240289bb8a21540388799cb9ad168e8272bd107c1cf4dffe63",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/071-heuristic-ordinary4-IDA-MANHATTAN_LC-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "78429ba3d60f8545b85cd851dd8f99a13eea4af0acd82f8464f42f00b6dd44ad",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/072-heuristic-ordinary4-ASTAR-MANHATTAN_LC-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "b27217d16d3ef3a34bcf6f1f44b02b26cf1e23d9513a76fbf8e069ad96dbeefa",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/074-heuristic-ordinary4-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "988958ec1c3fb85fd81ea852e96130d67d010581a38a1870a6a93f922af3b26f",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/075-heuristic-ordinary4-IDA-MANHATTAN-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "aea50c06083566aa8a05dfbae74bed7e6a764b880c25733b943729333d833e6d",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/076-heuristic-teacher3-ASTAR-DISJOINT_PATTERN-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "f0b2c61369a355d30449d080e0e7bc7d6102de2b7801d18d572bbe6280cb10c1",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/077-heuristic-teacher3-ASTAR-MISPLACED-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "f4974ded003086b405cdd7edda28627bd8f42a23a3c9e60e7dfeb6485f2c0dd3",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/079-heuristic-teacher3-IDA-MANHATTAN-BASIC-0-fasttrue-r3/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 16,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "4d6d9a79416b37fd490e436d7d48728b1e1143873793726aef9f2f5729cbd49a",
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/080-heuristic-teacher3-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r3/solution.tsv"
+    }
+  ],
+  "failures": [
+    {
+      "label": "008-hard-hard-IDA-DISJOINT_PATTERN-TT-1000000-fasttrue-r1",
+      "status": "TIMEOUT",
+      "parent_ms": 60076.45099994261,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "011-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-1000000-fasttrue-r1",
+      "status": "TIMEOUT",
+      "parent_ms": 60057.37040005624,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "012-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-500000-fasttrue-r1",
+      "status": "TIMEOUT",
+      "parent_ms": 60041.41409997828,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "013-hard-hard-IDA-DISJOINT_PATTERN-TT-100000-fasttrue-r1",
+      "status": "TIMEOUT",
+      "parent_ms": 60053.74090000987,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "014-hard-hard-IDA-DISJOINT_PATTERN-BASIC-0-fastfalse-r1",
+      "status": "TIMEOUT",
+      "parent_ms": 60341.31049993448,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "017-hard-hard-IDA-DISJOINT_PATTERN-BASIC-0-fastfalse-r2",
+      "status": "TIMEOUT",
+      "parent_ms": 60032.994400011376,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "018-hard-hard-IDA-DISJOINT_PATTERN-TT-1000000-fasttrue-r2",
+      "status": "TIMEOUT",
+      "parent_ms": 60083.92600005027,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "026-hard-hard-IDA-DISJOINT_PATTERN-TT-1000000-fasttrue-r3",
+      "status": "TIMEOUT",
+      "parent_ms": 60059.43749996368,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "027-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-500000-fasttrue-r3",
+      "status": "TIMEOUT",
+      "parent_ms": 60055.831099976785,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "028-hard-hard-IDA-DISJOINT_PATTERN-TT-500000-fasttrue-r3",
+      "status": "TIMEOUT",
+      "parent_ms": 60059.43170003593,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "029-hard-hard-IDA-DISJOINT_PATTERN-ZOBRIST-1000000-fasttrue-r3",
+      "status": "TIMEOUT",
+      "parent_ms": 60176.01200006902,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "030-hard-hard-IDA-DISJOINT_PATTERN-TT-100000-fasttrue-r3",
+      "status": "TIMEOUT",
+      "parent_ms": 60171.30620009266,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "032-hard_cold-hard-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1",
+      "status": "TIMEOUT",
+      "parent_ms": 60054.41470001824,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "044-heuristic-ordinary4-ASTAR-MISPLACED-BASIC-0-fasttrue-r1",
+      "status": "TIMEOUT",
+      "parent_ms": 15191.17110001389,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "046-heuristic-ordinary4-IDA-MISPLACED-BASIC-0-fasttrue-r1",
+      "status": "TIMEOUT",
+      "parent_ms": 15160.674800048582,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "057-heuristic-ordinary4-IDA-MISPLACED-BASIC-0-fasttrue-r2",
+      "status": "TIMEOUT",
+      "parent_ms": 15053.983599995263,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "063-heuristic-ordinary4-ASTAR-MISPLACED-BASIC-0-fasttrue-r2",
+      "status": "TIMEOUT",
+      "parent_ms": 15188.101200037636,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "073-heuristic-ordinary4-ASTAR-MISPLACED-BASIC-0-fasttrue-r3",
+      "status": "TIMEOUT",
+      "parent_ms": 15181.533199967816,
+      "reason": "parent deadline; worker killed and reaped"
+    },
+    {
+      "label": "078-heuristic-ordinary4-IDA-MISPLACED-BASIC-0-fasttrue-r3",
+      "status": "TIMEOUT",
+      "parent_ms": 15038.56849996373,
+      "reason": "parent deadline; worker killed and reaped"
+    }
+  ],
+  "history_sha256_verified": 337,
+  "historical_files": [
+    {
+      "path": "results/accepted-20261008/2026-10-08T14-53-45.092266200Z-parent.txt",
+      "sha256": "72240216037cf6678cac1ea63de347f7b0ed06913068d6de3f2383ad3fcb77a9",
+      "unchanged": true
+    },
+    {
+      "path": "results/accepted-20261008/2026-10-08T14-53-45.092266200Z-timings.properties",
+      "sha256": "822aef8a73e095f9eddda6070b3615dfd10507f20bb13092760a712b852b8f28",
+      "unchanged": true
+    },
+    {
+      "path": "results/accepted-20261008/2026-10-08T14-53-45.092266200Z.log",
+      "sha256": "7efa2f02ccca921049cdd5ae3dd1249dcbf3e165ef27d453db3992f1a8ff608a",
+      "unchanged": true
+    },
+    {
+      "path": "results/accepted-20261008/2026-10-08T14-53-45.092266200Z.properties",
+      "sha256": "5c05a26aedfa586aa8ee3520ccf4fe163a21b4b8939a36aa29672554e64345c8",
+      "unchanged": true
+    },
+    {
+      "path": "results/accepted-20261008/2026-10-08T14-54-17.829589600Z-parent.txt",
+      "sha256": "a97bf504b1d1fcc9bae89c2e09883abfc493404e23a1ef374d829e08c94c18f9",
+      "unchanged": true
+    },
+    {
+      "path": "results/accepted-20261008/2026-10-08T14-54-17.829589600Z-timings.properties",
+      "sha256": "575faa5e447c070b003a5070ead8c866e5c182582c2f1f76d961adf056fbc489",
+      "unchanged": true
+    },
+    {
+      "path": "results/accepted-20261008/2026-10-08T14-54-17.829589600Z.log",
+      "sha256": "7f0c7122d24e2a51c06562896c0aa284c82f561c0134f11954213d9046704981",
+      "unchanged": true
+    },
+    {
+      "path": "results/accepted-20261008/2026-10-08T14-54-17.829589600Z.properties",
+      "sha256": "f7f237e5e06e844189a14c8b7e88c8e28330d496647f19e532316be016968fa4",
+      "unchanged": true
+    },
+    {
+      "path": "results/accepted-20261008/stage3.csv",
+      "sha256": "4de0e1cf2d2e5fd407f4abf664db30977c251e9e0cd6937c0b5bbe0ed495ef1f",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/complete-build.csv",
+      "sha256": "653ad8518e8bc316f67c8088e802c747cd271408e1ef6ef753f164308aa69ba5",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-0-BFS-1-distances.txt",
+      "sha256": "5f4ba2c4f31ca74679389724a8f97c6d92f7c40101a33fe0730f15860a41fd70",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-0-BFS-2-distances.txt",
+      "sha256": "5f4ba2c4f31ca74679389724a8f97c6d92f7c40101a33fe0730f15860a41fd70",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-0-BFS-3-distances.txt",
+      "sha256": "5f4ba2c4f31ca74679389724a8f97c6d92f7c40101a33fe0730f15860a41fd70",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-0-BiBFS-1-distances.txt",
+      "sha256": "5f4ba2c4f31ca74679389724a8f97c6d92f7c40101a33fe0730f15860a41fd70",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-0-BiBFS-2-distances.txt",
+      "sha256": "5f4ba2c4f31ca74679389724a8f97c6d92f7c40101a33fe0730f15860a41fd70",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-0-BiBFS-3-distances.txt",
+      "sha256": "5f4ba2c4f31ca74679389724a8f97c6d92f7c40101a33fe0730f15860a41fd70",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-1-BFS-1-distances.txt",
+      "sha256": "1e79f582a7eaab813f66cd70517a4cc808b3e36a2ba62ffba09167d1c6ea904b",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-1-BFS-2-distances.txt",
+      "sha256": "1e79f582a7eaab813f66cd70517a4cc808b3e36a2ba62ffba09167d1c6ea904b",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-1-BFS-3-distances.txt",
+      "sha256": "1e79f582a7eaab813f66cd70517a4cc808b3e36a2ba62ffba09167d1c6ea904b",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-1-BiBFS-1-distances.txt",
+      "sha256": "1e79f582a7eaab813f66cd70517a4cc808b3e36a2ba62ffba09167d1c6ea904b",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-1-BiBFS-2-distances.txt",
+      "sha256": "1e79f582a7eaab813f66cd70517a4cc808b3e36a2ba62ffba09167d1c6ea904b",
+      "unchanged": true
+    },
+    {
+      "path": "results/additive-build-20261009T055706988422Z/goal-1-BiBFS-3-distances.txt",
+      "sha256": "1e79f582a7eaab813f66cd70517a4cc808b3e36a2ba62ffba09167d1c6ea904b",
+      "unchanged": true
+    },
+    {
+      "path": "results/audit-20261008/run_summary_v2.csv",
+      "sha256": "531a350549699ad8825eb5f1de9d5fb34b05e5b9a63e95e4ab375e3f9c8c1f48",
+      "unchanged": true
+    },
+    {
+      "path": "results/audit-20261008/stage1-final.csv",
+      "sha256": "4e6431cc465b50a13ed337a819d51e4c853a7bc2d73298158812ff7347f65da5",
+      "unchanged": true
+    },
+    {
+      "path": "results/audit-20261008/stage1-final.csv.raw.csv",
+      "sha256": "1b0212aa77fa7054522404861e9d2dff993b9f828269e315f50e78ebab1bada1",
+      "unchanged": true
+    },
+    {
+      "path": "results/audit-20261008/stage2-final.csv",
+      "sha256": "a24e4477d0e176cb27e5e23d211dc2d4bc4659809d974590ca1f4f69e7e8589d",
+      "unchanged": true
+    },
+    {
+      "path": "results/audit-20261008/stage2-final.csv.raw.csv",
+      "sha256": "b92fafdec98eabdcde47e9681263ebec1a4d987d9e4cade5407ea3dfdbd4502a",
+      "unchanged": true
+    },
+    {
+      "path": "results/baseline-nojfr-20261008/2026-10-08T14-09-32.204197600Z-parent.txt",
+      "sha256": "9f9283b521c6d20ee99874a059d46eef302e3a014020763055c10f474dcaf20a",
+      "unchanged": true
+    },
+    {
+      "path": "results/baseline-nojfr-20261008/2026-10-08T14-09-32.204197600Z.log",
+      "sha256": "4efd0131c8b7d25836ee23c8b7dbb2e978158335b8dcc448809813dee7a1686d",
+      "unchanged": true
+    },
+    {
+      "path": "results/baseline-nojfr-20261008/2026-10-08T14-09-32.204197600Z.properties",
+      "sha256": "873a705a68862de23d7c92374507e2758c6d8bb09dfb0eab61ecf96f8008f69c",
+      "unchanged": true
+    },
+    {
+      "path": "results/baseline-nojfr-20261008/stage3.csv",
+      "sha256": "b08dfc48bfc104871d855fe2008fa57fdca78045207666f9cc7899f3c105993e",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/comparison.csv",
+      "sha256": "66563104082e64483d33fb047d137618ed0a71d314a24e6433c57a91ffab3daa",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/source-manifest.json",
+      "sha256": "41faf6fbdebb24fd69baa05ff46f1a28063eca068688f2f5a60bfd5a08fa7f67",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-1/2026-10-10T06-16-34.886445Z-parent.txt",
+      "sha256": "db8497fc18c5aba46b01a10899c17c798eb9fcc4819ee8240334c6a1779ac9f2",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-1/2026-10-10T06-16-34.886445Z-timings.properties",
+      "sha256": "ccb54ee8ec76041eefaf930e221d691fb2317f5cdb6c60df70f727782cbd8916",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-1/2026-10-10T06-16-34.886445Z.log",
+      "sha256": "d5b9b6d82c6abf3af360647d76505bb6391c6fd81d9ce22226c5dde894c25b31",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-1/stage3.csv",
+      "sha256": "4a1f102635091db2deaf5bf398b3ab46baf9ddc1fddd56f9de40b8120e9deb2c",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-2/2026-10-10T06-16-35.952053Z-parent.txt",
+      "sha256": "dd9cf05a1d5a5625c3f9ab27e241b58cffde794ae54356cfbf884ac1ed07ddbd",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-2/2026-10-10T06-16-35.952053Z-timings.properties",
+      "sha256": "e73716f2787e8346f69741f849e4a7341ee18e27b80dd92076f49790095458a2",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-2/2026-10-10T06-16-35.952053Z.log",
+      "sha256": "e74986169a193332159fc782d55b16a2ffc8f2e7147537ceca3ec66f4cd60ce8",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-2/stage3.csv",
+      "sha256": "d6a3b64ff48f879e8075459c3e56e3da9a206e6076d6fb6641bfb8c814a989ed",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-3/2026-10-10T06-16-37.023767Z-parent.txt",
+      "sha256": "2b7d4da9f6c9a2da9f475d221e5a1d171b96107803b3cb367c2e125bb6f5c78d",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-3/2026-10-10T06-16-37.023767Z-timings.properties",
+      "sha256": "44f72f09e996bca72fb73760885606401da12c7d2ae2bd54f0b3047ad45a676d",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-3/2026-10-10T06-16-37.023767Z.log",
+      "sha256": "46effa89829f1b30e8afcf513cc48d3eb42aec11134b1f7deb0cb2b05c4f88f8",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-DISJOINT_PATTERN-3/stage3.csv",
+      "sha256": "879a320c4ff86999b081f2d8aaab6341a546a8889badc553e2ea2898228559be",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-1/2026-10-10T06-16-32.067615900Z-parent.txt",
+      "sha256": "dff85eed93fb20100e081ebb99c7320e556103b49283411e0a89291f7bf9aae0",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-1/2026-10-10T06-16-32.067615900Z-timings.properties",
+      "sha256": "84a1de8ae23807690cd4e57dccfe12eaeda615fff2eac3baaeeaf4d8c53f2f14",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-1/2026-10-10T06-16-32.067615900Z.log",
+      "sha256": "b2c5e7eaceaf0b84851715ec4cc5df1ec423851e28c90800845934508584e6b2",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-1/stage3.csv",
+      "sha256": "503d810b173b746e8358c9e41259abda9af6d5c80e9a676fb35e472494ed9ed5",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-2/2026-10-10T06-16-33.017562500Z-parent.txt",
+      "sha256": "458eb773853d99d82e830140588b18ae34a0627e670de4e73ea9b8acbc670848",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-2/2026-10-10T06-16-33.017562500Z-timings.properties",
+      "sha256": "cbc461e83012c44283d77f333cdbc50fa2fe8a71fe12c276311c0612f691bb1c",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-2/2026-10-10T06-16-33.017562500Z.log",
+      "sha256": "0fcb922f283a66163fe97d9fb880310b5ba8e68941d9ee13fa558f22c681ffe3",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-2/stage3.csv",
+      "sha256": "dabe3793965f50396d2d32b423c5af799cd5a3ab286be9126160cfed50a751ea",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-3/2026-10-10T06-16-33.987394700Z-parent.txt",
+      "sha256": "a2d0bfd18a544eb127c7ee0bbe18c3ec8c77aded4a3d05324432c5d89138bc90",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-3/2026-10-10T06-16-33.987394700Z-timings.properties",
+      "sha256": "d31cda31d5cd9702a9bb7aabe410d3437b6b871984333ce9dde381eae33c7d4d",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-3/2026-10-10T06-16-33.987394700Z.log",
+      "sha256": "caa13cfb76e616f22ccfe72019aaa8292bceb36e56b0d9105124c3512cd3b15e",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MANHATTAN-3/stage3.csv",
+      "sha256": "2cfc7ee985adc3bd0586bf7bebd8c152331538f88030350df280f1d9d4ce2695",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-1/2026-10-10T06-16-29.367558500Z-parent.txt",
+      "sha256": "45042928a5daa50a3f8166b223c005db2f654915cfb4a0871621324cc8e7aeec",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-1/2026-10-10T06-16-29.367558500Z-timings.properties",
+      "sha256": "4baca44a174e6fd966f523e6f9f52f6530ea1293c77923c18137aa21de0f7ba4",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-1/2026-10-10T06-16-29.367558500Z.log",
+      "sha256": "e3688a9ae9764ac99385b12e00cbaf6ee703ab29165b247c2c8644d09b567099",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-1/stage3.csv",
+      "sha256": "392ebc1dc11729746e51b55f0e2b36fcc1c16110695176976947366bd3cc003f",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-2/2026-10-10T06-16-30.355357900Z-parent.txt",
+      "sha256": "70f654a57e8dec441c40405062ff869a807f9a7dc7b63799488756eb2f0869cb",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-2/2026-10-10T06-16-30.355357900Z-timings.properties",
+      "sha256": "bc2993a8080f203a1967cda1c2b7c7eb8ed6036f932cbbacd624b29e1d4c54ad",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-2/2026-10-10T06-16-30.355357900Z.log",
+      "sha256": "738ee9e164a17afb1bfd7e2a5fbeeb83f771f8ee1a7701fa40e0b756c4a77df5",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-2/stage3.csv",
+      "sha256": "45498184b95361078ff7daad8e5778bb1805b577627496ad8cf57b615c6db307",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-3/2026-10-10T06-16-31.259600100Z-parent.txt",
+      "sha256": "65529de77aed381b682d335c262dd948045caac297e9780e12055e8b7b3e7d86",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-3/2026-10-10T06-16-31.259600100Z-timings.properties",
+      "sha256": "9be429ebe8fba878da5b454c0092333e69f93fb844efaeab21ad97ed3264b7e6",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-3/2026-10-10T06-16-31.259600100Z.log",
+      "sha256": "09e070414c0a5533355fe6370ab84c48f3897ae4b7b1719113ddd25f5133e199",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-ASTAR-MISPLACED-3/stage3.csv",
+      "sha256": "361a18513d963549e88f63d387bf99fb0ecb57eb9ed2cd046f535a31fd0d8276",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-1/2026-10-10T06-16-43.983257900Z-parent.txt",
+      "sha256": "c111019dd42edbf16e7cb0810f27069c78c586179d732d5e9718a3bd1e7b112d",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-1/2026-10-10T06-16-43.983257900Z-timings.properties",
+      "sha256": "bf17c2393c69bf7fea108b176ca74df64c4755296655eec9da9fdc478d6eb050",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-1/2026-10-10T06-16-43.983257900Z.log",
+      "sha256": "b072e3444752656f18379113c6266ea65cc680a0559caaf0017e6b6e7899d590",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-1/2026-10-10T06-16-43.983257900Z.properties",
+      "sha256": "d63759076175415b39cc3820033c677c53578db6f021cec0f28b4386dfc59127",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-1/stage3.csv",
+      "sha256": "0ad50af4bf5c655726bb0ad212c50e4c9abcba70824617977b1cacd164408af7",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-2/2026-10-10T06-16-45.083553700Z-parent.txt",
+      "sha256": "8eb076c676ae8a79cd8b825cfb462f9f317efffaaa106a9ddc382791947b6deb",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-2/2026-10-10T06-16-45.083553700Z-timings.properties",
+      "sha256": "41eebf113d465d9cc191b06672e4f6958cb14276b30663e78bc992a509f877b8",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-2/2026-10-10T06-16-45.083553700Z.log",
+      "sha256": "9754599ffc6975301f2c478c48cd26092e713c2e1c78486a9b85f4864cbb3966",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-2/2026-10-10T06-16-45.083553700Z.properties",
+      "sha256": "3171c78b14e64651c4cd8afef2bf123793fa6fceb2c065c4c27252f89e0ad1ab",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-2/stage3.csv",
+      "sha256": "91cf8a25221db2f11488390545e7845f5b7538166d0e68cf13e0ba4417baf53d",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-3/2026-10-10T06-16-46.280995700Z-parent.txt",
+      "sha256": "2b69334b784d87897606feeba6875218000640888ab7409aa66ed47531679cd5",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-3/2026-10-10T06-16-46.280995700Z-timings.properties",
+      "sha256": "f8c5135caf2951943e20d1214a64719f603f14ca8182d3cb491ddbca3ae686e8",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-3/2026-10-10T06-16-46.280995700Z.log",
+      "sha256": "0354347a498c2f963a6865076413488dff9519310ca4d917c359615277cd6b2b",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-3/2026-10-10T06-16-46.280995700Z.properties",
+      "sha256": "ebe1c8f19806cfce84687f19a4deb8a450888bc580fed765cd5309488f9270a1",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-DISJOINT_PATTERN-3/stage3.csv",
+      "sha256": "67cdcd8f094a2f75a470b633e2fb5f87098df0f26f1dc0df20bc104d42e3db69",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-1/2026-10-10T06-16-40.990340800Z-parent.txt",
+      "sha256": "22a9752e5dd36e20a4096d325f156a72218cdd0612ae3a8ec32a22a23e2784dc",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-1/2026-10-10T06-16-40.990340800Z-timings.properties",
+      "sha256": "15ddd334fe7f2ab1f1dd77ea14582b6def5b5465818f95b498240143132ca8d7",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-1/2026-10-10T06-16-40.990340800Z.log",
+      "sha256": "eece290ab319e9b302998d4babf5e9be77076284a2032142d8081960206403e0",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-1/2026-10-10T06-16-40.990340800Z.properties",
+      "sha256": "a72f83d966e48f89f6300149c650370eed5d85f949eb460dff6989636024a23e",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-1/stage3.csv",
+      "sha256": "e3be7fdd3cfa4452385a220076d06dada80d81a2b1b08b694e3437330694c819",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-2/2026-10-10T06-16-41.940145100Z-parent.txt",
+      "sha256": "2a69d6c56ae4334249555642d927fa007fa8d30250c108817a4c7096d7334cd0",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-2/2026-10-10T06-16-41.940145100Z-timings.properties",
+      "sha256": "df6b02a582d869ed331f24d2e4aa3282f98d8067e6b3cb19193aa95f2f6ca226",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-2/2026-10-10T06-16-41.940145100Z.log",
+      "sha256": "4561207b0f61dbc6d48ef5159eec8b014c87acbffb63982c1fefe17319a3b47b",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-2/2026-10-10T06-16-41.940145100Z.properties",
+      "sha256": "5475643a175ce3b089408ca86f8952e1b00086944aaae21e4d85ff8e634682ee",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-2/stage3.csv",
+      "sha256": "75524d8f8ffa7dd7ca9e079c55f363fe70904efc91c314fc5a471d47177a154a",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-3/2026-10-10T06-16-42.998801Z-parent.txt",
+      "sha256": "5d9d9d1d774fe6b2a8d0d18a8c29bbef718d840d3cf549e598b204f0c99136ae",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-3/2026-10-10T06-16-42.998801Z-timings.properties",
+      "sha256": "93d2a9e4c50df6b874b0d6e2acc4662dce13c2f597df706e758330ba61e9a045",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-3/2026-10-10T06-16-42.998801Z.log",
+      "sha256": "b86d7e49be284194748fd7232a16bb33ec4ea2316a303196a4373e3f294436f7",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-3/2026-10-10T06-16-42.998801Z.properties",
+      "sha256": "80fbc1790766d32fff4088bad3e00f0b176f3ce39db9d842fac147ba4cd55f32",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MANHATTAN-3/stage3.csv",
+      "sha256": "d4392737f1769d6cf3a2b2300ed3a540418262344dc2cb35733661b3fa1773e9",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-1/2026-10-10T06-16-38.055371400Z-parent.txt",
+      "sha256": "c428b2a3447d8cf7a460ce445aa628e9c465b80cfa38ecc9d755a82399f458d2",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-1/2026-10-10T06-16-38.055371400Z-timings.properties",
+      "sha256": "1f84d8a652cc0df250e1edce3aa48c85bc5292bf2ce6f014ac6f401222c1c64d",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-1/2026-10-10T06-16-38.055371400Z.log",
+      "sha256": "7f28d589fa734ad2db8adeaa16e6288b68553eea5c620ab4c1ef0754b5fc60ac",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-1/2026-10-10T06-16-38.055371400Z.properties",
+      "sha256": "292dfb5c9b511cdeac79898b60b27fae2cbd0108833200f824a2d76d56d181aa",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-1/stage3.csv",
+      "sha256": "9449c3d2e98fe748795827adfa475d8b3e6e746ba0a341b0b6d7f8a598ea2315",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-2/2026-10-10T06-16-38.999669900Z-parent.txt",
+      "sha256": "697fcdd68c74d79fcd53187889ec877d305b5e0d04c5a0bc1e4337e462b5befe",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-2/2026-10-10T06-16-38.999669900Z-timings.properties",
+      "sha256": "b3f4b400be1daea6a34abd9b313b8a5a7673f03f29dcee20c4d4922ec7e81aa1",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-2/2026-10-10T06-16-38.999669900Z.log",
+      "sha256": "f85f7115fe949fd985132ab08937e5c12675815fdedd4aa09d11ebed3c5faa9a",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-2/2026-10-10T06-16-38.999669900Z.properties",
+      "sha256": "0053b4b1993e5114a59cf08b402433c9c8880086f77928cf1bd2dededd657c62",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-2/stage3.csv",
+      "sha256": "d96314f3ef0d3ba55ba74d0fa907b7461ce48fcdeaad3cc2e5c768d93be38075",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-3/2026-10-10T06-16-39.945215100Z-parent.txt",
+      "sha256": "ad3c0a8e093a583c199046f1c82d6c7424b1f0eabbc3389f26286da0963bf388",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-3/2026-10-10T06-16-39.945215100Z-timings.properties",
+      "sha256": "0adc5e41bc947258f90ef1c5b4ddd8c799d6d92f34e525f6282240b0b88999c6",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-3/2026-10-10T06-16-39.945215100Z.log",
+      "sha256": "b087937d607f524b1a50c65b22f212b2f42a2451fec5ea3996030ad723095cd1",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-3/2026-10-10T06-16-39.945215100Z.properties",
+      "sha256": "3ced6a5062cf94d28620f909d8532cc4adb233bbee5c4ff8863db92be6eeb338",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher3-IDA-MISPLACED-3/stage3.csv",
+      "sha256": "df4567efa3ed53862f557523a63a1eddc4dcf85bbeb09fee4135f7b5f598adee",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-DISJOINT_PATTERN-1/2026-10-10T06-16-59.888072300Z-parent.txt",
+      "sha256": "4aee691aad38564320178f668962a8d4083efed59fc9f969233053b500f62895",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-DISJOINT_PATTERN-1/2026-10-10T06-16-59.888072300Z-timings.properties",
+      "sha256": "3d23a8f0bcce74f294720075e5ce76239af04c5766e0370a265c014de596d7c5",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-DISJOINT_PATTERN-1/2026-10-10T06-16-59.888072300Z.log",
+      "sha256": "66dcf8d49dd15f6463ab57c963f8c284649db08cdeadf5dbe2acc7ae7a9a3ce4",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-DISJOINT_PATTERN-1/stage3.csv",
+      "sha256": "bec315f42becdad9dc75382f8fff732d7a5ca25e40613c98a2d080d9b69994d5",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-MANHATTAN-1/2026-10-10T06-16-57.976969Z-parent.txt",
+      "sha256": "ea81bfde8f19a750d35762e5f83a7fc241de7e543ac3e0c5911f06b897f87b75",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-MANHATTAN-1/2026-10-10T06-16-57.976969Z-timings.properties",
+      "sha256": "062d12c4662afe61e6acadb5b72a5446f57878cfaae1d38459b3d4944507ea22",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-MANHATTAN-1/2026-10-10T06-16-57.976969Z.log",
+      "sha256": "88afe8701afb3edf4bf81db2538c8febae651dc126e656524196b1c65bf3cff3",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-MANHATTAN-1/stage3.csv",
+      "sha256": "982614e2d99b869dd39e5ca36747cf371fcacf498ee2fbe68a9bda4ea6b2dd4a",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-MISPLACED-1/2026-10-10T06-16-47.449667700Z-parent.txt",
+      "sha256": "93acf5c99caa0c28ab9ab2b4594c1a40727fa8c86d7679a4d2f501162f2b3316",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-MISPLACED-1/2026-10-10T06-16-47.449667700Z.log",
+      "sha256": "c6627fb0257cc7b01ea1eaf8d655edad193ec54e277a9b745b4b31a2dfe55ce6",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-ASTAR-MISPLACED-1/stage3.csv",
+      "sha256": "7e346bfd1f3031ce88face5e37231494ae37a31bc8b2fa4eedbf0050ebdb91cc",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-DISJOINT_PATTERN-1/2026-10-10T06-17-13.484532300Z-parent.txt",
+      "sha256": "b0eb144745daa251a7906838d42b0d09499bc63deaaeabb5232b8c2d995d7a5b",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-DISJOINT_PATTERN-1/2026-10-10T06-17-13.484532300Z-timings.properties",
+      "sha256": "821f0d3fa1e133f1e799fbb0ca90e2c66601a79fe8b72771b158ea2d77a5d63c",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-DISJOINT_PATTERN-1/2026-10-10T06-17-13.484532300Z.log",
+      "sha256": "85b720995ba36ade28ec1dfcb53f5c91c911c9a169c5195d18005f8d6d7002cc",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-DISJOINT_PATTERN-1/2026-10-10T06-17-13.484532300Z.properties",
+      "sha256": "c7bde282227c48b60a7586776712cef3be04f22349332ad589e30de6268d8542",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-DISJOINT_PATTERN-1/stage3.csv",
+      "sha256": "12b25114572a74cc5484ff80c9ce6e977f75d741282869fb7ac5bd7517580d77",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MANHATTAN-1/2026-10-10T06-17-12.208935700Z-parent.txt",
+      "sha256": "63830d0aa310684c6e40ade52547ad010fc7c60b6673c95649c049579c4bf349",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MANHATTAN-1/2026-10-10T06-17-12.208935700Z-timings.properties",
+      "sha256": "6e5d36621ca04ddf4d996edb124eeaab611a3bb2fe3b0c6ea2f4cdbed7e03410",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MANHATTAN-1/2026-10-10T06-17-12.208935700Z.log",
+      "sha256": "00c5045fec249ec8b9581c8fc2d1182a9dcd4ef2930ba8dfc80961eeb5e56881",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MANHATTAN-1/2026-10-10T06-17-12.208935700Z.properties",
+      "sha256": "06d3d0833f040591f8deff927e2ff07d6c768b3a94fc7fa8fda9c4d62d98c40a",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MANHATTAN-1/stage3.csv",
+      "sha256": "31d73489a639081cab06f1053c009589d3172de9c6ce07b14757c2a2b80875ea",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MISPLACED-1/2026-10-10T06-17-01.794522600Z-parent.txt",
+      "sha256": "35d92763f5963e3674728d7637cf2fdd7f9259af5bc24e8461aabc8c2348d0f1",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MISPLACED-1/2026-10-10T06-17-01.794522600Z.log",
+      "sha256": "d2e64088328e3fe2ef98f0e05d607b869b340ff968c99f6e9e2daed7dab247dd",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MISPLACED-1/2026-10-10T06-17-01.794522600Z.properties",
+      "sha256": "69aa1bf1b3b9edefa9a0d1fa439bd7bdf0d1b95ed0ef9c0b5821bf03a5db3943",
+      "unchanged": true
+    },
+    {
+      "path": "results/compare-20261010T061625055Z/teacher4-IDA-MISPLACED-1/stage3.csv",
+      "sha256": "06c1a4b96f816cd36144c6ec51393bf766ed229606a4ff528ee3a2a9e8af44d4",
+      "unchanged": true
+    },
+    {
+      "path": "results/diagnostics-20261008/2026-10-08T14-02-09.221511700Z-parent.txt",
+      "sha256": "1dfc6233ce0705c73f7778abf758b0d8da86017f39e4025218bd901621de6239",
+      "unchanged": true
+    },
+    {
+      "path": "results/diagnostics-20261008/2026-10-08T14-02-09.221511700Z.log",
+      "sha256": "d89627ec414a248d7be5abae90080a57919eefc406c93dabed3b0c7223fafe9a",
+      "unchanged": true
+    },
+    {
+      "path": "results/diagnostics-20261008/2026-10-08T14-02-34.730016900Z-parent.txt",
+      "sha256": "d1ff869318230f7816e4951faa5e8bf862f017548a5f7be5c3b4dea906cc3833",
+      "unchanged": true
+    },
+    {
+      "path": "results/diagnostics-20261008/2026-10-08T14-02-34.730016900Z.log",
+      "sha256": "7e0e856ef14cb01f9c97b40804b2a4cdc188caa6ce9169e57bd1e5856b7d8cd5",
+      "unchanged": true
+    },
+    {
+      "path": "results/diagnostics-20261008/2026-10-08T14-02-34.730016900Z.properties",
+      "sha256": "3f78b4286004e9f29bb18c6f5da49eec090cb44ac2fc76ecccd827a8123c8383",
+      "unchanged": true
+    },
+    {
+      "path": "results/diagnostics-20261008/stage3.csv",
+      "sha256": "56a9dabf14835d4027d7eacf9a014adfffa05966108701d89b37a54581b96077",
+      "unchanged": true
+    },
+    {
+      "path": "results/final-20261011/verification.json",
+      "sha256": "8e82b5892d87debc4d8de86114ebfcedca5108c39a7fa0cb80ae413555d2c680",
+      "unchanged": true
+    },
+    {
+      "path": "results/frontier_benchmark.csv",
+      "sha256": "9f6f35ac3521f097d621bbe3ed641f1b017fedabe8a87943234b9903b0f831dc",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/baseline.json",
+      "sha256": "415492c505af04f9622341c9a5a4140053081b9fd8abd446bf40bd2bab88f91a",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/clean-build.log",
+      "sha256": "e755e0f8ef59477793cdc31d0c9c57ceb9762c747bea53f362e8bfd8822cf6dd",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/diagnosis.json",
+      "sha256": "ccf516609a2b01995e94063a4f3e215d4738c99aef877fcdd2d5147aae9c97c7",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/environment.json",
+      "sha256": "d7d7e20b61de2e4e3c9f5598f7977150d76348dfc0fef2b8a7c487c9bbd09c7d",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/plan.json",
+      "sha256": "2c9727cc17078f28e5e41cf03d08b30f24594b5d58bd914e5fc40ba8d7c39278",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/configuration.json",
+      "sha256": "ad665dd630371b673f42368737b68ff67fc723f9a5a9a02b3e96a8cf4488e593",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/metrics.properties",
+      "sha256": "48bf91898cfdbf721226122cd8aff4fb5679481adadbe2c82637d89586b5948e",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/preparation.properties",
+      "sha256": "d3b7732e62918b3437d599352027d42da12003a04b7870731682b5139bbbd14e",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/result.json",
+      "sha256": "085912e11d79f27e359b1b1f453da38d540a835d5a0b39607154ecc1c2993d60",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/snapshot-1-0.properties",
+      "sha256": "a8ede7517a266530cb34d4e1ac97fe2cf0ced88e12461161e048cd0f96b4e301",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/snapshot-2-146.properties",
+      "sha256": "7502aab04aba0312395373cf82ec0d6d53ec34f792466f0b968673e934638df0",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/snapshot-3-1575.properties",
+      "sha256": "cfda8e530081cd9d9f5a1dc8b7dd78624774c6eae9daa9ff3160b94bc63697b7",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/snapshot-4-12903.properties",
+      "sha256": "f9537501136d9a436862b6e9029734ced0fd705d676e9a5fce70df948d8da6ca",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/snapshot-4-80854.properties",
+      "sha256": "9408b144fed5ed51e8bd5d569169d0a562378074860eaddf0c7becb0f3523847",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/solution.tsv",
+      "sha256": "ee1d5cec867f7f48eac0e3a721a09c8fd4d258c8007ed0243179df8959a1bb11",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/runs/001-preflight-preflight-IDA-DISJOINT_PATTERN-BASIC-0-fasttrue-r1/worker.log",
+      "sha256": "a69ef81a157c9097bd16f3967d06be6aa9dd5243f57eb02d3859d303ab7a3b73",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/source-manifest.json",
+      "sha256": "3dbcd9b083fd0b54aad923d955b61aa408ceb015cb6b662b3fb276da1bada190",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-BenchmarkAcceptanceTest.log",
+      "sha256": "feb4c5814238209b42118c756616ef41643a76bc264cef29dd9b97f4e2269310",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-manifest.json",
+      "sha256": "02bb226ea083565f73c2cb9f10ff3f8fdb0f35762674c9eee6e4bf4fba6882d6",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-PuzzleAlternativePdbTest.log",
+      "sha256": "a6427c4febdd0de1432e0fbea2f704426f2941684312207c5421449b8a5abdee",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-PuzzleCloseoutTest.log",
+      "sha256": "9ae118d928f1fc552152efcfdf459ce746f1ee4476b62999cc16adeb01588355",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-PuzzleFoundationTest.log",
+      "sha256": "d8ec736400980b90f7f6245986ed22ea3d2917f4b3dcde2ebdf8c2f6b9e4786e",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-PuzzleOptimizationTest.log",
+      "sha256": "c809f85282894d290ca5d2d2240252f8f554ad5f9711bd08e97ce31fb5378c3f",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-PuzzleStage1Test.log",
+      "sha256": "23d88777bd9d9c6cdf065f6eff8d248431e6880e4664f77888ca127b7b1ac791",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-PuzzleStage2Test.log",
+      "sha256": "d3a528b15a668ab1f363ba23002d270a45eac724dcc1bd4ce66fcbc1ec4409f7",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-PuzzleStage3Test.log",
+      "sha256": "4779f4b5da15ea67be2f9a3f6e9db9b85b991667cc2f3e48941d8246c2329ce0",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/test-TeacherStage1Test.log",
+      "sha256": "b0b9d2642d37d57ca274ec2932d91e3c3d8df7402bee33f19fc547d9d648aec9",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/tests/optimization-final/correctness.json",
+      "sha256": "543fdeb4e511de43e2e3622bd85ad1a5fe61a5ad0aea88aaabc278de3e894df7",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/tests/optimization-initial/correctness.json",
+      "sha256": "543fdeb4e511de43e2e3622bd85ad1a5fe61a5ad0aea88aaabc278de3e894df7",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimization-20261106-20261106T114453353805Z/tests.json",
+      "sha256": "ae8c177c388e062c97de3e905bc1975cc70b2f92a3eb78a79e3cbdf3a06da27e",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimized-20261008/2026-10-08T14-07-23.644798Z-parent.txt",
+      "sha256": "7ae17707f11632d04437d97a361b903e01db45baf169fdd400c6a8a4c873659b",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimized-20261008/2026-10-08T14-07-23.644798Z.log",
+      "sha256": "461fc02dde0d2a97d93067d48c0aeee3379a11f9827b68b4a5c5ea1d40dcbf41",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimized-20261008/2026-10-08T14-07-23.644798Z.properties",
+      "sha256": "16bd8012abbacbd59f166eba102ed6f7db5a7b58b933e111bbaf4f3bf611e8b2",
+      "unchanged": true
+    },
+    {
+      "path": "results/optimized-20261008/stage3.csv",
+      "sha256": "6a12780baa7161e53c0a19cdf8c033db5bcb1c7fcfe4efe8ef6a5f8ccae2245c",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-13-37.738512800Z-parent.txt",
+      "sha256": "7874178ee7cefe653188bfa6ae3a0648db414b4a1aa901df3d19da12b73e7934",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-13-37.738512800Z.log",
+      "sha256": "84a5afb5e420230f1eea411d95e4a726b42acec66e0aa1f9a8d87b2b8d31055d",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-13-37.738512800Z.properties",
+      "sha256": "94279e8b31ad28bee05a4e540c1604453ba809192569b3493b9ed418c4033ff0",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-53.867971800Z-parent.txt",
+      "sha256": "a9417775289a019851304ce3e3ae6b344790c7351dffcdaafa206ff2c99fb4fc",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-53.867971800Z.log",
+      "sha256": "1865017e5e6a1969fc6a46348018dabad0e07651ca7c68ac00624ca4de955b67",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-53.867971800Z.properties",
+      "sha256": "20bba292a5bfa766c303b29065559ac29c6e575270869d2ad0a0bb66e2990beb",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-55.077098100Z-parent.txt",
+      "sha256": "0d1fc586ada2ade922cb96c0a91f3b4d1d32a6357c622126e5724b89402af88f",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-55.077098100Z.log",
+      "sha256": "f92bcb6a8acf6a582ca9989be25af327978449c57e66e115640b29837dadc36e",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-55.077098100Z.properties",
+      "sha256": "ff941a6974ea7bc9d59032db0ae6541cf7caa8511aeb7dd56b6cdb010fcb4222",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-56.136975900Z-parent.txt",
+      "sha256": "a8ce4718ecfe52a272274a55f2b9531b971892cfd38ccd5f9104a275d77f0098",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-56.136975900Z.log",
+      "sha256": "bbb9b2744a2bfa9aac1e355c14b689dac234af903d4fa3a30be56319f30ec35d",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/2026-10-08T14-16-56.136975900Z.properties",
+      "sha256": "6403ba2ed2f821eb808c6526e8603581a117c1ad51240f4b7692627b985c3922",
+      "unchanged": true
+    },
+    {
+      "path": "results/ordinary-baseline-20261008/stage3.csv",
+      "sha256": "90b611ce39acd9ec9b0e8352c77176818a7b1f00fc434e4bf85dfab07e4538da",
+      "unchanged": true
+    },
+    {
+      "path": "results/pdb_bfs_bibfs_benchmark.csv",
+      "sha256": "f07b1937cf30e3af6741c503248a9900b9eb9dc004a1c8de26315d6f17defc53",
+      "unchanged": true
+    },
+    {
+      "path": "results/pdb_grouping_benchmark.csv",
+      "sha256": "9cd712860557e8e85836a271fc16c1b93d46597bae1a0ec01fc13a04b5cfd300",
+      "unchanged": true
+    },
+    {
+      "path": "results/pdb_tables_manifest.csv",
+      "sha256": "80060ed4cd5ab8660ffc76490b6722bd1b9836f858d2a5cf1941ce1ed4894023",
+      "unchanged": true
+    },
+    {
+      "path": "results/README.md",
+      "sha256": "7f79330c3bde632a6f1a2db9bb8a04e2e8ef0ab66d018bd784b996d4fce2118e",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261009T070251741Z/2026-10-09T07-02-51.918489200Z-parent.txt",
+      "sha256": "c4ba73b93a0a61d50bdd3a3d41dd1e51a588736e2dc86fe4cc9cd3c1c01dccfd",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261009T070251741Z/2026-10-09T07-02-51.918489200Z-timings.properties",
+      "sha256": "df6a944ab455ada9cd2defe8909d1cc2531a6e3ffc97e1e8de44d7307f1ac87f",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261009T070251741Z/2026-10-09T07-02-51.918489200Z.log",
+      "sha256": "d4b965eef62ebd55543fc304d2edfbc4236781a2f5cf9565120b35787d12f836",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261009T070251741Z/2026-10-09T07-02-51.918489200Z.properties",
+      "sha256": "f2e2d77c136948b4450fa1f491dda02b9750bdf28d121886d251af6487338a7e",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261009T070251741Z/stage3.csv",
+      "sha256": "36344fa17564b1820e238d5dab576b50668bfad57b10ab189ca7389775d2c80a",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061249636Z/2026-10-10T06-12-49.858701300Z-parent.txt",
+      "sha256": "830929f26806a7f2961deb897752b8476348d52a83148e300666e09dbbc6ff37",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061249636Z/2026-10-10T06-12-49.858701300Z-timings.properties",
+      "sha256": "ad545df8512df29674f0713d59f54e3f14a819c931c9245b4147bb80e1cac317",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061249636Z/2026-10-10T06-12-49.858701300Z.log",
+      "sha256": "748319af3ece340cc8ae5afeb31b38c6d8f2ebe3a8f0f711656c9026c2f71a82",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061249636Z/2026-10-10T06-12-49.858701300Z.properties",
+      "sha256": "b3ea1d36fdbbe3c319874df21df5a3a2f89117e163d18eeb983970f162f9a21e",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061249636Z/stage3.csv",
+      "sha256": "f5166fc3012ccc17462dad698b1cbc12525a15186f2e6c54f103c6a49b5b55f3",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z/2026-10-10T06-14-39.493084100Z-parent.txt",
+      "sha256": "503c9d44b94ab659003798e76c155b291bafc3b8a4a36906d23871ea2d68e244",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z/2026-10-10T06-14-39.493084100Z-timings.properties",
+      "sha256": "642020c02070bcb817ac23e80cd39f83fc7f2afc759138148163eb53dae246b6",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z/2026-10-10T06-14-39.493084100Z.log",
+      "sha256": "5e37ef510e36e8af9ae79157eea409744c9bc8474eae6fa877b3ec4e5f586201",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z/2026-10-10T06-14-39.493084100Z.properties",
+      "sha256": "bbf1deab9e9656f650c8e31f88b379494f17b2c892a63ae70f29e840845352e0",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z/environment.json",
+      "sha256": "5380ed02054b875b8ad5bc6180b090e4e949dc868eeba1340b14aeb2dc0122a8",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z/source-manifest.json",
+      "sha256": "41faf6fbdebb24fd69baa05ff46f1a28063eca068688f2f5a60bfd5a08fa7f67",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z/stage3.csv",
+      "sha256": "6b358d89ed28653c32847200a1c621e747e416b65abf08fb320e0150a1661ecd",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z-warm/2026-10-10T06-15-14.430704500Z-parent.txt",
+      "sha256": "86ceb38c32bee344394a88a404a41016b7694c19f9bbaa47440d151df664ca28",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z-warm/2026-10-10T06-15-14.430704500Z-timings.properties",
+      "sha256": "59bdab328cdc8e84a738dc3e9e81f54b6ecf94ac46da449045e2e7e4649c9d95",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z-warm/2026-10-10T06-15-14.430704500Z.log",
+      "sha256": "3aed41f26910febd10314db57b2792f5bcf94cb5404e791832e300e4450742fc",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z-warm/2026-10-10T06-15-14.430704500Z.properties",
+      "sha256": "26e191a6deb897b24b8848feba7d8dbee6399f502cd39f42bf27fb4808f034de",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z-warm/environment.json",
+      "sha256": "1f4a439a31944e9431d90e4a3a575a8047dea42f68b30500b55ae779ab813d40",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261010T061439277Z-warm/stage3.csv",
+      "sha256": "ced28879732460eb7490b318e367798fcc64c4a19e9c705a3fd70877e2771d1b",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z/2026-10-11T07-12-42.170991500Z-parent.txt",
+      "sha256": "6bb45a5dd71455f7c7b12cc698b0bc11b32548d15dafdaaa1e9bc95c29bd8426",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z/2026-10-11T07-12-42.170991500Z-timings.properties",
+      "sha256": "421b707fb4aef604d94e7f57d4efc45ae0c39eeb46dced6e96f4b4cc090b2131",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z/2026-10-11T07-12-42.170991500Z.log",
+      "sha256": "a867cd563cacb1aa953c16b0e4d9cace16b71255cb19abd6c198970f0832435e",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z/2026-10-11T07-12-42.170991500Z.properties",
+      "sha256": "3aab6359d3619f1f50cf34a374f568976580a24be8fba5360462a3f1557c10be",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z/environment.json",
+      "sha256": "4c1d5f8108ea47fc472c54cda5f2470b6be640be057681ac0e3772ea9ce83976",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z/source-manifest.json",
+      "sha256": "41faf6fbdebb24fd69baa05ff46f1a28063eca068688f2f5a60bfd5a08fa7f67",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z/stage3.csv",
+      "sha256": "e23c5ac2088434141bbb46bbd5200f5c4a7309b90e7c9509730853b754082bf0",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z-warm/2026-10-11T07-13-07.526217100Z-parent.txt",
+      "sha256": "a1d410f7c7d716eb510b338452fbc439bdcc6bcfdea061e4c41393b4a80d71ca",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z-warm/2026-10-11T07-13-07.526217100Z-timings.properties",
+      "sha256": "c2120c98228fc1c103308f4b3316032a68324fe5c3e6481f3a626aea7ab47448",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z-warm/2026-10-11T07-13-07.526217100Z.log",
+      "sha256": "648a655c734ec5666d73b3fad9477305e904c52ff6793b164d99a735b3abf94b",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z-warm/2026-10-11T07-13-07.526217100Z.properties",
+      "sha256": "f2a6f18f593c28d71c1247d5e3fffe2e3dbd52c297049b9cf531ee5b5ae7d881",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z-warm/environment.json",
+      "sha256": "b96bf22c4a8cf5cd49550bf9baa73d267c2b6662ba76c91e103c7ab9bf49a65e",
+      "unchanged": true
+    },
+    {
+      "path": "results/run-20261011T071242033Z-warm/stage3.csv",
+      "sha256": "c66c95e3313fe61b046c98ea7e70f7394433ea7a59d81367405c34137b1091cd",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-20.882934700Z-problems3_1-ASTAR-MISPLACED.tsv",
+      "sha256": "096efdf9bd4d46d5b3e1edaf3e900d1fb63954e2984b239981ff195aa1393f3c",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-21.350706400Z-problems3_1-ASTAR-MANHATTAN.tsv",
+      "sha256": "d3c8f1d48818db7cb7dc98b230f1833e5ca45e012a4da302ecbae467f6685db6",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-21.740862400Z-problems3_1-ASTAR-DISJOINT_PATTERN.tsv",
+      "sha256": "ffb155556a9b675e4bcd6ee95f9948ef7007c7eea7f68db1f14dce267ff4f764",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-30.413258100Z-problems3_1-IDA-MANHATTAN.tsv",
+      "sha256": "53672ce993c229fa2bd5cf7e06c60018311df21f834f0b67ba87184569f837c7",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-42-30.751468800Z-problems3_1-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "19bcbd04c25b7977c8fe3fcafc9c9d440d073e0e554f5f2e9732cbf085146344",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-43-09.330975100Z-problems3_4-ASTAR-MANHATTAN.tsv",
+      "sha256": "65dab4067070691f65d11985bcb6b3d4541910810c50412d7608e972c2c6f5f7",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-43-10.348179100Z-problems3_4-ASTAR-DISJOINT_PATTERN.tsv",
+      "sha256": "04bf3c2fde183603ea1a66805697dd2ac457a21cd15eacd84eadb11afbfa5990",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-43-11.184047800Z-problems3_4-IDA-MANHATTAN.tsv",
+      "sha256": "c690d8bddb28c9712a7eef493af1a9e6f7e436ccd291015f3d7308ec9ba4299f",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-43-12.002194700Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "e97b020816c83c64edb8914e293d93cb794e1d89b8c6745b3e7a505c9d46a1a4",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-45-54.371439900Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "9b0e558061d0e0a941439a1362e816d89e4b8c7d9f977ca5773d592bb2dc6ca8",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-02T06-51-32.717767Z-problems3_4-IDA-PDB_MAX_LC.tsv",
+      "sha256": "8e37ec269060b36352f90648d96c0dd7b1e331180ab486d0b22371d81c70fdf2",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-13-37.738512800Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "7fd77b6a4457112f85b1a2a399e349baf3dd6f399022591d9b18b340a517c73a",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-16-53.867971800Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "a4efd81fd87045b05b47174032ae48bc819a85a5e98696068f6853c71250e30f",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-16-56.136975900Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "04b865e38e6229fa1d8650fc880d37717ff80663d93ee1be080510ba95d27a3c",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-46-49.833351700Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "ee48d955a1102182d547ffc95faf6db92d273492ba2f4a4250b093a31b6ad35a",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-47-31.540405800Z-problems3_10-IDA-PDB_MAX_555.tsv",
+      "sha256": "6e8fffb60ffefa78dd0e0fda29b3851d2890f017ba3ca061228cd08ba6965a6f",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-53-45.092266200Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "f5e924a366db14888069de9000e5bcb740255007a6241e9cdd52981ef4c51827",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-08T14-54-17.829589600Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "98330e7bc4412bfbb9995e661cef218ab42f48f7d15027b1b27b7dfc186c721e",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-09T07-02-51.918489200Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "1438905edd2a5ce708b557739786d809cca911e1019a9374709fe37f0a69d733",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-12-49.858701300Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "5a1e7e7cd0cecb960413db3fda78bb9ad5c8f1e7ffb57c7b320f3af1ae4ced07",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-14-39.493084100Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "b572bf2b1bbfc949469960dfa547b34eb88d0fc59a648108b60d1e4c3b9ba3d3",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-15-14.430704500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "3ac7bd072652b31609193d4d79a2280adae6f0f45aeeca7d4fcbab246c208c49",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-29.367558500Z-problems_teacher_stage1_1-ASTAR-MISPLACED.tsv",
+      "sha256": "eb981d49d22af73b8b917aa5b8b5d1e6bc87f031135034f2735862e2c6687e06",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-30.355357900Z-problems_teacher_stage1_1-ASTAR-MISPLACED.tsv",
+      "sha256": "db83968617e99fc82e7725e7ea724b25c6b16b468c493b54794460697f63a6b0",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-31.259600100Z-problems_teacher_stage1_1-ASTAR-MISPLACED.tsv",
+      "sha256": "9f3840c0740a8dbc03c715afb62c4c6ee4f25697e6413a5e3790dea30b59ca7f",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-32.067615900Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv",
+      "sha256": "ed2ed7ad09eac73d695d428ee771c6e35151647bedbcb004682ff24f1b8cd479",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-33.017562500Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv",
+      "sha256": "5a73dccac1fa2cf818ee834e87d16848d16913b4d3af4eb40196d9b452bc46ae",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-33.987394700Z-problems_teacher_stage1_1-ASTAR-MANHATTAN.tsv",
+      "sha256": "c0431303ae888cf45dedb78fe80564669ea4a875d4d85e1d5d64e592e95b7e0d",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-34.886445Z-problems_teacher_stage1_1-ASTAR-DISJOINT_PATTERN.tsv",
+      "sha256": "3376283645b2eb067c0cbc12626671f0d69b208e6f64cdc8634ee99e367cdcb7",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-35.952053Z-problems_teacher_stage1_1-ASTAR-DISJOINT_PATTERN.tsv",
+      "sha256": "db0ce633b04daa88d08900552e242a33db5802fa11f7d4604672585fbb59e4a6",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-37.023767Z-problems_teacher_stage1_1-ASTAR-DISJOINT_PATTERN.tsv",
+      "sha256": "8470b888c27c154da745abcea0ee5a198ab2f3243920c9412eff3de7f17abf20",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-38.055371400Z-problems_teacher_stage1_1-IDA-MISPLACED.tsv",
+      "sha256": "e3bf2ad15be7cfdfd612cd2e70e66a8d6d631d02e8bca99e6cb84f70863afd3f",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-38.999669900Z-problems_teacher_stage1_1-IDA-MISPLACED.tsv",
+      "sha256": "7560ac27569dce882cc6317674ffc05e3e8eed7ed0efd93639ec990bf295d703",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-39.945215100Z-problems_teacher_stage1_1-IDA-MISPLACED.tsv",
+      "sha256": "fd73bf7afee17e301464db87414178b466428ba4a64eb9372a97fbf7fdaa2901",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-40.990340800Z-problems_teacher_stage1_1-IDA-MANHATTAN.tsv",
+      "sha256": "fbe727c6b2ee64c109126ee2d82a352dd0e2a5280a5407d8d94dda1fa599d513",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-41.940145100Z-problems_teacher_stage1_1-IDA-MANHATTAN.tsv",
+      "sha256": "64ff3be2ff70d72a8495661823b25f67760f5d200bf5d33cd99a63cd398627e2",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-42.998801Z-problems_teacher_stage1_1-IDA-MANHATTAN.tsv",
+      "sha256": "fe83bc5ec5e11c103f5681f4683667f332ddef8c94746d7f8997fc226c0f0b64",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-43.983257900Z-problems_teacher_stage1_1-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "dfed86c031fc328b24730d2e9ba2aead0385e7444bafff4f11fd69f89a114893",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-45.083553700Z-problems_teacher_stage1_1-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "58f2a5049ef22725e592c81f78ade76b538fedc8f81ad30b4585a58e8a8d1327",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-46.280995700Z-problems_teacher_stage1_1-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "7ce552d347e32d9f0413db6c7edd0d53e033350a108123d2c1c6ca15c38ea31e",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-57.976969Z-problems3_4-ASTAR-MANHATTAN.tsv",
+      "sha256": "44f3273d37d92cff5c020b06bd9b268399d1dcb4c1b7e10e910e7615fe40ee92",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-16-59.888072300Z-problems3_4-ASTAR-DISJOINT_PATTERN.tsv",
+      "sha256": "3c67f1d944a07e87077140ecbeccdad34be6841d35cde84168337a459155adf3",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-17-12.208935700Z-problems3_4-IDA-MANHATTAN.tsv",
+      "sha256": "7946751744a07c4ef2e94cc0546c1ad57217806848fc26b1e978fa17c17f7d82",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-10T06-17-13.484532300Z-problems3_4-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "07e417eec101be4dbf93e27ba48caa8cc3e3dce52c5e2d9b89f4b0d8501b726c",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-11T07-12-42.170991500Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "15579e946bc021aedc468d4b45c5509a927c645c0beb4ad87c62bc734263d048",
+      "unchanged": true
+    },
+    {
+      "path": "results/solutions/2026-10-11T07-13-07.526217100Z-problems3_10-IDA-DISJOINT_PATTERN.tsv",
+      "sha256": "f5c5816e3895bf89378b30576b57443bfdcd7b86760c95259f4dcb498ad9380c",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage1_benchmark.csv",
+      "sha256": "8b75f837d24b43d6552b87f0632377c616b38edf8355a30c50e4375b94b2897f",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage1_benchmark_2026-10-02.csv",
+      "sha256": "76997f3570c57b23d1bd97341611b6aa03f617fc55d8a4d61630df8e898c7779",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage1_random_benchmark.csv",
+      "sha256": "908e68f3d26130ec5ebdd76e6403f742f443918de1231766e1ab5a961cef1263",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage1_random_pairs_benchmark.csv",
+      "sha256": "0cd2a16db6daf291a260b6027e1018fea6d3a272106d885004c783214f7eff28",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage1_random_pairs_summary.csv",
+      "sha256": "d420755bb51c41062b5f9955c0a9b2e8c44c953c1127b8f232c81a824b0b7db2",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage1_random_summary.csv",
+      "sha256": "f5375c8aaeb54596f29561d843353b4fbab1b4fb4ab23f2e06a9a6f94eedc99c",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage2_idastar_benchmark.csv",
+      "sha256": "c83c25f5b78450f1a8f752d60f67f5dd251a48f7b8cde58e44755f8f1c31b0be",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage2_idastar_benchmark_2026-10-02.csv",
+      "sha256": "3d98e5d2e920418e9997857c67c178eef4c8fcb72d297c17d0d9c6b6ae115dd4",
+      "unchanged": true
+    },
+    {
+      "path": "results/stage3_pdb_benchmark.csv",
+      "sha256": "057f8fac63b7191177cb8b58b2f2da8eeac7c36dc98ee04369e8f1d72db3b30f",
+      "unchanged": true
+    },
+    {
+      "path": "results/stronger-20261008/2026-10-08T14-46-49.833351700Z-parent.txt",
+      "sha256": "6de072f97fb21ca08c48d723ccc52172e79bd5de44fcfd39d17c4d12e5f10880",
+      "unchanged": true
+    },
+    {
+      "path": "results/stronger-20261008/2026-10-08T14-46-49.833351700Z.log",
+      "sha256": "1b6858dba7c7a925d64c4a06244c8a972ce0284e7fd7944a938888a27692884a",
+      "unchanged": true
+    },
+    {
+      "path": "results/stronger-20261008/2026-10-08T14-46-49.833351700Z.properties",
+      "sha256": "b7f05bcded6609950669ae5a4e9a30c054485f3dcf5bbe67ac742d8fc1bbc4d8",
+      "unchanged": true
+    },
+    {
+      "path": "results/stronger-20261008/2026-10-08T14-47-31.540405800Z-parent.txt",
+      "sha256": "882ca6ceda5d392123923576e1a7060790a55696c6993b070d626d69d1aa7654",
+      "unchanged": true
+    },
+    {
+      "path": "results/stronger-20261008/2026-10-08T14-47-31.540405800Z.log",
+      "sha256": "0f7e10b653500e3f42a6f84e27f25e408b9db57f0aad4341650d093d928fedfc",
+      "unchanged": true
+    },
+    {
+      "path": "results/stronger-20261008/2026-10-08T14-47-31.540405800Z.properties",
+      "sha256": "134f3b34a09b6be36f163144d737196d758e284c4f8d9f5f9e67f0d2205d0334",
+      "unchanged": true
+    },
+    {
+      "path": "results/stronger-20261008/stage3.csv",
+      "sha256": "9eaea2a0d0f1a895c00820fbafcb488108214a86c854d526b5707a3970ca5027",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/baseline-tests.json",
+      "sha256": "a296890b1a5261e61f6947910083dc9ac2661f5ec8156a0173996617f03c1736",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/binary-audit.json",
+      "sha256": "e43c54e2fd80e5c4fd52741b29fa150b911baca8938f05f515ed3f7d626bb561",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/branch-receipt.json",
+      "sha256": "2b76eb859e442d2e384d7d8d354711cae43fdef58d638909bf52b9dd46e8c410",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/clean-checkout.json",
+      "sha256": "196c298a5ba83b2e5372fcccf762b55ec888ba675a46c6381004911d82c34da4",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/data-validation.json",
+      "sha256": "f18ae0eaf57485b733220669c8eda9e32e1d91df58850cc4ff84f8262ae0a1d1",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-00.log",
+      "sha256": "b03a6d9e90c0a62403778bd0951f6e1e4d172d4f8c03ac90f87e59254fa31197",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-01.log",
+      "sha256": "d8ec736400980b90f7f6245986ed22ea3d2917f4b3dcde2ebdf8c2f6b9e4786e",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-02.log",
+      "sha256": "23d88777bd9d9c6cdf065f6eff8d248431e6880e4664f77888ca127b7b1ac791",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-03.log",
+      "sha256": "c35a96174fda2bc1dd00b5b6d34dd533a160b57d4905e9f24695013c06ddd2c8",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-04.log",
+      "sha256": "4779f4b5da15ea67be2f9a3f6e9db9b85b991667cc2f3e48941d8246c2329ce0",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-05.log",
+      "sha256": "9ae118d928f1fc552152efcfdf459ce746f1ee4476b62999cc16adeb01588355",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-06.log",
+      "sha256": "e3dfb0081b113bc0b8750c23e0a4f345ac506ecb2a5424f05409a4339eb42caf",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-07.log",
+      "sha256": "b0b9d2642d37d57ca274ec2932d91e3c3d8df7402bee33f19fc547d9d648aec9",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-08.log",
+      "sha256": "feb4c5814238209b42118c756616ef41643a76bc264cef29dd9b97f4e2269310",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-09.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-10.log",
+      "sha256": "181ad8d945a5fc16136c710f355999065dcf49354f0a3ac3a8c4d374b4bc6925",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-1791614968427387400-check-11.log",
+      "sha256": "97cbe1aea3f2accae34b034bedac610cba5909b25f07e9f62609e37eceed3edf",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-check-09.log",
+      "sha256": "fc124d7de4b78930e541621887bbf504d22f9d8001fc5844a16761eaa41a6357",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/final-tests.json",
+      "sha256": "75825077c0b0aeab79f5f4c6a6bd24469d32af8da8f24b9474b006511ffc4202",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/git-audit.json",
+      "sha256": "520b403b4766f31f5bcb1b2a95ccbffef2004f4de9b1d9e44db9039455552449",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/inventory.json",
+      "sha256": "78ecd19842b4ecf2236ef5687a4dd15cd9656296f8537b9075df34ba6fc24701",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/report-qa.json",
+      "sha256": "dae393cd24226a82e2bb384cf7e313cc952fb18b04190cdd5b9334795a052390",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/reproduce-1791612943043931600-exit.json",
+      "sha256": "38f433d2ba5c835ee8e7e9f3f7464c81f802ca87689ef716df46ebbc980ac739",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/reproduce-1791612943043931600.log",
+      "sha256": "a334fae949338820bc9fea602cbc6fa364061844864716abe54a0d9afbe8122b",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/reproduce-exit.json",
+      "sha256": "8b653a63a1cea17f3a529ef7a2a6623d8762273e4a2595521ecc0b8a61f5d923",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/reproduce-public.log",
+      "sha256": "3643015fe0fa364eefe9469fb83377bbd19b17e12711504516cb3b45e0af5630",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/teacher-materials.json",
+      "sha256": "d69fa879e68b607e9c97c04d8bc411db85ee7d0e2933d0d8295a958eec643152",
+      "unchanged": true
+    },
+    {
+      "path": "results/submission-20261010/teacher-protected-files.csv",
+      "sha256": "fd5ddc492da58f8d95cd95ce4142e395c5a8d7e5eba0952611daaa9f5515a957",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-42-38.024874400Z-parent.txt",
+      "sha256": "9a49ece43e1f498afd050e84bc11fc5bc3dff4e9569f9409bfc24f3f858d5e45",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-42-38.024874400Z.log",
+      "sha256": "7a9999cf0b8247957d17ab78dcaa46fe617a7d96b1499bb0267ae53ea55e8ac7",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-42-38.024874400Z.properties",
+      "sha256": "37714eebc12454dd9fdfc5452cb95b092d651fa2c30903322d1f0a54136d7b2f",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-43-08.296489700Z-parent.txt",
+      "sha256": "ca221a5a946c668be6b24b6bdeac30f2ce047733cd200f655460bd24477a6a4d",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-43-08.296489700Z.log",
+      "sha256": "1a6c800a7cb7b7b122d9c06a59509c2e1adce600a244dc3989d2758a82d5c720",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-43-08.296489700Z.properties",
+      "sha256": "72b13bfd0b69862a64b49dbdc10d9fd9dc80dfd25696a4ef02a05a686f958137",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-43-38.597780200Z-parent.txt",
+      "sha256": "549fb7ef0600d6e305356782a9839196dd0f801d1d99a03c0d6e576a38614adc",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-43-38.597780200Z.log",
+      "sha256": "dc0ab7d798df89891a18a8d461b2535b63ed923d98987f304f102cb1d33532e4",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-43-38.597780200Z.properties",
+      "sha256": "02b03e826c5ec7fca08c707b9e9b88ad6f4271502dee51a1e087a21f90ac54c4",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-46-19.547709500Z-parent.txt",
+      "sha256": "7cddd935fd3a9833d8ba668493480ff69dafb9f6a4217eb93058c9f8f0ec2ad6",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-46-19.547709500Z.log",
+      "sha256": "7a2af47e889ee2115367b7a51aed8bc02110444db69fb8de41d992fcfaca58b6",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/2026-10-08T14-46-19.547709500Z.properties",
+      "sha256": "6d08c33636bfd021756cdcc73731167e549b1e0f0220ce9520798b396948645a",
+      "unchanged": true
+    },
+    {
+      "path": "results/tt-matrix-20261008/stage3.csv",
+      "sha256": "ef63439ae3e744ad2edb69b6e54f964e11d1b92960ab4f8895b455219bac07f8",
+      "unchanged": true
+    }
+  ],
+  "diagnostic_paths": [
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "c61937c99045f4663b73226d90ff529da3911bd16ecf3e5709825577ae4d3379",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/01-fastFalse-snapshotsTrue-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "badbf18792be045d95a224c2534e3c9a2f9b52780e9f3cc891c27433ff6b48c5",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/02-fastTrue-snapshotsFalse-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "8e50119dfc8b228063211ed97c3989224a5b88dc931ca7e7f76fa60a615c4a9b",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/03-fastTrue-snapshotsTrue-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "4e77e50eccfa7cf94de43ba4c429a7c69de6efc7a866f2f494d5a9c3ed385dce",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/04-fastFalse-snapshotsFalse-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "68af198c7c023373d274db443eec18dea55ec60faae46665abc8966d59c33fb9",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/05-fastTrue-snapshotsFalse-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "5b5187cab630c4a8a705709f2039cc87c710ef887dca41872c1b5dce72a08686",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/06-fastTrue-snapshotsTrue-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "9a1c4c5d2cd87d0644ade29dcc6290f911d83deb6054d09466c147d8f475feab",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/07-fastFalse-snapshotsFalse-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "e80cd3f29eb50c2e3693e7e9e99ecaddbda7dc6ab3bb7b6978f9390c0ca58984",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/08-fastFalse-snapshotsTrue-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "2232483b0542e62ad1fceeaf1bd73eac9304a2c62ad1fa6a3a00f41e61ccb4c0",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/09-fastTrue-snapshotsFalse-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "d9c8e2ca7b7bb4e8967fd468e1e8a71f22f421ac1c28a5ecbc8133025275dda9",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/10-fastFalse-snapshotsFalse-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "3d2411d2448f3b57a9553ba86a800d7715d0736bc6a935b92d8403a5e667fe55",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/11-fastFalse-snapshotsTrue-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 52,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "f520b387d160373383b9577b77580651fa6f6d25af9b79c35c8f0aeeeb3be3fb",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/12-fastTrue-snapshotsTrue-profileFalse/solution.tsv"
+    },
+    {
+      "status": "PASS",
+      "length": 70,
+      "initial_goal_match": true,
+      "all_moves_legal": true,
+      "solution_sha256": "9f9a935693f6d518557294111cdc7cc069e772b27db4bb2d3ab1c8aeff026e90",
+      "path": "results/optimization-20261106-20261106T115705068678Z/diagnostics/profile-external/solution.tsv"
+    }
+  ],
+  "late_timeout_path_replay": {
+    "status": "PASS",
+    "length": 52,
+    "initial_goal_match": true,
+    "all_moves_legal": true,
+    "solution_sha256": "ee1d5cec867f7f48eac0e3a721a09c8fd4d258c8007ed0243179df8959a1bb11",
+    "timed_acceptance": false,
+    "reason": "worker completed after parent timeout"
+  },
+  "total_new_experiment_attempts_including_diagnostic_startup_failures": 96,
+  "diagnostic_statuses": [
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": false,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "FAIL",
+      "profile": true,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "FAIL",
+      "profile": true,
+      "context": "primary sandbox"
+    },
+    {
+      "status": "SOLVED",
+      "profile": true,
+      "context": "outside sandbox, explicitly permitted after JFR temp access failure; diagnostic only"
+    }
+  ],
+  "final_clean_build_and_tests": {
+    "path": "results/optimization-20261106-20261106T115705068678Z/final-checks/verification.json",
+    "sha256": "0e98dfa7415c5e9c0de1886b9b78f3a5890fa3bd493237b671f9afbdc56d011a",
+    "status": "PASS",
+    "identical_class_files": 82
+  },
+  "teacher_protected": [
+    {
+      "path": "src/algs4/util/StdRandom.java",
+      "sha256": "f1a6ff3820097c483ad4f76d3fead16c83e234021b118e21d6b13606b6ed813b",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/algs4/util/Stopwatch.java",
+      "sha256": "35e7cd78ebe999124844e76347c83b9edff4e7c4140c9776670776747bd76044",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/algs4/util/StopwatchCPU.java",
+      "sha256": "156af06f4293ce083c7a539dca0923f9fb1b933d7b11d1532f35090b304ea2b8",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/problem/Action.java",
+      "sha256": "259fa64270bc6b9ef910bda724a5b80fd56eb336b1624de321e80bcd1580a6a4",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/problem/Problem.java",
+      "sha256": "3d8fa3f9960eb241f45cd30a7850eaa6b44270f32033fdc0895505eb2861cc8c",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/problem/ProblemType.java",
+      "sha256": "c557f29754ffd12aff1fbe42dff1cbad1fcb2010e6b0eebe36422d0bdfe33082",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/problem/State.java",
+      "sha256": "62399e13f25ac348a7710b96083d391245937c873a0218afad53d2e0b629dda2",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/runner/EngineFeeder.java",
+      "sha256": "6efc9d1346d03c9d4dc667a757a2476a21b2f7d5bcefc8e7780db9f785a52c26",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/runner/SearchTester.java",
+      "sha256": "1b1c02efaf45a5fb45b2ad178f0cd989965d64dc535ed5a808a6f745df6585f7",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/solver/algorithm/heuristic/HeuristicType.java",
+      "sha256": "8edccb736b27117df269389b9b0360a971f609ca923a054dc2378dadaf75f6e3",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/solver/algorithm/heuristic/Predictor.java",
+      "sha256": "263b2d6e91e0bff56090a0317a6f3257d1023acbffc98bed264d979a6ef84093",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/solver/algorithm/searcher/AbstractSearcher.java",
+      "sha256": "257a8aef5bb85743623438abfb44f40ebff5be72c2cf5139d3862b18539a7462",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/solver/algorithm/searcher/BestFirstSearcher.java",
+      "sha256": "424e7a809cc4d51d6ffe156223635eb963779d9dee359a1c47ec49b7e184c440",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/solver/queue/EvaluationType.java",
+      "sha256": "c48ccde7b74d97143059708679867996d8dbb7ee96d975fdfa1ea0da78894c65",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/solver/queue/Frontier.java",
+      "sha256": "36206004576a373951a846a374b043c33f7fff47809165e66495a75c881f5d9b",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/core/solver/queue/Node.java",
+      "sha256": "bf5f62c6c3fd9f536ca140781d3d0904c58f6895b27963d3209374b2346169e2",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/META-INF/MANIFEST.MF",
+      "sha256": "93e567755890d4d85be91d6eb29b9f0b08bdaeb2f617c1bacc52a0e208f1f045",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Direction.java",
+      "sha256": "4ce50163accf7f6f1e4204f58d13db9145857c2462126a198e7438aa4ebaf8dd",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/GridType.java",
+      "sha256": "f21489d733da2e0909f2cc8f00aafe8cfd1ff9b99f674deceaa76f594e07f7a1",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Move.java",
+      "sha256": "99877831356a46bd58b9c58b02ab9ed06d3d9cc3741cd9d6b4b327e7c825879d",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/PathFinding.java",
+      "sha256": "e4cdec3cb37c0ac728a88a11567b9a426bc55e902d8b0d949496be9a4292d4f3",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/problem/pathfinding/Position.java",
+      "sha256": "0e517ede0cda4511af9341d421505bc4d93505b6a7ce247a5aecbc5eafb2a300",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/queue/ListFrontier.java",
+      "sha256": "26014c6ea29b36fa8d2d297ffd77727273c11e10201a3beffe48ef66b7b490e4",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/queue/PqFrontier.java",
+      "sha256": "ee47b8ec7f2ca2b388a1b085b4dad9096d766469ca30db8813089bf31c49cac4",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/queue/QueueFrontier.java",
+      "sha256": "057de9692bedb2ed2c3d9cbdf107b5787d63f4f21150b774933de015ab60f465",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/queue/StackFrontier.java",
+      "sha256": "94c8b827b17ca194875bb531b696f7b06d4a7eb98ece859f5805f2dc92f6f6d4",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "src/stud/runner/WalkerFeeder.java",
+      "sha256": "79bbbde2d52dabf6d7207b31c26752f5231cd8a550bc24bb09a989e34c1237c2",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "resources/pathfinding.txt",
+      "sha256": "2c5a9ed1f4371d2289878f7951562318b9c79cb88f9ab650b1f84e6b828402a3",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "resources/pathfinding3.txt",
+      "sha256": "63ea6a895b5ad0634a2cd73bad5ece41226afebda6256c06f337d8828077d9e6",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "resources/problems.txt",
+      "sha256": "c5499c0a963f5ab9b58163927172d8b5a19f5914fcda4d381612c07208de0218",
+      "unchanged": true,
+      "local_teacher_matches": true
+    },
+    {
+      "path": "resources/problems3.txt",
+      "sha256": "2ce87a7a6fd2c65713eb7b3355889a0dc6f828a1a9c86b91221e8721de13c2df",
+      "unchanged": true,
+      "local_teacher_matches": true
+    }
+  ],
+  "original_checkout_report_and_results_unchanged": true,
+  "tests": [
+    {
+      "test": "BenchmarkAcceptanceTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleAlternativePdbTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleCloseoutTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleFoundationTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleOptimizationTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage1Test",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage2Test",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage3Test",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "TeacherStage1Test",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "markdown_links_checked": 137,
+  "tracked_results_diff": "M\tresults/INDEX.md",
+  "binary_reports": "UNCHANGED; Markdown supplement is deliberately separate from archived DOCX/PDF",
+  "optimality_scope": "Every Hard path is 70; fixed admissible PDB plus IDA* threshold bound, exhaustive small BFS and independent Manhattan A* tests. No independent full 15-Puzzle BFS claim.",
+  "source_sha256": "3dbcd9b083fd0b54aad923d955b61aa408ceb015cb6b662b3fb276da1bada190"
+}
