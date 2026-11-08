@@ -1,0 +1,10 @@
+PHASE PREPARE
+PHASE SEARCH
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.Arrays.copyOf(Arrays.java:3512)
+	at java.base/java.util.Arrays.copyOf(Arrays.java:3481)
+	at java.base/java.util.PriorityQueue.grow(PriorityQueue.java:298)
+	at java.base/java.util.PriorityQueue.offer(PriorityQueue.java:329)
+	at stud.g01.queue.PqFrontier.offer(PqFrontier.java:32)
+	at core.solver.algorithm.searcher.BestFirstSearcher.search(BestFirstSearcher.java:67)
+	at stud.g01.runner.OptimizationWorker.main(OptimizationWorker.java:68)

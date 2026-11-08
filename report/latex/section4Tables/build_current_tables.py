@@ -30,7 +30,12 @@ def med(rows, field):
 
 
 def fmt(v, digits=3):
-    return '---' if v is None else f'{v:.{digits}f}'
+    if v is None:
+        return '---'
+    value = f'{v:.{digits}f}'
+    if digits == 0 and abs(v) >= 10000:
+        value = f'{int(round(v)):,}'.replace(',', r'\,')
+    return value
 
 
 def table(name, columns, headers, rows):
@@ -58,7 +63,7 @@ for dataset in ['teacher3', 'ordinary4']:
             data.append([ALGS[a], label, outcome, fmt(med(rs, 'elapsed_ms')),
                          fmt(med(rs, 'parent_ms')), fmt(med(rs, 'expanded'), 0),
                          fmt(med(rs, 'pdb_build_ms'), 0)])
-    table(dataset, 'llcrrrr', ['算法', '启发', '成功', '搜索/ms', '父端/ms', '扩展次数', '建表/ms'], data)
+    table(dataset, 'llcrrrr', ['算法', '启发', '成功', '搜索 / ms', '总耗时 / ms', '扩展次数', '建表 / ms'], data)
 
 mode_rows = []
 for mode, cap, fast in [('BASIC', 0, False), ('BASIC', 0, True)] + [
@@ -69,11 +74,11 @@ for mode, cap, fast in [('BASIC', 0, False), ('BASIC', 0, True)] + [
                       fmt(med(rs, 'elapsed_ms') / 1000) if ok else '---',
                       fmt(med(rs, 'parent_ms') / 1000) if ok else '---',
                       fmt(med(rs, 'expanded'), 0)])
-table('modes', 'lcccrrr', ['模式', '容量/万', 'fast', '成功', '搜索/s', '父端/s', '扩展次数'], mode_rows)
+table('modes', 'lcccrrr', ['模式', '容量 / 万', 'fast', '成功', '搜索 / s', '总耗时 / s', '扩展次数'], mode_rows)
 
 cold = selected(group='hard_cold')[0]
 warm = selected(group='hard', mode='BASIC', fast=True)
-table('cache', 'llcrrrr', ['缓存', '状态', '次数', '建表/ms', '加载/ms', '搜索/ms', '父端/ms'], [
+table('cache', 'llcrrrr', ['缓存', '状态', '次数', '建表 / ms', '加载 / ms', '搜索 / ms', '总耗时 / ms'], [
     ['冷', cold['status'], '1', cold.get('pdb_build_ms', '---'), cold.get('pdb_load_ms', '---'),
      fmt(float(cold['elapsed_ms'])) if cold['status'] == 'SOLVED' else '---', fmt(cold['parent_ms'])],
     ['热', 'SOLVED', '3', fmt(med(warm, 'pdb_build_ms'), 0), fmt(med(warm, 'pdb_load_ms'), 0),
@@ -88,15 +93,15 @@ for fast in [False, True]:
         controls.append(['开' if fast else '关', '开' if snapshots else '关', '3/3',
                          fmt(med(rs, 'elapsed_ms')), fmt(med(rs, 'child_states_created'), 0),
                          fmt(med(rs, 'pdb_lookup_count'), 0)])
-table('controls', 'cccrrr', ['fast', '快照', '成功', '搜索/ms', '状态构造', 'PDB查询'], controls)
+table('controls', 'cccrrr', ['fast', '快照', '成功', '搜索 / ms', '状态构造', 'PDB 查询'], controls)
 
 pair = [selected(group='hard', mode='BASIC', fast=f, repetition=3)[0] for f in [False, True]]
 assert all(r['status'] == 'SOLVED' for r in pair)
-table('counts', 'lrr', ['指标', 'fast关闭', 'fast开启'], [
+table('counts', 'lrr', ['指标', 'fast 关闭', 'fast 开启'], [
     [label, fmt(float(pair[0][field]), 0), fmt(float(pair[1][field]), 0)]
     for field, label in [('generated', '生成事件'), ('expanded', '扩展事件'),
                          ('reverse_move_prunes', '提前反向过滤'), ('child_states_created', '子状态构造'),
-                         ('child_nodes_created', '子结点构造'), ('pdb_lookup_count', 'PDB查询')]])
+                         ('child_nodes_created', '子结点构造'), ('pdb_lookup_count', 'PDB 查询')]])
 
 
 def chart_source(name, panels):
@@ -130,7 +135,7 @@ def chart_source(name, panels):
 
 
 for field, filename, ylabel in [('elapsed_ms','heuristic-search','搜索时间 / ms'),
-                               ('parent_ms','heuristic-parent','父端总时间 / ms')]:
+                               ('parent_ms','heuristic-parent','求解总耗时 / ms')]:
     panels = []
     for dataset, title in [('teacher3',r'教师题 $3\times3$'),('ordinary4',r'普通题 $4\times4$')]:
         values = [[med(selected(group='heuristic',dataset=dataset,algorithm=a,heuristic=h),field)

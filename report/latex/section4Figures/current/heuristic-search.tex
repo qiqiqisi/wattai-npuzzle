@@ -15,17 +15,17 @@ tick label style={font=\fontsize{9bp}{12bp}\selectfont},
 legend style={at={(.5,-.19)},anchor=north,legend columns=2,column sep=7pt,draw=none,fill=none,font=\fontsize{9bp}{12bp}\selectfont},
 enlarge x limits=.2,xtick=data]
 \nextgroupplot[title={教师题 $3\times3$},ylabel={搜索时间 / ms},ymax=30.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
-\addplot[fill=Blue,draw=Blue] coordinates {(0,7.051500) (1,5.562200) (2,5.064800) (3,3.489300)};
+\addplot[fill=Blue,draw=Blue] coordinates {(0,8.194800) (1,6.002200) (2,5.061400) (3,4.326300)};
 \addlegendentry{A*}
-\addplot[fill=Muted,draw=Muted] coordinates {(0,20.636300) (1,16.253300) (2,16.730100) (3,12.118200)};
+\addplot[fill=Muted,draw=Muted] coordinates {(0,23.987199) (1,18.828100) (2,19.593100) (3,17.327999)};
 \addlegendentry{IDA*}
-\nextgroupplot[title={普通题 $4\times4$},ylabel={搜索时间 / ms},ymax=650.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
-\addplot[fill=Blue,draw=Blue] coordinates {(1,487.263600) (2,379.256700) (3,173.522600)};
+\nextgroupplot[title={普通题 $4\times4$},ylabel={搜索时间 / ms},ymax=900.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
+\addplot[fill=Blue,draw=Blue] coordinates {(1,685.851600) (2,508.963399) (3,282.389001)};
 \addlegendentry{A*}
-\addplot[fill=Muted,draw=Muted] coordinates {(1,166.096900) (2,349.601200) (3,103.857500)};
+\addplot[fill=Muted,draw=Muted] coordinates {(1,196.860000) (2,364.376800) (3,138.946300)};
 \addlegendentry{IDA*}
-\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,16.25) {A*：OOM};
-\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,58.5) {IDA*：超时};
+\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,22.5) {A*：OOM};
+\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,81.0) {IDA*：超时};
 \end{groupplot}
 \end{tikzpicture}
 \end{document}

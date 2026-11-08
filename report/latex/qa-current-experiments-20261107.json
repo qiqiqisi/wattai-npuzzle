@@ -1,10 +1,10 @@
 {
   "date": "2026-11-08",
   "status": "PASS",
-  "pdf_pages": 44,
-  "pdf_sha256": "96eaead54838b222008579478ec5372ce353650a54eb2dbf7da18b8e4aa393d8",
-  "source_suite": "results/optimization-report-20261106T170615944601Z",
-  "runtime": "JDK 24.0.2",
+  "pdf_pages": 42,
+  "pdf_sha256": "bd26a8f5356b09b07c641fac4bf3fd7700e6e20ebca3c4b9cefdb83c0971bd39",
+  "source_suite": "results/optimization-report-20261108T140641033100Z",
+  "runtime": "JDK 19.0.2",
   "compile_target": 19,
   "java_tests": 9,
   "java_test_status": "PASS",
@@ -25,9 +25,9 @@
   "hard_cold": {
     "status": "SOLVED",
     "solution_length": 70,
-    "pdb_build_ms": 2395,
-    "search_ms": 9979.3164,
-    "parent_ms": 12512.799000003724
+    "pdb_build_ms": 2985,
+    "search_ms": 13816.7959,
+    "parent_ms": 16981.278599999998
   },
   "xelatex_pass_exit_codes": [
     0,
@@ -40,7 +40,7 @@
   "vector_result_charts": 3,
   "all_result_table_times_found_in_pdf": true,
   "visual_review": {
-    "rendered_pages": 44,
+    "rendered_pages": 42,
     "reviewed_pages": [
       1,
       2,
@@ -83,15 +83,15 @@
       39,
       40,
       41,
-      42,
-      43,
-      44
+      42
     ],
     "figure_5_5_image_and_caption_same_page": true,
     "code_blocks_kept_on_one_page": true,
     "shared_vector_figure_style": true,
     "table_captions_kept_with_tables": true,
-    "complete_system_call_diagram": true
+    "complete_system_call_diagram": true,
+    "code_headings_kept_with_code": true,
+    "english_identifiers_not_hyphenated_in_system_diagram": true
   },
   "solver_teacher_framework_tests_and_original_inputs_modified": false,
   "historical_measurements_replaced_in_current_report_only": true,
@@ -99,6 +99,6 @@
   "prior_report_fixes_preserved": true,
   "gui_manual_reacceptance": "NOT_RUN; retained existing evidence",
   "statistical_scope": "Three repetitions on fixed inputs; descriptive statistics only",
-  "experiment_date": "2026-11-07",
-  "report_revision": "Unified vector figures and three-rule tables, completed system call diagram, clarified algorithm trade-offs, current results and functional description."
+  "experiment_date": "2026-11-08",
+  "report_revision": "Two-character paragraph indentation, complete README, natural Chinese wording, consistent punctuation and units; complete JDK 19 rerun; current tables and vector charts; final PDF rendered and all 42 pages visually reviewed."
 }

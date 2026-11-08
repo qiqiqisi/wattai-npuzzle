@@ -2,7 +2,7 @@
 \FloatBarrier
 \Needspace{6\baselineskip}
 \begingroup
-\setlength{\parskip}{5bp}
+\setlength{\parskip}{3bp}
 \setlength{\emergencystretch}{1em}
 \clubpenalty=10000
 \widowpenalty=10000
@@ -16,19 +16,19 @@
 \renewcommand{\tablename}{表}
 \captionsetup{font=reportcaption,labelsep=quad,skip=5bp}
 \newcommand{\ChFourFigure}[4][0.98]{%
-  \begin{figure}[htbp]\centering
+  \begin{figure}[!htbp]\centering
   \includegraphics[width=#1\linewidth]{section4Figures/#2}
   \caption{#3}\label{#4}\end{figure}}
 \newcommand{\ChFourTable}[4]{%
-  \begin{table}[htbp]\centering\caption{#2}\label{#3}
+  \begin{table}[!htbp]\centering\caption{#2}\label{#3}
   \begingroup\fontsize{9bp}{12bp}\selectfont
   \setlength{\tabcolsep}{3bp}\renewcommand{\arraystretch}{1.15}
   \input{section4Tables/#1.tex}\par\vspace{3bp}
   \begin{minipage}{0.98\linewidth}\fontsize{8.5bp}{11.5bp}\selectfont #4\end{minipage}
   \endgroup\end{table}}
 
-\TemplateSection{4.N-Puzzle问题求解探讨}
-{\bfseries\fontsize{12bp}{15.6bp}\selectfont 4.\quad N-Puzzle问题求解探讨}\par\vspace{6bp}
+\TemplateSection{4.\quad N-Puzzle 问题求解探讨}
+\noindent{\bfseries\fontsize{12bp}{15.6bp}\selectfont 4.\quad N-Puzzle 问题求解探讨}\par\vspace{6bp}
 
 本章固定初态、目标和单位移动代价，比较 A* 与 IDA* 的实际表现，
 并考察启发估值、转置表和快速后继生成的收益与代价。
@@ -40,71 +40,71 @@
 教师三阶题使用第 2.1 节的初态与非标准目标，解长为 16；
 普通四阶题取 \texttt{problems3.txt} 第 4 题，解长为 52；
 困难四阶题取同文件第 10 题，即教师指定的倒序棋盘，成功解长为 70。
-所有配置使用 JDK 24.0.2，源码以 \texttt{--release 19} 编译；系统为 Windows，处理器为 AMD Ryzen 9 8940HX，最大堆为 \texttt{-Xmx1024m}。
-每次启动独立 JVM，不在同一 JVM 内预热；重复块内使用固定种子打乱配置顺序。
-普通题保护上限为 60 秒，困难题父端上限为 60 秒，均从启动工作 JVM 前开始计时。
+所有配置使用 JDK 19.0.2，源码以 \texttt{--release 19} 编译；系统为 Windows，处理器为 AMD Ryzen 9 8940HX，最大堆为 \texttt{-Xmx1024m}。
+每次启动独立 JVM，不在同一 JVM 内预热。
+所有运行均设置 60 秒上限，从启动求解进程前开始计时。
 
 三阶和普通四阶分别对两种算法、四种启发函数各重复 3 次，共 48 次。
 困难题比较 8 种模式与开关配置，各重复 3 次，共 24 次，另做 1 次独立冷缓存运行。
 加上 7 次用于检查配置和建立私有缓存的预实验，计划共 80 次，实际为 3 次 OOM、74 次 SOLVED、3 次 TIMEOUT。
-预实验和独立诊断不混入主比较的中位数。三阶各配置均成功，无超时；普通四阶错位数中，A* 为 3 次 OOM，IDA* 为 3 次 TIMEOUT。OOM 表示先耗尽堆内存，不能写为到达 60 秒。
-TIMEOUT 只表示限时内没有完成，不表示无解；其最后一次快照也不是完成搜索的结果。
+预实验与独立对照另行统计。三阶各配置均成功，无超时；普通四阶错位数中，A* 三次均因堆内存不足（OOM）结束，IDA* 三次均达到 60 秒上限（TIMEOUT）。
 
 \textbf{计时和统计口径。}
 搜索时间从调用搜索器到返回路径，包括启发查询和运行器的同步快照记录，
-不含提前构建或加载 PDB。父端时间还包含 JVM 启动、输入、准备、路径回放和导出，
-超时时则计到终止并回收工作进程。二者差值不能解释为纯启动时间。
+不含提前构建或加载 PDB。求解总耗时从启动求解进程前计至进程退出或超时终止回收，
+包含 JVM 启动、输入、准备、搜索、路径回放和导出。两种计时分别反映搜索本身与一次求解的整体成本。
 表内时间分别取成功运行的中位数，失败不填充为上限值，也不参加成功中位数；
-同时列出成功次数，避免只保留有利样本。仅有 3 次固定题重复，不作统计显著性推断。
+同时列出成功次数和失败类型。每种配置重复三次，结果用于描述本组固定题目的性能。
 
 PDB 在三阶使用 4-4 分组，普通四阶使用 4-4-4-3，困难题使用 555T。
-四启发比较中的 PDB 每次从不存在的私有缓存开始建表；困难题模式对照复用预实验建立的私有热缓存，
-比较前后核查文件哈希。独立冷运行单列建表与总耗时，热运行单列缓存加载与总耗时。
+四种启发函数对照中的 PDB 每次重新建表；困难题模式对照复用预实验建立的同一份缓存。独立冷运行单列建表与总耗时，热运行单列缓存加载与总耗时。
 图~\ref{fig:ch4-protocol} 示意这些计时范围。
-\ChFourFigure{unified/protocol.pdf}{工作 JVM 的执行步骤与计时范围}{fig:ch4-protocol}
+\ChFourFigure{unified/protocol.pdf}{求解进程的执行步骤与计时范围}{fig:ch4-protocol}
 \FloatBarrier
 
-\TemplateSubsection[templatetwoextra]{4.1 Open表及Closed表数据结构的改进及其对算法性能的影响}
-{\bfseries 4.1\quad Open表及Closed表数据结构的改进及其对算法性能的影响}\par\vspace{2bp}
+\TemplateSubsection[templatetwoextra]{4.1 Open 表及 Closed 表数据结构的改进及其对算法性能的影响}
+\noindent{\bfseries 4.1\quad Open 表及 Closed 表数据结构的改进及其对算法性能的影响}\par\vspace{2bp}
 
 A* 的 Open 需要同时支持选出最小 $f$ 和定位重复状态。
 \texttt{PqFrontier} 用优先队列保存候选结点，再用状态索引维护每个棋盘的有效记录。
 堆的入队、出队操作为 $O(\log N)$，哈希索引查询平均为 $O(1)$。
-但替换旧结点时，\texttt{queue.remove(oldNode)} 仍需线性定位，不能把整个替换过程写为对数复杂度。
+替换旧结点时，\texttt{queue.remove(oldNode)} 需要线性定位，因此替换操作为 $O(N)$。
 有序列表即使用二分查找确定位置，插入与删除仍可能搬移元素。表~\ref{tab:ch4-operations} 列出结构代价。
 \ChFourTable{operations}{Open 与 Closed 的结构代价}{tab:ch4-operations}{%
 $N$ 为 Open 中的结点数。这些是操作复杂度，不是实测耗时或内存峰值。}
 
-Closed 使用 \texttt{HashSet<State>}，按完整状态判等；本章没有改变 Closed 的实现。
-当前实验固定 A* 为优先队列加状态索引版本，没有设置列表版的配对时间实验，
-因此不从本章时间数据计算更换 Open 的加速比。
-这种固定方式使不同启发函数的 A* 使用相同候选管理规则，避免把两个因素混在一起。
-额外索引要占用空间，且较优重复路径越多，线性删除的代价越值得注意。本实验的取舍是把频繁的最优结点出队与状态查询交给堆和哈希索引，保留实现简单的线性替换。因此，优先队列的价值在于降低常规候选管理成本，而不是消除所有线性操作。教师三阶题的实际达标结果来自这套结构，但本轮没有更换 Open 的配对计时，不能将总耗时归结为队列单项收益。
+Closed 使用 \texttt{HashSet<State>}，按完整状态判等。
+本实验固定 A* 为优先队列与状态索引的组合，Closed 也保持相同实现，
+从而使不同启发函数使用相同的候选管理规则。
+
+这套结构将频繁的最小值出队与状态查询交给堆和哈希索引，
+额外代价是索引存储，以及更新较优重复结点时的线性删除。
+本章报告整套实现的运行时间，未设置列表版的配对计时。
 \ChFourFigure{unified/open-operations.pdf}{候选后继的状态定位、插入与替换}{fig:ch4-open}
 \FloatBarrier
 
-\TemplateSubsection{4.2 A*算法、IDA*算法的性能比较}
-{\bfseries 4.2\quad A*算法、IDA*算法的性能比较}\par\vspace{2bp}
+\TemplateSubsection{4.2 A* 算法、IDA* 算法的性能比较}
+\noindent{\bfseries 4.2\quad A* 算法、IDA* 算法的性能比较}\par\vspace{2bp}
 
 两种算法使用同一个 $f=g+h$，但保留的信息不同。A* 同时保存 Open、状态索引、Closed 和父链；
 BASIC IDA* 在阈值内深度优先搜索，主要保留当前路径，升高阈值后从根重新搜索。这使第二阶段能够把搜索空间从三阶扩展到四阶：以跨轮重复计算换取较小的路径存储，但启发信息过弱时仍可能耗尽时间。四阶错位数的 A* 内存不足与 IDA* 超时，分别体现了两种资源限制。
 本节 IDA* 采用 BASIC、\texttt{fast=true}，不启用转置表。
 
 表~\ref{tab:ch4-teacher3} 给出教师三阶题的全部配置，3 次重复均成功，解长均为 16。
-同用 Manhattan 时，A* 搜索中位数为 5.562\,ms，
-IDA* 为 16.253\,ms，扩展事件数分别为 311 和 423。
-A* Manhattan 的父端中位数为 110.640\,ms，
-最大值为 115.774\,ms，
+同用 Manhattan 时，A* 搜索中位数为 6.002\,ms，
+IDA* 为 18.828\,ms，扩展事件数分别为 311 和 423。
+A* Manhattan 的求解总耗时中位数为 145.389\,ms，
+最大值为 170.231\,ms，
 该配置 3 次都在 1 秒内完成，满足第一阶段要求。
 \ChFourTable{current-teacher3}{教师三阶题的算法与启发函数比较}{tab:ch4-teacher3}{%
 每配置 3 次，均为 16 步。时间为各指标分别计算的成功中位数；PDB 为冷构建 4-4。
 LC 指 Manhattan 加线性冲突修正。建表时间不包含在搜索时间内。}
 
 普通四阶题的结果见表~\ref{tab:ch4-ordinary4}。
-Manhattan 下，A* 搜索中位数为 487.264\,ms，
-IDA* 为 166.097\,ms；扩展分别为 339410 与 997736。
-IDA* 有跨轮重复，但候选管理和后继处理的成本不同，不能只凭扩展次数推断耗时。
-这一结果只描述本题与该实现，不据此给出所有题目的统一排名。
+Manhattan 下，A* 搜索中位数为 685.852\,ms，
+IDA* 为 196.860\,ms；扩展分别为 339\,410 与 997\,736。
+IDA* 的扩展包含跨轮重复，而 A* 需要维护全局候选集合。
+在该题上，IDA* 扩展更多，但搜索耗时更短，反映了两种实现的单次扩展成本差异。
 错位数的失败状态单独保留，其余成功配置的路径均为 52 步。
 \ChFourTable{current-ordinary4}{普通四阶题的算法与启发函数比较}{tab:ch4-ordinary4}{%
 每配置 3 次，普通题上限 60 秒。TO 为 TIMEOUT，OOM 为内存不足；失败不填完成指标，成功次数与失败类型同时保留；
@@ -112,13 +112,13 @@ IDA* 有跨轮重复，但候选管理和后继处理的成本不同，不能只
 
 生成事件和扩展事件必须结合代码理解。IDA* 的计数跨轮累加，
 fast 还会在创建子状态前过滤立即反向动作；A* 则保留前沿和 Closed。
-所以本章不按生成事件数给两种算法直接排名，也不把扩展次数说成不同棋盘数。
-没有统一测量 JVM 峰值内存，不能把表条目数或 \texttt{-Xmx1024m} 当作实际内存消耗。
+表中的生成与扩展均为累计事件数，包含同一状态的重复访问。
+存储分析按算法保存的数据结构展开；\texttt{-Xmx1024m} 为堆上限，本实验未测量 JVM 峰值内存。
 \ChFourFigure{unified/search-storage.pdf}{A* 与 BASIC IDA* 保留的信息；框面积不表示实际内存}{fig:ch4-storage}
 \FloatBarrier
 
-\TemplateSubsection{4.3 三个不同的启发函数及IDA*的性能比较}
-{\bfseries 4.3\quad 三个不同的启发函数及IDA*的性能比较}\par\vspace{2bp}
+\TemplateSubsection{4.3 不同启发函数下 A* 与 IDA* 的性能比较}
+\noindent{\bfseries 4.3\quad 不同启发函数下 A* 与 IDA* 的性能比较}\par\vspace{2bp}
 
 课程要求比较错位数、Manhattan 与加性 PDB。本章在相同状态对上同时列出 LC，
 用来检查更强估值能否抵消额外计算成本。错位数只区分是否归位，Manhattan 保留位移，
@@ -131,122 +131,121 @@ PDB 可加的关键是成本划分：一次动作只由被移动将牌所在组�
 \FloatBarrier
 
 \TemplateSubsubsection{4.3.1 运行时间对比及分析}
-{\bfseries 4.3.1\quad 运行时间对比及分析}\par\vspace{2bp}
+\noindent{\bfseries 4.3.1\quad 运行时间对比及分析}\par\vspace{2bp}
 
-三阶 A* 的 Manhattan 与 LC 搜索中位数分别为 5.562、
-5.065\,ms；IDA* 分别为 16.253、
-16.730\,ms。
-普通四阶 A* 的对应搜索中位数为 487.264、379.257\,ms，
-IDA* 为 166.097、349.601\,ms。
+三阶 A* 的 Manhattan 与 LC 搜索中位数分别为 6.002、
+5.061\,ms；IDA* 分别为 18.828、
+19.593\,ms。
+普通四阶 A* 的对应搜索中位数为 685.852、508.963\,ms，
+IDA* 为 196.860、364.377\,ms。
 LC 减少扩展，但估值本身也要计算行列顺序；时间是否下降应分别按算法和题目判断。
-普通四阶题中，A* 的 LC 快于 Manhattan，而 IDA* 的 LC 慢于 Manhattan。这说明更强启发函数不是无条件加速：LC 减少了需要扩展的事件，但每次全量计算行列顺序也增加成本，IDA* 的重复估值会放大这一代价。
+普通四阶题中，LC 使 A* 的搜索更快，却使 IDA* 的搜索更慢。
+LC 减少扩展的同时也增加了行列顺序的计算，IDA* 的重复估值进一步累积了这部分成本。
 \ChFourFigure{current/heuristic-search.pdf}{相同题目下四种启发函数的搜索时间中位数}{fig:ch4-times}
 
-搜索区间之外的准备也不能忽略。三阶 PDB 的父端中位数分别为 A* 155.482、
-IDA* 167.180\,ms；
-普通四阶分别为 539.739、455.214\,ms。
-这些值包含每次冷建表的成本，必须与表内同算法、同题的 Manhattan 父端时间比较。
+计入准备成本后，三阶 PDB 的 A* 与 IDA* 求解总耗时中位数分别为 219.227、234.436\,ms；
+普通四阶的对应值分别为 743.599、585.805\,ms。
+这些值包含每次冷建表的成本，必须与表内同算法、同题的 Manhattan 求解总耗时比较。
 若多次复用同一目标和分组，应把首次建表与每次加载分别计入。
-本实验没有测定不同目标与难度分布下的摊销盈亏点。普通四阶中，A* 的 PDB 搜索和父端时间均低于 Manhattan；IDA* 的 PDB 搜索更短，父端时间却因建表而更长。因此，普通题的一次性求解与困难题的可行求解应分别评价，不能只用搜索时间判断 PDB 是否值得采用。
-\ChFourFigure{current/heuristic-parent.pdf}{包含准备、搜索、回放和导出的父端时间中位数}{fig:ch4-parent}
+普通四阶中，A* 使用 PDB 时，搜索与总耗时均低于 Manhattan；
+IDA* 使用 PDB 时，搜索更短，总耗时却因建表而更长。
+因此，普通题的一次性求解需要权衡建表与搜索成本，困难题则更依赖 PDB 提供的强下界。
+\ChFourFigure{current/heuristic-parent.pdf}{包含准备、搜索、回放和导出的求解总耗时中位数}{fig:ch4-parent}
 \FloatBarrier
 
 \TemplateSubsubsection{4.3.2 扩展结点比较及分析}
-{\bfseries 4.3.2\quad 扩展结点比较及分析}\par\vspace{2bp}
+\noindent{\bfseries 4.3.2\quad 扩展结点比较及分析}\par\vspace{2bp}
 
-普通四阶 A* 的扩展事件由 Manhattan 的 339410 降到 LC 的 184819，
-IDA* 由 997736 降到 595024。两种算法都少扩展，但时间变化方向不同，说明估值强度不是唯一成本。
-PDB 在该题进一步把 A* 扩展减至 118544、IDA* 减至 275777；
+普通四阶 A* 的扩展事件由 Manhattan 的 339\,410 降到 LC 的 184\,819，
+IDA* 由 997\,736 降到 595\,024。两种算法都少扩展，但时间变化方向不同，说明估值强度不是唯一成本。
+PDB 在该题进一步把 A* 扩展减至 118\,544、IDA* 减至 275\,777；
 它的建表和查表开销仍需通过表~\ref{tab:ch4-ordinary4} 的时间列一起判断。
 \ChFourFigure{current/lc-nodes.pdf}{普通四阶题 Manhattan 与 LC 的扩展事件数}{fig:ch4-expanded}
 
 困难题 BASIC 成功运行的阈值依次为 $56,58,60,62,64,66,68,70$，在第 8 轮找到 70 步解。
-每次取最小超界值，序列恰好间隔为 2，不是预设每次加 2。
-成功运行累计扩展 48759798 次，包含跨轮重复，不能解释为独立状态数。
-阈值轮数也不表示各轮耗时相同。
+阈值由最小超界值推进，本题形成间隔为 2 的序列。
+成功运行累计扩展 48\,759\,798 次，包含跨轮重复访问。
 \FloatBarrier
 
 \TemplateSubsection{4.4 转置表模式、容量与缓存}
-{\bfseries 4.4\quad 转置表模式、容量与缓存}\par\vspace{2bp}
+\noindent{\bfseries 4.4\quad 转置表模式、容量与缓存}\par\vspace{2bp}
 
 困难题初态为 $[15,14,13,12;\ 11,10,9,8;\ 7,6,5,4;\ 3,1,2,0]$，
 目标为 $1$ 至 $15$ 顺序排列、右下角为空位。555T 的分组为
 \[
 P_1=\{1,5,9,13,2\},\quad P_2=\{6,10,14,3,7\},\quad P_3=\{11,15,4,8,12\}.
 \]
-这些分组不能与普通四阶的 4-4-4-3 混为一项配置。
-模式对照均复用同一私有热缓存；每次搜索仍是独立 JVM。
+困难题使用 555T，普通四阶使用 4-4-4-3，两组结果分别统计。
+模式对照复用同一份缓存，每次搜索启动独立 JVM。
 TT 与 ZOBRIST 的容量分别设为 10 万、50 万和 100 万，达到上限后不接纳新状态，
 但已有状态发现较小 $g$ 时仍可更新。
 \ChFourTable{current-modes}{困难题热缓存下的模式与容量比较}{tab:ch4-modes}{%
 每配置 3 次，本组 24 次均成功，解长均为 70。
 时间是成功样本中位数，需与成功次数一起阅读。容量 0 的 BASIC 不使用转置表。}
 
-在 3 次均成功的配置中，父端中位数最低者为 BASIC、容量 0、fast 开启，
-为 10.218 秒。表中同时保留其他配置的成功次数与耗时。
-置换表可能减少扩展，却增加哈希、完整判等、分配和记录成本；
-表中 TT 与 ZOBRIST 的三档容量均完成求解，但没有比 BASIC、fast 组合更快；容量增大也没有形成稳定的节时收益。故本实验选用 BASIC、fast 作为困难题的求解配置，而将转置表保留为适用于其他重复状态分布的可选方案，不把更大的表等同于更好的性能。
+在 3 次均成功的配置中，求解总耗时中位数最低者为 BASIC、容量 0、fast 开启，
+为 13.791 秒。表中同时保留其他配置的成功次数与耗时。
+转置表可能减少扩展，却增加哈希、完整判等、分配和记录成本；
+TT 与 ZOBRIST 的三档容量均完成求解，但总耗时均高于 BASIC、fast 的组合。
+增加容量并未使总耗时持续下降。因此，本实验选用 BASIC、fast 作为该困难题的配置，
+并保留转置表用于其他重复状态分布下的求解。
 
-为检查包含建表的 1 分钟要求，另用不存在的新缓存运行 BASIC、fast、555T。
-该次建表 2395\,ms，搜索 9979.316\,ms，
-父端总时间 12512.799\,ms，状态为 SOLVED，得到 70 步合法路径。
+独立冷启动采用 BASIC、fast、555T，从头构建模式数据库。
+该次建表 2985\,ms，搜索 13\,816.796\,ms，
+求解总耗时 16\,981.279\,ms，状态为 SOLVED，得到 70 步合法路径。
 这次独立冷启动在 60 秒内完成，满足困难题的 1 分钟要求。
-热缓存对照的 3 次结果单独列在表~\ref{tab:ch4-hard} 中，不用热耗时替代冷启动计时。
+表~\ref{tab:ch4-hard} 分别列出独立冷启动与三次热缓存运行的结果。
 \ChFourTable{current-cache}{困难题 BASIC、fast、555T 的缓存条件与结果}{tab:ch4-hard}{%
 冷缓存为独立 1 次、70 步；热缓存为模式对照中的 3 次，各时间列分别取中位数。
-不能把热中位数的各列相减拼成某次完整运行。}
+冷、热两种条件分别统计。}
 \FloatBarrier
 
-\TemplateSubsection{4.5 fast分支与记录开销}
-{\bfseries 4.5\quad fast分支与记录开销}\par\vspace{2bp}
+\TemplateSubsection{4.5 fast 分支与记录开销}
+\noindent{\bfseries 4.5\quad fast 分支与记录开销}\par\vspace{2bp}
 
 fast 在状态构造前排除立即反向动作，随后提前检查路径环，并逐个创建子结点。
 Manhattan 和错位数还可通过增量接口更新单牌贡献；PDB 没有该接口。
-这些机制由同一个开关控制，不能把总时间变化任意拆成每项机制的独立收益。
+这些机制由同一个开关控制，本组对照测得其组合效果。
 
 困难题关闭 fast 时为 3/3 成功，
 开启时为 3/3。
-第 3 组完整配对的搜索时间分别为 15.975 与 10.323 秒。
+第 3 组完整配对的搜索时间分别为 19.804 与 11.521 秒。
 表~\ref{tab:ch4-counts} 给出这一组的工作量：生成事件减少
-48759757，恰好等于提前过滤的反向动作数。
+48\,759\,757，恰好等于提前过滤的反向动作数。
 状态、结点构造及 PDB 查询还受到提前路径检查、逐个生成和未访问兄弟结点的影响。
 两边扩展次数相同，这组差异主要反映每次扩展所做工作的变化；
-该表是第 3 组的具体计数，稳定性仍应结合 3 次耗时范围判断。
+表中列出第 3 组的具体计数，时间比较采用三次运行结果。
 \ChFourTable{current-counts}{困难题第3组完整配对的构造与查询计数}{tab:ch4-counts}{%
 同为 BASIC、555T、热缓存、70 步。计数是实际调用或事件累计，不是对象存活数或内存峰值。}
 
 独立普通题控制使用相同的 52 步实例、BASIC、555T 热缓存，交叉切换 fast 与快照开关，
-每格 3 次新 JVM，次序固定种子打乱。关闭快照时，fast 关闭与开启的搜索中位数分别为
-64.504 和 47.177\,ms；
-开启快照后，对应为 74.345 和 58.045\,ms。
+每种组合在独立 JVM 中重复运行三次，按固定种子打乱运行顺序。关闭快照时，fast 关闭与开启的搜索中位数分别为
+82.132 和 62.117\,ms；
+开启快照后，对应为 94.814 和 75.798\,ms。
 同步记录属于搜索区间内的额外工作，比较时必须保持相同记录条件。
-该控制通过反射调用正式计数序列化方法，含少量诊断开销；不能用它倒推困难题的精确记录成本。
-\ChFourTable{current-controls}{普通四阶题的fast与快照交叉控制}{tab:ch4-controls}{%
-每格 3/3 成功、解长 52；使用 555T 热缓存，不与表~\ref{tab:ch4-ordinary4} 的 4-4-4-3 冷构建混合。
+该对照通过反射调用计数导出接口，包含少量诊断开销，结果用于比较普通题中的快照开关影响。
+\ChFourTable{current-controls}{普通四阶题的fast 与快照交叉控制}{tab:ch4-controls}{%
+每种组合 3/3 成功、解长 52；使用 555T 热缓存，不与表~\ref{tab:ch4-ordinary4} 的 4-4-4-3 冷构建混合。
 状态构造数与 PDB 查询数按实际接口调用统计。}
 \FloatBarrier
 
 \TemplateSubsection{4.6 正确性核验与适用范围}
-{\bfseries 4.6\quad 正确性核验与适用范围}\par\vspace{2bp}
+\noindent{\bfseries 4.6\quad 正确性核验与适用范围}\par\vspace{2bp}
 
-独立棋盘编码与相邻交换 BFS 对三个目标各枚举 181440 个可达三阶状态，
+独立棋盘编码与相邻交换 BFS 对三个目标各枚举 181\,440 个可达三阶状态，
 检查 LC 的目标零值、Manhattan 下界、精确距离上界和每条边的一致性。
 四阶另用浅层 BFS、48 组 A* Manhattan 精确解和随机邻边核对。
 转置表测试检查强制碰撞、容量边界、较小 $g$ 更新、逐轮清空和阈值推进，
-并在 300 个带环随机图上对照独立最短距离。专项共 7022745 项检查，9 套 Java 测试记录均通过。
-三阶穷举覆盖有限完整空间，四阶与随机图仍是有限验证，不能替代任意图上的一般证明。
+并在 300 个带环随机图上对照独立最短距离。专项共 7\,022\,745 项检查，9 套 Java 测试记录均通过。
+四阶与随机图的核对覆盖所选实例。
 
-所有 SOLVED 记录逐步回放，检查输入身份、动作、连续性、目标和解长。
-实验按真实 JVM 进程设置截止时间，终止后回收；超时后的迟到解不算成功。
-输入、源码哈希、配置、快照和原始结果保留，原始记录目录为
-\path{results/optimization-report-20261106T170615944601Z/}。
-\texttt{runs/} 保存各次结果，\texttt{analysis-final/} 保存汇总，
-\texttt{tests/} 与 \texttt{diagnostics/} 分别保存正确性和独立控制记录。
-运行器的源码清单标识实验所用版本，失败样本不从统计中删除。
+所有成功求解的记录均逐步回放，检查初态、动作连续性、目标状态和解长。
+超时与内存不足单列在状态统计中。各配置的运行环境和原始数据见仓库的数据索引。
 
-综合而言，启发信息、候选管理和准备工作共同决定实际成本。
-本章用同题配置、成功次数与独立缓存计时限定结论，不从扩展数或单次更快推出统一排名。
-第一阶段 A* 的 Manhattan 配置满足 1 秒要求；困难题独立冷启动得到 70 步解，包含建表的总时间为 12.513 秒，满足 1 分钟要求。
+实验结果表明，启发估值、候选管理和准备成本共同影响运行时间。
+LC 减少了扩展次数，但在 A* 与 IDA* 中产生了不同的时间效果；
+PDB 将部分工作移到建表阶段，需结合冷、热缓存分别评价。
+第一阶段 A* 的 Manhattan 配置满足 1 秒要求；困难题独立冷启动得到 70 步解，包含建表的总时间为 16.981 秒，满足 1 分钟要求。
 解路径文件的可视化展示见第五部分。
 \FloatBarrier
 \endgroup

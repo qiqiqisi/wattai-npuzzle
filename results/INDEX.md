@@ -30,7 +30,13 @@ elapsed_ms为工作JVM内搜索；parent.txt从创建工作JVM前计时，含其
 
 本轮[统一核验](optimization-20261106-20261106T115705068678Z/verification.json)、[最终构建与测试](optimization-20261106-20261106T115705068678Z/final-checks/verification.json)、[项目级核验](optimization-20261106-20261106T115705068678Z/project-validation.json)。实际运行80项加15项诊断尝试及首次预试1项，共96次尝试；两次JFR初始化FAIL不算搜索成功。
 
-## 当前报告复测记录
+## JDK 24 复测记录
 
 - [运行目录](../results/optimization-report-20261106T170615944601Z)：9 套 Java 测试通过，80 次主运行（74 SOLVED、3 OOM、3 TIMEOUT），12 次独立 fast/快照控制；所有运行截止为 60 秒，JDK 24.0.2、编译目标 19、1024m。三阶无失败；普通四阶错位数 A* 为 OOM、IDA* 为 TIMEOUT；困难题冷缓存 SOLVED、70 步、父端 12.513 秒。
 - [配置与路径核验](../results/optimization-report-20261106T170615944601Z/verification.json) · [当前报告](../report/latex/main.pdf)
+
+## 当前报告 JDK 19 复测记录
+
+[完整运行](optimization-report-20261108T140641033100Z/) · [比较表](optimization-report-20261108T140641033100Z/comparison.csv) · [六次错位数测试](optimization-report-20261108T140641033100Z/misplaced-60s.csv) · [环境与代码版本](optimization-report-20261108T140641033100Z/environment.json)。
+
+JDK 19.0.2 编译与运行，源码、测试和输入与复测开始时 origin/main 一致。9 套 Java 测试通过；80 次主运行中 74 SOLVED、3 OOM、3 TIMEOUT，12 次独立控制均成功。三阶全部完成；普通四阶错位数 A* 三次 OOM，IDA* 三次达到 60 秒上限。困难题 BASIC、fast、555T 独立冷启动建表 2985 ms、搜索 13816.796 ms、总耗时 16981.279 ms、70 步；热缓存三次均成功，总耗时中位数 13790.780 ms。原有各组记录独立保留。

@@ -14,18 +14,18 @@ every axis/.append style={font=\fontsize{10bp}{13bp}\selectfont},
 tick label style={font=\fontsize{9bp}{12bp}\selectfont},
 legend style={at={(.5,-.19)},anchor=north,legend columns=2,column sep=7pt,draw=none,fill=none,font=\fontsize{9bp}{12bp}\selectfont},
 enlarge x limits=.2,xtick=data]
-\nextgroupplot[title={教师题 $3\times3$},ylabel={父端总时间 / ms},ymax=250.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
-\addplot[fill=Blue,draw=Blue] coordinates {(0,112.665400) (1,110.639700) (2,111.612300) (3,155.482300)};
+\nextgroupplot[title={教师题 $3\times3$},ylabel={求解总耗时 / ms},ymax=300.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
+\addplot[fill=Blue,draw=Blue] coordinates {(0,167.293300) (1,145.389100) (2,140.007600) (3,219.226700)};
 \addlegendentry{A*}
-\addplot[fill=Muted,draw=Muted] coordinates {(0,125.217300) (1,119.766200) (2,110.081900) (3,167.180300)};
+\addplot[fill=Muted,draw=Muted] coordinates {(0,178.170200) (1,147.158000) (2,171.858300) (3,234.436000)};
 \addlegendentry{IDA*}
-\nextgroupplot[title={普通题 $4\times4$},ylabel={父端总时间 / ms},ymax=750.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
-\addplot[fill=Blue,draw=Blue] coordinates {(1,595.368300) (2,488.201400) (3,539.739000)};
+\nextgroupplot[title={普通题 $4\times4$},ylabel={求解总耗时 / ms},ymax=1500.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
+\addplot[fill=Blue,draw=Blue] coordinates {(1,857.150300) (2,684.312400) (3,743.599000)};
 \addlegendentry{A*}
-\addplot[fill=Muted,draw=Muted] coordinates {(1,274.429500) (2,461.001800) (3,455.214200)};
+\addplot[fill=Muted,draw=Muted] coordinates {(1,352.215300) (2,528.512900) (3,585.805300)};
 \addlegendentry{IDA*}
-\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,18.75) {A*：OOM};
-\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,67.5) {IDA*：超时};
+\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,37.5) {A*：OOM};
+\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,135.0) {IDA*：超时};
 \end{groupplot}
 \end{tikzpicture}
 \end{document}

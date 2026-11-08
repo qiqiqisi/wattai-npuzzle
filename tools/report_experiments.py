@@ -1,6 +1,8 @@
 """Repeat the report matrix on the installed JDK with explicit 60-second deadlines."""
 import hashlib
+import argparse
 import json
+import os
 import platform
 import random
 import subprocess
@@ -50,6 +52,11 @@ def plan(suite):
         rng.shuffle(block)
         for dataset, algorithm, heuristic in block:
             add('heuristic', dataset, algorithm=algorithm, heuristic=heuristic, rep=rep, cold=True)
+    # Run the requested six MISPLACED diagnostics first, without adding repeats.
+    misplaced = [r for r in rows if r['dataset'] == 'ordinary4'
+                 and r['heuristic'] == 'MISPLACED']
+    rows = sorted(misplaced, key=lambda r: (r['algorithm'], r['repetition'])) + [
+        r for r in rows if r not in misplaced]
     for n, row in enumerate(rows, 1):
         row['label'] = (f'{n:03}-{row["group"]}-{row["dataset"]}-{row["algorithm"]}-'
                         f'{row["heuristic"]}-{row["mode"]}-{row["transposition_limit"]}-'
@@ -62,11 +69,24 @@ def plan(suite):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--java-home', type=Path,
+                        help='JDK used for both clean compilation and all child JVMs')
+    args = parser.parse_args()
+    if args.java_home:
+        jdk = args.java_home.resolve(strict=True)
+        for executable in ['java.exe', 'javac.exe']:
+            if not (jdk / 'bin' / executable).is_file():
+                raise RuntimeError('Missing JDK executable: ' + executable)
+        os.environ['JAVA_HOME'] = str(jdk)
+        os.environ['PATH'] = str(jdk / 'bin') + os.pathsep + os.environ['PATH']
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
     suite = ROOT / 'results' / ('optimization-report-' + stamp)
     suite.mkdir(exist_ok=False)
     print('SUITE', suite.relative_to(ROOT).as_posix(), flush=True)
-    (ROOT / 'generated/report-current-20261107/suite.txt').write_text(
+    pointer = ROOT / 'generated/report-current-20261107/suite.txt'
+    pointer.parent.mkdir(parents=True, exist_ok=True)
+    pointer.write_text(
         suite.relative_to(ROOT).as_posix(), encoding='utf-8')
     sources = suite_tools.java_sources()
     write(suite / 'source-manifest.json', sources)
@@ -86,12 +106,23 @@ def main():
     import re
     java = Path(re.search(r'java.home = (.+)', settings).group(1).strip()) / 'bin/java.exe'
     java_version = subprocess.run([str(java), '-version'], capture_output=True, text=True).stderr
+    compiler = java.with_name('javac.exe')
+    compiler_version = subprocess.check_output([str(compiler), '-version'], text=True).strip()
+    if args.java_home and java.resolve() != (jdk / 'bin/java.exe').resolve():
+        raise RuntimeError('Selected runtime does not match --java-home')
     cpu = subprocess.run(['powershell', '-NoProfile', '-Command',
                           'Get-CimInstance Win32_Processor | Select-Object -First 1 -ExpandProperty Name'],
                          capture_output=True, text=True, timeout=20).stdout.strip()
     write(suite / 'environment.json', {'java': java_version, 'java_executable': str(java),
           'os': platform.platform(), 'cpu': cpu, 'heap_argument': '-Xmx1024m',
           'classes': classes, 'base_commit': suite_tools.git(ROOT, 'rev-parse', 'HEAD'),
+          'javac_executable': str(compiler), 'javac_version': compiler_version,
+          'upstream_main': suite_tools.git(ROOT, 'rev-parse', 'origin/main'),
+          'source_tree': suite_tools.git(ROOT, 'rev-parse', 'HEAD:src'),
+          'upstream_source_tree': suite_tools.git(ROOT, 'rev-parse', 'origin/main:src'),
+          'input_manifest': suite_tools.inventory(ROOT, ['resources']),
+          'java_input_diff_from_main': suite_tools.git(ROOT, 'diff', 'origin/main', '--',
+                                                      'src', 'tests', 'resources'),
           'source_sha256': suite_tools.sha(suite / 'source-manifest.json'),
           'python': platform.python_version(), 'compile_release': 19,
           'timing': 'search includes synchronous snapshots; parent includes prepare and replay',
