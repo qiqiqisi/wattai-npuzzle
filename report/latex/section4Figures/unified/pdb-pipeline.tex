@@ -1,0 +1,22 @@
+\documentclass[border=7bp]{standalone}
+\input{../../figure-style.tex}
+\begin{document}
+\begin{tikzpicture}
+\path (-7.3,0) rectangle (7.3,0);
+
+\node[emphasis,text width=11cm] (goal) at (0,0) {输入目标棋盘与不相交将牌分组};
+\node[frame,text width=11cm] (abstract) at (0,-1.4) {构造抽象状态：保留本组将牌和空位的位置\\移动本组牌收费 1，移动其他牌收费 0};
+\node[frame,text width=4.2cm] (cold) at (-2.9,-3.15) {冷缓存：从抽象目标反向建表\\0-1 BFS 求抽象最短距离};
+\node[frame,text width=4.2cm] (warm) at (2.9,-3.15) {热缓存：核对目标、分组与文件\\匹配后加载距离表};
+\node[supporting,text width=11cm] (table) at (0,-5) {准备完成：距离以紧凑数组保存，抽象状态排名作为下标};
+\node[emphasis,text width=11cm] (query) at (0,-6.5) {搜索时：棋盘 → 每组抽象编码 → 查表 → 距离求和\\$h_{\mathrm{PDB}}(s)=\sum_i d_i(s)$};
+\node[frame,text width=11cm] (use) at (0,-8) {A* 按 $g+h$ 选取候选；IDA* 用 $g+h$ 与阈值比较};
+\draw[flow](goal)--(abstract);\draw[flow](abstract.south)-|(cold.north);\draw[flow](abstract.south)-|(warm.north);
+\coordinate (join) at (0,-4.3);
+\draw[draw=Ink,line width=.65pt](cold.south)|-(join);
+\draw[draw=Ink,line width=.65pt](warm.south)|-(join);\draw[flow](join)--(table.north);
+\draw[flow](table)--(query);\draw[flow](query)--(use);
+\node[annotation,text width=11cm] at (0,-9) {建表与加载属于准备成本，查询属于搜索成本；可加性来自不重复的动作成本划分};
+
+\end{tikzpicture}
+\end{document}

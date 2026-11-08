@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "source_frozen": true,
+  "runs": 80,
+  "statuses": {
+    "OOM": 3,
+    "SOLVED": 74,
+    "TIMEOUT": 3
+  },
+  "java_tests": [
+    {
+      "test": "BenchmarkAcceptanceTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleAlternativePdbTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleCloseoutTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleFoundationTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleOptimizationTest",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage1Test",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage2Test",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "PuzzleStage3Test",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "TeacherStage1Test",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "successful_paths_replayed": 74,
+  "controls": 12,
+  "scope": "Correctness and evidence checks; not all performance configs succeed"
+}

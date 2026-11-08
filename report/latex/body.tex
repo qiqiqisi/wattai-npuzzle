@@ -3,13 +3,13 @@
 \hypersetup{colorlinks=true, linkcolor=TemplateBlue, citecolor=TemplateBlue, urlcolor=TemplateBlue}
 \input{section-one.tex}
 
-\TemplateSection{2.N-Puzzle游戏}
-{\bfseries\fontsize{12bp}{15.6bp}\selectfont 2.\quad N-Puzzle游戏}\par\vspace{6bp}
+\TemplateSection{2.\quad N-Puzzle 游戏}
+\noindent{\bfseries\fontsize{12bp}{15.6bp}\selectfont 2.\quad N-Puzzle 游戏}\par\vspace{6bp}
 \begingroup
-\setlength{\parskip}{5bp}
+\setlength{\parskip}{3bp}
 
-\TemplateSubsection{2.1 N-Puzzle游戏描述}
-{\bfseries 2.1\quad N-Puzzle游戏描述}\par\vspace{2bp}
+\TemplateSubsection{2.1 N-Puzzle 游戏描述}
+\noindent{\bfseries 2.1\quad N-Puzzle 游戏描述}\par\vspace{2bp}
 
 N-Puzzle 是一种滑块排列问题。在 $n\times n$ 的棋盘上放置 $N=n^2-1$ 枚带编号的将牌，
 余下一格为空位，记作 0。每次只能将空位与其上、下、左、右相邻的一枚将牌交换，
@@ -26,8 +26,8 @@ s_g=\left(\begin{array}{ccc}6&4&7\\8&5&0\\3&2&1\end{array}\right).
 其中 0 仅表示空位，不是一枚需要计入启发值的将牌。因此，无论是判断可解性还是计算到目标的距离，
 都必须使用输入题目给定的 $s_g$，不能由将牌编号直接假定其目标坐标。
 
-\TemplateSubsection{2.2 游戏的建模，状态及状态空间，状态转换规则}
-{\bfseries 2.2\quad 游戏的建模，状态及状态空间，状态转换规则}\par\vspace{2bp}
+\TemplateSubsection{2.2 问题建模、状态空间与状态转换规则}
+\noindent{\bfseries 2.2\quad 问题建模、状态空间与状态转换规则}\par\vspace{2bp}
 
 将问题建模为状态图 $G=(S,E)$。一个状态 $s$ 是棋盘全部格子的排列，
 用行优先序列 $(x_0,x_1,\ldots,x_{n^2-1})$ 表示，每个数 $0,1,\ldots,n^2-1$ 恰好出现一次。
@@ -57,8 +57,8 @@ T(s_0,\mathrm{RIGHT})=
 规模差异说明：小棋盘可以用完整枚举建立独立距离基线，而大棋盘需要启发式搜索来减少展开。
 状态图中的边可逆，立即反向移动或绕行都可能生成已出现的状态，因此搜索还需处理重复状态。
 
-\TemplateSubsection{2.3 N-Puzzle可解性研究}
-{\bfseries 2.3\quad N-Puzzle可解性研究}\par\vspace{2bp}
+\TemplateSubsection{2.3 N-Puzzle 可解性研究}
+\noindent{\bfseries 2.3\quad N-Puzzle 可解性研究}\par\vspace{2bp}
 
 按行优先顺序读出棋盘并删除空位，得到序列 $(y_1,\ldots,y_N)$。
 若 $i<j$ 且 $y_i>y_j$，则 $(y_i,y_j)$ 构成一个逆序对，逆序对总数记为 $I(s)$。
@@ -89,15 +89,16 @@ I(s)\bmod 2, & n\mbox{ 为奇数},\\
 可解性判定只能回答是否存在路径，不能给出最短步数，也不能把搜索超时解释为无解。
 
 \TemplateSubsection{2.4 三个启发函数的有效性和单调性证明}
-{\bfseries 2.4\quad 三个启发函数的有效性和单调性证明}\par\vspace{2bp}
+\noindent{\bfseries 2.4\quad 三个启发函数的有效性和单调性证明}\par\vspace{2bp}
 
 记 $h^*(s)$ 为状态 $s$ 到 $s_g$ 的真实最短代价。
 本节把“有效性”具体表述为可采纳性，即 $0\leq h(s)\leq h^*(s)$；
 单调性也称一致性，要求对每条合法边 $s\to s'$ 都有 $h(s)\leq1+h(s')$，且 $h(s_g)=0$。
 一致性保证沿路径的 $f=g+h$ 不下降，是图搜索中处理已扩展状态的重要依据。
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{2.4.1 曼哈顿距离}
-{\bfseries 2.4.1\quad 曼哈顿距离}\par\vspace{2bp}
+\noindent{\bfseries 2.4.1\quad 曼哈顿距离}\par\vspace{2bp}
 
 设将牌 $t$ 在当前状态和目标中的坐标分别为 $(r_s(t),c_s(t))$、$(r_g(t),c_g(t))$，则
 \[
@@ -117,8 +118,9 @@ h_{\mathrm{M}}(s)=\sum_{t=1}^{N}
 其余非空将牌已在目标格，故 $h_{\mathrm{M}}(s_0)=2+2+1+1=6$。
 这里计算的是剩余步数的下界，不是该题的实际解长。
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{2.4.2 不在位将牌}
-{\bfseries 2.4.2\quad 不在位将牌}\par\vspace{2bp}
+\noindent{\bfseries 2.4.2\quad 不在位将牌}\par\vspace{2bp}
 
 不在位将牌数（Misplaced）只统计未处于自身目标格的非空将牌：
 \[
@@ -139,8 +141,9 @@ Misplaced 计算简单，但不能区分“离目标一格”和“离目标多�
 同一教师初态中，不在位的恰好是将牌 2、4、6、8，所以 $h_{\mathrm{mis}}(s_0)=4$，
 小于前面得到的曼哈顿距离 6。两者采用同一个目标，才能作这样的比较。
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{2.4.3 Disjoint Pattern}
-{\bfseries 2.4.3\quad Disjoint Pattern}\par\vspace{2bp}
+\noindent{\bfseries 2.4.3\quad Disjoint Pattern}\par\vspace{2bp}
 
 将非空将牌划分为互不相交且覆盖全部将牌的组 $P_1,\ldots,P_k$。
 第 $i$ 组的抽象状态 $\alpha_i(s)$ 保留本组将牌与空位的位置，
@@ -185,29 +188,59 @@ PDB 能进一步计入组内将牌的相互制约，代价是预计算、存储�
 三种启发函数的主要区别见表 2-1。表中的“成本”指计算与存储代价，
 不把预计算开销当作一次将牌移动的动作代价。
 \par\noindent\begin{minipage}{\linewidth}
+\ReportTableTitle{表 2-1\quad 三个启发函数的信息、正确性依据与代价}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
 \setlength{\tabcolsep}{4bp}
-\begin{tabular}{|p{64bp}|p{98bp}|p{98bp}|p{94bp}|}
-\hline
+\begin{tabular}{p{64bp}p{98bp}p{98bp}p{94bp}}
+\toprule
 \textbf{启发函数} & \textbf{保留的信息} & \textbf{正确性依据} & \textbf{成本与局限} \\
-\hline
+\midrule
 Misplaced & 每枚非空将牌是否在目标格 & 每步至多使一枚将牌归位 & 无需建表；不反映距离远近 \\
-\hline
 Manhattan & 每枚非空将牌到目标的行列距离 & 每步只改变一枚将牌一格位移 & 无需建表；忽略阻挡和绕行 \\
-\hline
 加性 PDB & 各组将牌与空位的抽象排列 & 抽象最短路与互不重复的成本划分 & 需建表、存储与查表；仍放松部分组间约束 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-{\fontsize{9bp}{12bp}\selectfont 表 2-1\quad 三个启发函数的信息、正确性依据与代价}\par\vspace{5bp}
 \end{minipage}\par
 \endgroup
 
-\TemplateSection{3. N-Puzzle求解算法实现}
-{\bfseries\fontsize{12bp}{15.6bp}\selectfont 3.\quad N-Puzzle求解算法实现}\par\vspace{6bp}
+
 \begingroup
-\setlength{\parskip}{5bp}
+\setlength{\parskip}{3bp}
+\Needspace{5\baselineskip}
+\TemplateSubsection{2.5 线性冲突估值}
+\noindent{\bfseries 2.5\quad 线性冲突估值}\par\vspace{2bp}
+
+Manhattan 只累加各将牌的位移，没有反映同一目标行内的顺序冲突。
+对当前第 $r$ 行，只取目标也在第 $r$ 行的非空将牌，按当前顺序写出其目标列序列 $q_r$。
+设序列长度为 $k_r$，最长严格递增子序列长度为 $L_r$，则至少 $k_r-L_r$ 枚将牌需要离行再返回。
+这些往返各增加至少两步竖直移动。对每一列同样取目标行序列，记对应长度为 $k_c,L_c$，定义
+\[
+ h_{\mathrm{LC}}(s)=h_{\mathrm{M}}(s)
+ +2\sum_r(k_r-L_r)+2\sum_c(k_c-L_c).
+\]
+此处的 LC 指完整的 Manhattan 加冲突修正，而非只指后两项。
+它没有把共享将牌的所有冲突对直接相加，避免同一枚必须离线的将牌被多次收费。
+行修正对应额外竖直往返，列修正对应额外水平往返，两种方向分别计费。
+
+\textbf{一致性。}水平移动不会改变所在行中非空将牌的相对次序，故不改变行修正；
+它只可能在相关目标列的序列中增删一枚将牌。序列增删一个元素时，$k-L$ 至多改变 1。
+从自身目标列移出的将牌若使冲突项下降 2，Manhattan 同时增加 1，故总估值最多下降 1；
+向目标列移入时，$k-L$ 不会下降，Manhattan 最多下降 1；其他情况不改变列修正。
+竖直移动的论证与之对称。因此每条合法边满足 $h_{\mathrm{LC}}(s)\leq1+h_{\mathrm{LC}}(s')$。
+目标处两项均为 0，沿到目标的路径累加不等式即可推出可采纳性。
+所有目标行列均从实际目标布局取得，论证不依赖标准目标。
+LC 至少不弱于 Manhattan，但额外计算是否划算仍需实验判断。
+
+\endgroup
+
+\TemplateSection{3.\quad N-Puzzle 求解算法实现}
+\noindent{\bfseries\fontsize{12bp}{15.6bp}\selectfont 3.\quad N-Puzzle 求解算法实现}\par\vspace{6bp}
+\begingroup
+\setlength{\parskip}{3bp}
+\setlength{\emergencystretch}{4em}
+\sloppy
 % 图表编号沿用模板的 3-x 形式，便于交叉引用
 \renewcommand{\thefigure}{3-\arabic{figure}}
 \renewcommand{\thetable}{3-\arabic{table}}
@@ -216,7 +249,7 @@ Manhattan & 每枚非空将牌到目标的行列距离 & 每步只改变一枚�
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \renewcommand{\figurename}{图}
-\captionsetup{font=small,labelsep=quad,skip=5bp}
+\captionsetup{font=reportcaption,labelsep=quad,skip=5bp}
 \newcommand{\SolverFigure}[4][0.95]{%
   \begin{figure}[htbp]
     \centering
@@ -226,7 +259,7 @@ Manhattan & 每枚非空将牌到目标的行列距离 & 每步只改变一枚�
 
 本章给出求解器的具体实现。代码分为两层：\texttt{core} 包提供与具体问题无关的
 搜索框架（搜索结点、Open 表、Closed 表与最佳优先搜索器），\texttt{stud.g01} 包实现
-N-Puzzle 的状态、动作、三个启发函数与模式数据库。图~\ref{fig:3-1} 给出两层的对应关系：
+N-Puzzle 的状态、动作、启发函数与模式数据库。图~\ref{fig:3-1} 给出两层的对应关系：
 框架只定义接口与算法骨架，凡是随问题变化的部分都落到实现层，
 因此后文的说明可以直接对着右侧的类名与小节号定位。
 
@@ -234,10 +267,23 @@ N-Puzzle 的状态、动作、三个启发函数与模式数据库。图~\ref{fi
 以及 IDA* 搜索（3.5）的顺序说明。引用的代码节选自 \texttt{src/} 下的对应类，
 类名标注在每段代码之前，注释为方便阅读所加。
 
-\SolverFigure[0.87]{fig-3-1-module-map}{框架层 \texttt{core} 与实现层 \texttt{stud.g01} 的对应关系（示意）}{fig:3-1}
+\par\noindent\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=.87\linewidth]{section3Figures/fig-3-1-module-map.pdf}
+\captionof{figure}{框架层 \texttt{core} 与实现层 \texttt{stud.g01} 的对应关系（示意）}\label{fig:3-1}
+\end{minipage}\par
 
+接口对应关系之外，图~\ref{fig:system-flow} 给出从输入到播放的调用过程。
+教学入口通过 Feeder 把文本题目转换成 Problem，并取得相应的 Frontier 与 Predictor；实验入口按运行配置直接构造相同的学生实现。
+Searcher 负责搜索顺序；Problem 与 State 负责动作和状态转换；Predictor 负责剩余代价估计。
+A* 将候选保存在 Open，IDA* 在当前阈值内递归；找到目标后都沿父链恢复路径，
+再由运行器导出 TSV，供播放器读取。
+教师 SearchTester 保留原样；第二阶段由 StudentSearchTester 选择 IDA*，
+本章实验运行器则按配置显式选择 A* 或 IDA*。
+
+\FloatBarrier
 \TemplateSubsection{3.1 状态及结点的数据结构}
-{\bfseries 3.1\quad 状态及结点的数据结构}\par\vspace{2bp}
+\noindent{\bfseries 3.1\quad 状态及结点的数据结构}\par\vspace{2bp}
 
 状态类 \texttt{PuzzleBoard} 按第 2.2 节的建模，用行优先的一维数组 \texttt{tiles}
 保存棋盘，0 表示空位；构造时即缓存空位下标 \texttt{blankIndex}。整个对象不可变，
@@ -249,9 +295,11 @@ N-Puzzle 的状态、动作、三个启发函数与模式数据库。图~\ref{fi
 \texttt{equals} 只比较规模与将牌数组，状态对象可直接作 \texttt{HashSet}、
 \texttt{HashMap} 的键，供 Closed 表与重复状态检测使用；多线程或多次搜索可共享同一状态对象。
 
-{\fontsize{9bp}{12bp}\selectfont 代码摘自
-\texttt{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（字段声明与公开构造）}\par\vspace{2bp}
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\path{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（字段声明与公开构造）}\par\vspace{2bp}
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 /** A row-major, immutable N x N board; 0 is the blank. */
 public final class PuzzleBoard extends State implements ZobristKey {
@@ -270,7 +318,8 @@ public final class PuzzleBoard extends State implements ZobristKey {
         for (int i = 0; i < this.tiles.length; i++) {
             int tile = this.tiles[i];
             if (tile < 0 || tile >= seen.length || seen[tile])
-                throw new IllegalArgumentException("Tiles must be a permutation");
+                throw new IllegalArgumentException(
+                    "Tiles must be a permutation");
             seen[tile] = true;
             if (tile == 0) blank = i;                // 同时记下空位下标
         }
@@ -279,7 +328,9 @@ public final class PuzzleBoard extends State implements ZobristKey {
         this.cachedHashCode = 31 * size + Arrays.hashCode(this.tiles);
     }
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
+\end{minipage}\par
 
 除上述公开构造外，\texttt{PuzzleBoard} 另有一个私有构造，
 直接接收已经算好的空位下标与两项哈希值，
@@ -296,6 +347,7 @@ public final class PuzzleBoard extends State implements ZobristKey {
 估值 $f=g+h$ 由 \texttt{evaluation()} 返回。排序方式对应第 1 章的三种算法配置：
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 evaluators.put(FULL, (o1, o2) -> {           // A*: 按 f 排序
     if (o1.evaluation() == o2.evaluation())
@@ -306,18 +358,21 @@ evaluators.put(PATH_COST,                    // 一致代价搜索: 按 g
         Comparator.comparingInt(Node::getPathCost));
 evaluators.put(HEURISTIC,                    // 贪心最佳优先: 按 h
         Comparator.comparingInt(Node::getHeuristic));
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
-\TemplateSubsection{3.2 Open表及Closed表的数据结构}
-{\bfseries 3.2\quad Open表及Closed表的数据结构}\par\vspace{2bp}
+\TemplateSubsection{3.2 Open 表及 Closed 表的数据结构}
+\noindent{\bfseries 3.2\quad Open 表及 Closed 表的数据结构}\par\vspace{2bp}
 
 Open 表抽象为接口 \texttt{Frontier}（\texttt{offer}、\texttt{poll}、
 \texttt{contains}、\texttt{size} 等），实现类 \texttt{PqFrontier} 用两个容器配合：
 优先队列负责“按估值最小出队”，哈希表负责成员查询与重复结点替换。
 
-{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\fontsize{9bp}{12bp}\selectfont 代码摘自
 \texttt{src/stud/g01/queue/PqFrontier.java}（入队与出队）}\par\vspace{2bp}
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 public final class PqFrontier implements Frontier {
     private final PriorityQueue<Node> queue;   // 按评估器排序
@@ -339,7 +394,9 @@ public final class PqFrontier implements Frontier {
         return node;
     }
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
+\end{minipage}\par
 
 \texttt{contains} 与 \texttt{size} 只读哈希表，均摊 $O(1)$，
 不必扫描队列；重复状态替换时 \texttt{queue.remove(oldNode)} 需线性扫描（$O(n)$），
@@ -361,35 +418,33 @@ $f$ 沿路径不降、首次出队即最优，因此重访状态可以安全丢�
 \SolverFigure[0.99]{fig-3-2-frontier-cycle}{A* 一轮扩展中 Open 表与 Closed 表的读写（示意）}{fig:3-2}
 
 \par\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:frontier}
+\ReportTableTitle{表 \thetable\quad Open 表与 Closed 表各操作的复杂度}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
 \setlength{\tabcolsep}{4bp}
-\begin{tabular}{|p{64bp}|p{86bp}|p{94bp}|p{90bp}|}
-\hline
+\begin{tabular}{p{64bp}p{86bp}p{94bp}p{90bp}}
+\toprule
 \textbf{操作} & \textbf{数据结构} & \textbf{平均复杂度} & \textbf{说明} \\
-\hline
+\midrule
 offer 入队/替换 & 优先队列 + HashMap & $O(\log n)$，替换另需 $O(n)$ & 每个状态仅保留估值最优的结点 \\
-\hline
 poll 出队 & 优先队列 + HashMap & $O(\log n)$ & 出队同时删除哈希表记录 \\
-\hline
 contains 查重 & HashMap & $O(1)$ & 只查 \texttt{byState}，不扫描队列 \\
-\hline
 explored 登记/查询 & HashSet & $O(1)$ & 一致性成立，出队后不再重开 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:frontier}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad Open 表与 Closed 表各操作的复杂度}\par\vspace{5bp}
 \end{minipage}\par
 
 \TemplateSubsection{3.3 三个启发函数的具体实现}
-{\bfseries 3.3\quad 三个启发函数的具体实现}\par\vspace{2bp}
+\noindent{\bfseries 3.3\quad 三个启发函数的具体实现}\par\vspace{2bp}
 
 三种启发函数都实现 \texttt{Predictor} 接口接入搜索框架；
 针对“一步只动一枚将牌”的特点，再加一层 \texttt{IncrementalPredictor} 接口，
 允许从父结点的 $h$ 值增量推出子结点的 $h$ 值，而不必每次全量重算：
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 public interface Predictor {
     int heuristics(State state, State goal);   // 全量估值
@@ -399,14 +454,14 @@ public interface IncrementalPredictor extends Predictor {
     int successorHeuristics(State parent, State child,
                             State goal, int parentHeuristic);
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
-需要说明增量版本的\textbf{作用域}，否则容易高估它的作用：框架方法
-\texttt{childNodes(parent, predictor)} 对每个子结点调用的是全量
+框架的 \texttt{childNodes} 方法对每个子结点调用的是全量
 \texttt{heuristics()}，并不识别 \texttt{IncrementalPredictor}，
 因此 A* 的常规扩展仍是 $O(n^2)$ 的全量扫描，增量并没有在这里生效。
 \texttt{successorHeuristics()} 在工程中只有一个调用点，
-即 3.5 节 IDA* 的 fast 分支，而该分支默认关闭。
+即 3.5 节 IDA* 的 fast 分支；系统属性默认关闭，本实验显式开启，开关对照另列。
 换言之，增量估值是\textbf{可选的优化路径}，不是当前 A* 扩展的估值方式；
 本章 3.3.1 与 3.3.2 给出增量式子，是为说明估值可以常数时间更新，
 并为第四部分评估该优化的效果提供依据。
@@ -414,17 +469,19 @@ public interface IncrementalPredictor extends Predictor {
 曼哈顿与不在位将牌由 \texttt{PuzzleBoard} 内部的 \texttt{PuzzlePredictor}
 按枚举注册；Disjoint Pattern 数据库由 \texttt{LazyPredictor} 惰性提供（见 3.3.3）。
 枚举中还注册了 \texttt{MANHATTAN\_LC}，即在曼哈顿距离上再叠加线性冲突修正；
-它比曼哈顿距离更紧但不再是 $O(n^2)$ 单次扫描，
-不属于选题要求比较的三个启发函数，本文不再展开，仅作为扩展保留在代码中。
+实现对每条目标行列用动态规划计算最长递增子序列，单次估值约为 $O(n^3)$，
+其行列顺序约束按第 2.5 节的最长递增子序列方法计算，第四部分将其与三种基本启发函数一起比较。
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{3.3.1 曼哈顿距离}
-{\bfseries 3.3.1\quad 曼哈顿距离}\par\vspace{2bp}
+\noindent{\bfseries 3.3.1\quad 曼哈顿距离}\par\vspace{2bp}
 
 按第 2.4.1 节的定义 $h_{\mathrm{M}}(s)$，对每枚非空将牌累加到其目标格的行列距离。
 目标格坐标来自目标状态缓存的 \texttt{tilePositions}，单次查表 $O(1)$，
 全量估值一遍扫描 $O(n^2)$：
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 private int manhattan(PuzzleBoard goal) {
     int distance = 0;
@@ -437,7 +494,8 @@ private int manhattan(PuzzleBoard goal) {
     }
     return distance;
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
 增量计算利用第 2.4.1 节的单调性分析：一次移动只改变被移动将牌的距离贡献。
 设被移动将牌原在格 $p$、移动后到格 $q$（$q$ 即父状态的空位），则
@@ -446,10 +504,12 @@ h_{\mathrm{M}}(s')=h_{\mathrm{M}}(s)-d(p,t)+d(q,t),
 \]
 其中 $d(\cdot,t)$ 是该将牌到目标格的曼哈顿距离。单次估值只需常数时间：
 
-{\fontsize{9bp}{12bp}\selectfont 代码摘自
-\texttt{src/stud/g01/problem/npuzzle/PuzzleBoard.java}
-（\texttt{PuzzlePredictor.successorHeuristics} 的曼哈顿分支）}\par\vspace{2bp}
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\raggedright\fontsize{9bp}{12bp}\selectfont 代码摘自
+\path{src/stud/g01/problem/npuzzle/PuzzleBoard.java}
+（\texttt{PuzzlePredictor.}\allowbreak\texttt{successorHeuristics} 的曼哈顿分支）\par}\vspace{2bp}
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 int oldPosition  = after.blankIndex;   // 被移动将牌原先所在格 p
 int newPosition  = before.blankIndex;  // 移动后占据的格 q（父状态空位）
@@ -460,7 +520,9 @@ int oldDistance = Math.abs(oldPosition / size - goalPosition / size)
 int newDistance = Math.abs(newPosition / size - goalPosition / size)
         + Math.abs(newPosition % size - goalPosition % size);
 return parentHeuristic - oldDistance + newDistance;
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
+\end{minipage}\par
 
 图~\ref{fig:3-3} 用一次具体移动验证这个式子：空位左移一格时，
 只有 8 号将牌换了格，其余 14 枚的贡献完全不变，因此总估值的变化量就是
@@ -468,12 +530,14 @@ return parentHeuristic - oldDistance + newDistance;
 
 \SolverFigure[0.68]{fig-3-3-manhattan-delta}{一次移动只改变一枚将牌的距离贡献（示意）}{fig:3-3}
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{3.3.2 不在位将牌}
-{\bfseries 3.3.2\quad 不在位将牌}\par\vspace{2bp}
+\noindent{\bfseries 3.3.2\quad 不在位将牌}\par\vspace{2bp}
 
 全量实现同样一遍扫描，逐下标比较当前与目标数组（空位除外）：
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 private int misplaced(PuzzleBoard goal) {
     int count = 0;
@@ -481,7 +545,8 @@ private int misplaced(PuzzleBoard goal) {
         if (tiles[i] != 0 && tiles[i] != goal.tiles[i]) count++;
     return count;
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
 增量版本只需考察移动的那一枚将牌：设其编号为 $t$，原来在格 $p$、移动后到格 $q$，
 则它在两处对 $h_{\mathrm{mis}}$ 的贡献分别为 $\mathbf{1}[s_g(p)\neq t]$ 与
@@ -492,8 +557,9 @@ h_{\mathrm{mis}}(s')=h_{\mathrm{mis}}(s)
 \]
 实现见 \texttt{successorHeuristics()} 的 MISPLACED 分支，同样只需常数时间。
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{3.3.3 Disjoint Pattern和Pattern Database}
-{\bfseries 3.3.3\quad Disjoint Pattern和Pattern Database}\par\vspace{2bp}
+\noindent{\bfseries 3.3.3\quad Disjoint Pattern和Pattern Database}\par\vspace{2bp}
 
 \textbf{分组。}$3\times3$ 取 $\{1,2,3,4\}$、$\{5,6,7,8\}$ 两组；
 $4\times4$ 默认取 4-4-4-3，即 $\{1,2,3,4\}$、$\{5,6,7,8\}$、$\{9,10,11,12\}$、
@@ -519,18 +585,23 @@ $16\times15\times14\times13\times12=524\,160$ 项，每项一字节。
 候选值达到 255 即抛异常；建表结束后若仍存在 255，
 则说明有抽象状态不可达，同样报错。图~\ref{fig:3-5} 是这一过程的流程。
 
-{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\fontsize{9bp}{12bp}\selectfont 代码摘自
 \texttt{src/stud/g01/pdb/PatternTable.java}（\texttt{relax} 的松弛与入队）}\par\vspace{2bp}
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 int candidate = oldDistance + (member >= 0 ? 1 : 0); // 移动组员则计 1
-if (candidate >= 255) throw new IllegalStateException("PDB byte distance overflow");
+if (candidate >= 255)
+    throw new IllegalStateException("PDB byte distance overflow");
 if (candidate < Byte.toUnsignedInt(values[next])) {
     values[next] = (byte) candidate;
     if (member >= 0) deque.addLast(next);   // 权 1 边从队尾进
     else             deque.addFirst(next);  // 权 0 边从队头进
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
+\end{minipage}\par
 
 \SolverFigure[0.98]{fig-3-5-pdb-zerone-bfs}{0-1 BFS 建表、哨兵约定与磁盘缓存分支（示意）}{fig:3-5}
 
@@ -557,27 +628,25 @@ $3\times3$ 默认分组 4-4 下则仅 $30\,240$ 个，两者见表~\ref{tab:pdb-
 正是为了把建表时间与常驻内存都压在一个量级以内。
 
 \par\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:pdb-size}
+\ReportTableTitle{表 \thetable\quad 不同分组下模式数据库的规模（按 \texttt{byte[]} 计）}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
 \setlength{\tabcolsep}{4bp}
-\begin{tabular}{|p{46bp}|p{74bp}|p{126bp}|p{104bp}|}
-\hline
+\begin{tabular}{p{46bp}p{74bp}p{126bp}p{104bp}}
+\toprule
 \textbf{规模} & \textbf{分组} & \textbf{各表状态数} & \textbf{合计字节} \\
-\hline
+\midrule
 $3\times3$ & 4-4 & $9\cdot8\cdot7\cdot6\cdot5=15\,120$，2 张 & $30\,240$（约 29.5 KiB） \\
-\hline
 $4\times4$（默认） & 4-4-4-3 & $524\,160\times3+43\,680$ & $1\,616\,160$（约 1.54 MiB） \\
-\hline
 $4\times4$（备选） & 5-5-5 & $5\,765\,760\times3$ & $17\,297\,280$（约 16.5 MiB） \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:pdb-size}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 不同分组下模式数据库的规模（按 \texttt{byte[]} 计）}\par\vspace{5bp}
 \end{minipage}\par
 
 \TemplateSubsection{3.4 求解后继结点的函数}
-{\bfseries 3.4\quad 求解后继结点的函数}\par\vspace{2bp}
+\noindent{\bfseries 3.4\quad 求解后继结点的函数}\par\vspace{2bp}
 
 后继生成分三层协作。\textbf{框架层}：\texttt{Problem.childNodes(parent)}
 对 \texttt{parent.getState().actions()} 中的每个动作调用 \texttt{applicable()}
@@ -588,22 +657,28 @@ $4\times4$（备选） & 5-5-5 & $5\,765\,760\times3$ & $17\,297\,280$（约 16.
 第一次用到某规模时，为全部 $n^2$ 个空位位置各生成一份按越界条件裁剪的
 方向表并缓存，之后 \texttt{actions()} 只是按下标取现成列表：
 
-{\fontsize{9bp}{12bp}\selectfont 代码摘自
-\texttt{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（\texttt{actions}）}\par\vspace{2bp}
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\path{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（\texttt{actions}）}\par\vspace{2bp}
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 public Iterable<PuzzleMove> actions() {
     return ACTIONS.computeIfAbsent(size, PuzzleBoard::legalActions)
                   .get(blankIndex);
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
+\end{minipage}\par
 
 后继生成 \texttt{next(action)} 先按空位行列号求目标格，越界即抛异常
 （调用方保证只传合法动作），随后四步构造不可变后继：
 
-{\fontsize{9bp}{12bp}\selectfont 代码摘自
-\texttt{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（\texttt{next} 的构造部分）}\par\vspace{2bp}
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\path{src/stud/g01/problem/npuzzle/PuzzleBoard.java}（\texttt{next} 的构造部分）}\par\vspace{2bp}
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 int movedTile = tiles[target];        // 1. 与空位交换的将牌
 long nextHash = zobristHash ^ table[blankIndex][0]     // 2. Zobrist
@@ -618,7 +693,9 @@ nextTiles[target] = 0;
 PuzzleBoard successor = new PuzzleBoard(nextTiles, size, target,
         nextHash, nextHashCode);
 // 若父状态的 tilePositions 已建立，则克隆并只改空位与被移动将牌两项
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
+\end{minipage}\par
 
 注意两个名字相近但用途不同的量：\texttt{nextHash} 是 64 位 Zobrist 值，
 只用于 IDA* 转置表的分桶（见 3.5 节）；\texttt{nextHashCode} 才是
@@ -628,18 +705,18 @@ PuzzleBoard successor = new PuzzleBoard(nextTiles, size, target,
 将牌数组必须克隆（状态不可变），但三项缓存使后继构造依然廉价：
 Zobrist 哈希只异或常数项，\texttt{hashCode} 按多项式权重的差值修正，
 将牌位置映射在父状态已算过时克隆并只改空位与被移动将牌两项。
-后继构造的廉价，换来的是 3.2 节中 Open 表、Closed 表可以放心地
-以哈希容器完成 $O(1)$ 的重复状态查询，二者共同决定了图搜索的整体开销。
+后继状态保持不可变，可直接作为 Open 状态索引和 Closed 集合的键。
+缓存哈希值减少了查询时的重复计算，状态构造与候选管理共同影响搜索开销。
 
 \TemplateSubsection{3.5 IDA*搜索的实现}
-{\bfseries 3.5\quad IDA*搜索的实现}\par\vspace{2bp}
+\noindent{\bfseries 3.5\quad IDA*搜索的实现}\par\vspace{2bp}
 
 第 1.4 节说明过 A* 的取舍：Open、Closed 两张表换来“每个状态只扩展一次”，
 代价是存储随已扩展结点数线性增长，在 15-Puzzle 上可能先受到存储限制。
 IDA* 走另一条路——不做全局 Open 表，改为在阈值约束下反复做深度优先搜索。
 按第 1.4 节的结论，BASIC 模式的路径相关搜索存储为 $O(bd)$，
 即从“随已扩展结点数增长”变为“随搜索深度增长”；
-需要强调的是，第 1.4 节已限定该结论只覆盖 BASIC 的路径相关搜索存储；
+上述复杂度只计入 BASIC 的路径相关搜索存储。
 除转置表外，当前实现还把各轮阈值记入 \texttt{thresholdSequence}，
 这份诊断序列另占 $O(I)$ 空间（$I$ 为迭代轮数），同样不在 $O(bd)$ 之内。
 TT 与 ZOBRIST 模式还要额外付出转置表空间（上限见下文），
@@ -650,12 +727,10 @@ IDA* 的实现类是
 \texttt{src/stud/g01/solver/IdAStar.java} 中的 \texttt{IdAStar}，
 它继承 \texttt{AbstractSearcher}，因此仍持有 \texttt{frontier} 与
 \texttt{explored} 两个字段，并在 \texttt{search()} 开头一并清空，
-但此后不再读写它们：源码注释点明 \texttt{explored}
-“从不是一个跨轮次的 Closed 集”。保留继承只是为了让两类搜索器在框架中互换。
+此后不再读写这两个字段。该继承关系使两类搜索器可以通过同一框架接口调用。
 
 \textbf{阈值的迭代。}与 3.2 节的 A* 一样，无解在循环开始前
-先交给 \texttt{problem.solvable()} 判断，不可解时直接返回 \texttt{null}，
-根本不会进入阈值迭代。进入迭代后，首轮阈值取根结点的启发值 $B_0=h(S)$；
+先交给 \texttt{problem.solvable()} 判断，不可解时直接返回 \texttt{null}。进入迭代后，首轮阈值取根结点的启发值 $B_0=h(S)$；
 每轮深度优先返回“被截断结点中最小的 $f$ 值”作为下一轮阈值；
 若某轮不存在任何被截断结点（返回 $\infty$），同样判定无解并结束。
 这正是第 1.4 节式~\eqref{eq:overview-bound} 的推进规则，
@@ -663,9 +738,11 @@ IDA* 的实现类是
 阈值严格递增且跳过没有候选结点的数值区间。
 \texttt{thresholdSequence} 把每轮阈值依次记录下来，可直接用于第四部分的收敛分析。
 
-{\fontsize{9bp}{12bp}\selectfont 代码摘自
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\fontsize{9bp}{12bp}\selectfont 代码摘自
 \texttt{src/stud/g01/solver/IdAStar.java}（\texttt{search} 的外层循环）}\par\vspace{2bp}
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 if (!problem.solvable()) return null;   // 与 A* 相同的前置可解性检查
 Node root = problem.root(predictor);
@@ -675,7 +752,7 @@ while (true) {
     iterations++;
     finalBound = bound;
     thresholdSequence.add(bound);
-    bestG.clear();          // g 只在产生它的那一轮阈值下有意义
+    bestG.clear();          // 新阈值下重新展开先前受限的状态
     zobristTable.clear();
     transpositionEntries = 0;
     pathStates.clear();     // 只保存当前路径，不保存全局 Closed
@@ -686,7 +763,9 @@ while (true) {
     if (next == Long.MAX_VALUE) return null;   // 无可截断结点：无解
     bound = next;           // 下一轮阈值取本轮最小的超界 f
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
+\end{minipage}\par
 
 \textbf{深度优先与三条出口。}\texttt{depthFirstSearch()} 每次进入先算 $f=g+h$：
 $f>bound$ 立即返回该 $f$（出口一，截断）；命中目标则记下结点并返回
@@ -696,49 +775,42 @@ $f>bound$ 立即返回该 $f$（出口一，截断）；命中目标则记下结
 \textbf{没有全局 Closed 表}，只有 \texttt{pathStates} 保存当前 DFS 路径上的状态，
 用于剪掉搜索树上的回环；退出递归时立刻移除，
 因此其规模就是当前 DFS 路径的长度，随递归深度线性增长。
-需要说明的是，\texttt{peakPathStates} 与 \texttt{maxDepth} 的计数口径并不相同：
+\texttt{peakPathStates} 与 \texttt{maxDepth} 分别记录路径集合峰值与最大扩展深度：
 \texttt{maxDepth} 只在真正被扩展的结点上更新，
 而子结点是在递归调用\textbf{之前}就加入 \texttt{pathStates} 的，
 因此那些被 $f>\texttt{bound}$ 截断的结点、以及命中目标的结点
 只进入路径、不会被计入 \texttt{maxDepth}，峰值可比 \texttt{maxDepth} 多出 2。
 在解长为 $L$ 的典型运行中，目标结点在深度 $L$ 加入路径后立刻返回，
 此时路径长度为 $L+1$，而最深的被扩展结点是深度 $L-1$ 的父结点，
-即恰好多出 2。即便如此，它仍只与解深度同阶。这正是 IDA* 省下存储的地方，
-也是它必须重复扩展同一状态的原因。图~\ref{fig:3-6} 是外层迭代与内层递归的全貌。
+即恰好多出 2。路径集合峰值随搜索深度增长。图~\ref{fig:3-6} 是外层迭代与内层递归的全貌。
 
 \SolverFigure[0.95]{fig-3-6-ida-flow}{IDA* 的阈值迭代与深度优先的三条出口（示意）}{fig:3-6}
 
 \textbf{转置表的三档配置。}\texttt{Mode} 枚举把“用不用转置表、用哪种键”
 做成可切换的开关，其结构差异见表~\ref{tab:ida-mode}。
-第四部分主对照采用 BASIC 模式，未单独比较 TT 与 ZOBRIST 的性能。
+第四部分的算法与启发函数对照采用 BASIC；困难题模式对照另比较 TT、ZOBRIST 与三档容量。
 其中 TT 与 ZOBRIST 两档受 \texttt{transpositionLimit}（默认 $1\,000\,000$ 条）限制，
 达到上限后不再写入新条目；BASIC 档不建表，不受此限制
-（见 \texttt{dominated()} 首行的直接返回）。源码注释指出“表可以半途放弃而不影响完备性与最优性”，
-这里说的是\textbf{放弃写入}这件事本身不引入错误——表只是加速结构。
-至于 \texttt{dominated()} 的剪枝判定，其正确性还受状态记录方式与路径上下文的约束，
-第 1.4 节已说明不能把 BASIC 模式的最优性证明原样套用到任意置换表策略上，
-故本文不把它当作正确性依据。另一个容易忽略的细节是
-每轮迭代开始都清空转置表：\texttt{bestG} 中的 $g$ 只在产生它的那一轮阈值下成立，
-跨轮复用会把本该扩展的结点错误地剪掉。
+（见 \texttt{dominated()} 首行）。达到容量上限后，搜索继续进行，只停止接纳新状态。
+表中已有状态仍按更小的 $g$ 更新，剪枝时核对状态与路径代价。
+每轮阈值迭代开始都清空转置表，使先前受阈值限制的状态能够在新一轮重新展开。
 
 \par\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:ida-mode}
+\ReportTableTitle{表 \thetable\quad IDA* 三种转置表模式的对比}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
 \setlength{\tabcolsep}{4bp}
-\begin{tabular}{|p{54bp}|p{112bp}|p{112bp}|p{100bp}|}
-\hline
+\begin{tabular}{p{54bp}p{112bp}p{112bp}p{100bp}}
+\toprule
 \textbf{模式} & \textbf{转置表结构} & \textbf{键与判定} & \textbf{取舍} \\
-\hline
+\midrule
 BASIC & 不使用 & 只靠阈值与 \texttt{pathStates} 剪枝 & 无转置表开销，可能重复扩展 \\
-\hline
 TT & \texttt{HashMap\textless State,Integer\textgreater} & 完整状态作键，记该状态迄今最小的 $g$ & 判定精确，但状态对象整份入表 \\
-\hline
 \texttt{ZOBRIST}\newline（默认） & \texttt{HashMap\textless Long,}\newline\texttt{List\textless Entry\textgreater\textgreater} & 64 位 Zobrist 值分桶，桶内用 \texttt{equals} 确认 & 条目仍保存完整状态，另有装箱键与桶列表开销；内存与命中率需同条件实测 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:ida-mode}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad IDA* 三种转置表模式的对比}\par\vspace{5bp}
 \end{minipage}\par
 
 \textbf{fast 分支。}系统属性 \texttt{wattai.fast=true} 时，
@@ -757,7 +829,24 @@ TT & \texttt{HashMap\textless State,Integer\textgreater} & 完整状态作键，
 反向走法剪枝仅在 fast 分支开启时才计入。
 代价是这条路径只认 \texttt{NPuzzleProblem} 与 \texttt{PuzzleBoard}
 的具体类型，因此默认关闭（\texttt{false}），
-只在需要对比“结点对象与估值开销”时单独开启。
+本实验的主配置显式开启，开关控制另行列出。
+
+
+\textbf{实际工作量的计数。}除框架的生成、扩展次数外，搜索器还记录
+\par\noindent{\fontsize{9bp}{12bp}\selectfont
+\begin{tabular}{@{}p{170bp}p{225bp}@{}}
+\texttt{reverseMovePrunes} & 提前反向过滤次数 \\
+\texttt{childStatesCreated} & 子状态构造次数 \\
+\texttt{childNodesCreated} & 子结点构造次数 \\
+\texttt{fullHeuristicEvaluations} & 全量估值调用次数 \\
+\texttt{incrementalHeuristicEvaluations} & 增量接口调用次数 \\
+\end{tabular}}\par
+根结点记一次全量估值，所有计数在搜索入口清零，跨阈值轮次累计。
+常规分支通过框架一次生成兄弟列表，fast 则逐个创建；因此构造次数不必与访问事件数相同。
+Manhattan、错位数在增量接口内只更新一枚将牌贡献；LC 虽走同一接口，仍重新计算全量距离与冲突，
+不能把该接口调用计数写成常数时间 LC 更新次数。PDB 走全量查表，不具有该增量接口。
+这些计数表示累计调用事件，与同时存活的对象数不同。
+运行器按阈值和完成状态序列化快照，记录工作包含在搜索计时中，第四部分另设开关控制核查其成本。
 
 \textbf{可采集的指标。}\texttt{iterations}（迭代轮数）、\texttt{maxDepth}
 （最大递归深度）、\texttt{peakPathStates}（路径集合峰值）、
@@ -782,25 +871,23 @@ TT & \texttt{HashMap\textless State,Integer\textgreater} & 完整状态作键，
 \texttt{peakPathStates} 与 \texttt{maxDepth} 亦非同一口径。
 涉及这些量的对比应在表中注明所用算法、分支与模式。
 
-至此可以把本章的因果链收束为一句：状态不可变（3.1）使哈希容器可以
-$O(1)$ 查重（3.2），后继构造只克隆一个数组（3.4）使扩展本身足够廉价，
-两者共同支撑起 A* 的图搜索；三个启发函数（3.3）按各自的代价提供下界，
-其中曼哈顿与不在位将牌另备常数时间的增量版本，
-但框架的常规扩展仍走全量估值。IDA*（3.5）在这套数据结构上
-把“全局 Closed 表”换成“当前路径 + 转置表”，用重复扩展换存储，
-并可通过 fast 分支启用增量估值与反向走法剪枝。
-第四部分比较 A* 与 BASIC IDA* 的实际表现，以及三种启发函数带来的变化；
-TT 与 ZOBRIST 的实现作为可选方案保留，不据此给出未经实测的性能排名。
+不可变状态可直接作为 Open 状态索引和 Closed 集合的键，缓存哈希值与后继构造共同影响候选管理的开销。
+曼哈顿距离与错位数提供常数时间的增量估值，框架的常规扩展仍采用全量计算。
+IDA* 用当前路径及可选转置表替代全局前沿，并通过 fast 分支减少反向动作构造与无效查询。
+第四部分分别比较 A* 与 BASIC IDA*、四种启发函数及困难题的转置表配置，
+同时记录 fast 的构造、查询和记录开销，以实际成功率与总耗时判断取舍。
+\SolverFigure[0.98]{fig-3-7-system-flow}{输入、求解、路径输出与可视化的系统调用关系}{fig:system-flow}
+\FloatBarrier
 \endgroup
 
 \input{section-four.tex}
 
-\TemplateSection{5.解路径的可视化}
+\TemplateSection{5.\quad 解路径的可视化}
 
 % 可见标题：\TemplateSection 只登记目录条目、不打印标题，故在此自行排版。
-{\bfseries\fontsize{12bp}{15.6bp}\selectfont 5.\quad 解路径的可视化}\par\vspace{6bp}
+\noindent{\bfseries\fontsize{12bp}{15.6bp}\selectfont 5.\quad 解路径的可视化}\par\vspace{6bp}
 \begingroup
-\setlength{\parskip}{5bp}
+\setlength{\parskip}{3bp}
 \setlength{\tabcolsep}{4bp}
 % 图表编号沿用模板的 5-x 形式，便于交叉引用
 \renewcommand{\thefigure}{5-\arabic{figure}}
@@ -810,170 +897,173 @@ TT 与 ZOBRIST 的实现作为可选方案保留，不据此给出未经实测�
 \setcounter{figure}{0}
 \setcounter{table}{0}
 
-第四部分用实验数据说明了三个阶段算法的效果；本部分不再重复搜索实验，只讨论如何把求解过程呈现出来。
-教师对可视化的要求是不限平台与框架、且不要求与搜索程序联动，只需根据搜索程序给出的多个问题的解路径文本文件即可，
-因此本部分的播放器与求解程序之间只通过解路径文件衔接，播放器只读取记录求解过程的文件，不直接调用搜索代码。
+播放器读取求解器导出的解路径文件，展示棋盘的中间状态、目标状态和交互过程。
+界面中的算法、解长和耗时来自载入文件，实验性能见第四部分。
+求解与播放通过文件衔接，同一条路径可反复播放。
 
 \TemplateSubsection{5.1 工具选择}
-{\bfseries 5.1\quad 工具选择}\par\vspace{2bp}
+\noindent{\bfseries 5.1\quad 工具选择}\par\vspace{2bp}
 
-本组采用 \textbf{Java Swing}（JDK 自带图形库）实现求解过程的可视化。
-Swing 是 Java 标准库中的轻量级 GUI 工具包，其组件全部由 Java 自身绘制而不依赖操作系统原生控件，可跨平台。
-因本项目采用Java语言，所以采用Swing，将不会引入第三方依赖。Swing 的基本用法可参考\cite{swing-bilibili}。
+播放器使用 \textbf{Java Swing} 实现，与求解器采用相同语言。
+Swing 随 JDK 提供，无需额外安装图形库，能够直接复用已有棋盘类和路径读取逻辑。
+不同工具的比较见表~\ref{tab:tools}，Swing 的基本用法可参考\cite{swing-bilibili}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:tools}
+\ReportTableTitle{表 \thetable\quad 解路径可视化候选方案对比}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{58bp}|p{92bp}|p{68bp}|p{96bp}|}
-\hline
+\begin{tabular}{p{58bp}p{92bp}p{68bp}p{96bp}}
+\toprule
 \textbf{候选方案} & \textbf{依赖与构建} & \textbf{开发成本} & \textbf{与现有代码的关系} \\
-\hline
+\midrule
 \textbf{Java Swing}（选用） & JDK 标准库，零第三方依赖 & 低 & 复用 \texttt{PuzzleBoard} 的状态与取格接口 \\
-\hline
 SFML & 需另装 C++ 图形库 & 高，需重写棋盘与解析 & 复用文本文件 \\
-\hline
 Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:tools}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径可视化候选方案对比}\par\vspace{5bp}
+\end{minipage}\par
 
+\Needspace{9\baselineskip}
 \TemplateSubsection{5.2 可视化界面设计与关键逻辑}
-{\bfseries 5.2\quad 可视化界面设计与关键逻辑}\par\vspace{2bp}
+\noindent{\bfseries 5.2\quad 可视化界面设计与关键逻辑}\par\vspace{2bp}
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{5.2.1 可视化界面设计}
-{\bfseries 5.2.1\quad 可视化界面设计}\par\vspace{2bp}
+\noindent{\bfseries 5.2.1\quad 可视化界面设计}\par\vspace{2bp}
 
 窗口自上而下分三个区域：顶部是结果指标栏，中部左右并排显示当前棋盘与目标棋盘，
 底部是进度提示与操作控件。
-界面播放过程中，可以随时把当前棋盘与目标对照，
-同时把算法、步数与耗时放在同一视野内。各组件及其功能见表~\ref{tab:ui}。
+播放时可将当前棋盘与目标状态对照，并查看算法、步数与耗时。各组件及其功能见表~\ref{tab:ui}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:ui}
+\ReportTableTitle{表 \thetable\quad 播放器各区域组件及功能}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{52bp}|p{160bp}|p{154bp}|}
-\hline
+\begin{tabular}{p{52bp}p{160bp}p{154bp}}
+\toprule
 \textbf{区域} & \textbf{组件及其显示内容} & \textbf{功能与设计考虑} \\
-\hline
+\midrule
 顶部指标栏 & \texttt{JLabel}：算法名、启发函数名、总步数、搜索耗时（毫秒）、生成结点数、扩展结点数 & 把结果与耗时同时呈现，便于对比不同算法 \\
-\hline
-中部左 & \texttt{JPanel} + \texttt{GridLayout}：当前状态棋盘，随播放逐帧重绘 & 动态，反映每一步变化之后的棋盘 \\
-\hline
-中部右 & 目标状态棋盘，仅在开窗时绘制一次 & 用于参照，避免额外记忆 \\
-\hline
-底部进度栏 & \texttt{JLabel}：\texttt{Step 当前步 / 总步数} 与当前步空位移动方向 & 播到第几步、空位刚向哪边移动 \\
-\hline
+中部左 & \texttt{JPanel} + \texttt{GridLayout}：当前状态棋盘，随播放逐帧重绘 & 显示每次移动后的棋盘 \\
+中部右 & 目标状态棋盘，仅在开窗时绘制一次 & 与当前状态对照 \\
+底部进度栏 & \texttt{JLabel}：\texttt{Step 当前步 / 总步数} 与当前步空位移动方向 & 显示播放进度与空位移动方向 \\
 底部按钮栏 & \texttt{JButton}：Play、Pause、Previous、Next、Restart & 可手动操作或自动播放，缩放时布局不错位 \\
-\hline
 底部速度栏 & \texttt{JLabel}“Speed” + \texttt{JComboBox}：0.5x、1x、2x & 调节播放快慢，默认 1x \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:ui}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 播放器各区域组件及功能}\par\vspace{5bp}
+\end{minipage}\par
 
 编号方格为蓝白风格，空位所在格留白，因此编号与空位都容易辨认。
 界面按棋盘规模自适应：3$\times$3 使用 32 号粗体字与 74$\times$74 的格子，4$\times$4 使用 25 号字与 62$\times$62 的格子，
 两种规模在窗口中的整体尺寸接近。窗口最小尺寸 650$\times$470，启动时居中显示。运行画面见图~\ref{fig:3x3-io}。
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{center}
 \includegraphics[width=0.46\linewidth]{visualFigures/3x3-initial.png}\hspace{8bp}%
 \includegraphics[width=0.46\linewidth]{visualFigures/3x3-final.png}
 \end{center}
 \refstepcounter{figure}\label{fig:3x3-io}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 3$\times$3 实例的界面：初态 Step 0/16 与目标状态 Step 16/16（A* + Manhattan）}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 3$\times$3 实例的界面：初态 Step 0/16 与目标状态 Step 16/16（A* + Manhattan）}\par\vspace{5bp}
+\end{minipage}\par
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{5.2.2 关键逻辑}
-{\bfseries 5.2.2\quad 关键逻辑}\par\vspace{2bp}
+\noindent{\bfseries 5.2.2\quad 关键逻辑}\par\vspace{2bp}
 
 播放的整体流程见图~\ref{fig:flow}，读取文件并完成校验之后才创建窗口。
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{center}
-\includegraphics[width=0.8\linewidth]{visualFigures/流程图.png}
+\includegraphics[width=0.98\linewidth]{visualFigures/playback-flow.pdf}
 \end{center}
 \refstepcounter{figure}\label{fig:flow}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 解路径播放的逻辑流程（校验先于建窗，事件循环反复刷新）}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 解路径播放的逻辑流程（校验先于建窗，事件循环反复刷新）}\par\vspace{5bp}
+\end{minipage}\par
 
-核心思路为：先校验、后建窗口，逻辑和页面显示分离。
+路径文件校验完成后，程序创建窗口，并由播放状态控制棋盘显示。播放器支持自动播放、暂停、逐步前进与后退、回到初态，以及 0.5x、1x、2x 三档速度；到达首末步时保持在有效范围内。
 
 
 \TemplateSubsection{5.3 核心代码}
-{\bfseries 5.3\quad 核心代码}\par\vspace{2bp}
+\noindent{\bfseries 5.3\quad 核心代码}\par\vspace{2bp}
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{5.3.1 代码结构}
-{\bfseries 5.3.1\quad 代码结构}\par\vspace{2bp}
+\noindent{\bfseries 5.3.1\quad 代码结构}\par\vspace{2bp}
 
 可视化的代码在 \texttt{src/stud/g01/visual/} 下，按数据、逻辑、界面组织，共三个类。
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 src/stud/g01/visual/
   +-- SolutionTrace.java      (数据)
   +-- PlaybackModel.java      (逻辑)
   +-- PuzzleVisualizer.java   (界面)
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
-三个类功能互不重叠，见表~\ref{tab:classes}。
+三个类分别负责文件校验、播放状态管理和界面呈现，见表~\ref{tab:classes}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:classes}
+\ReportTableTitle{表 \thetable\quad 播放器的类与职责}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{150bp}|p{230bp}|}
-\hline
+\begin{tabular}{p{150bp}p{230bp}}
+\toprule
 \textbf{类} &  \textbf{功能} \\
-\hline
+\midrule
 \texttt{SolutionTrace} & 解析并校验解路径文件 \\
-\hline
-\texttt{PlaybackModel}  & 包含当前步号、是否正在播放等 \\
-\hline
-\texttt{PuzzleVisualizer}  & Swing 窗口、棋盘绘制、控件、事件等 \\
-\hline
+\texttt{PlaybackModel}  & 管理当前步号、播放状态与速度 \\
+\texttt{PuzzleVisualizer}  & 创建 Swing 窗口，绘制棋盘并响应控件事件 \\
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:classes}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径可视化代码（下记为播放器）的三层结构}\par\vspace{5bp}
+\end{minipage}\par
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{5.3.2 数据格式}
-{\bfseries 5.3.2\quad 数据格式}\par\vspace{2bp}
+\noindent{\bfseries 5.3.2\quad 数据格式}\par\vspace{2bp}
 
-保存的求解过程文件为TSV文本，分三段，第 1\textasciitilde 9 行是键值对形式的元数据，第 10 行是固定表头，
+解路径保存为 TSV 文本，分为三段：第 1 至 9 行是键值对形式的元数据，第 10 行是固定表头，
 第 11 行起给出步号、动作、棋盘三元组；第 0 步的动作固定为 \texttt{START}，即初始状态。字段含义见表~\ref{tab:format}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:format}
+\ReportTableTitle{表 \thetable\quad 解路径文件字段说明}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{96bp}|p{290bp}|}
-\hline
+\begin{tabular}{p{96bp}p{290bp}}
+\toprule
 \textbf{字段} & \textbf{含义} \\
-\hline
+\midrule
 \texttt{format} & 固定为 \texttt{NPUZZLE\_SOLUTION\_V1}，用于版本识别 \\
-\hline
 \texttt{algorithm} / \texttt{heuristic} & 产生该解的算法与启发函数，如 \texttt{IDA}、\texttt{DISJOINT\_PATTERN} \\
-\hline
 \texttt{size} & 棋盘边长，当前仅支持 3 与 4 \\
-\hline
 \texttt{elapsed\_ms} & 该次搜索在求解进程内的耗时（毫秒） \\
-\hline
 \texttt{generated} / \texttt{expanded} & 生成结点数与扩展结点数 \\
-\hline
 \texttt{solution\_length} & 解路径步数 \\
-\hline
 \texttt{goal} & 目标棋盘，空位记为 0 \\
-\hline
 步记录 & 三列：步号、空位移动方向（\texttt{UP}/\texttt{DOWN}/\texttt{LEFT}/\texttt{RIGHT}）、该步之后的完整棋盘 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:format}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径文件字段说明}\par\vspace{5bp}
+\end{minipage}\par
 
-动作记录的是\textbf{空位的移动方向}，一种示例如下：
+动作记录的是\textbf{空位的移动方向}，文件示例如下：
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 format             NPUZZLE_SOLUTION_V1
 algorithm          IDA
 heuristic          DISJOINT_PATTERN
 size               4
-elapsed_ms         17708.691
+elapsed_ms         11520.672
 generated          95279434
 expanded           48759798
 solution_length    70
@@ -984,48 +1074,44 @@ step  move   state
 2     UP     15 14 13 12 11 10 9 8 7 6 0 4 3 1 5 2
 ...   ...    ...
 70    RIGHT  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 0
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
+\Needspace{5\baselineskip}
 \TemplateSubsubsection{5.3.3 SolutionTrace：加载与校验}
-{\bfseries 5.3.3\quad SolutionTrace：加载与校验}\par\vspace{2bp}
+\noindent{\bfseries 5.3.3\quad SolutionTrace：加载与校验}\par\vspace{2bp}
 
-\texttt{SolutionTrace} 一次性读取整个文件，并\textbf{校验}。
-九项检查都通过后才返回对象，任何一项失败都抛出 \texttt{IOException}，进程以非零码结束，窗口不会被创建。
-九项校验见表~\ref{tab:validation}。
+\texttt{SolutionTrace} 一次性读取整个文件，并\textbf{校验文件格式、元数据和解路径}。
+表~\ref{tab:validation} 列出九项校验。全部通过后才返回路径对象；若出现异常，则抛出 \texttt{IOException}，进程以非零码结束，不再创建窗口。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:validation}
+\ReportTableTitle{表 \thetable\quad 解路径校验链}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{26bp}|p{210bp}|p{140bp}|}
-\hline
+\begin{tabular}{p{26bp}p{210bp}p{140bp}}
+\toprule
 \textbf{序} & \textbf{校验内容} & \textbf{不通过时的结果} \\
-\hline
+\midrule
 1 & 文件行数不少于 11 行 & 报 Incomplete solution file \\
-\hline
 2 & 前九行每行为“键、值”两列，且键不重复 & 报 Invalid solution metadata \\
-\hline
 3 & 版本标识与第 10 行表头符合约定 & 报 Unknown solution format \\
-\hline
 4 & 棋盘规模为 3 或 4 & 报 IOException：当前仅支持 3$\times$3 与 4$\times$4 \\
-\hline
 5 & 耗时与结点数非负且有限 & 报 Invalid metrics \\
-\hline
 6 & 步号自 0 起连续递增 & 报 Invalid step sequence \\
-\hline
 7 & 步记录条数等于解长加一，且第 0 步为 START & 报 Solution length mismatch \\
-\hline
 8 & 每步动作在上一帧合法，且重放结果与记录棋盘逐格相同 & 报 Illegal move at step N \\
-\hline
 9 & 最后一帧等于目标棋盘 & 报 Last state is not goal \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:validation}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径校验链}\par\vspace{5bp}
+\end{minipage}\par
 
-校验的核心是第 8 项，\textbf{把上一步记录的棋盘取出、执行该动作，再与文件里记录的下一步棋盘比对}。
+第 8 项通过逐步回放检查路径：\textbf{取出上一步的棋盘，执行所记录的动作，再与下一步棋盘比对}。
 代码如下（来自 \texttt{SolutionTrace.read}）：
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 if (states.size() != declared + 1
         || !moves.get(0).equals("START"))
@@ -1042,17 +1128,19 @@ for (int i = 1; i < states.size(); i++) {
 }
 if (!states.get(states.size() - 1).equals(goal))
     throw new IOException("Last state is not goal");
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
 这一段复用了求解代码的 \texttt{PuzzleBoard.actions()} 与 \texttt{next()}。
 
+\Needspace{29\baselineskip}
 \TemplateSubsubsection{5.3.4 PlaybackModel 与 PuzzleVisualizer}
-{\bfseries 5.3.4\quad PlaybackModel 与 PuzzleVisualizer}\par\vspace{2bp}
+\noindent{\bfseries 5.3.4\quad PlaybackModel 与 PuzzleVisualizer}\par\vspace{2bp}
 
-\texttt{PlaybackModel} 不含任何 Swing 类型，是仅含逻辑代码的状态机。
-下表节选主要字段与公开方法：
+\texttt{PlaybackModel} 是独立于 Swing 的播放状态机。以下代码节选其主要字段与方法：
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 public final class PlaybackModel {
     private final int last;      // final step index
@@ -1077,12 +1165,14 @@ public final class PlaybackModel {
         };
     }
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
-界面侧的 \texttt{PuzzleVisualizer} 负责将状态机的结果以UI的形式呈现。
-通过refresh从已解析好的状态列表里按下标取帧，重建棋盘方格，更新文字，同时按棋盘规模选择字号和格子尺寸。
+界面侧的 \texttt{PuzzleVisualizer} 负责在界面中显示播放状态。
+通过 \texttt{refresh()} 按当前步号读取棋盘，更新方格和文字，并按棋盘规模选择字号与格子尺寸。
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 private void refresh() {
     int step = playback.step();
@@ -1112,12 +1202,14 @@ private void draw(JPanel grid, PuzzleBoard board) {
     grid.revalidate();
     grid.repaint();
 }
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
-事件绑定遵循 5.2.2 第（4）条，所有手动按钮在改变步号之前先停止定时器，
-Play 只有在状态机确实进入播放态时才启动定时器。
+前进、后退和重置按钮在改变步号前停止定时器，暂停按钮结束播放状态并停止定时器；
+Play 则在状态机进入播放态后启动定时器。
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 JButton play = button("Play", () -> {
     playback.play();
@@ -1139,21 +1231,27 @@ speed.addActionListener(event -> {
     playback.speed(speed.getSelectedIndex());
     timer.setDelay(playback.delay());
 });
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
 \TemplateSubsection{5.4 求解过程的可视化展示}
-{\bfseries 5.4\quad 求解过程的可视化展示}\par\vspace{2bp}
+\noindent{\bfseries 5.4\quad 求解过程的可视化展示}\par\vspace{2bp}
 
-\textbf{（1）如何开启。}假设构建产物位于 build/classes 下，解路径文件在 results/solutions 下，
-以下为示例：
+\textbf{（1）运行方式。}假设构建产物位于 \path{build/classes} 目录，解路径文件位于 \path{results/solutions} 目录，运行命令如下：
 
 {\fontsize{9.5bp}{12bp}\selectfont
+\noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
 java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径TSV文件
-\end{verbatim}}
+\end{verbatim}
+\end{minipage}}
 
-\textbf{（2）交互操作。}图~\ref{fig:ops} 是在 3$\times$3 实例上依次执行暂停、后退、前进与重置四个操作的画面。暂停停在第 13 步，后退回到第 12 步，前进又回到第 13 步，重置回到第 0 步，且每次操作后棋盘与步号同步变化。
+\textbf{（2）两种棋盘规模。}3$\times$3 与 4$\times$4 两种规模都在同一窗口中自适应绘制：3$\times$3 的初态与目标状态见图~\ref{fig:3x3-io}；
+4$\times$4 采用 IDA* 与加性模式数据库得到 70 步解，初态与目标见第 4.4 节，路径播放见图~\ref{fig:stage3}。后面的阶段演示沿用这两局解，不再更换实例。
 
+\textbf{（3）交互操作。}图~\ref{fig:ops} 是在 3$\times$3 实例上依次执行暂停、后退、前进与重置四个操作的画面。暂停停在第 13 步，后退回到第 12 步，前进又回到第 13 步，重置回到第 0 步，且每次操作后棋盘与步号同步变化。
+
+\par\noindent\begin{minipage}{\linewidth}
 \begin{center}
 \includegraphics[width=0.42\linewidth]{visualFigures/3x3-pause.png}\hspace{6bp}%
 \includegraphics[width=0.42\linewidth]{visualFigures/3x3-previous.png}\\[8bp]
@@ -1161,81 +1259,96 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径TSV文件
 \includegraphics[width=0.42\linewidth]{visualFigures/3x3-restart.png}
 \end{center}
 \refstepcounter{figure}\label{fig:ops}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 交互操作：暂停（Step 13）、后退（Step 12）、前进（Step 13）、重置（Step 0）}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 交互操作：暂停（Step 13）、后退（Step 12）、前进（Step 13）、重置（Step 0）}\par\vspace{5bp}
+\end{minipage}\par
 
-\textbf{（3）损坏文件被拒绝。}图~\ref{fig:invalid} 是把解路径文件截断后重新运行的终端输出，可见程序抛出 \texttt{java.io.IOException: Incomplete solution file} 并以失败状态结束，没有打开任何窗口，也没有显示伪造的棋盘。
+\textbf{（4）损坏文件被拒绝。}图~\ref{fig:invalid} 是截断解路径文件后重新运行的终端输出。程序抛出 \texttt{java.io.IOException: Incomplete solution file}，在创建窗口前退出。
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{center}
 \includegraphics[width=0.72\linewidth]{visualFigures/invalid-trace-rejected.png}
 \end{center}
 \refstepcounter{figure}\label{fig:invalid}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 不完整解路径文件被拒绝（终端输出）}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 不完整解路径文件被拒绝（终端输出）}\par\vspace{5bp}
+\end{minipage}\par
 
 
 
-\textbf{（4）第一阶段：A* + 优先队列。}第一阶段使用 A* \cite{hart1968} 配合优先队列，启发函数为曼哈顿距离，求得 16 步的解（数据来自第 4 节）。
-左图是播放到第 8 步（$8/16$）时的中段画面，右图是第 16 步（$16/16$）的目标状态。
+\textbf{（5）第一阶段：A* + 优先队列。}采用 A* \cite{hart1968}、优先队列与曼哈顿距离求得 16 步解，左图是播放到第 8 步（$8/16$）时的中段画面，右图是第 16 步（$16/16$）的目标状态。
 
 \noindent\begin{minipage}{\linewidth}
+\par\noindent\begin{minipage}{\linewidth}
 \begin{center}
 \includegraphics[width=0.46\linewidth]{visualFigures/stage1-astar-3x3-step8.png}\hspace{8bp}%
 \includegraphics[width=0.46\linewidth]{visualFigures/stage1-astar-3x3-step16.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage1}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第一阶段（A* + 优先队列，曼哈顿距离）3$\times$3 实例的解路径播放：中段 Step 8/16 与目标状态 Step 16/16}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第一阶段（A* + 优先队列，曼哈顿距离）3$\times$3 实例的解路径播放：中段 Step 8/16 与目标状态 Step 16/16}\par\vspace{5bp}
+\end{minipage}\par
 \end{minipage}\par
 
-\textbf{（5）第二阶段：IDA* 求解 4 阶棋盘。}第二阶段对 4 阶（15-Puzzle）使用 IDA*；主实验采用 BASIC 模式、未启用转置表，启发函数为曼哈顿距离，求得 52 步的解。
-实现上还提供 TT 与 ZOBRIST 两档可选转置表。
+\textbf{（6）第二阶段：IDA* 求解 4 阶棋盘。}采用 BASIC IDA* 与曼哈顿距离求得 52 步解。
+该配置不启用转置表；实现中另提供 TT 与 ZOBRIST 模式\cite{zobrist-wiki,zobrist-cn}。
 图~\ref{fig:stage2} 给出播放到第 26 步（$26/52$）与第 52 步（$52/52$）的画面。
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{center}
 \includegraphics[width=0.46\linewidth]{visualFigures/stage2-ida-4x4-step26.png}\hspace{8bp}%
 \includegraphics[width=0.46\linewidth]{visualFigures/stage2-ida-4x4-step52.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage2}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第二阶段（IDA* + 曼哈顿距离，BASIC 模式、未启用转置表）4$\times$4 实例的解路径播放：中段 Step 26/52 与目标状态 Step 52/52}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第二阶段（IDA* + 曼哈顿距离，BASIC 模式、未启用转置表）4$\times$4 实例的解路径播放：中段 Step 26/52 与目标状态 Step 52/52}\par\vspace{5bp}
+\end{minipage}\par
 
-\textbf{（6）第三阶段：disjoint pattern 与模式数据库。}第三阶段使用不相交模式（disjoint pattern）与加性模式数据库\cite{culberson1996,pdb-intro}，困难题采用 555T 分组，求得 70 步的解；
-冷缓存建表加搜索的父端总时间为 22.729 秒，满足 1 分钟的要求。该题初态与目标见第 4 节。
+\textbf{（7）第三阶段：加性模式数据库。}采用 BASIC IDA*、fast 与 555T 加性模式数据库\cite{culberson1996,pdb-intro}，求得困难题的 70 步解。
+独立冷启动包含建表的求解总耗时为 16.981 秒，具体结果见第 4.4 节。
 图~\ref{fig:stage3} 给出播放到第 35 步（$35/70$）与第 70 步（$70/70$）的画面。
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{center}
 \includegraphics[width=0.46\linewidth]{visualFigures/stage3-pdb-4x4-step35.png}\hspace{8bp}%
 \includegraphics[width=0.46\linewidth]{visualFigures/stage3-pdb-4x4-step70.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage3}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第三阶段（IDA* + 加性模式数据库，555T 分组）4$\times$4 实例的解路径播放：中段 Step 35/70 与目标状态 Step 70/70}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第三阶段（IDA* + 加性模式数据库，555T 分组）4$\times$4 实例的解路径播放：中段 Step 35/70 与目标状态 Step 70/70}\par\vspace{5bp}
+\end{minipage}\par
 
-\textbf{本部分小结。}本部分只负责呈现，不重复搜索实验：三张阶段图（图 5-5 至图 5-7）对应的 16、52、70 步解均取自第四部分的正式记录，
-播放器所做的校验只保证文件格式与逐帧合法性，不对搜索结论作补充证明。
+\textbf{本部分小结。}16、52、70 步三条路径展示了播放器对中间状态、目标状态和交互操作的处理。
+播放器按文件中的动作逐步更新棋盘，显示每一步的移动结果。
 这种“求解与呈现分离”的做法，使播放器可以在不启动搜索的情况下反复检查历史解路径。
 
 \endgroup
 \vspace{6bp}
 
 % 目录里“总结及展望”沿用模板不加编号，但去掉模板残留的前导点。
+\Needspace{28\baselineskip}
 \TemplateSection{总结及展望}
-{\bfseries\fontsize{12bp}{15.6bp}\selectfont 总结及展望}\par\vspace{6bp}
+\noindent{\bfseries\fontsize{12bp}{15.6bp}\selectfont 总结及展望}\par\vspace{6bp}
 \begingroup
-\setlength{\parskip}{5bp}
+\setlength{\parskip}{3bp}
 
-本组在教师提供的搜索框架上完成了 N-Puzzle 求解的四个阶段；框架原有代码保持原样，新增的状态、动作、可解性判定与启发函数都放在 \texttt{src/stud/g01/} 下。
+本实验在教师框架上完成了 N-Puzzle 的 A*、IDA*、启发估值和解路径播放。
+A* 采用优先队列与状态索引管理候选，IDA* 以阈值搜索减少路径相关存储；
+Swing 播放器通过路径文件还原棋盘，支持播放、暂停、前后步、重置和速度切换。
 
-第一阶段用 A* 配合优先队列，使用指定的 3$\times$3 棋盘在毫秒级内解出 16 步；第二阶段用 IDA* 处理 4 阶棋盘，BASIC 模式的路径相关搜索存储随搜索深度线性增长，阈值记录另占空间；第三阶段用不相交模式数据库，把困难题的求解时间压缩到 1 分钟以内；第四阶段用 Java Swing 将解路径文件记录的求解步骤可视化。实现上还提供转置表的 TT 与 ZOBRIST 两档可选键策略，以及 \texttt{MANHATTAN\_LC}线性冲突启发，在曼哈顿距离上叠加线性冲突修正。这些优化各有代价：线性冲突能减少扩展，但更强下界不保证每个实例都更快；TT 与 ZOBRIST 也未稳定优于 BASIC。报告主实验仍采用 BASIC 模式与 Misplaced、Manhattan、加性 PDB 三种启发。问题的状态、动作、可解性判定和启发函数在 \texttt{src/stud/g01/} 下，解路径的导出与可视化解耦。
+教师三阶题得到 16 步解，全部配置成功，无超时。A* 与 Manhattan 的搜索中位数为
+6.002\,ms，求解总耗时中位数为 145.389\,ms，三次均满足 1 秒要求。
+普通四阶的 BASIC IDA* 与 Manhattan 得到 52 步解，搜索中位数为 196.860\,ms。
+四阶错位数下，A* 三次均内存不足，IDA* 三次均在 60 秒截止时未完成；其他主实验配置均成功。
 
-此外，运行记录还给出了时间与结点代价。第二阶段得到 52 步解，搜索耗时 435.977 毫秒，生成 2\,007\,071 个结点、扩展 997\,736 个结点；其中生成结点数取自解路径文件记录，第四部分只统计扩展次数。第三阶段得到 70 步解，冷缓存下建表 4\,819 毫秒、搜索 17\,709 毫秒，父端总时间 22.729 秒（另含约 202 毫秒的启动、回放与导出开销），共生成 95\,279\,434 个结点、扩展 48\,759\,798 个结点。在已测实例上，启发函数越精确，需要扩展的结点越少；但时间收益还要看估值与建表成本，第 4.3 节已说明不能据此给出统一排名。模式数据库实际上是把一部分代价从搜索阶段前移到了建表阶段。
+困难题采用 BASIC、fast 与 555T，得到 70 步合法解。
+独立冷启动建表 2.985 秒、搜索 13.817 秒、求解总耗时 16.981 秒，满足 1 分钟要求；
+热缓存三次均成功，求解总耗时中位数为 13.791 秒。
 
-第一、第三阶段满足明确的 1 秒和 1 分钟时限；第二阶段完成了 52 步求解，但报告没有为该阶段设定独立的时限指标。解路径均经过逐帧合法性校验，播放器对截断或非法的解路径文件会按预期拒绝加载。
-
-改进与展望：
-算法方面，模式数据库的分组可以进一步调整（如由 555T 改为更大的 6-6-3 分组），以继续增强启发估计、压缩搜索量，代价是表规模随之增大。Open 表在替换重复结点时目前要线性查找，可以改为惰性删除，以减少开销。可视化方面，可以同时演示不同算法的效果，同一始态在不同算法下的对比，更加直观。此外，也可测试不同初态对性能的影响。
-
-此外，若可通过配置文件，管理棋盘规模、算法类型、模式数据库分组、可视化选项等等，并以插件的形式扩展该实验内容，最终能实现一个灵活、直观的 N-Puzzle 求解与演示项目，也能为其他状态空间搜索问题提供参考。
+实验表明，减少扩展与缩短运行时间并不等价。LC 增强了下界，但也提高了估值成本；
+转置表减少重复访问，却增加哈希和存储管理开销；fast 则通过提前剪枝和逐个生成减少无效构造。
+PDB 的收益同时取决于搜索节省与准备成本，冷、热缓存应分别讨论。
+后续可优化 Open 中较优重复结点的线性删除，并在更多题目和目标布局下比较配置选择。
 
 \endgroup
 \vspace{6bp}
 
+\Needspace{20\baselineskip}
 \renewcommand{\refname}{参考文献}
 \begin{thebibliography}{9}
 \TemplateSection{参考文献}

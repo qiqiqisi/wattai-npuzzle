@@ -12,5 +12,25 @@
   "gui_hard4": "report/images/hard_15puzzle_4x4_final.png",
   "optimization_comparison": "results/optimization-20261106-20261106T115705068678Z/analysis-final/comparison.csv",
   "optimization_summary": "results/optimization-20261106-20261106T115705068678Z/analysis-final/summary.json",
-  "optimization_diagnostics": "results/optimization-20261106-20261106T115705068678Z/diagnostics/all-results-final.json"
+  "optimization_diagnostics": "results/optimization-20261106-20261106T115705068678Z/diagnostics/all-results-final.json",
+  "current_latex_experiment": {
+    "root": "results/optimization-report-20261108T140641033100Z",
+    "environment": "results/optimization-report-20261108T140641033100Z/environment.json",
+    "results": "results/optimization-report-20261108T140641033100Z/runs",
+    "diagnostics": "results/optimization-report-20261108T140641033100Z/diagnostics/all-results-final.json",
+    "verification": "results/optimization-report-20261108T140641033100Z/verification.json",
+    "tables": "report/latex/section4Tables/current-sources.json",
+    "report": "report/latex/main.pdf",
+    "scope": "Current report timing uses this suite only; archived sources remain independently indexed."
+  },
+  "previous_latex_experiment": {
+    "root": "results/optimization-report-20261106T170615944601Z",
+    "environment": "results/optimization-report-20261106T170615944601Z/environment.json",
+    "results": "results/optimization-report-20261106T170615944601Z/runs",
+    "diagnostics": "results/optimization-report-20261106T170615944601Z/diagnostics/all-results-final.json",
+    "verification": "results/optimization-report-20261106T170615944601Z/verification.json",
+    "tables": "report/latex/section4Tables/current-sources.json",
+    "report": "report/latex/main.pdf",
+    "scope": "Current report timing uses this suite only; archived sources remain independently indexed."
+  }
 }

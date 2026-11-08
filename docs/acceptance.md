@@ -72,3 +72,16 @@
 完整方法、失败处理与复现见[优化分析](optimization_analysis.md)。本节不替代既有GUI人工验收记录。
 
 本轮[统一核验记录](../results/optimization-20261106-20261106T115705068678Z/verification.json)、[最终干净构建](../results/optimization-20261106-20261106T115705068678Z/final-checks/verification.json)、[历史报告与路径总核验](../results/optimization-20261106-20261106T115705068678Z/project-validation.json)均为PASS；这是审查流程通过，不改变冷启动Hard的TIMEOUT。
+
+## 当前报告本机复测
+
+| 项目 | 状态 | 当前运行范围 |
+| --- | --- | --- |
+| Java 构建与测试 | PASS | JDK 24.0.2，以 --release 19 编译；9 套 Java 测试通过，3 项 Python 工具回归通过 |
+| 教师三阶 A* | PASS | 所有三阶配置均完成；Manhattan 配置 16 步，3 次父端均低于 1 秒 |
+| 普通四阶比较 | PARTIAL | Manhattan、LC、PDB 均 52 步；错位数 A* 三次 OOM，IDA* 三次达到 60 秒截止，失败保留 |
+| 困难题含准备的冷缓存 | PASS | BASIC、fast、555T、1024m；70 步，建表2395ms，搜索9979.3164ms，父端12512.799ms |
+| 模式和独立控制 | PASS | 24 次困难题热配置与12次 fast/快照控制完成，逐配置分别统计 |
+| 当前 LaTeX 报告 | PASS | 本次实测数据已并入，42页逐页渲染检查通过，三轮编译通过，无未解析引用、缺字、重复目标及版心溢出；详见 report/latex/qa-current-experiments-20261107.json |
+
+此处仅记录当前实验，不覆盖各日期的独立证据。原始运行与配置由 report/data_sources.json 的 current_latex_experiment 定位；GUI未在本次重复人工验收，既有用户操作记录继续保留。

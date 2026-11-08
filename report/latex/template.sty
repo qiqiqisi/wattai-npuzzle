@@ -8,6 +8,11 @@
 \RequirePackage{graphicx}
 \RequirePackage{amsmath}
 \RequirePackage{caption}
+\RequirePackage{booktabs}
+\renewcommand{\arraystretch}{1.15}
+\newcommand{\ReportTableTitle}[1]{\par{\centering\fontsize{9bp}{12bp}\selectfont #1\par}\vspace{5bp}}
+\DeclareCaptionFont{reportcaption}{\fontsize{9bp}{12bp}\selectfont}
+\captionsetup{font=reportcaption,labelsep=quad,skip=5bp,justification=centering}
 \RequirePackage{needspace}
 \RequirePackage{placeins}
 \RequirePackage{tikz}
@@ -126,6 +131,9 @@
 \newcommand{\TemplateBeginBody}{%
   \TemplateBodytrue\setcounter{page}{1}\null%
   \fontsize{10.5bp}{15.6bp}\selectfont
+  \clubpenalty=10000\widowpenalty=10000\displaywidowpenalty=10000
+  \setlength{\parindent}{21bp}
+  \setlength{\parskip}{3bp}
 }
 \AddToHook{shipout/foreground}{%
   \ifTemplateBody
@@ -141,14 +149,17 @@
 % 原正文为空白页：只登记不可见的章节占位，不新增可见标题或页。
 % 在 body.tex 的对应占位后填写正文，目录会指向填写内容所在页。
 \newcommand{\TemplateSection}[1]{%
+  \par\Needspace{6\baselineskip}%
   \phantomsection
   \addcontentsline{toc}{templateone}{#1}%
 }
 \newcommand{\TemplateSubsection}[2][templatetwo]{%
+  \par\Needspace{5\baselineskip}%
   \phantomsection
   \addcontentsline{toc}{#1}{#2}%
 }
 \newcommand{\TemplateSubsubsection}[1]{%
+  \par\Needspace{5\baselineskip}%
   \phantomsection
   \addcontentsline{toc}{templatethree}{#1}%
 }

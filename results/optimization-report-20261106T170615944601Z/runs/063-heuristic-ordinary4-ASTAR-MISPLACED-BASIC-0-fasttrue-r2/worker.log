@@ -1,0 +1,9 @@
+PHASE PREPARE
+PHASE SEARCH
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space: failed reallocation of scalar replaced objects
+	at java.base/java.util.ImmutableCollections$AbstractImmutableList.iterator(ImmutableCollections.java:286)
+	at stud.g01.problem.npuzzle.NPuzzleProblem.applicable(NPuzzleProblem.java:51)
+	at core.problem.Problem.childNodes(Problem.java:65)
+	at core.problem.Problem.childNodes(Problem.java:87)
+	at core.solver.algorithm.searcher.BestFirstSearcher.search(BestFirstSearcher.java:64)
+	at stud.g01.runner.OptimizationWorker.main(OptimizationWorker.java:68)

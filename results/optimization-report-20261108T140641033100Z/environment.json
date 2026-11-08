@@ -1,0 +1,29 @@
+{
+  "java": "java version \"19.0.2\" 2023-01-17\nJava(TM) SE Runtime Environment (build 19.0.2+7-44)\nJava HotSpot(TM) 64-Bit Server VM (build 19.0.2+7-44, mixed mode, sharing)\n",
+  "java_executable": "E:\\java19\\bin\\java.exe",
+  "os": "Windows-11-10.0.26100-SP0",
+  "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+  "heap_argument": "-Xmx1024m",
+  "classes": "build-report-20261108T140641033100Z",
+  "base_commit": "76609eedb3daba9ffca9284c42e686a3fda6ec42",
+  "javac_executable": "E:\\java19\\bin\\javac.exe",
+  "javac_version": "javac 19.0.2",
+  "upstream_main": "5a4edfde332021571386380619fb0328656ba234",
+  "source_tree": "cc8d9b774b9a7cf7037071f1c14ad77318204ce1",
+  "upstream_source_tree": "cc8d9b774b9a7cf7037071f1c14ad77318204ce1",
+  "input_manifest": {
+    "resources/pathfinding.txt": "2c5a9ed1f4371d2289878f7951562318b9c79cb88f9ab650b1f84e6b828402a3",
+    "resources/pathfinding3.txt": "63ea6a895b5ad0634a2cd73bad5ece41226afebda6256c06f337d8828077d9e6",
+    "resources/problems.txt": "c5499c0a963f5ab9b58163927172d8b5a19f5914fcda4d381612c07208de0218",
+    "resources/problems3.txt": "2ce87a7a6fd2c65713eb7b3355889a0dc6f828a1a9c86b91221e8721de13c2df",
+    "resources/problems_stage1_8puzzle.txt": "824cfd654fb9522c6b94cd836d775f86806a6d88eef950269f95c914c12dc77c",
+    "resources/problems_stage2_15puzzle.txt": "764ffa5fed487f56469c90bc2a876f19a3e8d2a432c78230fc1eef3e7265e3b3",
+    "resources/problems_teacher_stage1.txt": "e0cc9e54e65155d03206107809ad5d2a6187fe90f8aa97507432a2110d16cd6d"
+  },
+  "java_input_diff_from_main": "",
+  "source_sha256": "3dbcd9b083fd0b54aad923d955b61aa408ceb015cb6b662b3fb276da1bada190",
+  "python": "3.12.14",
+  "compile_release": 19,
+  "timing": "search includes synchronous snapshots; parent includes prepare and replay",
+  "deadline_s": 60
+}

@@ -1,16 +1,16 @@
 % 第一部分：算法性质与当前实现的边界分别说明。
 \begingroup
-\setlength{\parskip}{2bp}
+\setlength{\parskip}{3bp}
 \setlength{\textfloatsep}{8bp plus 2bp minus 2bp}
 \setlength{\intextsep}{8bp plus 2bp minus 2bp}
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{1-\arabic{figure}}
 \renewcommand{\theHfigure}{section1.\arabic{figure}}
 \renewcommand{\figurename}{图}
-\captionsetup{font=small,labelsep=quad,skip=5bp}
+\captionsetup{font=reportcaption,labelsep=quad,skip=5bp}
 \newcommand{\OverviewTitle}[2]{%
   \par\Needspace{4\baselineskip}%
-  #1{#2}{\bfseries #2}\par\vspace{2bp}}
+  #1{#2}\noindent{\bfseries #2}\par\vspace{2bp}}
 \newcommand{\OverviewFigure}[4][0.90]{%
   \begin{figure}[htbp]
     \centering
@@ -19,7 +19,7 @@
   \end{figure}}
 
 \TemplateSection{1.\quad 启发式算法综述}
-{\bfseries\fontsize{12bp}{15.6bp}\selectfont 1.\quad 启发式算法综述}\par\vspace{6bp}
+\noindent{\bfseries\fontsize{12bp}{15.6bp}\selectfont 1.\quad 启发式算法综述}\par\vspace{6bp}
 
 N-Puzzle 的求解可以看作从初始棋盘到目标棋盘的路径搜索。随着棋盘规模增大，
 直接枚举状态的时间和存储代价都会迅速增长。启发式搜索利用问题自身的结构，
@@ -64,7 +64,7 @@ $h(n)$ 是从该结点状态到目标的剩余代价估计；$f(n)$ 则估计经
 以及是否完整保留可能通向最优解的路径。下文均以有限状态图、正边代价及可达目标为讨论前提，
 本实验的单位代价棋盘满足这些条件。
 
-\OverviewTitle{\TemplateSubsubsection}{1.2.1 A*算法}
+\OverviewTitle{\TemplateSubsubsection}{1.2.1 A* 算法}
 
 A* 维护 Open 表和 Closed 表。Open 保存已经生成、尚待处理的候选结点，
 Closed 保存已经完成扩展的状态。每一轮从 Open 取出 $f$ 最小的结点，
@@ -84,16 +84,16 @@ Closed 保存已经完成扩展的状态。每一轮从 Open 取出 $f$ 最小�
 
 目标判定必须结合出队顺序理解。生成目标只说明发现了一条可行路径，
 Open 中仍可能存在通向更短解的候选；只有目标作为最小 $f$ 结点被取出时，
-才能在相应理论条件下确认其最优性。本项目的教师类 \texttt{BestFirstSearcher}
+才能在相应理论条件下确认其最优性。教师提供的框架类 \texttt{BestFirstSearcher}
 正是在取出结点之后判定目标，并使用学生实现的 \texttt{PqFrontier} 管理 Open。
 该 Open 由优先队列与状态索引表共同维护，Closed 则使用状态集合，
 因此“选出最小估值”和“判断是否为同一棋盘”是两个不同的操作。
 \FloatBarrier
 
-\OverviewTitle{\TemplateSubsubsection}{1.2.2 A*算法可采纳性证明}
+\OverviewTitle{\TemplateSubsubsection}{1.2.2 A* 算法可采纳性证明}
 
 A* 的经典论证利用最优路径上的边界结点\cite{hart1968}。
-但需要先说明边界结点为什么不会因重复状态处理而丢失：
+其中的关键是，重复状态处理仍须保留可能通向最优解的边界结点：
 树搜索保留不同路径；允许重开的图搜索在发现更小 $g$ 时重新处理该状态；
 本项目的图搜索则直接跳过 Closed 中的状态。因此，对当前实现，
 除可采纳性外还要求启发函数满足一致性：
@@ -135,11 +135,10 @@ A* 的经典论证利用最优路径上的边界结点\cite{hart1968}。
 最优路径总代价为 6，边界结点已付代价为 2，启发估计为 3，因此 $f(n)=5$；
 另一条路径虽已生成代价为 8 的目标结点，也不能越过该边界结点先出队。
 图中的 $G^*$ 与 $G'$ 是通过不同路径到达\textbf{同一目标状态}的两个搜索结点，
-并非改变了棋盘的目标。该图用于解释证明，不代表某次实验的结点记录。
+图中数值用于说明边界结点与候选目标的关系。
 
 若启发函数仅可采纳而不一致，上述“第一次出队即有最优 $g$”的前提可能不成立，
-此时需要允许更短路径触发重开等相应机制。不能只检查 $h\leq h^*$，
-就断言当前任何不重开的图搜索都能保证最优；同样，改变为带权估值后也需要重新分析。
+此时可通过重开结点处理更短路径；本实验的不重开实现则要求启发函数满足一致性。
 \FloatBarrier
 
 \OverviewTitle{\TemplateSubsection}{1.3 重复扩展结点的问题}
@@ -153,8 +152,7 @@ A* 的经典论证利用最优路径上的边界结点\cite{hart1968}。
 
 应当区分重复生成与重复扩展。重复生成是不同路径产生了相同状态，
 即使使用 Closed 也不一定能完全避免；重复扩展则意味着该状态的后继被再次枚举和估值。
-图~\ref{fig:overview-duplicate} 是一个一般的抽象状态图，用来说明两条路径对同一状态的竞争，
-不将其当作实际的 N-Puzzle 棋盘转换实例。
+图~\ref{fig:overview-duplicate} 以一般的抽象状态图说明两条路径对同一状态的竞争。
 
 \OverviewFigure{fig-1-3-duplicate-state}
   {同一状态经不同路径到达时的代价与父链更新}
@@ -210,12 +208,12 @@ $O(\log N)$，状态索引的查询平均为 $O(1)$；但替换旧结点时调�
 因此，对当前不重开 Closed 的 A*，证明一致性同时提供了所需的剩余代价下界。
 
 启发函数的组合也要保持这些条件。多个一致启发函数取最大值仍然一致，
-而直接相加可能重复计算同一步移动的成本，不能仅因估计更大就判为更优。
+而直接相加可能重复计算同一步移动的成本。
 本实验的加性模式数据库需要先建立不重复的动作成本分摊，
 再论证各模式距离之和的下界与一致性；具体建模放在后续的启发函数部分讨论。
 \FloatBarrier
 
-\OverviewTitle{\TemplateSubsection}{1.4 IDA*算法基本原理及其可采纳性}
+\OverviewTitle{\TemplateSubsection}{1.4 IDA* 算法基本原理及其可采纳性}
 
 A* 需要同时保留大量 Open 与 Closed 记录，在 15-Puzzle 上可能先受到存储限制。
 IDA* 将按估值选择候选的思想与深度优先搜索结合：给定阈值 $B$，
@@ -245,7 +243,7 @@ IDA* 将按估值选择候选的思想与深度优先搜索结合：给定阈值
 第三轮沿当前深度优先顺序到达代价为 6 的目标后立即停止，
 所以右侧某些满足阈值的分支仍呈灰色，表示尚未访问。
 结点内的数字是 $f$，标注“再 3 步”的边合并了三个动作，
-被省略中间结点的 $f$ 均为 6。这些值只用于解释更新规则，不是实测阈值序列。
+被省略中间结点的 $f$ 均为 6。该图为阈值更新过程的示意。
 
 \textbf{（2）BASIC 模式的最优性。}
 以下论证针对可采纳启发函数、正代价、每轮完整搜索相应阈值范围且只做路径环剪枝的基本 IDA*。
@@ -278,27 +276,23 @@ IDA* 在提高阈值后需要重新展开先前访问过的路径，这是节省
 基本深度优先实现同时保存递归路径、路径状态集合及各层尚未处理的后继，
 搜索存储可记为 $O(bd)$，其中 $b$ 为最大分支数、$d$ 为搜索深度；
 N-Puzzle 的 $b\leq4$，因此在固定棋盘规模下随深度线性增长。
-这一结论仅指 BASIC 的路径相关搜索存储，不包含模式数据库、额外置换表及其他输入存储。
+这一结论仅指 BASIC 的路径相关搜索存储，不包含模式数据库、额外转置表及其他输入存储。
 此外，当前实现还记录各轮阈值，设迭代次数为 $I$，这份诊断序列额外占用 $O(I)$ 空间。
 A* 则要保留大量已发现状态，存储规模随 Open 与 Closed 的总记录数增长。
 
 本项目另有 TT 和 ZOBRIST 模式，用本轮记录的较小 $g$ 减少重复访问，
 每次增加阈值前都会清空相应表。Zobrist 值用于选择桶，
 只有完整状态相等时才根据 $g$ 作剪枝决定，避免把哈希碰撞直接当成同一棋盘。
-这些模式需要额外表空间，其剪枝正确性还受状态记录及路径上下文处理方式约束，
-不能将 BASIC 的上述证明原样当作任意置换表策略的证明。
-小规模最短路径与碰撞回归可核验实现，但也不能替代对任意状态图的普遍论证。
+这些模式需要额外表空间，剪枝的正确性取决于状态记录和路径上下文的处理。
+本实验通过小规模最短路径对照和碰撞测试检查 TT 与 ZOBRIST 的实现。
+前面的最优性证明针对 BASIC 模式，以正边代价、可采纳启发函数、完整阈值搜索和路径环剪枝为前提。
 
-A* 与 IDA* 的取舍因此同时涉及时间和空间：A* 保留搜索前沿，减少跨轮重新搜索，
-却可能消耗较多内存；IDA* BASIC 的路径存储较小，但可能反复展开同一批结点。
-启发值更接近真实代价时，两者通常都有机会缩小搜索范围，
-最终效果仍受估值成本、重复状态比例、阈值轮数和可用内存影响。
-后续实验应在同题、同环境和一致计时口径下比较，不能预先认定 IDA* 在所有实例上都更快。
+A* 保留前沿以减少重复搜索，但存储较多；IDA* BASIC 的路径存储较小，
+代价是跨轮重复展开。两者的运行时间还受估值成本、重复状态比例及阈值轮数影响，
+应在同题、同环境和一致计时口径下比较。
 
-本文第四章的主要对照实验及困难实例求解采用 IDA* 的 BASIC 模式，
-开启快速实现（\texttt{wattai.fast=true}），不启用置换表。
-TT 与 ZOBRIST 属于可选优化模式，其实验结果应结合具体配置分别讨论，
-不能直接归入 BASIC 模式的结果。
+第四章的算法与启发函数对照采用 BASIC IDA*，开启 fast，不使用转置表；
+困难题另比较 TT、ZOBRIST、表容量和 fast 开关，各配置分别统计。
 
 \endgroup
 \clearpage

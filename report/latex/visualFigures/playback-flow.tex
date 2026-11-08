@@ -1,0 +1,25 @@
+\documentclass[border=7bp]{standalone}
+\input{../figure-style.tex}
+\begin{document}
+\begin{tikzpicture}
+\path (-7.3,0) rectangle (7.3,0);
+
+\node[emphasis,text width=8cm] (read) at (0,0) {读取解路径 TSV：SolutionTrace};
+\node[frame,text width=8cm] (validate) at (0,-1.4) {检查格式、元数据、步号、合法动作和最终目标};
+\node[supporting,text width=3cm] (error) at (6.4,-1.4) {失败：抛出异常\\不创建播放窗口};
+\node[frame,text width=8cm] (window) at (0,-2.8) {校验通过：创建 PuzzleVisualizer 窗口\\建立 PlaybackModel，当前步号置 0};
+\node[emphasis,text width=8cm] (event) at (0,-4.3) {等待交互事件};
+\node[frame,text width=4.2cm] (manual) at (-2.8,-6) {Previous / Next / Restart\\移动一步或回到初态，处理首末边界};
+\node[frame,text width=4.2cm] (auto) at (2.8,-6) {Play / Pause / Speed\\控制 Swing Timer 与播放间隔};
+\node[frame,text width=8cm] (refresh) at (0,-7.8) {更新当前步号、动作与棋盘；目标棋盘保持不变};
+\draw[flow](read)--(validate);\draw[flow](validate)--(error);
+\draw[flow](validate)--(window);\draw[flow](window)--(event);
+\draw[flow](event.south)-|(manual.north);\draw[flow](event.south)-|(auto.north);
+\coordinate (join) at (0,-7.1);
+\draw[draw=Ink,line width=.65pt](manual.south)|-(join);
+\draw[draw=Ink,line width=.65pt](auto.south)|-(join);\draw[flow](join)--(refresh.north);
+\draw[flow](refresh.west)--++(-1,0)|-(event.west);
+\node[annotation,text width=9cm] at (0,-8.85) {播放器从路径文件逐步还原棋盘；按钮与定时器共同控制进度，步号始终处于有效范围内};
+
+\end{tikzpicture}
+\end{document}

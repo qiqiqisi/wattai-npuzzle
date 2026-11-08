@@ -1,0 +1,25 @@
+\documentclass[border=7bp]{standalone}
+\input{../figure-style.tex}
+\begin{document}
+\begin{tikzpicture}
+
+\node[emphasis,text width=11cm] (input) at (0,0) {输入：棋盘初态、目标、算法、启发函数与运行配置};
+\node[frame,text width=11cm] (runner) at (0,-1.45) {运行入口：SearchTester / StudentSearchTester / 实验运行器\\教学入口由 EngineFeeder 提供问题、\mbox{Frontier} 与 Predictor；实验入口按配置直接构造};
+\node[emphasis,text width=11cm] (search) at (0,-3.1) {Searcher：A* 的最小 $f$ 出队，或 IDA* 的阈值内深度优先搜索};
+\node[frame,text width=4.6cm] (problem) at (-3.2,-5) {Problem / State\\目标判定、合法动作、状态转换\\生成后继并累计 $g$};
+\node[frame,text width=4.6cm] (heuristic) at (3.2,-5) {Predictor：计算 $h$\\错位数 / \mbox{Manhattan} / LC / PDB\\PDB 先建表或加载，再查询};
+\node[supporting,text width=11cm] (manage) at (0,-7) {候选管理与重复状态处理\\A*：Frontier + Closed；IDA*：当前路径 + 可选 TT / ZOBRIST};
+\node[emphasis,text width=11cm] (solution) at (0,-8.6) {找到目标：沿 Node 父链恢复动作序列，输出解路径 TSV};
+\node[frame,text width=11cm] (visual) at (0,-10.05) {SolutionTrace 读取文件 → PlaybackModel 控制步号 → PuzzleVisualizer 显示与播放};
+\draw[flow] (input)--(runner); \draw[flow] (runner)--(search);
+\draw[flow] (search.south)-|(problem.north); \draw[flow] (search.south)-|(heuristic.north);
+\coordinate (join) at (0,-6.35);
+\draw[draw=Ink,line width=.65pt] (problem.south)|-(join);
+\draw[draw=Ink,line width=.65pt] (heuristic.south)|-(join);\draw[flow](join)--(manage.north);
+\draw[flow] (manage.west)--++(-.85,0)|-node[annotation,pos=.23,left]{继续搜索}(search.west);
+\draw[flow] (search.east)--++(1.4,0)|-node[annotation,pos=.25,right]{目标成立}(solution.east);
+\draw[flow] (solution)--(visual);
+\node[annotation] at (0,-11) {上半部分完成求解；下半部分通过文件衔接播放器，不在播放时重新搜索};
+
+\end{tikzpicture}
+\end{document}

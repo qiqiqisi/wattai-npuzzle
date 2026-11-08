@@ -1,0 +1,22 @@
+\documentclass[border=7bp]{standalone}
+\input{../../figure-style.tex}
+\begin{document}
+\begin{tikzpicture}
+\path (-7.3,0) rectangle (7.3,0);
+
+\node[emphasis,text width=11.8cm] (new) at (0,0) {生成候选后继：计算 $g$ 与 $h$，先检查是否已在 Closed};
+\node[supporting,text width=11.8cm] (closed) at (0,-1.3) {Closed：两种方案均用 HashSet，平均 $O(1)$；本实验未更换该结构};
+\node[emphasis,text width=4.8cm] (list) at (-3.2,-2.7) {ListFrontier：有序列表};
+\node[emphasis,text width=4.8cm] (pq) at (3.2,-2.7) {PqFrontier：优先队列 + 状态索引};
+\node[frame,text width=4.8cm] (l1) at (-3.2,-4.1) {定位重复状态：逐项比较 $O(N)$};
+\node[frame,text width=4.8cm] (p1) at (3.2,-4.1) {定位重复状态：HashMap 平均 $O(1)$};
+\node[frame,text width=4.8cm] (l2) at (-3.2,-5.8) {新状态或更小 $g$：保持列表有序\\插入、删除可能搬移元素 $O(N)$\\较差重复路径直接丢弃};
+\node[frame,text width=4.8cm] (p2) at (3.2,-5.8) {新状态：堆插入 $O(\log N)$\\更小 $g$：旧堆项线性删除 $O(N)$\\较差重复路径直接丢弃};
+\node[frame,text width=4.8cm] (l3) at (-3.2,-7.6) {取最优：移除列表首项 $O(N)$};
+\node[frame,text width=4.8cm] (p3) at (3.2,-7.6) {取最优：堆出队 $O(\log N)$\\同时删除状态索引};
+\foreach \a/\b in {new/closed,list/l1,pq/p1,l1/l2,p1/p2,l2/l3,p2/p3}{\draw[flow](\a)--(\b);}
+\draw[flow](closed.south)-|(list.north);\draw[flow](closed.south)-|(pq.north);
+\node[annotation,text width=11cm] at (0,-8.7) {图示为操作代价。额外索引增加空间；替换仍为线性删除，不能据此虚写全部操作的固定加速比};
+
+\end{tikzpicture}
+\end{document}

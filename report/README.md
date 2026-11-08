@@ -1,31 +1,13 @@
-# 研究报告
+# N-Puzzle 研究报告
 
-[可编辑 DOCX](NPuzzle研究报告.docx) · [PDF](NPuzzle研究报告.pdf) · [正文源稿](正文.md)
+**当前报告入口：[LaTeX PDF](latex/main.pdf)** · [可编辑源码与编译说明](latex/README.md)
 
-[教师原模板的 LaTeX 版](latex/README.md)：保留3页模板版式，封面图片每边轻裁2像素；经用户确认修复目录。独立于下述已完成研究报告。
+当前报告采用同题实测记录，覆盖 A*、IDA*、错位数、Manhattan、LC、加性 PDB、转置表模式与容量、fast 和记录开销。实验来源见 [表格与图形数据索引](latex/section4Tables/current-sources.json)，计时口径与失败处理在第四章说明。
 
-采用本地教师参考模板的封面与 A4 格式，重建正常目录并补齐正文。姓名、学号、学期均为 `待填写`。数据来自 [data_sources.json](data_sources.json)，逐输入哈希见 [data_hashes.json](data_hashes.json)。CSV、计时和路径证据入口见 [INDEX](../results/INDEX.md)。2026-10-12 用户已完成 [GUI 本机人工操作验收](../docs/acceptance.md)；**当前 DOCX/PDF 仍保留生成时的旧“待人工验收”表述**，最终填写封面并重新生成报告时应同步修订。
+封面信息在 `latex/main.tex` 中维护；最终交付 PDF 由本地 XeLaTeX 编译。界面截图用来说明播放器，不作为搜索性能计时依据。GUI 人工操作证据见 [验收记录](../docs/acceptance.md)。
 
-本轮用 Python 3 的 `python-docx` 生成，以 Microsoft Word 更新目录、导出 PDF，再逐页检查 PNG。打包 LibreOffice 不可用，使用 Word 的事实记录在本轮渲染日志中。
+## 归档材料
 
-重新生成需要只读的 `teacher_reference/NPuzzle求解研究报告.docx`（原件不随仓库上传）及 `python-docx`：
+[独立 DOCX](NPuzzle研究报告.docx)、[独立 PDF](NPuzzle研究报告.pdf) 与 [Markdown 源稿](正文.md) 是独立留存的报告版本，不能替代上述当前 LaTeX 报告。其原数据哈希保留在 [data_hashes.json](data_hashes.json)，不因当前报告更新而覆盖。
 
-```powershell
-python tools/build_report.py
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/render_report.ps1 -InputDocx report/NPuzzle研究报告.docx -OutputPdf report/NPuzzle研究报告.pdf -UpdateFields
-```
-
-填写封面后，应重新导出 PDF 并核对目录与页码。构建脚本不会运行搜索或更改历史 CSV。
-
-## 本机 GUI 运行截图
-
-- [教师指定 3×3 终态，16/16 步](images/teacher_stage1_3x3_final.png)
-- [最难 4×4 终态，70/70 步](images/hard_15puzzle_4x4_final.png)
-
-上述两张 2026-10-10 原始 PNG 已嵌入正文第5.4节、DOCX与PDF，字节哈希纳入 data_hashes.json，保持不变。2026-10-12 用户另提供[3×3初态](../docs/images/gui_3x3_initial.png)、[3×3终态](../docs/images/gui_3x3_final.png)、[4×4初态](../docs/images/gui_4x4_initial.png)、[4×4终态](../docs/images/gui_4x4_final.png)以及[错误路径拒绝截图](../docs/images/invalid_trace_rejected.png)，作为 GitHub GUI 验收补充材料；目前未替换报告中的旧图，也未重建DOCX/PDF，避免原报告的数据来源与哈希失配。
-
-17页正式报告保留教师封面、算法原理、历史同题比较和2026-10-11独立冷/热复核。2026-10-12 新增[7张精选交互截图](../docs/acceptance.md)并由用户本人确认全部控件与速度操作正常；该后续验收未写入现有正文/DOCX/PDF，须在最终填写封面时同步更新报告文本，再导出PDF并检查目录与页码。原报告两张截图及 data_hashes.json 保持不变。
-
-## 新实验补充的版本边界
-
-2026-11-06 的优化实验只加入[Markdown正文](正文.md)第4.6节与[独立分析](../docs/optimization_analysis.md)。现有DOCX、PDF及LaTeX正文/PDF均未重新生成；旧图和旧数据哈希保持不变，不能把历史二进制报告当作已包含本轮结果。原 `build_report.py` 使用历史模板硬编码正文，已增加保护门禁，避免覆盖新补充；要生成包含新实验的二进制报告，需要显式升级该模板流程并重新排版核验。本轮新数据源见[data_sources.json](data_sources.json)的optimization键。
+全部原始数据导航见 [results/INDEX.md](../results/INDEX.md)。教师素材与第三方来源见 [声明](../THIRD_PARTY_NOTICES.md)。

@@ -1,0 +1,14 @@
+{
+  "java": "java version \"24.0.2\" 2025-07-15\nJava(TM) SE Runtime Environment (build 24.0.2+12-54)\nJava HotSpot(TM) 64-Bit Server VM (build 24.0.2+12-54, mixed mode, sharing)\n",
+  "java_executable": "E:\\java\\bin\\java.exe",
+  "os": "Windows-11-10.0.26100-SP0",
+  "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+  "heap_argument": "-Xmx1024m",
+  "classes": "build-report-20261106T170615944601Z",
+  "base_commit": "a26a59a60c8b75bad6ef254cb5ee11ee42b3e585",
+  "source_sha256": "3dbcd9b083fd0b54aad923d955b61aa408ceb015cb6b662b3fb276da1bada190",
+  "python": "3.12.14",
+  "compile_release": 19,
+  "timing": "search includes synchronous snapshots; parent includes prepare and replay",
+  "deadline_s": 60
+}
