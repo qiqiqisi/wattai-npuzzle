@@ -29,3 +29,7 @@ elapsed_ms为工作JVM内搜索；parent.txt从创建工作JVM前计时，含其
 另有[首次预实验TIMEOUT](optimization-20261106-20261106T114453353805Z/diagnosis.json)，原因及迟到路径保留；该目录计划80项但只实际启动1项，不能按计划数充当已运行数。
 
 本轮[统一核验](optimization-20261106-20261106T115705068678Z/verification.json)、[最终构建与测试](optimization-20261106-20261106T115705068678Z/final-checks/verification.json)、[项目级核验](optimization-20261106-20261106T115705068678Z/project-validation.json)。实际运行80项加15项诊断尝试及首次预试1项，共96次尝试；两次JFR初始化FAIL不算搜索成功。
+
+## 2026-11-08 普通4×4 MISPLACED 60秒诊断
+
+[六次完整比较表](misplaced-60s-20261108/comparison.csv) · [分析及口径](misplaced-60s-20261108/analysis.md) · [环境与配置](misplaced-60s-20261108/experiment.json) · [完整原始记录](misplaced-60s-20261108/runs/) · [完整性核验](misplaced-60s-20261108/validation.json)。60秒为本轮父端诊断上限，不是教师第二阶段时限；OOM、TIMEOUT及缺失指标分别保留。旧记录和正式报告未修改。

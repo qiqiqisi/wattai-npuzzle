@@ -1,0 +1,10 @@
+started_utc=2026-11-08T13:22:33.639835+00:00
+pid=82352
+timeout_s=60
+end_to_end_ms=9197.059499798343
+exit_code=1
+status=OOM
+deadline_fired=False
+killed=False
+reaped=True
+command=["C:\\Program Files\\Java\\jdk-19\\bin\\java.exe", "-Xmx1024m", "-Dwattai.fast=true", "-Xlog:gc*,startuptime=info:file=results/misplaced-60s-20261108/runs/ASTAR-3/jvm-gc-startup.log:uptimemillis,level,tags:filecount=0", "-cp", "build-misplaced-60s-20261108", "stud.g01.runner.OptimizationWorker", "resources/problems3.txt", "3", "ASTAR", "MISPLACED", "4443", "BASIC", "0", "generated/misplaced-60s-20261108/ASTAR-3", "results/misplaced-60s-20261108/runs/ASTAR-3"]

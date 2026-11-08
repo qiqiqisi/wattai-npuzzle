@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "direct_jvm_pid_matches": true,
+  "deadline_fired": true,
+  "reaped": true,
+  "late_marker_absent": true,
+  "parent_ms": 2036.1721001099795
+}

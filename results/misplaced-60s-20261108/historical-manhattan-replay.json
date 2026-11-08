@@ -1,0 +1,41 @@
+{
+  "note": "Only independent replay of existing historical solutions, no new searches.",
+  "runs": [
+    {
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/037-heuristic-ordinary4-ASTAR-MANHATTAN-BASIC-0-fasttrue-r1/solution.tsv",
+      "sha256": "0076a7bc82af806281e44d7e2c8e1868fabe41d734dbcddfe1103b90d8039162",
+      "length": 52,
+      "status": "PASS"
+    },
+    {
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/041-heuristic-ordinary4-IDA-MANHATTAN-BASIC-0-fasttrue-r1/solution.tsv",
+      "sha256": "0088c46cfd26eac5d9a32d208804f2295aa43b211d7ababf577ab0f8e2fa4c98",
+      "length": 52,
+      "status": "PASS"
+    },
+    {
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/055-heuristic-ordinary4-ASTAR-MANHATTAN-BASIC-0-fasttrue-r2/solution.tsv",
+      "sha256": "2342a92c4ba74d11065faa3fc27b7de928b93c56cf81c61a339ddc8a8e6bf7d1",
+      "length": 52,
+      "status": "PASS"
+    },
+    {
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/064-heuristic-ordinary4-IDA-MANHATTAN-BASIC-0-fasttrue-r2/solution.tsv",
+      "sha256": "dc90dc3fdf52c8c7f2b9fd1f9bd421c8e2837edc40f27df9306ecc43a260a060",
+      "length": 52,
+      "status": "PASS"
+    },
+    {
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/065-heuristic-ordinary4-ASTAR-MANHATTAN-BASIC-0-fasttrue-r3/solution.tsv",
+      "sha256": "c66faa8697d5ced608315522f165528286ace083e0a58bb43f500e2f5ba1c9b3",
+      "length": 52,
+      "status": "PASS"
+    },
+    {
+      "path": "results/optimization-20261106-20261106T115705068678Z/runs/075-heuristic-ordinary4-IDA-MANHATTAN-BASIC-0-fasttrue-r3/solution.tsv",
+      "sha256": "988958ec1c3fb85fd81ea852e96130d67d010581a38a1870a6a93f922af3b26f",
+      "length": 52,
+      "status": "PASS"
+    }
+  ]
+}

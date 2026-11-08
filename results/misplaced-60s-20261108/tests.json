@@ -1,0 +1,18 @@
+[
+  {
+    "test": "PuzzleFoundationTest",
+    "exit_code": 0
+  },
+  {
+    "test": "PuzzleStage1Test",
+    "exit_code": 0
+  },
+  {
+    "test": "PuzzleStage2Test",
+    "exit_code": 0
+  },
+  {
+    "test": "BenchmarkAcceptanceTest",
+    "exit_code": 0
+  }
+]

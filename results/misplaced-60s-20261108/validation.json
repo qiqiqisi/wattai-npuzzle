@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "run_count": 6,
+  "successful_runs": 0,
+  "all_required_csv_columns_present": true,
+  "failure_final_metrics_blank": true,
+  "all_raw_files_present": true,
+  "historical_manhattan_solutions_independently_replayed": 6,
+  "raw_logs_properties_parent_preserved": true,
+  "startup_and_process_memory_present_all_runs": true,
+  "watchdog_fixture_is_not_search": true,
+  "note": "See integrity.json for unchanged protected and historical files; hashes include every archive file except this manifest itself.",
+  "new_experimental_runs": 6,
+  "additional_experimental_runs": 0,
+  "regression_tests_may_run_search_fixtures": true
+}
