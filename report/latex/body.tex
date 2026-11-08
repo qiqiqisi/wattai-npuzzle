@@ -1144,25 +1144,15 @@ speed.addActionListener(event -> {
 \TemplateSubsection{5.4 求解过程的可视化展示}
 {\bfseries 5.4\quad 求解过程的可视化展示}\par\vspace{2bp}
 
-\textbf{（1）如何开启。}假设构建产物位于build/classes下，解路径文件在results/solutions下，
+\textbf{（1）如何开启。}假设构建产物位于 build/classes 下，解路径文件在 results/solutions 下，
 以下为示例：
 
 {\fontsize{9.5bp}{12bp}\selectfont
 \begin{verbatim}
-java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
+java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径TSV文件
 \end{verbatim}}
 
-\textbf{（2）两种棋盘规模。}3$\times$3 与 4$\times$4 两种规模都在同一窗口中自适应绘制：3$\times$3 的初态与目标状态见图~\ref{fig:3x3-io}；
-4$\times$4 的初态与目标状态见图~\ref{fig:4x4-io}，这一局由 IDA* 配合加性模式数据库（disjoint pattern 和 Pattern DataBase）得到，共 70 步。后面的阶段演示沿用这两局解，不再更换实例。
-
-\begin{center}
-\includegraphics[width=0.46\linewidth]{visualFigures/4x4-initial.png}\hspace{8bp}%
-\includegraphics[width=0.46\linewidth]{visualFigures/4x4-final.png}
-\end{center}
-\refstepcounter{figure}\label{fig:4x4-io}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 4$\times$4 实例：初态 Step 0/70 与目标状态 Step 70/70（IDA* + 加性 PDB）}\par\vspace{5bp}
-
-\textbf{（3）交互操作。}图~\ref{fig:ops} 是在 3$\times$3 实例上依次执行暂停、后退、前进与重置四个操作的画面。暂停停在第 13 步，后退回到第 12 步，前进又回到第 13 步，重置回到第 0 步，且每次操作后棋盘与步号同步变化。
+\textbf{（2）交互操作。}图~\ref{fig:ops} 是在 3$\times$3 实例上依次执行暂停、后退、前进与重置四个操作的画面。暂停停在第 13 步，后退回到第 12 步，前进又回到第 13 步，重置回到第 0 步，且每次操作后棋盘与步号同步变化。
 
 \begin{center}
 \includegraphics[width=0.42\linewidth]{visualFigures/3x3-pause.png}\hspace{6bp}%
@@ -1173,19 +1163,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \refstepcounter{figure}\label{fig:ops}
 {\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 交互操作：暂停（Step 13）、后退（Step 12）、前进（Step 13）、重置（Step 0）}\par\vspace{5bp}
 
-\noindent\begin{minipage}{\linewidth}
-\textbf{（4）速度切换与目标状态。}图~\ref{fig:speed} 给出 4$\times$4 实例上的两张速度截图与一张目标状态截图。左侧与中间的图分别显示速度档位为 0.5x 与 2x，界面在两种档位下均正常推进；右侧的图是在第 70/70 步继续按 Next 的画面，界面保持在目标状态不再前进。
-
-\begin{center}
-\includegraphics[width=0.31\linewidth]{visualFigures/4x4-speed-half.png}\hspace{4bp}%
-\includegraphics[width=0.31\linewidth]{visualFigures/4x4-speed-double.png}\hspace{4bp}%
-\includegraphics[width=0.31\linewidth]{visualFigures/4x4-end-next.png}
-\end{center}
-\refstepcounter{figure}\label{fig:speed}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 速度切换（0.5x、2x）与目标状态（第 70/70 步再按 Next 保持不再前进）}\par\vspace{5bp}
-\end{minipage}\par
-
-\textbf{（5）损坏文件被拒绝。}图~\ref{fig:invalid} 是把解路径文件截断后重新运行的终端输出，可见程序抛出 \texttt{java.io.IOException: Incomplete solution file} 并以失败状态结束，没有打开任何窗口，也没有显示伪造的棋盘。
+\textbf{（3）损坏文件被拒绝。}图~\ref{fig:invalid} 是把解路径文件截断后重新运行的终端输出，可见程序抛出 \texttt{java.io.IOException: Incomplete solution file} 并以失败状态结束，没有打开任何窗口，也没有显示伪造的棋盘。
 
 \begin{center}
 \includegraphics[width=0.72\linewidth]{visualFigures/invalid-trace-rejected.png}
@@ -1195,8 +1173,8 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 
 
 
-\textbf{（6）第一阶段：A* + 优先队列。}第一阶段要求用 A* \cite{hart1968} 配合优先队列在 1 秒内解出指定问题实例。
-用 A* 配合曼哈顿距离求得 16 步的解（对应第四部分表 4-4 的记录），左图是播放到第 8 步（$8/16$）时的中段画面，右图是第 16 步（$16/16$）的目标状态。
+\textbf{（4）第一阶段：A* + 优先队列。}第一阶段使用 A* \cite{hart1968} 配合优先队列，启发函数为曼哈顿距离，求得 16 步的解（数据来自第 4 节）。
+左图是播放到第 8 步（$8/16$）时的中段画面，右图是第 16 步（$16/16$）的目标状态。
 
 \noindent\begin{minipage}{\linewidth}
 \begin{center}
@@ -1204,11 +1182,11 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.46\linewidth]{visualFigures/stage1-astar-3x3-step16.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage1}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第一阶段（A* + 优先队列）3$\times$3 实例的解路径播放：中段 Step 8/16 与目标状态 Step 16/16}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第一阶段（A* + 优先队列，曼哈顿距离）3$\times$3 实例的解路径播放：中段 Step 8/16 与目标状态 Step 16/16}\par\vspace{5bp}
 \end{minipage}\par
 
-\textbf{（7）第二阶段：IDA* 求解 4 阶棋盘。}第二阶段要求对 4 阶（15-Puzzle）使用 IDA* 求解。Zobrist 哈希是建议采用的优化方法\cite{zobrist-wiki,zobrist-cn}，
-但第四部分的主对照采用 BASIC 模式、未启用转置表，因此本项演示的是 IDA* 配合曼哈顿距离求得的 52 步解，Zobrist 置换表只作为可选实现保留。
+\textbf{（5）第二阶段：IDA* 求解 4 阶棋盘。}第二阶段对 4 阶（15-Puzzle）使用 IDA*；主实验采用 BASIC 模式、未启用转置表，启发函数为曼哈顿距离，求得 52 步的解。
+实现上还提供 TT 与 ZOBRIST 两档可选转置表。
 图~\ref{fig:stage2} 给出播放到第 26 步（$26/52$）与第 52 步（$52/52$）的画面。
 
 \begin{center}
@@ -1216,10 +1194,10 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.46\linewidth]{visualFigures/stage2-ida-4x4-step52.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage2}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第二阶段（IDA* + 曼哈顿距离）4$\times$4 实例的解路径播放：中段 Step 26/52 与目标状态 Step 52/52}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第二阶段（IDA* + 曼哈顿距离，BASIC 模式、未启用转置表）4$\times$4 实例的解路径播放：中段 Step 26/52 与目标状态 Step 52/52}\par\vspace{5bp}
 
-\textbf{（8）第三阶段：disjoint pattern 与模式数据库。}第三阶段要求用不相交模式（disjoint pattern）与模式数据库\cite{culberson1996,pdb-intro}在 1 分钟内解出指定实例。
-本项演示的 70 步解取自第四部分 4.3.1 节的困难题记录：该记录采用 555T 分组，冷缓存建表加搜索的父端总时间为 22.729 秒，满足 1 分钟的要求。
+\textbf{（6）第三阶段：disjoint pattern 与模式数据库。}第三阶段使用不相交模式（disjoint pattern）与加性模式数据库\cite{culberson1996,pdb-intro}，困难题采用 555T 分组，求得 70 步的解；
+冷缓存建表加搜索的父端总时间为 22.729 秒，满足 1 分钟的要求。该题初态与目标见第 4 节。
 图~\ref{fig:stage3} 给出播放到第 35 步（$35/70$）与第 70 步（$70/70$）的画面。
 
 \begin{center}
@@ -1227,9 +1205,9 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.46\linewidth]{visualFigures/stage3-pdb-4x4-step70.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage3}
-{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第三阶段（IDA* + 加性模式数据库）4$\times$4 实例的解路径播放：中段 Step 35/70 与目标状态 Step 70/70}\par\vspace{5bp}
+{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第三阶段（IDA* + 加性模式数据库，555T 分组）4$\times$4 实例的解路径播放：中段 Step 35/70 与目标状态 Step 70/70}\par\vspace{5bp}
 
-\textbf{本部分小结。}本部分只负责呈现，不重复搜索实验：三张阶段图对应的 16、52、70 步解均取自第四部分的正式记录，
+\textbf{本部分小结。}本部分只负责呈现，不重复搜索实验：三张阶段图（图 5-5 至图 5-7）对应的 16、52、70 步解均取自第四部分的正式记录，
 播放器所做的校验只保证文件格式与逐帧合法性，不对搜索结论作补充证明。
 这种“求解与呈现分离”的做法，使播放器可以在不启动搜索的情况下反复检查历史解路径。
 
@@ -1244,7 +1222,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 
 本组在教师提供的搜索框架上完成了 N-Puzzle 求解的四个阶段；框架原有代码保持原样，新增的状态、动作、可解性判定与启发函数都放在 \texttt{src/stud/g01/} 下。
 
-第一阶段用 A* 配合优先队列，使用指定的 3$\times$3 棋盘在毫秒级内解出 16 步；第二阶段用 IDA* 处理 4 阶棋盘，BASIC 模式的路径相关搜索存储随搜索深度线性增长，阈值记录与可选转置表另占空间；第三阶段用不相交模式数据库，把困难题的求解时间压缩到 1 分钟以内；第四阶段用 Java Swing 将解路径文件记录的求解步骤可视化。本次各阶段的主实验均未启用转置表，Zobrist 置换表只作为可选实现保留。问题的状态、动作、可解性判定和启发函数在 \texttt{src/stud/g01/} 下，解路径的导出与可视化解耦。
+第一阶段用 A* 配合优先队列，使用指定的 3$\times$3 棋盘在毫秒级内解出 16 步；第二阶段用 IDA* 处理 4 阶棋盘，BASIC 模式的路径相关搜索存储随搜索深度线性增长，阈值记录另占空间；第三阶段用不相交模式数据库，把困难题的求解时间压缩到 1 分钟以内；第四阶段用 Java Swing 将解路径文件记录的求解步骤可视化。实现上还提供转置表的 TT 与 ZOBRIST 两档可选键策略，以及 \texttt{MANHATTAN\_LC}线性冲突启发，在曼哈顿距离上叠加线性冲突修正。这些优化各有代价：线性冲突能减少扩展，但更强下界不保证每个实例都更快；TT 与 ZOBRIST 也未稳定优于 BASIC。报告主实验仍采用 BASIC 模式与 Misplaced、Manhattan、加性 PDB 三种启发。问题的状态、动作、可解性判定和启发函数在 \texttt{src/stud/g01/} 下，解路径的导出与可视化解耦。
 
 此外，运行记录还给出了时间与结点代价。第二阶段得到 52 步解，搜索耗时 435.977 毫秒，生成 2\,007\,071 个结点、扩展 997\,736 个结点；其中生成结点数取自解路径文件记录，第四部分只统计扩展次数。第三阶段得到 70 步解，冷缓存下建表 4\,819 毫秒、搜索 17\,709 毫秒，父端总时间 22.729 秒（另含约 202 毫秒的启动、回放与导出开销），共生成 95\,279\,434 个结点、扩展 48\,759\,798 个结点。在已测实例上，启发函数越精确，需要扩展的结点越少；但时间收益还要看估值与建表成本，第 4.3 节已说明不能据此给出统一排名。模式数据库实际上是把一部分代价从搜索阶段前移到了建表阶段。
 
