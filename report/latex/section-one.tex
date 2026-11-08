@@ -7,7 +7,7 @@
 \renewcommand{\thefigure}{1-\arabic{figure}}
 \renewcommand{\theHfigure}{section1.\arabic{figure}}
 \renewcommand{\figurename}{图}
-\captionsetup{font=small,labelsep=quad,skip=5bp}
+\captionsetup{font=reportcaption,labelsep=quad,skip=5bp}
 \newcommand{\OverviewTitle}[2]{%
   \par\Needspace{4\baselineskip}%
   #1{#2}{\bfseries #2}\par\vspace{2bp}}
@@ -289,16 +289,12 @@ A* 则要保留大量已发现状态，存储规模随 Open 与 Closed 的总记
 不能将 BASIC 的上述证明原样当作任意置换表策略的证明。
 小规模最短路径与碰撞回归可核验实现，但也不能替代对任意状态图的普遍论证。
 
-A* 与 IDA* 的取舍因此同时涉及时间和空间：A* 保留搜索前沿，减少跨轮重新搜索，
-却可能消耗较多内存；IDA* BASIC 的路径存储较小，但可能反复展开同一批结点。
-启发值更接近真实代价时，两者通常都有机会缩小搜索范围，
-最终效果仍受估值成本、重复状态比例、阈值轮数和可用内存影响。
-后续实验应在同题、同环境和一致计时口径下比较，不能预先认定 IDA* 在所有实例上都更快。
+A* 保留前沿以减少重复搜索，但存储较多；IDA* BASIC 的路径存储较小，
+代价是跨轮重复展开。两者的运行时间还受估值成本、重复状态比例及阈值轮数影响，
+应在同题、同环境和一致计时口径下比较。
 
-本文第四章的算法与启发函数对照采用 IDA* 的 BASIC 模式，
-开启 fast 分支，不启用置换表；
-困难题的配置实验另比较 BASIC、TT、ZOBRIST 与容量、fast 开关。
-各模式的结果结合实际配置、成功次数和计时范围讨论，不能混为一组性能结论。
+第四章的算法与启发函数对照采用 BASIC IDA*，开启 fast，不使用置换表；
+困难题另比较 TT、ZOBRIST、表容量和 fast 开关，各配置分别统计。
 
 \endgroup
 \clearpage

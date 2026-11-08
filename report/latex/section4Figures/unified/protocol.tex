@@ -1,0 +1,22 @@
+\documentclass[border=7bp]{standalone}
+\input{../../figure-style.tex}
+\begin{document}
+\begin{tikzpicture}
+\path (-7.3,0) rectangle (7.3,0);
+
+\node[emphasis,text width=11cm] (input) at (0,0) {固定输入、算法、启发函数、堆上限和缓存条件};
+\node[frame,text width=11cm] (start) at (0,-1.3) {父进程开始计时，启动独立工作 JVM};
+\node[frame,text width=11cm] (prepare) at (0,-2.6) {读取输入并准备启发函数\\冷 PDB：建表；热 PDB：校验与加载；其他启发：无建表};
+\node[emphasis,text width=11cm] (search) at (0,-4.1) {搜索计时：调用搜索器 → 返回结果\\包含启发查询和同步快照记录};
+\node[frame,text width=4cm] (ok) at (-2.7,-5.8) {SOLVED\\恢复路径、逐步回放、导出};
+\node[supporting,text width=4cm] (fail) at (2.7,-5.8) {TIMEOUT / OOM / FAIL\\保留失败记录与可用快照};
+\node[frame,text width=11cm] (end) at (0,-7.4) {工作进程退出或终止回收，父端计时结束};
+\node[supporting,text width=11cm] (stats) at (0,-8.8) {分别统计成功次数、搜索与父端中位数\\失败不填作成功时间，不混入成功中位数};
+\foreach \a/\b in {input/start,start/prepare,prepare/search,end/stats}{\draw[flow](\a)--(\b);}
+\draw[flow](search.south)-|(ok.north); \draw[flow](search.south)-|(fail.north);
+\coordinate (join) at (0,-6.7);
+\draw[draw=Ink,line width=.65pt](ok.south)|-(join);
+\draw[draw=Ink,line width=.65pt](fail.south)|-(join);\draw[flow](join)--(end.north);
+
+\end{tikzpicture}
+\end{document}

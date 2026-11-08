@@ -1,0 +1,24 @@
+\documentclass[border=7bp]{standalone}
+\input{../../figure-style.tex}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usepackage{booktabs}
+\pgfplotsset{compat=1.18}
+\begin{document}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 1,horizontal sep=1.45cm},
+width=13.8cm,height=5.6cm,scale only axis,ymin=0,ybar,/pgf/bar width=7pt,
+axis line style={draw=Muted,line width=.65pt},axis x line*=bottom,axis y line*=left,
+ymajorgrids,grid style={draw=PaleGray},tick align=outside,
+every axis/.append style={font=\fontsize{10bp}{13bp}\selectfont},
+tick label style={font=\fontsize{9bp}{12bp}\selectfont},
+legend style={at={(.5,-.19)},anchor=north,legend columns=2,column sep=7pt,draw=none,fill=none,font=\fontsize{9bp}{12bp}\selectfont},
+enlarge x limits=.2,xtick=data]
+\nextgroupplot[title={普通题 $4\times4$},ylabel={扩展事件 / 千次},ymax=1250,xmin=-.65,xmax=1.65,xtick={0,1},xticklabels={曼哈顿,LC}]
+\addplot[fill=Blue,draw=Blue] coordinates {(0,339.410000) (1,184.819000)};
+\addlegendentry{A*}
+\addplot[fill=Muted,draw=Muted] coordinates {(0,997.736000) (1,595.024000)};
+\addlegendentry{IDA*}
+\end{groupplot}
+\end{tikzpicture}
+\end{document}

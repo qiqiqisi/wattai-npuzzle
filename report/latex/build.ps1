@@ -9,7 +9,7 @@ New-Item -ItemType Directory -Path $taskBuild -Force | Out-Null
 if ($RebuildFigures) {
     $taskFigureBuild = Join-Path $taskBuild 'figures'
     New-Item -ItemType Directory -Path $taskFigureBuild -Force | Out-Null
-    foreach ($taskFigureDirectoryName in @('section1Figures', 'section3Figures')) {
+    foreach ($taskFigureDirectoryName in @('section1Figures', 'section3Figures', 'section4Figures/unified', 'section4Figures/current', 'visualFigures')) {
         $taskFigureSource = Join-Path $taskSource $taskFigureDirectoryName
         if (-not (Test-Path -LiteralPath $taskFigureSource)) { continue }
         Push-Location -LiteralPath $taskFigureSource

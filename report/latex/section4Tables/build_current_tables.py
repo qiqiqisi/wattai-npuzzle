@@ -5,11 +5,6 @@ import argparse
 import math
 from pathlib import Path
 
-from reportlab.pdfgen import canvas
-from reportlab.lib.colors import HexColor
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-
 ROOT = Path(__file__).resolve().parents[3]
 OUT = Path(__file__).resolve().parent
 FIG = OUT.parent / 'section4Figures' / 'current'
@@ -23,8 +18,6 @@ ROWS = [json.loads(p.read_text(encoding='utf-8'))
         for p in sorted((SUITE / 'runs').glob('*/result.json'))]
 assert len(ROWS) == 80
 FIG.mkdir(parents=True, exist_ok=True)
-pdfmetrics.registerFont(TTFont('ChartFont', 'C:/Windows/Fonts/calibri.ttf'))
-pdfmetrics.registerFont(TTFont('ChartBold', 'C:/Windows/Fonts/calibrib.ttf'))
 
 
 def selected(**filters):
@@ -42,10 +35,10 @@ def fmt(v, digits=3):
 
 def table(name, columns, headers, rows):
     text = ['% Generated from the experiment result.json files.',
-            r'\begin{tabular}{' + columns + '}', r'\hline',
-            ' & '.join(r'\textbf{' + h + '}' for h in headers) + r' \\', r'\hline']
+            r'\begin{tabular}{' + columns + '}', r'\toprule',
+            ' & '.join(r'\textbf{' + h + '}' for h in headers) + r' \\', r'\midrule']
     text.extend(' & '.join(row) + r' \\' for row in rows)
-    text += [r'\hline', r'\end{tabular}', '']
+    text += [r'\bottomrule', r'\end{tabular}', '']
     (OUT / ('current-' + name + '.tex')).write_text('\n'.join(text), encoding='utf-8')
 
 
@@ -105,71 +98,62 @@ table('counts', 'lrr', ['指标', 'fast关闭', 'fast开启'], [
                          ('reverse_move_prunes', '提前反向过滤'), ('child_states_created', '子状态构造'),
                          ('child_nodes_created', '子结点构造'), ('pdb_lookup_count', 'PDB查询')]])
 
-BLUE, ORANGE = HexColor('#3178a8'), HexColor('#d78a32')
+
+def chart_source(name, panels):
+    source = [r'\documentclass[border=7bp]{standalone}',
+              r'\input{../../figure-style.tex}', r'\usepackage{pgfplots}',
+              r'\usepgfplotslibrary{groupplots}', r'\usepackage{booktabs}',
+              r'\pgfplotsset{compat=1.18}', r'\begin{document}',
+              r'\begin{tikzpicture}',
+              r'\begin{groupplot}[group style={group size=' + str(len(panels)) + r' by 1,horizontal sep=1.45cm},',
+              'width=' + ('6.4cm' if len(panels)==2 else '13.8cm') + r',height=5.6cm,scale only axis,ymin=0,ybar,/pgf/bar width=7pt,',
+              r'axis line style={draw=Muted,line width=.65pt},axis x line*=bottom,axis y line*=left,',
+              r'ymajorgrids,grid style={draw=PaleGray},tick align=outside,',
+              r'every axis/.append style={font=\fontsize{10bp}{13bp}\selectfont},',
+              r'tick label style={font=\fontsize{9bp}{12bp}\selectfont},',
+              r'legend style={at={(.5,-.19)},anchor=north,legend columns=2,column sep=7pt,draw=none,fill=none,font=\fontsize{9bp}{12bp}\selectfont},',
+              r'enlarge x limits=.2,xtick=data]']
+    for title, labels, values, ymax, ylabel, failures in panels:
+        source.append(r'\nextgroupplot[title={' + title + '},ylabel={' + ylabel +
+                      '},ymax=' + str(ymax) + ',xmin=-.65,xmax=' + str(len(labels)-.35) + ',xtick={'+','.join(str(i) for i in range(len(labels)))+
+                      '},xticklabels={' + ','.join(labels) + '}]')
+        for j, color in enumerate(['Blue', 'Muted']):
+            coords = ' '.join(f'({i},{value:.6f})' for i,value in enumerate(values[j]) if value is not None)
+            source.append(r'\addplot[fill=' + color + ',draw=' + color + '] coordinates {' + coords + '};')
+            source.append(r'\addlegendentry{' + ('A*' if j == 0 else 'IDA*') + '}')
+        for (j,i), status in failures.items():
+            # Failure labels describe status, never a completed run at the limit.
+            source.append(r'\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:'+
+                          str(i) + ',' + str(ymax*(.025+j*.065)) + ') {'+('A*：' if j==0 else 'IDA*：')+('超时' if status == 'TIMEOUT' else status)+'};')
+    source += [r'\end{groupplot}',r'\end{tikzpicture}',r'\end{document}','']
+    (FIG/(name+'.tex')).write_text('\n'.join(source),encoding='utf-8')
 
 
-def panel(c, x, y, w, h, title, labels, series, ymax, ylabel, failures=None):
-    c.setFillColor(HexColor('#243746')); c.setFont('ChartBold', 10)
-    c.drawString(x, y + h + 17, title)
-    left, bottom = x + 43, y + 35
-    width, height = w - 49, h - 40
-    c.setFont('ChartFont', 9)
-    for i in range(5):
-        yy = bottom + height * i / 4
-        c.setStrokeColor(HexColor('#e0e7eb')); c.line(left, yy, left + width, yy)
-        c.setFillColor(HexColor('#415562')); c.drawRightString(left - 5, yy - 2, f'{ymax*i/4:g}')
-    c.drawString(x, y + h - 3, ylabel)
-    slot = width / len(labels)
-    bw = min(23, slot * .7 / len(series))
-    for j, (name, values, color) in enumerate(series):
-        c.setFillColor(color); c.rect(left + j * 92, bottom + height + 3, 7, 7, fill=1, stroke=0)
-        c.setFont('ChartFont', 9); c.setFillColor(HexColor('#243746'))
-        c.drawString(left + j * 92 + 10, bottom + height + 3, name)
-        for i, value in enumerate(values):
-            xx = left + slot * (i + .5) + (j - len(series)/2) * bw
-            if value is None:
-                c.setFillColor(HexColor('#687780')); c.setFont('ChartFont', 8)
-                c.drawCentredString(xx + bw/2, bottom + 7 + j*9, (failures or {}).get((j, i), 'TIMEOUT'))
-                continue
-            bh = height * value / ymax
-            c.setFillColor(color); c.rect(xx, bottom, bw - 1.5, bh, fill=1, stroke=0)
-            c.setFillColor(HexColor('#243746')); c.setFont('ChartFont', 8)
-            c.drawCentredString(xx + (bw - 1.5)/2, bottom + bh + 3, f'{value:.1f}')
-    c.setFont('ChartFont', 9); c.setFillColor(HexColor('#243746'))
-    for i, label in enumerate(labels):
-        c.drawCentredString(left + slot*(i+.5), bottom - 13, label)
-
-
-for field, filename, title in [('elapsed_ms', 'heuristic-search', 'Search time'),
-                              ('parent_ms', 'heuristic-parent', 'Parent time')]:
-    c = canvas.Canvas(str(FIG / (filename + '.pdf')), pagesize=(520, 345))
-    for k, dataset in enumerate(['teacher3', 'ordinary4']):
-        values = [[med(selected(group='heuristic', dataset=dataset, algorithm=a, heuristic=h), field)
-                   for h, _ in HEURS] for a in ALGS]
+for field, filename, ylabel in [('elapsed_ms','heuristic-search','搜索时间 / ms'),
+                               ('parent_ms','heuristic-parent','父端总时间 / ms')]:
+    panels = []
+    for dataset, title in [('teacher3',r'教师题 $3\times3$'),('ordinary4',r'普通题 $4\times4$')]:
+        values = [[med(selected(group='heuristic',dataset=dataset,algorithm=a,heuristic=h),field)
+                   for h,_ in HEURS] for a in ALGS]
         failures = {}
-        for j, a in enumerate(ALGS):
-            for i, (h, _) in enumerate(HEURS):
-                outcomes = {r['status'] for r in selected(group='heuristic', dataset=dataset,
-                                                          algorithm=a, heuristic=h)}
+        for j,a in enumerate(ALGS):
+            for i,(h,_) in enumerate(HEURS):
+                outcomes = {r['status'] for r in selected(group='heuristic',dataset=dataset,algorithm=a,heuristic=h)}
                 if 'SOLVED' not in outcomes:
-                    failures[(j, i)] = next(iter(outcomes)) if len(outcomes) == 1 else 'MIXED'
-        vmax = max(v for row in values for v in row if v is not None) * 1.22
-        step = 10 ** math.floor(math.log10(vmax)) / 2
-        vmax = math.ceil(vmax / step) * step
-        panel(c, 5 + k*260, 15, 250, 290, f'{dataset}: {title}', ['Mis', 'Man', 'LC', 'PDB'],
-              [('A*', values[0], BLUE), ('IDA*', values[1], ORANGE)], vmax, 'ms', failures)
-    c.save()
+                    failures[(j,i)] = next(iter(outcomes)) if len(outcomes)==1 else 'MIXED'
+        vmax = max(v for row in values for v in row if v is not None)*1.24
+        step = 10**math.floor(math.log10(vmax))/2
+        ymax = math.ceil(vmax/step)*step
+        panels.append((title,['错位数','曼哈顿','LC','PDB'],values,ymax,ylabel,failures))
+    chart_source(filename,panels)
 
-c = canvas.Canvas(str(FIG / 'lc-nodes.pdf'), pagesize=(520, 290))
-values = [[med(selected(group='heuristic', dataset='ordinary4', algorithm=a, heuristic=h), 'expanded') / 1000
-           for h in ['MANHATTAN', 'MANHATTAN_LC']] for a in ALGS]
-panel(c, 15, 10, 490, 245, 'Ordinary 4x4: expanded events', ['Manhattan', 'Linear conflict'],
-      [('A*', values[0], BLUE), ('IDA*', values[1], ORANGE)], 1200, 'x 1,000')
-c.save()
+values = [[med(selected(group='heuristic',dataset='ordinary4',algorithm=a,heuristic=h),'expanded')/1000
+           for h in ['MANHATTAN','MANHATTAN_LC']] for a in ALGS]
+chart_source('lc-nodes',[(r'普通题 $4\times4$',['曼哈顿','LC'],values,1250,'扩展事件 / 千次',{})])
 
 manifest = {'suite': SUITE.relative_to(ROOT).as_posix(), 'runs': len(ROWS),
             'statuses': {s: sum(r['status'] == s for r in ROWS) for s in sorted({r['status'] for r in ROWS})},
             'tables': ['teacher3', 'ordinary4', 'modes', 'cache', 'controls', 'counts'],
             'figures': ['heuristic-search', 'heuristic-parent', 'lc-nodes']}
 (OUT / 'current-sources.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-print('CURRENT_REPORT_DATA_PASS: 80 raw results; 6 editable tables; 3 vector charts')
+print('CURRENT_REPORT_DATA_PASS: 80 raw results; 6 editable tables; 3 editable vector chart sources')

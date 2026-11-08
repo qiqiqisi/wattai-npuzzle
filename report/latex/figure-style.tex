@@ -1,0 +1,23 @@
+% Shared preamble for the report's editable vector figures.
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Calibri}
+\setCJKmainfont{SimSun}[AutoFakeBold=1.5]
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,fit}
+\definecolor{Ink}{HTML}{25313D}
+\definecolor{Blue}{HTML}{315E80}
+\definecolor{PaleBlue}{HTML}{E7EFF5}
+\definecolor{Muted}{HTML}{626B74}
+\definecolor{PaleGray}{HTML}{F0F1F3}
+\tikzset{
+  >=Stealth,
+  every node/.style={font=\fontsize{10bp}{13bp}\selectfont,text=Ink},
+  flow/.style={->,draw=Ink,line width=.65pt},
+  frame/.style={rectangle,draw=Ink,line width=.65pt,align=center,
+    minimum height=.85cm,text width=5cm,inner sep=5pt},
+  emphasis/.style={frame,draw=Blue,fill=PaleBlue},
+  supporting/.style={frame,draw=Muted,fill=PaleGray},
+  annotation/.style={font=\fontsize{9bp}{12bp}\selectfont,text=Muted,align=center},
+}

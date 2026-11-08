@@ -188,22 +188,20 @@ PDB 能进一步计入组内将牌的相互制约，代价是预计算、存储�
 三种启发函数的主要区别见表 2-1。表中的“成本”指计算与存储代价，
 不把预计算开销当作一次将牌移动的动作代价。
 \par\noindent\begin{minipage}{\linewidth}
+\ReportTableTitle{表 2-1\quad 三个启发函数的信息、正确性依据与代价}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
 \setlength{\tabcolsep}{4bp}
-\begin{tabular}{|p{64bp}|p{98bp}|p{98bp}|p{94bp}|}
-\hline
+\begin{tabular}{p{64bp}p{98bp}p{98bp}p{94bp}}
+\toprule
 \textbf{启发函数} & \textbf{保留的信息} & \textbf{正确性依据} & \textbf{成本与局限} \\
-\hline
+\midrule
 Misplaced & 每枚非空将牌是否在目标格 & 每步至多使一枚将牌归位 & 无需建表；不反映距离远近 \\
-\hline
 Manhattan & 每枚非空将牌到目标的行列距离 & 每步只改变一枚将牌一格位移 & 无需建表；忽略阻挡和绕行 \\
-\hline
 加性 PDB & 各组将牌与空位的抽象排列 & 抽象最短路与互不重复的成本划分 & 需建表、存储与查表；仍放松部分组间约束 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-{\fontsize{9bp}{12bp}\selectfont 表 2-1\quad 三个启发函数的信息、正确性依据与代价}\par\vspace{5bp}
 \end{minipage}\par
 \endgroup
 
@@ -251,7 +249,7 @@ LC 至少不弱于 Manhattan，但额外计算是否划算仍需实验判断。
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \renewcommand{\figurename}{图}
-\captionsetup{font=small,labelsep=quad,skip=5bp}
+\captionsetup{font=reportcaption,labelsep=quad,skip=5bp}
 \newcommand{\SolverFigure}[4][0.95]{%
   \begin{figure}[htbp]
     \centering
@@ -271,6 +269,15 @@ N-Puzzle 的状态、动作、启发函数与模式数据库。图~\ref{fig:3-1}
 
 \SolverFigure[0.87]{fig-3-1-module-map}{框架层 \texttt{core} 与实现层 \texttt{stud.g01} 的对应关系（示意）}{fig:3-1}
 
+接口对应关系之外，图~\ref{fig:system-flow} 给出从输入到播放的调用过程。
+教学入口通过 Feeder 把文本题目转换成 Problem，并取得相应的 Frontier 与 Predictor；实验入口按运行配置直接构造相同的学生实现。
+Searcher 负责搜索顺序；Problem 与 State 负责动作和状态转换；Predictor 负责剩余代价估计。
+A* 将候选保存在 Open，IDA* 在当前阈值内递归；找到目标后都沿父链恢复路径，
+再由运行器导出 TSV，供播放器读取。
+教师 SearchTester 保留原样；第二阶段由 StudentSearchTester 选择 IDA*，
+本章实验运行器则按配置显式选择 A* 或 IDA*。
+
+\FloatBarrier
 \TemplateSubsection{3.1 状态及结点的数据结构}
 {\bfseries 3.1\quad 状态及结点的数据结构}\par\vspace{2bp}
 
@@ -403,25 +410,22 @@ $f$ 沿路径不降、首次出队即最优，因此重访状态可以安全丢�
 \SolverFigure[0.99]{fig-3-2-frontier-cycle}{A* 一轮扩展中 Open 表与 Closed 表的读写（示意）}{fig:3-2}
 
 \par\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:frontier}
+\ReportTableTitle{表 \thetable\quad Open 表与 Closed 表各操作的复杂度}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
 \setlength{\tabcolsep}{4bp}
-\begin{tabular}{|p{64bp}|p{86bp}|p{94bp}|p{90bp}|}
-\hline
+\begin{tabular}{p{64bp}p{86bp}p{94bp}p{90bp}}
+\toprule
 \textbf{操作} & \textbf{数据结构} & \textbf{平均复杂度} & \textbf{说明} \\
-\hline
+\midrule
 offer 入队/替换 & 优先队列 + HashMap & $O(\log n)$，替换另需 $O(n)$ & 每个状态仅保留估值最优的结点 \\
-\hline
 poll 出队 & 优先队列 + HashMap & $O(\log n)$ & 出队同时删除哈希表记录 \\
-\hline
 contains 查重 & HashMap & $O(1)$ & 只查 \texttt{byState}，不扫描队列 \\
-\hline
 explored 登记/查询 & HashSet & $O(1)$ & 一致性成立，出队后不再重开 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:frontier}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad Open 表与 Closed 表各操作的复杂度}\par\vspace{5bp}
 \end{minipage}\par
 
 \TemplateSubsection{3.3 三个启发函数的具体实现}
@@ -613,23 +617,21 @@ $3\times3$ 默认分组 4-4 下则仅 $30\,240$ 个，两者见表~\ref{tab:pdb-
 正是为了把建表时间与常驻内存都压在一个量级以内。
 
 \par\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:pdb-size}
+\ReportTableTitle{表 \thetable\quad 不同分组下模式数据库的规模（按 \texttt{byte[]} 计）}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
 \setlength{\tabcolsep}{4bp}
-\begin{tabular}{|p{46bp}|p{74bp}|p{126bp}|p{104bp}|}
-\hline
+\begin{tabular}{p{46bp}p{74bp}p{126bp}p{104bp}}
+\toprule
 \textbf{规模} & \textbf{分组} & \textbf{各表状态数} & \textbf{合计字节} \\
-\hline
+\midrule
 $3\times3$ & 4-4 & $9\cdot8\cdot7\cdot6\cdot5=15\,120$，2 张 & $30\,240$（约 29.5 KiB） \\
-\hline
 $4\times4$（默认） & 4-4-4-3 & $524\,160\times3+43\,680$ & $1\,616\,160$（约 1.54 MiB） \\
-\hline
 $4\times4$（备选） & 5-5-5 & $5\,765\,760\times3$ & $17\,297\,280$（约 16.5 MiB） \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:pdb-size}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 不同分组下模式数据库的规模（按 \texttt{byte[]} 计）}\par\vspace{5bp}
 \end{minipage}\par
 
 \TemplateSubsection{3.4 求解后继结点的函数}
@@ -784,23 +786,21 @@ $f>bound$ 立即返回该 $f$（出口一，截断）；命中目标则记下结
 跨轮复用会把本该扩展的结点错误地剪掉。
 
 \par\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:ida-mode}
+\ReportTableTitle{表 \thetable\quad IDA* 三种转置表模式的对比}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
 \setlength{\tabcolsep}{4bp}
-\begin{tabular}{|p{54bp}|p{112bp}|p{112bp}|p{100bp}|}
-\hline
+\begin{tabular}{p{54bp}p{112bp}p{112bp}p{100bp}}
+\toprule
 \textbf{模式} & \textbf{转置表结构} & \textbf{键与判定} & \textbf{取舍} \\
-\hline
+\midrule
 BASIC & 不使用 & 只靠阈值与 \texttt{pathStates} 剪枝 & 无转置表开销，可能重复扩展 \\
-\hline
 TT & \texttt{HashMap\textless State,Integer\textgreater} & 完整状态作键，记该状态迄今最小的 $g$ & 判定精确，但状态对象整份入表 \\
-\hline
 \texttt{ZOBRIST}\newline（默认） & \texttt{HashMap\textless Long,}\newline\texttt{List\textless Entry\textgreater\textgreater} & 64 位 Zobrist 值分桶，桶内用 \texttt{equals} 确认 & 条目仍保存完整状态，另有装箱键与桶列表开销；内存与命中率需同条件实测 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:ida-mode}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad IDA* 三种转置表模式的对比}\par\vspace{5bp}
 \end{minipage}\par
 
 \textbf{fast 分支。}系统属性 \texttt{wattai.fast=true} 时，
@@ -870,6 +870,8 @@ $O(1)$ 查重（3.2），后继构造只克隆一个数组（3.4）使扩展本�
 并可通过 fast 分支启用增量估值与反向走法剪枝。
 第四部分分别比较 A* 与 BASIC IDA*、四种启发函数及困难题的转置表配置，
 同时记录 fast 的构造、查询和记录开销，以实际成功率与总耗时判断取舍。
+\SolverFigure[0.98]{fig-3-7-system-flow}{输入、求解、路径输出与可视化的系统调用关系}{fig:system-flow}
+\FloatBarrier
 \endgroup
 
 \input{section-four.tex}
@@ -898,25 +900,25 @@ $O(1)$ 查重（3.2），后继构造只克隆一个数组（3.4）使扩展本�
 {\bfseries 5.1\quad 工具选择}\par\vspace{2bp}
 
 本组采用 \textbf{Java Swing}（JDK 自带图形库）实现求解过程的可视化。
-Swing 是 Java 标准库中的轻量级 GUI 工具包，其组件全部由 Java 自身绘制而不依赖操作系统原生控件，可跨平台。
+Swing 是 Java 标准库中的轻量级 GUI 工具包，主要轻量组件由 Java 绘制，并通过 JDK 提供的窗口机制运行，可跨平台。
 因本项目采用Java语言，所以采用Swing，将不会引入第三方依赖。Swing 的基本用法可参考\cite{swing-bilibili}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:tools}
+\ReportTableTitle{表 \thetable\quad 解路径可视化候选方案对比}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{58bp}|p{92bp}|p{68bp}|p{96bp}|}
-\hline
+\begin{tabular}{p{58bp}p{92bp}p{68bp}p{96bp}}
+\toprule
 \textbf{候选方案} & \textbf{依赖与构建} & \textbf{开发成本} & \textbf{与现有代码的关系} \\
-\hline
+\midrule
 \textbf{Java Swing}（选用） & JDK 标准库，零第三方依赖 & 低 & 复用 \texttt{PuzzleBoard} 的状态与取格接口 \\
-\hline
 SFML & 需另装 C++ 图形库 & 高，需重写棋盘与解析 & 复用文本文件 \\
-\hline
 Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:tools}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径可视化候选方案对比}\par\vspace{5bp}
+\end{minipage}\par
 
 \TemplateSubsection{5.2 可视化界面设计与关键逻辑}
 {\bfseries 5.2\quad 可视化界面设计与关键逻辑}\par\vspace{2bp}
@@ -930,28 +932,25 @@ Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
 界面播放过程中，可以随时把当前棋盘与目标对照，
 同时把算法、步数与耗时放在同一视野内。各组件及其功能见表~\ref{tab:ui}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:ui}
+\ReportTableTitle{表 \thetable\quad 播放器各区域组件及功能}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{52bp}|p{160bp}|p{154bp}|}
-\hline
+\begin{tabular}{p{52bp}p{160bp}p{154bp}}
+\toprule
 \textbf{区域} & \textbf{组件及其显示内容} & \textbf{功能与设计考虑} \\
-\hline
+\midrule
 顶部指标栏 & \texttt{JLabel}：算法名、启发函数名、总步数、搜索耗时（毫秒）、生成结点数、扩展结点数 & 把结果与耗时同时呈现，便于对比不同算法 \\
-\hline
 中部左 & \texttt{JPanel} + \texttt{GridLayout}：当前状态棋盘，随播放逐帧重绘 & 动态，反映每一步变化之后的棋盘 \\
-\hline
 中部右 & 目标状态棋盘，仅在开窗时绘制一次 & 用于参照，避免额外记忆 \\
-\hline
 底部进度栏 & \texttt{JLabel}：\texttt{Step 当前步 / 总步数} 与当前步空位移动方向 & 播到第几步、空位刚向哪边移动 \\
-\hline
 底部按钮栏 & \texttt{JButton}：Play、Pause、Previous、Next、Restart & 可手动操作或自动播放，缩放时布局不错位 \\
-\hline
 底部速度栏 & \texttt{JLabel}“Speed” + \texttt{JComboBox}：0.5x、1x、2x & 调节播放快慢，默认 1x \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:ui}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 播放器各区域组件及功能}\par\vspace{5bp}
+\end{minipage}\par
 
 编号方格为蓝白风格，空位所在格留白，因此编号与空位都容易辨认。
 界面按棋盘规模自适应：3$\times$3 使用 32 号粗体字与 74$\times$74 的格子，4$\times$4 使用 25 号字与 62$\times$62 的格子，
@@ -971,12 +970,12 @@ Unity3D & 需安装引擎与编辑器 & 高 & 复用文本文件 \\
 播放的整体流程见图~\ref{fig:flow}，读取文件并完成校验之后才创建窗口。
 
 \begin{center}
-\includegraphics[width=0.8\linewidth]{visualFigures/流程图.png}
+\includegraphics[width=0.98\linewidth]{visualFigures/playback-flow.pdf}
 \end{center}
 \refstepcounter{figure}\label{fig:flow}
 {\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 解路径播放的逻辑流程（校验先于建窗，事件循环反复刷新）}\par\vspace{5bp}
 
-核心思路为：先校验、后建窗口，逻辑和页面显示分离。
+核心思路为：先校验、后建窗口，逻辑和页面显示分离。播放器支持自动播放、暂停、逐步前进与后退、回到初态，以及 0.5x、1x、2x 三档速度；到达首末步时保持在有效范围内。
 
 
 \TemplateSubsection{5.3 核心代码}
@@ -1000,22 +999,22 @@ src/stud/g01/visual/
 
 三个类功能互不重叠，见表~\ref{tab:classes}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:classes}
+\ReportTableTitle{表 \thetable\quad 解路径可视化代码（下记为播放器）的三层结构}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{150bp}|p{230bp}|}
-\hline
+\begin{tabular}{p{150bp}p{230bp}}
+\toprule
 \textbf{类} &  \textbf{功能} \\
-\hline
+\midrule
 \texttt{SolutionTrace} & 解析并校验解路径文件 \\
-\hline
 \texttt{PlaybackModel}  & 包含当前步号、是否正在播放等 \\
-\hline
 \texttt{PuzzleVisualizer}  & Swing 窗口、棋盘绘制、控件、事件等 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:classes}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径可视化代码（下记为播放器）的三层结构}\par\vspace{5bp}
+\end{minipage}\par
 
 \Needspace{5\baselineskip}
 \TemplateSubsubsection{5.3.2 数据格式}
@@ -1024,32 +1023,27 @@ src/stud/g01/visual/
 保存的求解过程文件为TSV文本，分三段，第 1\textasciitilde 9 行是键值对形式的元数据，第 10 行是固定表头，
 第 11 行起给出步号、动作、棋盘三元组；第 0 步的动作固定为 \texttt{START}，即初始状态。字段含义见表~\ref{tab:format}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:format}
+\ReportTableTitle{表 \thetable\quad 解路径文件字段说明}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{96bp}|p{290bp}|}
-\hline
+\begin{tabular}{p{96bp}p{290bp}}
+\toprule
 \textbf{字段} & \textbf{含义} \\
-\hline
+\midrule
 \texttt{format} & 固定为 \texttt{NPUZZLE\_SOLUTION\_V1}，用于版本识别 \\
-\hline
 \texttt{algorithm} / \texttt{heuristic} & 产生该解的算法与启发函数，如 \texttt{IDA}、\texttt{DISJOINT\_PATTERN} \\
-\hline
 \texttt{size} & 棋盘边长，当前仅支持 3 与 4 \\
-\hline
 \texttt{elapsed\_ms} & 该次搜索在求解进程内的耗时（毫秒） \\
-\hline
 \texttt{generated} / \texttt{expanded} & 生成结点数与扩展结点数 \\
-\hline
 \texttt{solution\_length} & 解路径步数 \\
-\hline
 \texttt{goal} & 目标棋盘，空位记为 0 \\
-\hline
 步记录 & 三列：步号、空位移动方向（\texttt{UP}/\texttt{DOWN}/\texttt{LEFT}/\texttt{RIGHT}）、该步之后的完整棋盘 \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:format}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径文件字段说明}\par\vspace{5bp}
+\end{minipage}\par
 
 动作记录的是\textbf{空位的移动方向}，一种示例如下：
 
@@ -1082,34 +1076,28 @@ step  move   state
 九项检查都通过后才返回对象，任何一项失败都抛出 \texttt{IOException}，进程以非零码结束，窗口不会被创建。
 九项校验见表~\ref{tab:validation}。
 
+\noindent\begin{minipage}{\linewidth}
+\refstepcounter{table}\label{tab:validation}
+\ReportTableTitle{表 \thetable\quad 解路径校验链}
 \begin{center}
 {\fontsize{9bp}{12bp}\selectfont
-\begin{tabular}{|p{26bp}|p{210bp}|p{140bp}|}
-\hline
+\begin{tabular}{p{26bp}p{210bp}p{140bp}}
+\toprule
 \textbf{序} & \textbf{校验内容} & \textbf{不通过时的结果} \\
-\hline
+\midrule
 1 & 文件行数不少于 11 行 & 报 Incomplete solution file \\
-\hline
 2 & 前九行每行为“键、值”两列，且键不重复 & 报 Invalid solution metadata \\
-\hline
 3 & 版本标识与第 10 行表头符合约定 & 报 Unknown solution format \\
-\hline
 4 & 棋盘规模为 3 或 4 & 报 IOException：当前仅支持 3$\times$3 与 4$\times$4 \\
-\hline
 5 & 耗时与结点数非负且有限 & 报 Invalid metrics \\
-\hline
 6 & 步号自 0 起连续递增 & 报 Invalid step sequence \\
-\hline
 7 & 步记录条数等于解长加一，且第 0 步为 START & 报 Solution length mismatch \\
-\hline
 8 & 每步动作在上一帧合法，且重放结果与记录棋盘逐格相同 & 报 Illegal move at step N \\
-\hline
 9 & 最后一帧等于目标棋盘 & 报 Last state is not goal \\
-\hline
+\bottomrule
 \end{tabular}}
 \end{center}
-\refstepcounter{table}\label{tab:validation}
-{\fontsize{9bp}{12bp}\selectfont 表 \thetable\quad 解路径校验链}\par\vspace{5bp}
+\end{minipage}\par
 
 校验的核心是第 8 项，\textbf{把上一步记录的棋盘取出、执行该动作，再与文件里记录的下一步棋盘比对}。
 代码如下（来自 \texttt{SolutionTrace.read}）：
@@ -1285,7 +1273,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 {\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 速度切换（0.5x、2x）与目标状态（第 70/70 步再按 Next 保持不再前进）}\par\vspace{5bp}
 \end{minipage}\par
 
-\textbf{（5）损坏文件被拒绝。}图~\ref{fig:invalid} 是把解路径文件截断后重新运行的终端输出，可见程序抛出 \texttt{java.io.IOException: Incomplete solution file} 并以失败状态结束，没有打开任何窗口，也没有显示伪造的棋盘。
+\textbf{（5）损坏文件被拒绝。}图~\ref{fig:invalid} 是把解路径文件截断后重新运行的终端输出，可见程序抛出 \texttt{java.io.IOException: Incomplete solution file} 并以失败状态结束，程序在创建窗口前结束。
 
 \begin{center}
 \includegraphics[width=0.72\linewidth]{visualFigures/invalid-trace-rejected.png}
@@ -1320,7 +1308,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 
 \textbf{（8）第三阶段：disjoint pattern 与模式数据库。}第三阶段要求用不相交模式（disjoint pattern）与模式数据库\cite{culberson1996,pdb-intro}在 1 分钟内解出指定实例。
 本项展示 555T 分组所得的 70 步路径。困难题热缓存下的成功次数和独立冷缓存结果见第 4.4 节；
-播放一条合法路径并不能证明包含建表的求解时间达到 1 分钟要求。
+该实例包含建表的总求解时间为 12.513 秒，具体计时结果见第四部分。
 图~\ref{fig:stage3} 给出播放到第 35 步（$35/70$）与第 70 步（$70/70$）的画面。
 
 \begin{center}
@@ -1331,45 +1319,41 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 {\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第三阶段（IDA* + 加性模式数据库）4$\times$4 实例的解路径播放：中段 Step 35/70 与目标状态 Step 70/70}\par\vspace{5bp}
 
 \textbf{本部分小结。}本部分以 16、52、70 步路径说明界面与交互，
-播放器所做的校验只保证文件格式与逐帧合法性，不对搜索结论作补充证明。
+播放器按照文件中的动作逐步更新棋盘，使解路径的中间状态和目标状态能够直观呈现。
 这种“求解与呈现分离”的做法，使播放器可以在不启动搜索的情况下反复检查历史解路径。
 
 \endgroup
 \vspace{6bp}
 
 % 目录里“总结及展望”沿用模板不加编号，但去掉模板残留的前导点。
+\Needspace{28\baselineskip}
 \TemplateSection{总结及展望}
 {\bfseries\fontsize{12bp}{15.6bp}\selectfont 总结及展望}\par\vspace{6bp}
 \begingroup
 \setlength{\parskip}{5bp}
 
-本组在教师搜索框架上实现了 N-Puzzle 状态、动作、可解性判定与启发估值，
-用优先队列和状态索引管理 A*，用 IDA* 的阈值搜索控制路径相关存储，
-并以文件驱动的 Swing 播放器展示解路径。框架原有代码保持原样，学生实现位于 \texttt{src/stud/g01/}。
+本实验在教师框架上完成了 N-Puzzle 的 A*、IDA*、启发估值和解路径播放。
+A* 采用优先队列与状态索引管理候选，IDA* 以阈值搜索减少路径相关存储；
+Swing 播放器通过路径文件还原棋盘，支持播放、暂停、前后步、重置和速度切换。
 
-教师三阶题的全部配置均成功，没有超时。A* 与 Manhattan 得到 16 步解，
-搜索中位数 5.562\,ms，父端中位数 110.640\,ms，
-该配置 3 次均满足 1 秒要求。普通四阶的 BASIC IDA* 与 Manhattan 得到 52 步解，
-搜索中位数 166.097\,ms。
-普通四阶错位数的失败状态和 60 秒限制单独报告，不将其计为成功耗时。
+教师三阶题得到 16 步解，全部配置成功，无超时。A* 与 Manhattan 的搜索中位数为
+5.562\,ms，父端中位数为 110.640\,ms，三次均满足 1 秒要求。
+普通四阶的 BASIC IDA* 与 Manhattan 得到 52 步解，搜索中位数为 166.097\,ms。
+四阶错位数下，A* 三次均内存不足，IDA* 三次均在 60 秒截止时未完成；其他主实验配置均成功。
 
-困难题 BASIC、fast、555T 热缓存为 3/3 成功，解长为 70，
-父端中位数 10.218 秒。独立冷缓存运行建表 2.395 秒，搜索 9.979 秒，
-父端 12.513 秒，得到 70 步合法解，在 60 秒内完成，满足困难题时限。
-模式和容量实验同时给出成功次数、时间与扩展，避免把减少重复访问直接等同于节时。
-LC 的估值更强，但是否划算仍须结合具体算法与题目成本；PDB 的首次准备和每次加载也分别计入。
+困难题采用 BASIC、fast 与 555T，得到 70 步合法解。
+独立冷启动建表 2.395 秒、搜索 9.979 秒、父端总时间 12.513 秒，满足 1 分钟要求；
+热缓存三次均成功，父端中位数为 10.218 秒。
 
-九套 Java 测试和专项 7022745 项检查通过，成功路径均按原初态与目标逐步回放。
-完整三阶空间与有限四阶、随机图核验共同支持实现的适用范围，不将有限测试当作任意题目的普遍证明。
-fast 减少反向动作构造与查询，记录器则引入额外工作；性能结论限于本章环境、输入和测量设置。
-
-后续可进一步降低 PDB 的准备与查询成本，并在更多目标和难度分布下检验配置选择。
-Open 的较优重复结点替换仍需线性删除，可实现带有效性索引的惰性删除后另作同条件测试。
-播放器可以扩展同一输入的多路径并排展示，比较动作序列；计时结论仍由独立实验记录提供。
+实验表明，减少扩展与缩短运行时间并不等价。LC 增强了下界，但也提高了估值成本；
+转置表减少重复访问，却增加哈希和存储管理开销；fast 则通过提前剪枝和逐个生成减少无效构造。
+PDB 的收益同时取决于搜索节省与准备成本，冷、热缓存应分别讨论。
+后续可优化 Open 中较优重复结点的线性删除，并在更多题目和目标布局下比较配置选择。
 
 \endgroup
 \vspace{6bp}
 
+\Needspace{20\baselineskip}
 \renewcommand{\refname}{参考文献}
 \begin{thebibliography}{9}
 \TemplateSection{参考文献}

@@ -1,0 +1,31 @@
+\documentclass[border=7bp]{standalone}
+\input{../../figure-style.tex}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usepackage{booktabs}
+\pgfplotsset{compat=1.18}
+\begin{document}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.45cm},
+width=6.4cm,height=5.6cm,scale only axis,ymin=0,ybar,/pgf/bar width=7pt,
+axis line style={draw=Muted,line width=.65pt},axis x line*=bottom,axis y line*=left,
+ymajorgrids,grid style={draw=PaleGray},tick align=outside,
+every axis/.append style={font=\fontsize{10bp}{13bp}\selectfont},
+tick label style={font=\fontsize{9bp}{12bp}\selectfont},
+legend style={at={(.5,-.19)},anchor=north,legend columns=2,column sep=7pt,draw=none,fill=none,font=\fontsize{9bp}{12bp}\selectfont},
+enlarge x limits=.2,xtick=data]
+\nextgroupplot[title={教师题 $3\times3$},ylabel={搜索时间 / ms},ymax=30.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
+\addplot[fill=Blue,draw=Blue] coordinates {(0,7.051500) (1,5.562200) (2,5.064800) (3,3.489300)};
+\addlegendentry{A*}
+\addplot[fill=Muted,draw=Muted] coordinates {(0,20.636300) (1,16.253300) (2,16.730100) (3,12.118200)};
+\addlegendentry{IDA*}
+\nextgroupplot[title={普通题 $4\times4$},ylabel={搜索时间 / ms},ymax=650.0,xmin=-.65,xmax=3.65,xtick={0,1,2,3},xticklabels={错位数,曼哈顿,LC,PDB}]
+\addplot[fill=Blue,draw=Blue] coordinates {(1,487.263600) (2,379.256700) (3,173.522600)};
+\addlegendentry{A*}
+\addplot[fill=Muted,draw=Muted] coordinates {(1,166.096900) (2,349.601200) (3,103.857500)};
+\addlegendentry{IDA*}
+\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,16.25) {A*：OOM};
+\node[font=\fontsize{8bp}{10bp}\selectfont,text=Muted,anchor=south] at (axis cs:0,58.5) {IDA*：超时};
+\end{groupplot}
+\end{tikzpicture}
+\end{document}

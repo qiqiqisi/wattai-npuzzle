@@ -1,0 +1,20 @@
+\documentclass[border=7bp]{standalone}
+\input{../../figure-style.tex}
+\begin{document}
+\begin{tikzpicture}
+\path (-7.3,0) rectangle (7.3,0);
+
+\node[emphasis,text width=5cm] (a) at (-3.2,0) {A*};
+\node[emphasis,text width=5cm] (i) at (3.2,0) {BASIC IDA*};
+\node[frame,text width=5cm] (a1) at (-3.2,-1.5) {Open：优先队列 + 状态索引\\保存待扩展的候选结点};
+\node[frame,text width=5cm] (i1) at (3.2,-1.5) {当前递归路径 + 路径状态集合\\在 $f\leq B$ 内深度优先搜索};
+\node[frame,text width=5cm] (a2) at (-3.2,-3.2) {Closed：已扩展状态\\Node 父链：用于恢复解路径};
+\node[frame,text width=5cm] (i2) at (3.2,-3.2) {回溯后释放当前分支\\提高阈值后重新搜索};
+\node[supporting,text width=5cm] (a3) at (-3.2,-4.9) {保存更多全局信息\\减少重复扩展，可能先耗尽内存};
+\node[supporting,text width=5cm] (i3) at (3.2,-4.9) {路径相关存储随深度增长\\付出跨轮重复搜索的时间};
+\node[frame,text width=11.5cm] (extra) at (0,-6.7) {额外存储分别计入：PDB 距离表；IDA* 可选的 TT / ZOBRIST；阈值诊断序列};
+\foreach \a/\b in {a/a1,a1/a2,a2/a3,i/i1,i1/i2,i2/i3}{\draw[flow](\a)--(\b);}
+\node[annotation,text width=11cm] at (0,-7.65) {框面积不表示内存大小；本实验未测 JVM 峰值内存，不把条目数或堆上限当作实际用量};
+
+\end{tikzpicture}
+\end{document}
