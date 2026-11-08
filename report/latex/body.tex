@@ -1242,21 +1242,12 @@ speed.addActionListener(event -> {
 {\fontsize{9.5bp}{12bp}\selectfont
 \noindent\begin{minipage}{\linewidth}
 \begin{verbatim}
-java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
+java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径TSV文件
 \end{verbatim}
 \end{minipage}}
 
 \textbf{（2）两种棋盘规模。}3$\times$3 与 4$\times$4 两种规模都在同一窗口中自适应绘制：3$\times$3 的初态与目标状态见图~\ref{fig:3x3-io}；
-4$\times$4 的初态与目标状态见图~\ref{fig:4x4-io}，这一局由 IDA* 配合加性模式数据库（disjoint pattern 和 Pattern Database）得到，共 70 步。后面的阶段演示沿用这两局解，不再更换实例。
-
-\par\noindent\begin{minipage}{\linewidth}
-\begin{center}
-\includegraphics[width=0.46\linewidth]{visualFigures/4x4-initial.png}\hspace{8bp}%
-\includegraphics[width=0.46\linewidth]{visualFigures/4x4-final.png}
-\end{center}
-\refstepcounter{figure}\label{fig:4x4-io}
-\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 4$\times$4 实例：初态 Step 0/70 与目标状态 Step 70/70（IDA* + 加性 PDB）}\par\vspace{5bp}
-\end{minipage}\par
+4$\times$4 采用 IDA* 与加性模式数据库得到 70 步解，初态与目标见第 4.4 节，路径播放见图~\ref{fig:stage3}。后面的阶段演示沿用这两局解，不再更换实例。
 
 \textbf{（3）交互操作。}图~\ref{fig:ops} 是在 3$\times$3 实例上依次执行暂停、后退、前进与重置四个操作的画面。暂停停在第 13 步，后退回到第 12 步，前进又回到第 13 步，重置回到第 0 步，且每次操作后棋盘与步号同步变化。
 
@@ -1271,21 +1262,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 交互操作：暂停（Step 13）、后退（Step 12）、前进（Step 13）、重置（Step 0）}\par\vspace{5bp}
 \end{minipage}\par
 
-\noindent\begin{minipage}{\linewidth}
-\textbf{（4）速度切换与目标状态。}图~\ref{fig:speed} 给出 4$\times$4 实例上的两张速度截图与一张目标状态截图。左侧与中间的图分别显示速度档位为 0.5x 与 2x，界面在两种档位下均正常推进；右侧的图是在第 70/70 步继续按 Next 的画面，界面保持在目标状态不再前进。
-
-\par\noindent\begin{minipage}{\linewidth}
-\begin{center}
-\includegraphics[width=0.31\linewidth]{visualFigures/4x4-speed-half.png}\hspace{4bp}%
-\includegraphics[width=0.31\linewidth]{visualFigures/4x4-speed-double.png}\hspace{4bp}%
-\includegraphics[width=0.31\linewidth]{visualFigures/4x4-end-next.png}
-\end{center}
-\refstepcounter{figure}\label{fig:speed}
-\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 速度切换（0.5x、2x）与目标状态（第 70/70 步再按 Next 保持不再前进）}\par\vspace{5bp}
-\end{minipage}\par
-\end{minipage}\par
-
-\textbf{（5）损坏文件被拒绝。}图~\ref{fig:invalid} 是截断解路径文件后重新运行的终端输出。程序抛出 \texttt{java.io.IOException: Incomplete solution file}，在创建窗口前退出。
+\textbf{（4）损坏文件被拒绝。}图~\ref{fig:invalid} 是截断解路径文件后重新运行的终端输出。程序抛出 \texttt{java.io.IOException: Incomplete solution file}，在创建窗口前退出。
 
 \par\noindent\begin{minipage}{\linewidth}
 \begin{center}
@@ -1297,7 +1274,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 
 
 
-\textbf{（6）第一阶段：A* + 优先队列。}采用 A* \cite{hart1968}、优先队列与曼哈顿距离求得 16 步解，左图是播放到第 8 步（$8/16$）时的中段画面，右图是第 16 步（$16/16$）的目标状态。
+\textbf{（5）第一阶段：A* + 优先队列。}采用 A* \cite{hart1968}、优先队列与曼哈顿距离求得 16 步解，左图是播放到第 8 步（$8/16$）时的中段画面，右图是第 16 步（$16/16$）的目标状态。
 
 \noindent\begin{minipage}{\linewidth}
 \par\noindent\begin{minipage}{\linewidth}
@@ -1306,11 +1283,11 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.46\linewidth]{visualFigures/stage1-astar-3x3-step16.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage1}
-\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第一阶段（A* + 优先队列）3$\times$3 实例的解路径播放：中段 Step 8/16 与目标状态 Step 16/16}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第一阶段（A* + 优先队列，曼哈顿距离）3$\times$3 实例的解路径播放：中段 Step 8/16 与目标状态 Step 16/16}\par\vspace{5bp}
 \end{minipage}\par
 \end{minipage}\par
 
-\textbf{（7）第二阶段：IDA* 求解 4 阶棋盘。}采用 BASIC IDA* 与曼哈顿距离求得 52 步解。
+\textbf{（6）第二阶段：IDA* 求解 4 阶棋盘。}采用 BASIC IDA* 与曼哈顿距离求得 52 步解。
 该配置不启用转置表；实现中另提供 TT 与 ZOBRIST 模式\cite{zobrist-wiki,zobrist-cn}。
 图~\ref{fig:stage2} 给出播放到第 26 步（$26/52$）与第 52 步（$52/52$）的画面。
 
@@ -1320,10 +1297,10 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.46\linewidth]{visualFigures/stage2-ida-4x4-step52.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage2}
-\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第二阶段（IDA* + 曼哈顿距离）4$\times$4 实例的解路径播放：中段 Step 26/52 与目标状态 Step 52/52}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第二阶段（IDA* + 曼哈顿距离，BASIC 模式、未启用转置表）4$\times$4 实例的解路径播放：中段 Step 26/52 与目标状态 Step 52/52}\par\vspace{5bp}
 \end{minipage}\par
 
-\textbf{（8）第三阶段：加性模式数据库。}采用 BASIC IDA*、fast 与 555T 加性模式数据库\cite{culberson1996,pdb-intro}，求得困难题的 70 步解。
+\textbf{（7）第三阶段：加性模式数据库。}采用 BASIC IDA*、fast 与 555T 加性模式数据库\cite{culberson1996,pdb-intro}，求得困难题的 70 步解。
 独立冷启动包含建表的求解总耗时为 16.981 秒，具体结果见第 4.4 节。
 图~\ref{fig:stage3} 给出播放到第 35 步（$35/70$）与第 70 步（$70/70$）的画面。
 
@@ -1333,7 +1310,7 @@ java -cp build/classes stud.g01.visual.PuzzleVisualizer 解路径tsv文件
 \includegraphics[width=0.46\linewidth]{visualFigures/stage3-pdb-4x4-step70.png}
 \end{center}
 \refstepcounter{figure}\label{fig:stage3}
-\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第三阶段（IDA* + 加性模式数据库）4$\times$4 实例的解路径播放：中段 Step 35/70 与目标状态 Step 70/70}\par\vspace{5bp}
+\noindent{\fontsize{9bp}{12bp}\selectfont 图 \thefigure\quad 第三阶段（IDA* + 加性模式数据库，555T 分组）4$\times$4 实例的解路径播放：中段 Step 35/70 与目标状态 Step 70/70}\par\vspace{5bp}
 \end{minipage}\par
 
 \textbf{本部分小结。}16、52、70 步三条路径展示了播放器对中间状态、目标状态和交互操作的处理。

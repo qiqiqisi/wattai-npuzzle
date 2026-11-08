@@ -40,3 +40,7 @@ elapsed_ms为工作JVM内搜索；parent.txt从创建工作JVM前计时，含其
 [完整运行](optimization-report-20261108T140641033100Z/) · [比较表](optimization-report-20261108T140641033100Z/comparison.csv) · [六次错位数测试](optimization-report-20261108T140641033100Z/misplaced-60s.csv) · [环境与代码版本](optimization-report-20261108T140641033100Z/environment.json)。
 
 JDK 19.0.2 编译与运行，源码、测试和输入与复测开始时 origin/main 一致。9 套 Java 测试通过；80 次主运行中 74 SOLVED、3 OOM、3 TIMEOUT，12 次独立控制均成功。三阶全部完成；普通四阶错位数 A* 三次 OOM，IDA* 三次达到 60 秒上限。困难题 BASIC、fast、555T 独立冷启动建表 2985 ms、搜索 13816.796 ms、总耗时 16981.279 ms、70 步；热缓存三次均成功，总耗时中位数 13790.780 ms。原有各组记录独立保留。
+
+## 2026-11-08 普通4×4 MISPLACED 60秒诊断
+
+[六次完整比较表](misplaced-60s-20261108/comparison.csv) · [分析及口径](misplaced-60s-20261108/analysis.md) · [环境与配置](misplaced-60s-20261108/experiment.json) · [完整原始记录](misplaced-60s-20261108/runs/) · [完整性核验](misplaced-60s-20261108/validation.json)。60秒为本轮父端诊断上限，不是教师第二阶段时限；OOM、TIMEOUT及缺失指标分别保留。旧记录和正式报告未修改。

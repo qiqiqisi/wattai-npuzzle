@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-08",
+  "date": "2026-11-09",
   "status": "PASS",
   "pdf_pages": 42,
-  "pdf_sha256": "bd26a8f5356b09b07c641fac4bf3fd7700e6e20ebca3c4b9cefdb83c0971bd39",
+  "pdf_sha256": "806023dceaa5bb74fce5ce188e69423628005ce6da4dc1638ddae60645dc1752",
   "source_suite": "results/optimization-report-20261108T140641033100Z",
   "runtime": "JDK 19.0.2",
   "compile_target": 19,
@@ -100,5 +100,5 @@
   "gui_manual_reacceptance": "NOT_RUN; retained existing evidence",
   "statistical_scope": "Three repetitions on fixed inputs; descriptive statistics only",
   "experiment_date": "2026-11-08",
-  "report_revision": "Two-character paragraph indentation, complete README, natural Chinese wording, consistent punctuation and units; complete JDK 19 rerun; current tables and vector charts; final PDF rendered and all 42 pages visually reviewed."
+  "report_revision": "Merged main fifth-chapter image simplification with current JDK 19 results and prose; seven visualization figures with explicit configurations; all 42 pages rendered and visually reviewed."
 }
